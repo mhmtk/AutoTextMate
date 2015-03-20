@@ -1,11 +1,12 @@
 package com.mhmt.autotextmate;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Main extends Activity {
+public class Main extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,16 @@ public class Main extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 			case R.id.action_new:
+				launchAddRuleActivity();
 				return true;
 			case R.id.action_settings:
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
+	}
+
+	private void launchAddRuleActivity() {
+		startActivity(new Intent (this, AddRule.class));
 	}
 }
