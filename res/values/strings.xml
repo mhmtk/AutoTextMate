@@ -7,4 +7,13 @@
     <string name="title_activity_add_rule">Add Rule</string>
     <string name="hello_world">Hello world!</string>
 
+    <string name="editText_name">Name</string>
+    <string name="editText_description">Add a short description</string>
+    <string name="editText_text">The text to be replied to calls/texts</string>
+    <string name="textView_contactsOnly_text">Contacts only?</string>
+    <string name="radio_sms">Texts</string>
+    <string name="radio_call">Call</string>
+    <string name="radio_both">Both</string>
+    <string name="textView_replyTo_text">Reply to</string>
+    
 </resources>
