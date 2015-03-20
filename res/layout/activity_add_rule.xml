@@ -10,11 +10,12 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical" >
 
         <EditText
             android:id="@+id/editText_name"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/editText_name" >
@@ -22,7 +23,7 @@
 
         <EditText
             android:id="@+id/editText_description"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
@@ -30,7 +31,7 @@
 
         <EditText
             android:id="@+id/editText_text"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
