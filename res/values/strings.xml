@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Auto Text Mate</string>
-    <string name="action_new">New!</string>
+    <string name="action_new">New</string>
     <string name="action_settings">Settings</string>
 
 </resources>
