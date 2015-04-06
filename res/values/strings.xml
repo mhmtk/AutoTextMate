@@ -15,5 +15,7 @@
     <string name="radio_call">Call</string>
     <string name="radio_both">Both</string>
     <string name="textView_replyTo_text">Reply to</string>
+    <string name="button_add">Add</string>
+    <string name="button_cancel">Cancel</string>
     
 </resources>

@@ -48,37 +48,35 @@
                 android:id="@+id/textView_contactsOnly"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:text="@string/textView_contactsOnly_text" 
                 android:layout_weight="1"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:text="@string/textView_contactsOnly_text" />
 
             <CheckBox
                 android:id="@+id/checkBox_contactsOnly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                 />
-
+                android:layout_gravity="end" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout_replyTo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" 
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal" >
 
-           	<TextView
+            <TextView
                 android:id="@+id/textView_replyTo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/textView_replyTo_text"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="@string/textView_replyTo_text" />
+
             <RadioGroup
                 android:id="@+id/radio_callsms"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content" >
 
                 <RadioButton
                     android:id="@+id/radio_sms"
@@ -99,6 +97,30 @@
                     android:layout_height="wrap_content"
                     android:text="@string/radio_both" />
             </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_buttons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button 
+                android:id="@+id/button_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="15dp" 
+                android:paddingStart="15dp"
+                android:text="@string/button_add" />
+            <Button 
+                android:id="@+id/button_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="15dp" 
+                android:paddingEnd="15dp"
+                android:text="@string/button_cancel" />
+            
         </LinearLayout>
     </LinearLayout>
 
