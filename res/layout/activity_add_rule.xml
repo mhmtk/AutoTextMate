@@ -46,16 +46,19 @@
 
             <TextView
                 android:id="@+id/textView_contactsOnly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
                 android:text="@string/textView_contactsOnly_text" 
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:gravity="center_vertical"/>
 
             <CheckBox
                 android:id="@+id/checkBox_contactsOnly"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:layout_weight="1"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                 />
+
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +70,7 @@
 
            	<TextView
                 android:id="@+id/textView_replyTo"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/textView_replyTo_text"
                 android:layout_weight="1" />
@@ -75,7 +78,7 @@
                 android:id="@+id/radio_callsms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" >
+                android:gravity="end">
 
                 <RadioButton
                     android:id="@+id/radio_sms"
