@@ -7,7 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 
-
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version November April 7, 2015
+ * 
+ */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 
 	private static final String TEXT_TYPE = " TEXT";

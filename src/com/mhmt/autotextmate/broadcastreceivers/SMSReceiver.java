@@ -7,6 +7,12 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version November April 7, 2015
+ * 
+ */
 public class SMSReceiver extends BroadcastReceiver{
 
 	@Override

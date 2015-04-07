@@ -7,6 +7,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version November April 7, 2015
+ * 
+ */
 public class AddRule extends ActionBarActivity {
 
 	@Override
