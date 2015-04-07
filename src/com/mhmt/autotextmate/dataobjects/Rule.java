@@ -1,5 +1,6 @@
 package com.mhmt.autotextmate.dataobjects;
 
+
 public class Rule {
 
 	String name;
