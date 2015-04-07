@@ -103,8 +103,10 @@
             android:id="@+id/linearLayout_buttons"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            style="?android:attr/buttonBarStyle" >
             <Button 
+                style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/button_add"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -113,6 +115,7 @@
                 android:paddingStart="15dp"
                 android:text="@string/button_add" />
             <Button 
+                style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/button_cancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
