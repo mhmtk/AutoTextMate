@@ -1,4 +1,4 @@
-package com.mhmt.autotextmate.dataclasses;
+package com.mhmt.autotextmate.dataobjects;
 
 public class Rule {
 
