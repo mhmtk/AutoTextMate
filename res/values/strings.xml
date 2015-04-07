@@ -18,6 +18,4 @@
     <string name="button_add">Add</string>
     <string name="button_cancel">Cancel</string>
     
-    <color name="black">#000000</color>
-    
 </resources>

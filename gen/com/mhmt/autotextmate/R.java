@@ -1378,26 +1378,25 @@ containing a value of this type.
         public static final int abc_config_showMenuShortcutsWhenKeyboardPresent=0x7f050003;
     }
     public static final class color {
-        public static final int abc_background_cache_hint_selector_material_dark=0x7f060032;
-        public static final int abc_background_cache_hint_selector_material_light=0x7f060033;
+        public static final int abc_background_cache_hint_selector_material_dark=0x7f060031;
+        public static final int abc_background_cache_hint_selector_material_light=0x7f060032;
         public static final int abc_input_method_navigation_guard=0x7f060003;
-        public static final int abc_primary_text_disable_only_material_dark=0x7f060034;
-        public static final int abc_primary_text_disable_only_material_light=0x7f060035;
-        public static final int abc_primary_text_material_dark=0x7f060036;
-        public static final int abc_primary_text_material_light=0x7f060037;
-        public static final int abc_search_url_text=0x7f060038;
+        public static final int abc_primary_text_disable_only_material_dark=0x7f060033;
+        public static final int abc_primary_text_disable_only_material_light=0x7f060034;
+        public static final int abc_primary_text_material_dark=0x7f060035;
+        public static final int abc_primary_text_material_light=0x7f060036;
+        public static final int abc_search_url_text=0x7f060037;
         public static final int abc_search_url_text_normal=0x7f060000;
         public static final int abc_search_url_text_pressed=0x7f060002;
         public static final int abc_search_url_text_selected=0x7f060001;
-        public static final int abc_secondary_text_material_dark=0x7f060039;
-        public static final int abc_secondary_text_material_light=0x7f06003a;
+        public static final int abc_secondary_text_material_dark=0x7f060038;
+        public static final int abc_secondary_text_material_light=0x7f060039;
         public static final int accent_material_dark=0x7f06000f;
         public static final int accent_material_light=0x7f06000e;
         public static final int background_floating_material_dark=0x7f060006;
         public static final int background_floating_material_light=0x7f060007;
         public static final int background_material_dark=0x7f060004;
         public static final int background_material_light=0x7f060005;
-        public static final int black=0x7f060031;
         /**  White 50% 
          */
         public static final int bright_foreground_disabled_material_dark=0x7f060016;
