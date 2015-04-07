@@ -1,24 +1,24 @@
-package com.mhmt.autotextmate;
+package com.mhmt.autotextmate.activities;
 
-import android.content.Intent;
+import com.mhmt.autotextmate.R;
+
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Main extends ActionBarActivity {
+public class AddRule extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-
+		setContentView(R.layout.activity_add_rule);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.add_rule, menu);
 		return true;
 	}
 
@@ -27,18 +27,7 @@ public class Main extends ActionBarActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		switch (item.getItemId()) {
-			case R.id.action_new:
-				launchAddRuleActivity();
-				return true;
-			case R.id.action_settings:
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-	}
 
-	private void launchAddRuleActivity() {
-		startActivity(new Intent (this, AddRule.class));
+		return super.onOptionsItemSelected(item);
 	}
 }

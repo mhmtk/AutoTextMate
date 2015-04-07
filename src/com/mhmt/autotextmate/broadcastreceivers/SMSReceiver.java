@@ -1,4 +1,4 @@
-package com.mhmt.broadcastreceivers;
+package com.mhmt.autotextmate.broadcastreceivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
