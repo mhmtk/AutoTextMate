@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
@@ -17,18 +18,25 @@ public class SMSReceiver extends BroadcastReceiver{
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		String phoneNo = "";
+		String message = "";
+		
 		Bundle bundle = intent.getExtras();
 		SmsMessage[] msg = null;
-		String str = "";
+		
 		if (bundle != null) {
 			Object[] pdus = (Object[]) bundle.get("pdus");
 			msg = new SmsMessage[pdus.length];
 			for (int i=0; i<msg.length; i++) {
 				msg[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
-				str += "SMS received from " + msg[i].getOriginatingAddress() + ":"
-						+ msg[i].getMessageBody().toString() + "\n";
+				
+				phoneNo = msg[i].getOriginatingAddress();
+				message = msg[i].getMessageBody().toString();
+				
 			}
-			Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, "replied", Toast.LENGTH_SHORT).show();
+			SmsManager smsManager = SmsManager.getDefault();
+			smsManager.sendTextMessage(phoneNo, null, message, null, null);
 		}
 	}
 	
