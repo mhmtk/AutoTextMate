@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 /**
@@ -38,7 +39,19 @@ public class AddRule extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void addButtonClicked() {
-		Toast.makeText(getApplicationContext(), "button clicked", Toast.LENGTH_SHORT).show();
+	/**
+	 * Called when the add button on the AddRule Activity is clicked
+	 * @param view
+	 */
+	public void addButtonClicked(View view) {
+		//add Rule to DB
+	}
+	
+	/**
+	 * Called when the cancel button on the AddRule Activity is clicked
+	 * @param view
+	 */
+	public void cancelButtonClicked(View view) {
+		
 	}
 }
