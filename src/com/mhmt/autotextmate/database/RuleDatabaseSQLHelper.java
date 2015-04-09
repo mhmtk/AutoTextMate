@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.util.Log;
 
 /**
  * 
@@ -44,11 +45,13 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	 */
 	public RuleDatabaseSQLHelper(Context context, String name,CursorFactory factory, int version) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		Log.d("Database operations",  "Table created");
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(SQL_CREATE_RULE);
+		Log.d("Database operations",  "Table created (onCraete called)");
 	}
 
 
@@ -58,6 +61,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL(SQL_DELETE_RULE);
+		Log.d("Database operations",  "Database upgraded from " + oldVersion + " to " + " snewVersion");
 	}
 	
 //	public void delete(SQLiteDatabase db, String name, String type, String date, String amount) {
