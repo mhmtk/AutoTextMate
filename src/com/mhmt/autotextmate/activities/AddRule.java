@@ -1,9 +1,12 @@
 package com.mhmt.autotextmate.activities;
 
 import com.mhmt.autotextmate.R;
+import com.mhmt.autotextmate.database.DatabaseManager;
+import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +28,8 @@ public class AddRule extends ActionBarActivity {
 	EditText editTextText = (EditText) findViewById(R.id.editText_text);
 	CheckBox checkBoxContacts = (CheckBox) findViewById(R.id.checkBox_contactsOnly);
 	RadioGroup radioReplyTo = (RadioGroup) findViewById(R.id.radio_replyTo);
+	
+	DatabaseManager dbManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +59,17 @@ public class AddRule extends ActionBarActivity {
 	 */
 	public void addButtonClicked(View view) {
 		//add Rule to DB
-		
+		dbManager = new DatabaseManager(getApplicationContext());
+		dbManager.addRule(new Rule(editTextName.getText().toString(),
+				editTextDescription.getText().toString(),
+				editTextText.getText().toString(),
+				checkBoxContacts.isChecked() ));
+		Log.d("Add Rule", "Called dbmanager addrule method");
 		//return to homepage
 		
+		
 		//toast to give feedback of success
+		Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
 	}
 	
 	/**
@@ -66,5 +78,6 @@ public class AddRule extends ActionBarActivity {
 	 */
 	public void cancelButtonClicked(View view) {
 		//cancel
+		//return to homepage
 	}
 }

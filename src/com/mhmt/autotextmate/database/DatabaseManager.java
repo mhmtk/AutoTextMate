@@ -19,4 +19,8 @@ public class DatabaseManager {
 		this.db = dbHelper.getReadableDatabase();
 		this.ruleArray = new ArrayList<Rule>();
 	}
+	
+	public void addRule(Rule rule){
+		
+	}
 }

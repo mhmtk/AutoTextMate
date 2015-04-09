@@ -14,6 +14,13 @@ public class Rule {
 	String text;
 	Boolean onlyContacts;
 	
+	/**
+	 * 
+	 * @param name	Name
+	 * @param description Description
+	 * @param text Text
+	 * @param onlyContacts	Only contacts?
+	 */
 	public Rule(String name, String description, String text, Boolean onlyContacts) {
 		this.name = name;
 		this.description = description;
