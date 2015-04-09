@@ -14,12 +14,21 @@ public class DatabaseManager {
 	private SQLiteDatabase db;
 	private ArrayList<Rule> ruleArray;
 
+	/**
+	 * Constructor
+	 * @param context
+	 */
 	public DatabaseManager(Context context){
 		this.dbHelper = new RuleDatabaseSQLHelper(context, "", null, 0);
 		this.db = dbHelper.getReadableDatabase();
 		this.ruleArray = new ArrayList<Rule>();
 	}
 	
+	/**
+	 * Adds the given rule to the database
+	 * 
+	 * @param rule Rule to be added
+	 */
 	public void addRule(Rule rule){
 		
 	}
