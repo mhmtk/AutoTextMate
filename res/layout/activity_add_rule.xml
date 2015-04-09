@@ -111,7 +111,8 @@
                 android:layout_weight="1"
                 android:paddingLeft="15dp" 
                 android:paddingStart="15dp"
-                android:text="@string/button_add" />
+                android:text="@string/button_add"
+                android:onCreate="@addButtonClicked" />
             <Button 
                 android:id="@+id/button_cancel"
                 android:layout_width="0dp"

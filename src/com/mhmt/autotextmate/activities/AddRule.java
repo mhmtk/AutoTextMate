@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 /**
  * 
@@ -35,5 +36,9 @@ public class AddRule extends ActionBarActivity {
 		// as you specify a parent activity in AndroidManifest.xml.
 
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void addButtonClicked() {
+		Toast.makeText(getApplicationContext(), "button clicked", Toast.LENGTH_SHORT).show();
 	}
 }
