@@ -61,7 +61,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL(SQL_DELETE_RULE);
-		Log.d("Database operations",  "Database upgraded from " + oldVersion + " to " + " snewVersion");
+		Log.d("Database operations",  "Database upgraded from " + oldVersion + " to " + newVersion);
 	}
 	
 //	public void delete(SQLiteDatabase db, String name, String type, String date, String amount) {
