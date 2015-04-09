@@ -23,18 +23,32 @@ import android.widget.Toast;
  */
 public class AddRule extends ActionBarActivity {
 
-	EditText editTextName = (EditText) findViewById(R.id.editText_name);
-	EditText editTextDescription = (EditText) findViewById(R.id.editText_description);
-	EditText editTextText = (EditText) findViewById(R.id.editText_text);
-	CheckBox checkBoxContacts = (CheckBox) findViewById(R.id.checkBox_contactsOnly);
-	RadioGroup radioReplyTo = (RadioGroup) findViewById(R.id.radio_replyTo);
-	
+	private EditText editTextName;
+	private EditText editTextDescription;
+	private EditText editTextText;
+	private CheckBox checkBoxContacts;
+	private RadioGroup radioReplyTo;
+
 	DatabaseManager dbManager;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_rule);
+
+		instentiateViews();
+	}
+
+	/**
+	 * Loads the views on the activity
+	 */
+	private void instentiateViews() {
+		editTextName = (EditText) findViewById(R.id.editText_name);
+		editTextDescription = (EditText) findViewById(R.id.editText_description);
+		editTextText = (EditText) findViewById(R.id.editText_text);
+		checkBoxContacts = (CheckBox) findViewById(R.id.checkBox_contactsOnly);
+		radioReplyTo = (RadioGroup) findViewById(R.id.radio_replyTo);
+
 	}
 
 	@Override
@@ -52,7 +66,7 @@ public class AddRule extends ActionBarActivity {
 
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	/**
 	 * Called when the add button on the AddRule Activity is clicked
 	 * @param view
@@ -66,12 +80,12 @@ public class AddRule extends ActionBarActivity {
 				checkBoxContacts.isChecked() ));
 		Log.d("Add Rule", "Called dbmanager addrule method");
 		//return to homepage
-		
-		
+
+
 		//toast to give feedback of success
 		Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
 	}
-	
+
 	/**
 	 * Called when the cancel button on the AddRule Activity is clicked
 	 * @param view
