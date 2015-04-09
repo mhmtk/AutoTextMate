@@ -50,13 +50,13 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	 */
 	public RuleDatabaseSQLHelper(Context context, String name,CursorFactory factory, int version) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		Log.d("Database operations",  "Table created");
+		Log.d("Database Helper",  "Table created");
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(SQL_CREATE_RULE);
-		Log.d("Database operations",  "Table created (onCraete called)");
+		Log.d("Database Helper",  "Table created (onCraete called)");
 	}
 
 

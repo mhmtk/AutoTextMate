@@ -6,6 +6,7 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 
 public class DatabaseManager {
@@ -30,6 +31,6 @@ public class DatabaseManager {
 	 * @param rule Rule to be added
 	 */
 	public void addRule(Rule rule){
-		
+		Log.d("Database Manager", "Add rule was called");
 	}
 }
