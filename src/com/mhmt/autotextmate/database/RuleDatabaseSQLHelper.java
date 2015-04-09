@@ -19,6 +19,10 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String INTEGER_TYPE = " INTEGER";
 	private static final String COMMA_SEP = ",";
+	private static final String CHECK = " CHECK";
+	private static final String DEFAULT = " DEFAULT";
+	private static final String STATUS_DEFAULT_VALUE = "1";
+	
 	public static boolean INITIALIZED = false;
 
 	//SQL command to create RULE table
@@ -28,7 +32,8 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 					RuleEntry.RULE_TABLE_NAME + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_TEXT + TEXT_TYPE + COMMA_SEP +
-					RuleEntry.RULE_COLUMN_ONLYCONTACTS +INTEGER_TYPE+")";
+					RuleEntry.RULE_COLUMN_ONLYCONTACTS +INTEGER_TYPE +
+					RuleEntry.RULE_COLUMN_STATUS + INTEGER_TYPE + DEFAULT + STATUS_DEFAULT_VALUE + ")";
 	
 	//SQL command to drop (delete) the rule table
 	private static final String SQL_DELETE_RULE = 
