@@ -19,20 +19,12 @@ public class RuleDatabaseContract {
 	public static abstract class RuleEntry implements BaseColumns{
 
 		//Income table
-		public static final String INCOME_TABLE_NAME = "income";
-		public static final String INCOME_COLUMN_TYPE = "type";
-		public static final String INCOME_COLUMN_RATE = "rate";
-		public static final String INCOME_COLUMN_HOUR = "hour";
-		public static final String INCOME_COLUMN_DATE = "date";
-		public static final String INCOME_COLUMN_RECURRENCE = "recurrence";
+		public static final String RULE_TABLE_NAME = "rules";
+		public static final String RULE_COLUMN_NAME = "name";
+		public static final String RULE_COLUMN_DESCRIPTION = "description";
+		public static final String RULE_COLUMN_TEXT = "text";
+		public static final String RULE_COLUMN_ONLYCONTACTS = "only contacts";
 
-
-		//Expense table
-		public static final String EXPENSE_TABLE_NAME= "expense";
-		public static final String EXPENSE_COLUMN_NAME = "name";
-		public static final String EXPENSE_COLUMN_TYPE = "type";
-		public static final String EXPENSE_COLUMN_DATE = "date";
-		public static final String EXPENSE_COLUMN_AMOUNT = "amount";
 	}
 
 }

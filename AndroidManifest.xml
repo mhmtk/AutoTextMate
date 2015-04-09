@@ -31,7 +31,7 @@
             android:name=".activities.AddRule"
             android:label="@string/title_activity_add_rule" >
         </activity>
-        <receiver android:name=".SMSReceiver">
+        <receiver android:name="com.mhmt.autotextmate.broadcastreceivers.SMSReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
