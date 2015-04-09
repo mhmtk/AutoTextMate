@@ -45,6 +45,10 @@ public class AddRule extends ActionBarActivity {
 	 */
 	public void addButtonClicked(View view) {
 		//add Rule to DB
+		
+		//return to homepage
+		
+		//toast to give feedback of success
 	}
 	
 	/**
@@ -52,6 +56,6 @@ public class AddRule extends ActionBarActivity {
 	 * @param view
 	 */
 	public void cancelButtonClicked(View view) {
-		
+		//cancel
 	}
 }
