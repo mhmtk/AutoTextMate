@@ -1706,7 +1706,7 @@ containing a value of this type.
         public static final int radio=0x7f09002b;
         public static final int radio_both=0x7f09004a;
         public static final int radio_call=0x7f090049;
-        public static final int radio_callsms=0x7f090047;
+        public static final int radio_replyTo=0x7f090047;
         public static final int radio_sms=0x7f090048;
         public static final int search_badge=0x7f090035;
         public static final int search_bar=0x7f090034;

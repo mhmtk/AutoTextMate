@@ -74,7 +74,7 @@
                 android:text="@string/textView_replyTo_text" />
 
             <RadioGroup
-                android:id="@+id/radio_callsms"
+                android:id="@+id/radio_replyTo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 

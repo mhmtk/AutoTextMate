@@ -7,6 +7,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 /**
@@ -17,6 +20,12 @@ import android.widget.Toast;
  */
 public class AddRule extends ActionBarActivity {
 
+	EditText editTextName = (EditText) findViewById(R.id.editText_name);
+	EditText editTextDescription = (EditText) findViewById(R.id.editText_description);
+	EditText editTextText = (EditText) findViewById(R.id.editText_text);
+	CheckBox checkBoxContacts = (CheckBox) findViewById(R.id.checkBox_contactsOnly);
+	RadioGroup radioReplyTo = (RadioGroup) findViewById(R.id.radio_replyTo);
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
