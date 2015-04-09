@@ -4,7 +4,7 @@ package com.mhmt.autotextmate.dataobjects;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 7, 2015
+ * @version November April 8, 2015
  * 
  */
 public class Rule {
@@ -16,10 +16,10 @@ public class Rule {
 	
 	/**
 	 * 
-	 * @param name	Name
-	 * @param description Description
-	 * @param text Text
-	 * @param onlyContacts	Only contacts?
+	 * @param name	Name of the rule
+	 * @param description Description of the rule
+	 * @param text Text SMS text of the rule
+	 * @param onlyContacts	Should the rule only apply to contacts?
 	 */
 	public Rule(String name, String description, String text, Boolean onlyContacts) {
 		this.name = name;
