@@ -4,7 +4,7 @@ package com.mhmt.autotextmate.dataobjects;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 8, 2015
+ * @version November April 13, 2015
  * 
  */
 public class Rule {
