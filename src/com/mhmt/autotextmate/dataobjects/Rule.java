@@ -13,6 +13,7 @@ public class Rule {
 	String description;
 	String text;
 	Boolean onlyContacts;
+	Boolean status;
 	
 	/**
 	 * 
@@ -27,4 +28,22 @@ public class Rule {
 		this.text = text;
 		this.onlyContacts = onlyContacts;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public Boolean getOnlyContacts() {
+		return onlyContacts;
+	}
+	
+	
 }
