@@ -37,6 +37,8 @@ public class AddRule extends ActionBarActivity {
 		setContentView(R.layout.activity_add_rule);
 
 		assignViewVariables();
+		
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	/**
@@ -92,6 +94,7 @@ public class AddRule extends ActionBarActivity {
 	 */
 	public void cancelButtonClicked(View view) {
 		//cancel
+		super.onBackPressed();
 		//return to homepage
 	}
 }
