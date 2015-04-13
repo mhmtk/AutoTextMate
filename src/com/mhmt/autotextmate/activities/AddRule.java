@@ -79,7 +79,7 @@ public class AddRule extends ActionBarActivity {
 		dbManager.addRule(new Rule(editTextName.getText().toString(),
 				editTextDescription.getText().toString(),
 				editTextText.getText().toString(),
-				checkBoxContacts.isChecked() ));
+				checkBoxContacts.isChecked()));
 		Log.d("Add Rule", "Called dbmanager addrule method");
 		//return to homepage
 
