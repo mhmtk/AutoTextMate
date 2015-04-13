@@ -12,8 +12,8 @@ public class Rule {
 	String name;
 	String description;
 	String text;
-	Boolean onlyContacts;
-	Boolean status;
+	int onlyContacts;
+	int status;
 	
 	/**
 	 * 
@@ -22,11 +22,26 @@ public class Rule {
 	 * @param text Text SMS text of the rule
 	 * @param onlyContacts	Should the rule only apply to contacts?
 	 */
-	public Rule(String name, String description, String text, Boolean onlyContacts) {
+	public Rule(String name, String description, String text, int onlyContacts) {
 		this.name = name;
 		this.description = description;
 		this.text = text;
 		this.onlyContacts = onlyContacts;
+	}
+	
+	/**
+	 * 
+	 * @param name	Name of the rule
+	 * @param description Description of the rule
+	 * @param text Text SMS text of the rule
+	 * @param onlyContacts	Should the rule only apply to contacts?
+	 */
+	public Rule(String name, String description, String text, int onlyContacts, int status) {
+		this.name = name;
+		this.description = description;
+		this.text = text;
+		this.onlyContacts = onlyContacts;
+		this.status = status;
 	}
 
 	public String getName() {
@@ -41,7 +56,7 @@ public class Rule {
 		return text;
 	}
 
-	public Boolean getOnlyContacts() {
+	public int getOnlyContacts() {
 		return onlyContacts;
 	}
 	
