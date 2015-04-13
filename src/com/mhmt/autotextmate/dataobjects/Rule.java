@@ -27,6 +27,7 @@ public class Rule {
 		this.description = description;
 		this.text = text;
 		this.onlyContacts = onlyContacts;
+		this.status = 1;
 	}
 	
 	/**
@@ -58,6 +59,10 @@ public class Rule {
 
 	public int getOnlyContacts() {
 		return onlyContacts;
+	}
+	
+	public int getstatus() {
+		return status;
 	}
 	
 	
