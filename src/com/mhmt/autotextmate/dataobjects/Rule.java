@@ -36,6 +36,7 @@ public class Rule {
 	 * @param description Description of the rule
 	 * @param text Text SMS text of the rule
 	 * @param onlyContacts	Should the rule only apply to contacts?
+	 * @param status Is the rule on or off
 	 */
 	public Rule(String name, String description, String text, int onlyContacts, int status) {
 		this.name = name;
