@@ -8,7 +8,9 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.BaseBundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 
 public class DatabaseManager {
@@ -46,7 +48,10 @@ public class DatabaseManager {
 		// Insert the new row
 		db.insert(RuleEntry.RULE_TABLE_NAME, null, values);
 		RuleDatabaseSQLHelper.INITIALIZED = true;
-		
-		
+	}
+
+	public ArrayList<Rule> getRulesArray() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
