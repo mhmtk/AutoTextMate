@@ -22,11 +22,11 @@ public class Rule {
 	 * @param text Text SMS text of the rule
 	 * @param onlyContacts	Should the rule only apply to contacts?
 	 */
-	public Rule(String name, String description, String text, int onlyContacts) {
+	public Rule(String name, String description, String text, Boolean onlyContacts) {
 		this.name = name;
 		this.description = description;
 		this.text = text;
-		this.onlyContacts = onlyContacts;
+		this.onlyContacts = onlyContacts ? 1 : 0;
 		this.status = 1;
 	}
 	
