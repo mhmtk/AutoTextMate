@@ -7,6 +7,7 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.BaseBundle;
 import android.util.Log;
@@ -51,7 +52,50 @@ public class DatabaseManager {
 	}
 
 	public ArrayList<Rule> getRulesArray() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		db = dbHelper.getReadableDatabase();
+		ruleArray = new ArrayList<Rule>();
+
+		//define a projection that specifies which columns from the database to use
+		String[] projection = {
+				RuleEntry.RULE_COLUMN_NAME,
+				RuleEntry.RULE_COLUMN_DESCRIPTION,
+				RuleEntry.RULE_COLUMN_TEXT,
+				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
+				RuleEntry.RULE_COLUMN_STATUS,
+				
+		};
+
+		//sort descending
+//		String sortOrder = Rule.COLUMN_NAME_TABLE_ID + " DESC";
+
+		//create cursor with the whole database
+		Cursor c = db.query(
+				RuleEntry.RULE_TABLE_NAME,  // The table to query
+				projection,				// The columns to return
+				null,		            // The columns for the WHERE clause
+				null,                   // The values for the WHERE clause
+				null,                   // don't group the rows
+				null,					// don't filter by row groups
+				null	               	// don't sort
+				);
+
+		//move cursor to the beginning
+		c.moveToFirst();
+
+		while(!c.isAfterLast())
+		{
+			Rule p = new Rule(c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)))
+			;
+			ruleArray.add(p);
+			c.moveToNext();
+		}
+		
+		db.close();
+		return ruleArray;
 	}
 }
