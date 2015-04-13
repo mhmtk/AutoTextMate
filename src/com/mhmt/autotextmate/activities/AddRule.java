@@ -36,13 +36,13 @@ public class AddRule extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_rule);
 
-		instentiateViews();
+		assignViewVariables();
 	}
 
 	/**
 	 * Loads the views on the activity
 	 */
-	private void instentiateViews() {
+	private void assignViewVariables() {
 		editTextName = (EditText) findViewById(R.id.editText_name);
 		editTextDescription = (EditText) findViewById(R.id.editText_description);
 		editTextText = (EditText) findViewById(R.id.editText_text);
