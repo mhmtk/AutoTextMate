@@ -3,15 +3,15 @@
     package="com.mhmt.autotextmate"
     android:versionCode="1"
     android:versionName="1.0" >
-    
+
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="22" />
-    
+
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -29,9 +29,15 @@
         </activity>
         <activity
             android:name=".activities.AddRule"
-            android:label="@string/title_activity_add_rule" >
+            android:label="@string/title_activity_add_rule"
+            android:parentActivityName="com.mhmt.autotextmate.activities.Main" >
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mhmt.autotextmate.activities.Main" />
         </activity>
-        <receiver android:name="com.mhmt.autotextmate.broadcastreceivers.SMSReceiver">
+
+        <receiver android:name="com.mhmt.autotextmate.broadcastreceivers.SMSReceiver" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
