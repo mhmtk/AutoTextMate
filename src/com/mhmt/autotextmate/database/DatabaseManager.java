@@ -9,11 +9,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.BaseBundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
-
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version November April 13, 2015
+ * 
+ */
 public class DatabaseManager {
 
 	private RuleDatabaseSQLHelper dbHelper;
