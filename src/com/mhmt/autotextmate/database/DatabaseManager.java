@@ -30,7 +30,7 @@ public class DatabaseManager {
 	 */
 	public DatabaseManager(Context context){
 		this.dbHelper = new RuleDatabaseSQLHelper(context, "", null, 0);
-		this.ruleArray = new ArrayList<Rule>();
+		
 	}
 	
 	/**
@@ -64,6 +64,8 @@ public class DatabaseManager {
 	 * @return
 	 */
 	public ArrayList<Rule> getRulesArray() {
+		ruleArray = new ArrayList<Rule>();
+		
 		//get readable database
 		db = dbHelper.getReadableDatabase();
 		//define a projection that specifies which columns from the database to use
