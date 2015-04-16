@@ -9,12 +9,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
 import android.util.Log;
 
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 13, 2015
+ * @version November April 16, 2015
  * 
  */
 public class DatabaseManager {
@@ -29,7 +30,6 @@ public class DatabaseManager {
 	 */
 	public DatabaseManager(Context context){
 		this.dbHelper = new RuleDatabaseSQLHelper(context, "", null, 0);
-		this.db = dbHelper.getReadableDatabase();
 		this.ruleArray = new ArrayList<Rule>();
 	}
 	
@@ -39,8 +39,10 @@ public class DatabaseManager {
 	 * @param rule Rule to be added
 	 */
 	public void addRule(Rule rule){
-		
-		Log.d("Database Manager", "Add rule was called");
+		Log.i("DatabaseManager", "Add rule was called");
+
+		//get writeable database
+		db = dbHelper.getWritableDatabase();
 		
 		// map of values
 		ContentValues values = new ContentValues();
@@ -52,25 +54,30 @@ public class DatabaseManager {
 		// Insert the new row
 		db.insert(RuleEntry.RULE_TABLE_NAME, null, values);
 		RuleDatabaseSQLHelper.INITIALIZED = true;
+		
+		db.close(); //close database
 	}
 
+	/**
+	 * Returns all entries in the rules database table as an arraylist
+	 * 
+	 * @return
+	 */
 	public ArrayList<Rule> getRulesArray() {
-		
+		//get readable database
 		db = dbHelper.getReadableDatabase();
-		ruleArray = new ArrayList<Rule>();
-
 		//define a projection that specifies which columns from the database to use
 		String[] projection = {
+				BaseColumns._ID,
 				RuleEntry.RULE_COLUMN_NAME,
 				RuleEntry.RULE_COLUMN_DESCRIPTION,
 				RuleEntry.RULE_COLUMN_TEXT,
 				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
-				RuleEntry.RULE_COLUMN_STATUS,
-				
+				RuleEntry.RULE_COLUMN_STATUS
 		};
 
 		//sort descending
-//		String sortOrder = Rule.COLUMN_NAME_TABLE_ID + " DESC";
+		String sortOrder = BaseColumns._ID + " DESC";
 
 		//create cursor with the whole database
 		Cursor c = db.query(
@@ -80,7 +87,7 @@ public class DatabaseManager {
 				null,                   // The values for the WHERE clause
 				null,                   // don't group the rows
 				null,					// don't filter by row groups
-				null	               	// don't sort
+				sortOrder	            // sort
 				);
 
 		//move cursor to the beginning

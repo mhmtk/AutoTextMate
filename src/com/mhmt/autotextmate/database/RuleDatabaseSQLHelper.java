@@ -11,7 +11,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 13, 2015
+ * @version November April 16, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
@@ -27,12 +27,12 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 
 	//SQL command to create RULE table
 	private static final String SQL_CREATE_RULE=
-			"CREATE TABLE " + RuleEntry.RULE_TABLE_NAME + " (" +
+			"CREATE TABLE IF NOT EXISTS " + RuleEntry.RULE_TABLE_NAME + " (" +
 					RuleEntry._ID + " INTEGER PRIMARY KEY," +
-					RuleEntry.RULE_TABLE_NAME + TEXT_TYPE + COMMA_SEP +
+					RuleEntry.RULE_COLUMN_NAME + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_TEXT + TEXT_TYPE + COMMA_SEP +
-					RuleEntry.RULE_COLUMN_ONLYCONTACTS +INTEGER_TYPE + COMMA_SEP +
+					RuleEntry.RULE_COLUMN_ONLYCONTACTS + INTEGER_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_STATUS + INTEGER_TYPE + DEFAULT + STATUS_DEFAULT_VALUE + ")";
 	
 	//SQL command to drop (delete) the rule table
@@ -50,13 +50,13 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	 */
 	public RuleDatabaseSQLHelper(Context context, String name,CursorFactory factory, int version) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		Log.d("Database Helper",  "Table created");
+		Log.i("DatabaseHelper", "constructor called " + SQL_CREATE_RULE);
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(SQL_CREATE_RULE);
-		Log.d("Database Helper",  "Table created (onCraete called)");
+		Log.i("DatabaseHelper", "Table created (onCraete called) " + SQL_CREATE_RULE);
 	}
 
 

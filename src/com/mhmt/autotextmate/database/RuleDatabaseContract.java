@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 13, 2015
+ * @version November April 16, 2015
  * 
  */
 public class RuleDatabaseContract {

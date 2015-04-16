@@ -1,5 +1,7 @@
 package com.mhmt.autotextmate.activities;
 
+import java.util.ArrayList;
+
 import com.mhmt.autotextmate.R;
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
@@ -22,6 +24,8 @@ import android.widget.Toast;
 public class Main extends ActionBarActivity {
 
 	private ListView ruleListView;
+	private DatabaseManager dbManager;
+	private ArrayList<Rule> ruleArray;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,11 @@ public class Main extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 
 		//Populate the list view of the activity with the items from the database
+		
+		dbManager = new DatabaseManager(getApplicationContext());
+		
+		ruleListView = (ListView) findViewById(R.id.listview_rulelist);
+		
 		populateDbView();
 	}
 
@@ -37,6 +46,11 @@ public class Main extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	public void onResume(){
+		
 	}
 
 	@Override
@@ -60,14 +74,9 @@ public class Main extends ActionBarActivity {
 	 * populates the List View with the database data
 	 */
 	public void populateDbView(){
+		ruleArray = dbManager.getRulesArray();
 
-		//get the list view layout element
-		ruleListView = (ListView) findViewById(R.id.listview_rulelist);
-
-		//get a database manager
-		DatabaseManager dbManager = new DatabaseManager(getApplicationContext());
-
-		if(dbManager.getRulesArray().isEmpty()) //if the loaded database is empty
+		if(ruleArray.isEmpty()) //if the loaded database is empty
 		{
 			//error toast
 			Toast.makeText(getApplicationContext(), "You have no saved rules to view", Toast.LENGTH_SHORT).show();
