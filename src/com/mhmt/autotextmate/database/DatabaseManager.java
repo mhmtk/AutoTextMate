@@ -55,7 +55,7 @@ public class DatabaseManager {
 		db.insert(RuleEntry.RULE_TABLE_NAME, null, values);
 		RuleDatabaseSQLHelper.INITIALIZED = true;
 		
-		db.close(); //close database
+		db.close(); //close database 
 	}
 
 	/**
