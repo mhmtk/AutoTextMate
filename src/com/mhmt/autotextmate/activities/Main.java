@@ -39,6 +39,25 @@ public class Main extends ActionBarActivity {
 
 		populateDbView();
 	}
+	
+	/**
+	 * populates the ListView with the database data
+	 */
+	public void populateDbView(){
+		ruleArray = dbManager.getRulesArray();
+
+		if(ruleArray.isEmpty()) //if the loaded database is empty
+		{
+			//error toast
+			Toast.makeText(getApplicationContext(), "You have no saved rules to view", Toast.LENGTH_SHORT).show();
+		}
+		else //make adapter with the patron array from the manager
+		{
+			ArrayAdapter<Rule> arrayAdapter = new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1, ruleArray);
+			//set adapter
+			ruleListView.setAdapter(arrayAdapter);
+		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,24 +88,7 @@ public class Main extends ActionBarActivity {
 	}
 
 
-	/**
-	 * populates the ListView with the database data
-	 */
-	public void populateDbView(){
-		ruleArray = dbManager.getRulesArray();
-
-		if(ruleArray.isEmpty()) //if the loaded database is empty
-		{
-			//error toast
-			Toast.makeText(getApplicationContext(), "You have no saved rules to view", Toast.LENGTH_SHORT).show();
-		}
-		else //make adapter with the patron array from the manager
-		{
-			ArrayAdapter<Rule> arrayAdapter = new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1, ruleArray);
-			//set adapter
-			ruleListView.setAdapter(arrayAdapter);
-		}
-	}
+	
 
 	/**
 	 * onClick method for Add button from the action bar, launches the AddRule activity
