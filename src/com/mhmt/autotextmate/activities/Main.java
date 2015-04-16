@@ -16,18 +16,20 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 13, 2015
+ * @version November April 16, 2015
  * 
  */
 public class Main extends ActionBarActivity {
 
 	private ListView ruleListView;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		//Populate the list view of the activity with the items from the database
+		populateDbView();
 	}
 
 	@Override
@@ -43,40 +45,44 @@ public class Main extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
-			case R.id.action_new:
-				launchAddRuleActivity();
-				return true;
-			case R.id.action_settings:
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
+		case R.id.action_new:
+			launchAddRuleActivity();
+			return true;
+		case R.id.action_settings:
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
 	}
 
-	
+
 	/**
 	 * populates the List View with the database data
 	 */
 	public void populateDbView(){
-		
+
 		//get the list view layout element
 		ruleListView = (ListView) findViewById(R.id.listview_rulelist);
-		
+
 		//get a database manager
 		DatabaseManager dbManager = new DatabaseManager(getApplicationContext());
-		
+
 		if(dbManager.getRulesArray().isEmpty()) //if the loaded database is empty
 		{
 			//error toast
-			Toast.makeText(getApplicationContext(), "Database empty! Load one or enter info!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "You have no saved rules to view", Toast.LENGTH_SHORT).show();
 		}
 		else //make adapter with the patron array from the manager
 		{
-		ArrayAdapter<Rule> arrayAdapter = new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1, dbManager.getRulesArray());
-		//set adapter
-		ruleListView.setAdapter(arrayAdapter);
+			ArrayAdapter<Rule> arrayAdapter = new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1, dbManager.getRulesArray());
+			//set adapter
+			ruleListView.setAdapter(arrayAdapter);
 		}
 	}
+	
+	/**
+	 * onClick method for Add button from the action bar, launches the AddRule activity
+	 */
 	private void launchAddRuleActivity() {
 		startActivity(new Intent (this, AddRule.class));
 	}
