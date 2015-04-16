@@ -71,7 +71,7 @@ public class Main extends ActionBarActivity {
 
 
 	/**
-	 * populates the List View with the database data
+	 * populates the ListView with the database data
 	 */
 	public void populateDbView(){
 		ruleArray = dbManager.getRulesArray();
@@ -83,7 +83,7 @@ public class Main extends ActionBarActivity {
 		}
 		else //make adapter with the patron array from the manager
 		{
-			ArrayAdapter<Rule> arrayAdapter = new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1, dbManager.getRulesArray());
+			ArrayAdapter<Rule> arrayAdapter = new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1, ruleArray);
 			//set adapter
 			ruleListView.setAdapter(arrayAdapter);
 		}
