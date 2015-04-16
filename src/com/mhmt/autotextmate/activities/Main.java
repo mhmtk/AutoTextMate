@@ -64,7 +64,7 @@ public class Main extends ActionBarActivity {
 //			}
 			
             /***** ********** Create Custom Adapter *********/
-            adapter = new CustomAdapter( this, ruleArray ,getResources() );
+            adapter = new CustomAdapter( this, ruleArray, getResources() );
             ruleListView.setAdapter( adapter );
 		}
 	}
@@ -96,9 +96,6 @@ public class Main extends ActionBarActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-
-
-	
 
 	/**
 	 * onClick method for Add button from the action bar, launches the AddRule activity
