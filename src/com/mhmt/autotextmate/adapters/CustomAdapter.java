@@ -19,7 +19,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-/********* Adapter class extends with BaseAdapter and implements with OnClickListener ************/
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version November April 16, 2015
+ * 
+ */
 public class CustomAdapter extends BaseAdapter   implements OnClickListener {
 
 	/*********** Declare Used Variables *********/
