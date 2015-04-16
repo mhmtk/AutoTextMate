@@ -36,7 +36,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 					RuleEntry.RULE_COLUMN_STATUS + INTEGER_TYPE + DEFAULT + STATUS_DEFAULT_VALUE + ")";
 	
 	//SQL command to drop (delete) the rule table
-	private static final String SQL_DELETE_RULE = 
+	private static final String SQL_DELETE_RULE_TABLE = 
 			"DROP TABLE IF EXISTS " + RuleEntry.RULE_TABLE_NAME;
 
 	private static final String DATABASE_NAME = "ATMRuleDatabase.db";
@@ -65,7 +65,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL(SQL_DELETE_RULE);
+		db.execSQL(SQL_DELETE_RULE_TABLE);
 		Log.d("Database operations",  "Database upgraded from " + oldVersion + " to " + newVersion);
 	}
 	
