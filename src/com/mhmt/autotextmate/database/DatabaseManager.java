@@ -52,7 +52,7 @@ public class DatabaseManager {
 		values.put(RuleEntry.RULE_COLUMN_ONLYCONTACTS, rule.getOnlyContacts());
 
 		// Insert the new row
-		db.insert(RuleEntry.RULE_TABLE_NAME, null, values);
+		db.insertOrThrow(RuleEntry.RULE_TABLE_NAME, null, values);
 		RuleDatabaseSQLHelper.INITIALIZED = true;
 		
 		db.close(); //close database 
