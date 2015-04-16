@@ -31,13 +31,18 @@ public class SMSReceiver extends BroadcastReceiver{
 			for (int i=0; i<msg.length; i++) {
 				msg[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
 				
+				//get the phoneNo of the sender, and the text message
 				phoneNo = msg[i].getOriginatingAddress();
 				message = msg[i].getMessageBody().toString();
 				
 			}
-			Toast.makeText(context, "replied", Toast.LENGTH_SHORT).show();
+			
 			SmsManager smsManager = SmsManager.getDefault();
-			smsManager.sendTextMessage(phoneNo, null, message, null, null);
+			
+//			smsManager.sendTextMessage(phoneNo, null, message, null, null);
+			
+			//documentation & feedback
+			Toast.makeText(context, "ATM has replied to a SMS", Toast.LENGTH_SHORT).show();
 			Log.i("SMSReceiver", "Sent out an SMS");
 		}
 	}
