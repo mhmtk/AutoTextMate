@@ -19,6 +19,8 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String INTEGER_TYPE = " INTEGER";
 	private static final String COMMA_SEP = ",";
+	private static final String NOT_NULL = "NOT_NULL";
+	private static final String UNIQUE = "UNIQUE";
 	private static final String CHECK = " CHECK";
 	private static final String DEFAULT = " DEFAULT";
 	private static final String STATUS_DEFAULT_VALUE = " 1";
@@ -69,12 +71,13 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 		Log.d("Database operations",  "Database upgraded from " + oldVersion + " to " + newVersion);
 	}
 	
-//	public void delete(SQLiteDatabase db, String name, String type, String date, String amount) {
-//		db.execSQL("DELETE FROM " + RuleEntry.EXPENSE_TABLE_NAME + " WHERE " 
-//				+ RuleEntry.EXPENSE_COLUMN_NAME + "='" + name + "' AND "
-//				+ RuleEntry.EXPENSE_COLUMN_TYPE + "='" + type + "' AND "
-//				+ RuleEntry.EXPENSE_COLUMN_DATE + "='" + date + "' AND "
-//				+ RuleEntry.EXPENSE_COLUMN_AMOUNT + "='" + amount + "'"
-//				);
-//	}
+	public void delete(SQLiteDatabase db, String name, String description, String text, String onlyContacts, String status) {
+		db.execSQL("DELETE FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
+				+ RuleEntry.RULE_COLUMN_NAME + "='" + name + "' AND "
+				+ RuleEntry.RULE_COLUMN_DESCRIPTION + "='" + description + "' AND "
+				+ RuleEntry.RULE_COLUMN_TEXT + "='" + text + "' AND "
+				+ RuleEntry.RULE_COLUMN_ONLYCONTACTS + "='" + onlyContacts + "' AND "
+				+ RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'"
+				);
+	}
 }
