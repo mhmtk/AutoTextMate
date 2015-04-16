@@ -66,5 +66,9 @@ public class Rule {
 		return status;
 	}
 	
+	public String toString() {
+		return name + " " + description;
+	}
+	
 	
 }

@@ -50,7 +50,7 @@ public class Main extends ActionBarActivity {
 	
 	@Override
 	public void onResume(){
-		
+		super.onResume();
 	}
 
 	@Override
