@@ -1647,8 +1647,10 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020034;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020035;
         public static final int abc_textfield_search_material=0x7f020036;
-        public static final int ic_action_new=0x7f020037;
-        public static final int ic_launcher=0x7f020038;
+        public static final int call=0x7f020037;
+        public static final int ic_action_new=0x7f020038;
+        public static final int ic_launcher=0x7f020039;
+        public static final int sms=0x7f02003a;
     }
     public static final class id {
         public static final int action_bar=0x7f090031;
@@ -1664,8 +1666,8 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f09002e;
         public static final int action_mode_bar_stub=0x7f09002d;
         public static final int action_mode_close_button=0x7f090020;
-        public static final int action_new=0x7f09004f;
-        public static final int action_settings=0x7f090050;
+        public static final int action_new=0x7f090054;
+        public static final int action_settings=0x7f090055;
         public static final int activity_chooser_view_content=0x7f090021;
         public static final int always=0x7f090014;
         public static final int beginning=0x7f09001b;
@@ -1695,7 +1697,12 @@ containing a value of this type.
         public static final int linearLayout_contactsOnly=0x7f090042;
         public static final int linearLayout_replyTo=0x7f090045;
         public static final int listMode=0x7f09000a;
+        public static final int list_call_image=0x7f090053;
         public static final int list_item=0x7f090025;
+        public static final int list_sms_image=0x7f090052;
+        public static final int list_textView_description=0x7f090051;
+        public static final int list_textView_name=0x7f09004f;
+        public static final int list_toggleButton_status=0x7f090050;
         public static final int listview_rulelist=0x7f09004e;
         public static final int middle=0x7f09001d;
         public static final int never=0x7f090017;
@@ -1788,6 +1795,7 @@ containing a value of this type.
         public static final int activity_add_rule=0x7f030016;
         public static final int activity_main=0x7f030017;
         public static final int support_simple_spinner_dropdown_item=0x7f030018;
+        public static final int tabitem=0x7f030019;
     }
     public static final class menu {
         public static final int add_rule=0x7f0c0000;

@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:orientation="vertical"
+    android:paddingTop="0dip" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp" >
+
+        <TextView
+            android:id="@+id/list_textView_name"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="start" />
+
+        <ToggleButton
+            android:id="@+id/list_toggleButton_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp" >
+
+        <TextView
+            android:id="@+id/list_textView_description"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="start" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:paddingBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:gravity="end" >
+            <ImageView 
+                android:id="@+id/list_sms_image"
+                android:layout_height = "wrap_content"
+                android:layout_width = "wrap_content"
+                android:scaleType="centerCrop"
+                android:background = "@drawable/sms"
+                />
+            <ImageView
+                android:id="@+id/list_call_image"
+                android:layout_height = "wrap_content"
+                android:layout_width = "wrap_content"
+                android:scaleType="centerCrop"
+                android:background = "@drawable/call" 
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

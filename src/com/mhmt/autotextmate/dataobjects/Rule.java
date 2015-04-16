@@ -62,7 +62,7 @@ public class Rule {
 		return onlyContacts;
 	}
 	
-	public int getstatus() {
+	public int getStatus() {
 		return status;
 	}
 	

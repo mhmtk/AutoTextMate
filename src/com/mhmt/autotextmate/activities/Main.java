@@ -33,11 +33,10 @@ public class Main extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 
 		//Populate the list view of the activity with the items from the database
-		
 		dbManager = new DatabaseManager(getApplicationContext());
-		
+
 		ruleListView = (ListView) findViewById(R.id.listview_rulelist);
-		
+
 		populateDbView();
 	}
 
@@ -47,7 +46,7 @@ public class Main extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	@Override
 	public void onResume(){
 		super.onResume();
@@ -88,11 +87,17 @@ public class Main extends ActionBarActivity {
 			ruleListView.setAdapter(arrayAdapter);
 		}
 	}
-	
+
 	/**
 	 * onClick method for Add button from the action bar, launches the AddRule activity
 	 */
 	private void launchAddRuleActivity() {
 		startActivity(new Intent (this, AddRule.class));
+	}
+
+	/*****************  This function used by adapter ****************/
+	public void onItemClick(int mPosition)
+	{
+		Toast.makeText(null, "Item " + mPosition + " clicked",Toast.LENGTH_LONG).show();
 	}
 }

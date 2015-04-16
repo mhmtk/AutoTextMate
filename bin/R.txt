@@ -344,8 +344,10 @@ int drawable abc_textfield_default_mtrl_alpha 0x7f020033
 int drawable abc_textfield_search_activated_mtrl_alpha 0x7f020034
 int drawable abc_textfield_search_default_mtrl_alpha 0x7f020035
 int drawable abc_textfield_search_material 0x7f020036
-int drawable ic_action_new 0x7f020037
-int drawable ic_launcher 0x7f020038
+int drawable call 0x7f020037
+int drawable ic_action_new 0x7f020038
+int drawable ic_launcher 0x7f020039
+int drawable sms 0x7f02003a
 int id action_bar 0x7f090031
 int id action_bar_activity_content 0x7f090003
 int id action_bar_container 0x7f090030
@@ -359,8 +361,8 @@ int id action_menu_presenter 0x7f090006
 int id action_mode_bar 0x7f09002e
 int id action_mode_bar_stub 0x7f09002d
 int id action_mode_close_button 0x7f090020
-int id action_new 0x7f09004f
-int id action_settings 0x7f090050
+int id action_new 0x7f090054
+int id action_settings 0x7f090055
 int id activity_chooser_view_content 0x7f090021
 int id always 0x7f090014
 int id beginning 0x7f09001b
@@ -390,7 +392,12 @@ int id linearLayout_buttons 0x7f09004b
 int id linearLayout_contactsOnly 0x7f090042
 int id linearLayout_replyTo 0x7f090045
 int id listMode 0x7f09000a
+int id list_call_image 0x7f090053
 int id list_item 0x7f090025
+int id list_sms_image 0x7f090052
+int id list_textView_description 0x7f090051
+int id list_textView_name 0x7f09004f
+int id list_toggleButton_status 0x7f090050
 int id listview_rulelist 0x7f09004e
 int id middle 0x7f09001d
 int id never 0x7f090017
@@ -455,6 +462,7 @@ int layout abc_simple_dropdown_hint 0x7f030015
 int layout activity_add_rule 0x7f030016
 int layout activity_main 0x7f030017
 int layout support_simple_spinner_dropdown_item 0x7f030018
+int layout tabitem 0x7f030019
 int menu add_rule 0x7f0c0000
 int menu main 0x7f0c0001
 int string abc_action_bar_home_description 0x7f0a0001
