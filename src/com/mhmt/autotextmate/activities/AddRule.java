@@ -85,12 +85,13 @@ public class AddRule extends ActionBarActivity {
 					editTextText.getText().toString(),
 					checkBoxContacts.isChecked()));
 			Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
+			//return to homepage
+			super.onBackPressed();
 		}
 		catch(SQLiteConstraintException ex){
 			Toast.makeText(getApplicationContext(), "Rule name must be unique", Toast.LENGTH_SHORT).show();
 		}
-		//return to homepage
-		super.onBackPressed();
+		
 	}
 
 	/**
