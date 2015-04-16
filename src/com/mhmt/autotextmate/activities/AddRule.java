@@ -4,6 +4,7 @@ import com.mhmt.autotextmate.R;
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -37,7 +38,7 @@ public class AddRule extends ActionBarActivity {
 		setContentView(R.layout.activity_add_rule);
 
 		assignViewVariables();
-		
+
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -74,18 +75,22 @@ public class AddRule extends ActionBarActivity {
 	 * @param view
 	 */
 	public void addButtonClicked(View view) {
+		Log.d("Add Rule", "Called dbmanager addrule method");
+
 		//add Rule to DB
 		dbManager = new DatabaseManager(getApplicationContext());
-		dbManager.addRule(new Rule(editTextName.getText().toString(),
-				editTextDescription.getText().toString(),
-				editTextText.getText().toString(),
-				checkBoxContacts.isChecked()));
-		Log.d("Add Rule", "Called dbmanager addrule method");
+		try {
+			dbManager.addRule(new Rule(editTextName.getText().toString(),
+					editTextDescription.getText().toString(),
+					editTextText.getText().toString(),
+					checkBoxContacts.isChecked()));
+			Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
+		}
+		catch(SQLiteConstraintException ex){
+			Toast.makeText(getApplicationContext(), "Rule name must be unique", Toast.LENGTH_SHORT).show();
+		}
 		//return to homepage
-
-
-		//toast to give feedback of success
-		Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
+		super.onBackPressed();
 	}
 
 	/**

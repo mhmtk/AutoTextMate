@@ -19,8 +19,8 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String INTEGER_TYPE = " INTEGER";
 	private static final String COMMA_SEP = ",";
-	private static final String NOT_NULL = "NOT_NULL";
-	private static final String UNIQUE = "UNIQUE";
+	private static final String NOT_NULL = " NOT_NULL";
+	private static final String UNIQUE = " UNIQUE";
 	private static final String CHECK = " CHECK";
 	private static final String DEFAULT = " DEFAULT";
 	private static final String STATUS_DEFAULT_VALUE = " 1";
