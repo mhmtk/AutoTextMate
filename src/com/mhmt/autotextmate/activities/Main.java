@@ -37,13 +37,13 @@ public class Main extends ActionBarActivity {
 
 		ruleListView = (ListView) findViewById(R.id.listview_rulelist);
 
-		populateDbView();
+		populateListView();
 	}
 	
 	/**
 	 * populates the ListView with the database data
 	 */
-	public void populateDbView(){
+	public void populateListView(){
 		ruleArray = dbManager.getRulesArray();
 
 		if(ruleArray.isEmpty()) //if the loaded database is empty
