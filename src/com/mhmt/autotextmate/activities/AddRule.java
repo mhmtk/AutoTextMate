@@ -75,11 +75,12 @@ public class AddRule extends ActionBarActivity {
 	 * @param view
 	 */
 	public void addButtonClicked(View view) {
-		Log.d("Add Rule", "Called dbmanager addrule method");
+		Log.i("AddRule", "Called dbmanager addrule method");
 
 		//add Rule to DB
 		dbManager = new DatabaseManager(getApplicationContext());
 		try {
+			Log.i("AddRule", "Rule added successfully");
 			dbManager.addRule(new Rule(editTextName.getText().toString(),
 					editTextDescription.getText().toString(),
 					editTextText.getText().toString(),
@@ -89,7 +90,8 @@ public class AddRule extends ActionBarActivity {
 			super.onBackPressed();
 		}
 		catch(SQLiteConstraintException ex){
-			Toast.makeText(getApplicationContext(), "Rule name must be unique", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "ERROR: Rule NOT added, name must be unique", Toast.LENGTH_SHORT).show();
+			Log.i("AddRule", "Rule not added, cought" + ex);
 		}
 		
 	}
