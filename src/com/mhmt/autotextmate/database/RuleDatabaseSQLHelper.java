@@ -31,7 +31,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	private static final String SQL_CREATE_RULE=
 			"CREATE TABLE IF NOT EXISTS " + RuleEntry.RULE_TABLE_NAME + " (" +
 					RuleEntry._ID + " INTEGER PRIMARY KEY," +
-					RuleEntry.RULE_COLUMN_NAME + TEXT_TYPE + COMMA_SEP +
+					RuleEntry.RULE_COLUMN_NAME + TEXT_TYPE + NOT_NULL + UNIQUE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_TEXT + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_ONLYCONTACTS + INTEGER_TYPE + COMMA_SEP +
