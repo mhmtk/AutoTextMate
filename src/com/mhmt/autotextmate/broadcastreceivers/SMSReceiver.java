@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -37,6 +38,7 @@ public class SMSReceiver extends BroadcastReceiver{
 			Toast.makeText(context, "replied", Toast.LENGTH_SHORT).show();
 			SmsManager smsManager = SmsManager.getDefault();
 			smsManager.sendTextMessage(phoneNo, null, message, null, null);
+			Log.i("SMSReceiver", "Sent out an SMS");
 		}
 	}
 	
