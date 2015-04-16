@@ -3,10 +3,12 @@ package com.mhmt.autotextmate.activities;
 import java.util.ArrayList;
 
 import com.mhmt.autotextmate.R;
+import com.mhmt.autotextmate.adapters.CustomAdapter;
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -24,6 +26,7 @@ import android.widget.Toast;
 public class Main extends ActionBarActivity {
 
 	private ListView ruleListView;
+	private CustomAdapter adapter; 
 	private DatabaseManager dbManager;
 	private ArrayList<Rule> ruleArray;
 
@@ -44,6 +47,7 @@ public class Main extends ActionBarActivity {
 	 * populates the ListView with the database data
 	 */
 	public void populateListView(){
+		//Get DB Data
 		ruleArray = dbManager.getRulesArray();
 
 		if(ruleArray.isEmpty()) //if the loaded database is empty
@@ -51,11 +55,17 @@ public class Main extends ActionBarActivity {
 			//error toast
 			Toast.makeText(getApplicationContext(), "You have no saved rules to view", Toast.LENGTH_SHORT).show();
 		}
-		else //make adapter with the patron array from the manager
+		else //there's stuff in the DB, go ahead and populate the view
 		{
-			ArrayAdapter<Rule> arrayAdapter = new ArrayAdapter<Rule>(this, android.R.layout.simple_list_item_1, ruleArray);
-			//set adapter
-			ruleListView.setAdapter(arrayAdapter);
+//            /******** Take some data in Arraylist ( CustomListViewValuesArr ) ***********/
+//           
+//			for (int i = 0; i < ruleArray.size(); i++){ //loop thru the rules array
+//				
+//			}
+			
+            /***** ********** Create Custom Adapter *********/
+            adapter = new CustomAdapter( this, ruleArray ,getResources() );
+            ruleListView.setAdapter( adapter );
 		}
 	}
 
