@@ -85,7 +85,7 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
 		if(convertView==null){
 
 			/****** Inflate tabitem.xml file for each row ( Defined below ) *******/
-			vi = inflater.inflate(R.layout.tabitem, null);
+			vi = inflater.inflate(R.layout.rule_list_item, null);
 
 			/****** View Holder Object to contain tabitem.xml file elements ******/
 
