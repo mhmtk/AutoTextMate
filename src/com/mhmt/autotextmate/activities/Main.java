@@ -46,7 +46,7 @@ public class Main extends ActionBarActivity {
 	/**
 	 * populates the ListView with the database data
 	 */
-	public void populateListView(){
+	private void populateListView(){
 		//Get DB Data
 		ruleArray = dbManager.getRulesArray();
 
@@ -56,16 +56,9 @@ public class Main extends ActionBarActivity {
 			Toast.makeText(getApplicationContext(), "You have no saved rules to view", Toast.LENGTH_SHORT).show();
 		}
 		else //there's stuff in the DB, go ahead and populate the view
-		{
-//            /******** Take some data in Arraylist ( CustomListViewValuesArr ) ***********/
-//           
-//			for (int i = 0; i < ruleArray.size(); i++){ //loop thru the rules array
-//				
-//			}
-			
-            /***** ********** Create Custom Adapter *********/
-            adapter = new CustomAdapter( this, ruleArray, getResources() );
-            ruleListView.setAdapter( adapter );
+		{	
+            //pass the adapter with the array to the list view
+            ruleListView.setAdapter(new CustomAdapter(this, ruleArray, getResources()));
 		}
 	}
 
