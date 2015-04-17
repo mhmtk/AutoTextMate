@@ -18,7 +18,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/editText_name" >
+            android:hint="@string/editText_name"
+            android:maxLength="20" >
         </EditText>
 
         <EditText
