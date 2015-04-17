@@ -67,7 +67,7 @@ public class Rule {
 	}
 	
 	public String toString() {
-		return name + " " + description;
+		return name + " - " + description;
 	}
 	
 	
