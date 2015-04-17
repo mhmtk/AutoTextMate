@@ -11,7 +11,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 16, 2015
+ * @version November April 17, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
@@ -21,7 +21,6 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	private static final String COMMA_SEP = ",";
 	private static final String NOT_NULL = " NOT_NULL";
 	private static final String UNIQUE = " UNIQUE";
-	private static final String CHECK = " CHECK";
 	private static final String DEFAULT = " DEFAULT";
 	private static final String STATUS_DEFAULT_VALUE = " 1";
 	
