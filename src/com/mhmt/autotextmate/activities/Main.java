@@ -8,12 +8,10 @@ import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,7 +24,6 @@ import android.widget.Toast;
 public class Main extends ActionBarActivity {
 
 	private ListView ruleListView;
-	private CustomAdapter adapter; 
 	private DatabaseManager dbManager;
 	private ArrayList<Rule> ruleArray;
 
@@ -38,6 +35,7 @@ public class Main extends ActionBarActivity {
 		//Populate the list view of the activity with the items from the database
 		dbManager = new DatabaseManager(getApplicationContext());
 
+		//Instantiate view(s)
 		ruleListView = (ListView) findViewById(R.id.listview_rulelist);
 
 		populateListView();
