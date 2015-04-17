@@ -30,9 +30,10 @@ public class Main extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.i("Main", "onCreate called");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		//Populate the list view of the activity with the items from the database
 		dbManager = new DatabaseManager(getApplicationContext());
 
@@ -72,7 +73,11 @@ public class Main extends ActionBarActivity {
 
 	@Override
 	public void onResume(){
+		Log.i("Main", "onResume called");
+		
 		super.onResume();
+		
+		populateListView();
 	}
 
 	@Override
