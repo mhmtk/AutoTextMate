@@ -4,7 +4,7 @@ package com.mhmt.autotextmate.dataobjects;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 16, 2015
+ * @version November April 17, 2015
  * 
  */
 public class Rule {
@@ -69,6 +69,4 @@ public class Rule {
 	public String toString() {
 		return name + " - " + description;
 	}
-	
-	
 }
