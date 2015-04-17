@@ -19,7 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="start|center"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:maxLength="20" />
 
         <ToggleButton
             android:id="@+id/list_toggleButton_status"
@@ -45,7 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="start|center" 
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:maxLength="25" />
 
 
         <LinearLayout
