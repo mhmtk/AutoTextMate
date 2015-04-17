@@ -101,6 +101,6 @@ public class Main extends ActionBarActivity {
 	/*****************  This function used by adapter ****************/
 	public void onItemClick(int mPosition)
 	{
-		Toast.makeText(null, "Item " + mPosition + " clicked.",Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_LONG).show();
 	}
 }
