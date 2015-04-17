@@ -10,6 +10,7 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -47,6 +48,7 @@ public class Main extends ActionBarActivity {
 	private void populateListView(){
 		//Get DB Data
 		ruleArray = dbManager.getRulesArray();
+		Log.i("Main", "rule array loaded");
 
 		if(ruleArray.isEmpty()) //if the loaded database is empty
 		{
@@ -57,6 +59,7 @@ public class Main extends ActionBarActivity {
 		{	
             //pass the adapter with the array to the list view
             ruleListView.setAdapter(new CustomAdapter(this, ruleArray, getResources()));
+            Log.i("Main", "adapter to rulelistview set");
 		}
 	}
 
