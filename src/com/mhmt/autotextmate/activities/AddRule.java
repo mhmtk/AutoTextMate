@@ -75,16 +75,16 @@ public class AddRule extends ActionBarActivity {
 	 * @param view
 	 */
 	public void addButtonClicked(View view) {
-		Log.i("AddRule", "Called dbmanager addrule method");
+		Log.i("AddRule", "Add button clicked");
 
 		//add Rule to DB
 		dbManager = new DatabaseManager(getApplicationContext());
 		try {
-			Log.i("AddRule", "Rule added successfully");
 			dbManager.addRule(new Rule(editTextName.getText().toString(),
 					editTextDescription.getText().toString(),
 					editTextText.getText().toString(),
 					checkBoxContacts.isChecked()));
+			Log.i("AddRule", "Rule added successfully");
 			Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
 			//return to homepage
 			super.onBackPressed();
