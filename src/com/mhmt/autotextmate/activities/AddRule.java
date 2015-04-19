@@ -91,7 +91,7 @@ public class AddRule extends ActionBarActivity {
 		}
 		catch(SQLiteConstraintException ex){ //catch constraint exceptions, and give error feedback to user
 			Toast.makeText(getApplicationContext(), "ERROR: Rule NOT added, name must be unique", Toast.LENGTH_SHORT).show();
-			Log.i("AddRule", "Rule not added, cought" + ex);
+			Log.i("AddRule", "Rule not added, cought " + ex);
 		}
 		
 	}
@@ -102,6 +102,7 @@ public class AddRule extends ActionBarActivity {
 	 */
 	public void cancelButtonClicked(View view) {
 		//cancel
+		Log.i("AddRule", "Cancel clicked");
 		super.onBackPressed();
 		//return to homepage
 	}
