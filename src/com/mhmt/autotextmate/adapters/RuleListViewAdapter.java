@@ -25,7 +25,7 @@ import android.widget.ToggleButton;
  * @version November April 16, 2015
  * 
  */
-public class CustomAdapter extends BaseAdapter   implements OnClickListener {
+public class RuleListViewAdapter extends BaseAdapter   implements OnClickListener {
 
 	/*********** Declare Used Variables *********/
 	private Activity activity;
@@ -35,8 +35,8 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
 	Rule tempValues=null;
 	int i=0;
 
-	/*************  CustomAdapter Constructor *****************/
-	public CustomAdapter(Activity a, ArrayList d,Resources resLocal) {
+	/*************  RuleListViewAdapter Constructor *****************/
+	public RuleListViewAdapter(Activity a, ArrayList d,Resources resLocal) {
 
 		/********** Take passed values **********/
 		activity = a;
@@ -128,7 +128,7 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		Log.v("CustomAdapter", "Row button clicked");
+		Log.v("RuleListViewAdapter", "Row button clicked");
 	}
 
 	/********* Called when Item click in ListView ************/

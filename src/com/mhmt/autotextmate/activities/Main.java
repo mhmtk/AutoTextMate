@@ -3,7 +3,7 @@ package com.mhmt.autotextmate.activities;
 import java.util.ArrayList;
 
 import com.mhmt.autotextmate.R;
-import com.mhmt.autotextmate.adapters.CustomAdapter;
+import com.mhmt.autotextmate.adapters.RuleListViewAdapter;
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
@@ -59,7 +59,7 @@ public class Main extends ActionBarActivity {
 		else //there's stuff in the DB, go ahead and populate the view
 		{	
             //pass the adapter with the array to the list view
-            ruleListView.setAdapter(new CustomAdapter(this, ruleArray, getResources()));
+            ruleListView.setAdapter(new RuleListViewAdapter(this, ruleArray, getResources()));
             Log.i("Main", "adapter to rulelistview set");
 		}
 	}
@@ -107,5 +107,8 @@ public class Main extends ActionBarActivity {
 	public void onItemClick(int mPosition)
 	{
 		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_LONG).show();
+		
+		// Edit window?
+		// more info?
 	}
 }
