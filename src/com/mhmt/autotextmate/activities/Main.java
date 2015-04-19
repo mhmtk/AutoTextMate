@@ -19,7 +19,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 17, 2015
+ * @version November April 19, 2015
  * 
  */
 public class Main extends ActionBarActivity {

@@ -22,10 +22,10 @@ import android.widget.ToggleButton;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 16, 2015
+ * @version November April 19, 2015
  * 
  */
-public class RuleListViewAdapter extends BaseAdapter   implements OnClickListener {
+public class RuleListViewAdapter extends BaseAdapter implements OnClickListener {
 
 	/*********** Declare Used Variables *********/
 	private Activity activity;
@@ -141,12 +141,11 @@ public class RuleListViewAdapter extends BaseAdapter   implements OnClickListene
 
 		@Override
 		public void onClick(View arg0) {
-
-
+			
+			//get an instance of the main activity
 			Main sct = (Main)activity;
 
-			/****  Call  onItemClick Method inside CustomListViewAndroidExample Class ( See Below )****/
-
+			//call the onItemClick method of the Main activity
 			sct.onItemClick(mPosition);
 		}               
 	}   
