@@ -33,7 +33,7 @@ public class Main extends ActionBarActivity {
 		Log.i("Main", "onCreate called");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		//Populate the list view of the activity with the items from the database
 		dbManager = new DatabaseManager(getApplicationContext());
 
@@ -42,7 +42,7 @@ public class Main extends ActionBarActivity {
 
 		populateListView();
 	}
-	
+
 	/**
 	 * populates the ListView with the database data
 	 */
@@ -58,9 +58,9 @@ public class Main extends ActionBarActivity {
 		}
 		else //there's stuff in the DB, go ahead and populate the view
 		{	
-            //pass the adapter with the array to the list view
-            ruleListView.setAdapter(new RuleListViewAdapter(this, ruleArray, getResources()));
-            Log.i("Main", "adapter to rulelistview set");
+			//pass the adapter with the array to the list view
+			ruleListView.setAdapter(new RuleListViewAdapter(this, ruleArray, getResources()));
+			Log.i("Main", "adapter to rulelistview set");
 		}
 	}
 
@@ -74,9 +74,9 @@ public class Main extends ActionBarActivity {
 	@Override
 	public void onResume(){
 		Log.i("Main", "onResume called");
-		
+
 		super.onResume();
-		
+
 		populateListView();
 	}
 
@@ -103,12 +103,37 @@ public class Main extends ActionBarActivity {
 		startActivity(new Intent (this, AddRule.class));
 	}
 
-	/*****************  This function used by adapter ****************/
+	/**
+	 * onClick button of each row of the listView, called thru the RuleListViewAdapter
+	 * 
+	 * @param mPosition the position of the item on the list, 0 indexed
+	 */
 	public void onItemClick(int mPosition)
 	{
+		//documentation and feedback
+		Log.i("Main", "Item " + mPosition + " clicked.");
 		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_LONG).show();
-		
 		// Edit window?
 		// more info?
 	}
+
+	/**
+	 * onClick-ish method for the togglebutton in each row of the listView, 
+	 * called thru the RuleListViewAdapter 
+	 * 
+	 * @param mPosition the position of the toggle's item on the list, 0 indexed
+	 * @param isChecked True if toggle is on, false otherwise
+	 */
+	public void onItemToggleClicked(int mPosition, boolean isChecked) {
+		//documentation and feedback
+		Log.i("Main", "Toggle item of row " + mPosition + " set to " + isChecked + ".");
+		Toast.makeText(getApplicationContext(), "Toggle item of row " + mPosition + " set to " + isChecked,Toast.LENGTH_LONG).show();
+		
+		if (isChecked){
+			//turned on
+		} else {
+			//turned off
+		}
+	}
+
 }

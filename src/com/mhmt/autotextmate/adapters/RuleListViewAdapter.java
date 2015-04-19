@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -23,16 +24,17 @@ import android.widget.ToggleButton;
  * 
  * @author Mehmet Kologlu
  * @version November April 19, 2015
- * 
+ *  
+ *  Inspired by http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
  */
-public class RuleListViewAdapter extends BaseAdapter implements OnClickListener {
+public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListener {
 
 	/*********** Declare Used Variables *********/
 	private Activity activity;
 	private ArrayList data;
 	private static LayoutInflater inflater=null;
 	public Resources res;
-	Rule tempValues=null;
+	Rule tempValue=null;
 	int i=0;
 
 	/*************  RuleListViewAdapter Constructor *****************/
@@ -110,40 +112,68 @@ public class RuleListViewAdapter extends BaseAdapter implements OnClickListener 
 		else
 		{
 			/***** Get each Model object from Arraylist ********/
-			tempValues=null;
-			tempValues = ( Rule ) data.get( position );
+			tempValue=null;
+			tempValue = ( Rule ) data.get( position );
 
 			/************  Set Model values in Holder elements ***********/
 
-			holder.nameText.setText( tempValues.getName());
-			holder.descriptionText.setText( tempValues.getDescription() );
-			holder.statusToggle.setChecked((tempValues.getStatus() == 1) ? true : false);  
+			holder.nameText.setText( tempValue.getName());
+			holder.descriptionText.setText( tempValue.getDescription() );
+			holder.statusToggle.setChecked((tempValue.getStatus() == 1) ? true : false);  
 
-			/******** Set Item Click Listner for LayoutInflater for each row *******/
-
+			//Set onClick for each row, and their respective ToggleButton
 			vi.setOnClickListener(new OnItemClickListener( position ));
+			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(position));
 		}
 		return vi;
 	}
 
-	@Override
-	public void onClick(View v) {
-		Log.v("RuleListViewAdapter", "Row button clicked");
+	//	@Override
+	//	public void onClick(View v) {
+	//		Log.v("RuleListViewAdapter", "Row button clicked");
+	//	}
+
+	/**
+	 * OnCheckedChangeListener class for the usage of each ToggleButton of the list. Will call
+	 * the onItemToggleClicked method of the Main activity, passing it the position and the isChecked
+	 * status of the toggle
+	 * 
+	 * @author Mehmet Kologlu
+	 *
+	 */
+	private class onItemToggleChangedListener implements CompoundButton.OnCheckedChangeListener {
+		private int mPosition;
+
+		//implement constructor to enable passing the position
+		onItemToggleChangedListener(int position){
+			mPosition = position;
+		}
+		@Override
+		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			Main sct = (Main) activity;
+
+			sct.onItemToggleClicked(mPosition, isChecked);
+		}
 	}
 
-	/********* Called when Item click in ListView ************/
+	/**
+	 * OnItemClickListener class for the usage of each row of the list. Will call
+	 * the onItemClick method of the Main activity, passing it the position of the row
+	 * 
+	 */
 	private class OnItemClickListener implements OnClickListener{           
 		private int mPosition;
 
+		//implement constructor to enable passing the position
 		OnItemClickListener(int position){
 			mPosition = position;
 		}
 
 		@Override
 		public void onClick(View arg0) {
-			
+
 			//get an instance of the main activity
-			Main sct = (Main)activity;
+			Main sct = (Main) activity;
 
 			//call the onItemClick method of the Main activity
 			sct.onItemClick(mPosition);
