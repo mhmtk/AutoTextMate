@@ -159,4 +159,25 @@ public class DatabaseManager {
 		db.close();
 		return ruleArray;
 	}
+
+	/**
+	 * 
+	 * @param name The name of the rule of which the status will be toggled
+	 * @param status The state the rule's status should be set to
+	 */
+	public void toggleRule(String name, boolean state) {
+		int status = state ? 1 : 0;
+		
+		//get readable database
+		db = dbHelper.getWritableDatabase();
+		
+		db.execSQL("UPDATE " + RuleEntry.RULE_TABLE_NAME +
+				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
+		
+		Log.i("DatabaseManager", "executed: "+ "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
+		db.close();
+	}
 }

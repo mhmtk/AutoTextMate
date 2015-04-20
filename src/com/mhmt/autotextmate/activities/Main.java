@@ -127,13 +127,10 @@ public class Main extends ActionBarActivity {
 	public void onItemToggleClicked(String mName, boolean isChecked) {
 		//documentation and feedback
 		Log.i("Main", "Toggle item of " + mName + " set to " + isChecked + ".");
-		Toast.makeText(getApplicationContext(), "Toggle item of " + mName + " set to " + isChecked,Toast.LENGTH_LONG).show();
-		
-		if (isChecked){
-			//turned on
-		} else {
-			//turned off
-		}
+		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_LONG).show();
+
+		//Change the status of the rule in the database
+		dbManager.toggleRule(mName, isChecked);
 	}
 
 }
