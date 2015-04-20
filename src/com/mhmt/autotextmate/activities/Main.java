@@ -121,13 +121,13 @@ public class Main extends ActionBarActivity {
 	 * onClick-ish method for the togglebutton in each row of the listView, 
 	 * called thru the RuleListViewAdapter 
 	 * 
-	 * @param mPosition the position of the toggle's item on the list, 0 indexed
+	 * @param mName the position of the toggle's item on the list, 0 indexed
 	 * @param isChecked True if toggle is on, false otherwise
 	 */
-	public void onItemToggleClicked(int mPosition, boolean isChecked) {
+	public void onItemToggleClicked(String mName, boolean isChecked) {
 		//documentation and feedback
-		Log.i("Main", "Toggle item of row " + mPosition + " set to " + isChecked + ".");
-		Toast.makeText(getApplicationContext(), "Toggle item of row " + mPosition + " set to " + isChecked,Toast.LENGTH_LONG).show();
+		Log.i("Main", "Toggle item of " + mName + " set to " + isChecked + ".");
+		Toast.makeText(getApplicationContext(), "Toggle item of " + mName + " set to " + isChecked,Toast.LENGTH_LONG).show();
 		
 		if (isChecked){
 			//turned on

@@ -123,7 +123,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 
 			//Set onClick for each row, and their respective ToggleButton
 			vi.setOnClickListener(new OnItemClickListener( position ));
-			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(position));
+			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tempValue.getName()));
 		}
 		return vi;
 	}
@@ -142,17 +142,17 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	 *
 	 */
 	private class onItemToggleChangedListener implements CompoundButton.OnCheckedChangeListener {
-		private int mPosition;
+		private String mName;
 
 		//implement constructor to enable passing the position
-		onItemToggleChangedListener(int position){
-			mPosition = position;
+		onItemToggleChangedListener(String name){
+			mName = name;
 		}
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 			Main sct = (Main) activity;
 
-			sct.onItemToggleClicked(mPosition, isChecked);
+			sct.onItemToggleClicked(mName, isChecked);
 		}
 	}
 
