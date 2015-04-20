@@ -15,7 +15,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 16, 2015
+ * @version November April 20, 2015
  * 
  */
 public class DatabaseManager {
@@ -111,47 +111,52 @@ public class DatabaseManager {
 		return ruleArray;
 	}
 
+	/**
+	 * Returns the rules that are on
+	 * 
+	 * @return an arraylist<rule> of rules that are turned on (status == 1)
+	 */
 	public ArrayList<Rule> getApplicableRules(){
 		ruleArray = new ArrayList<Rule>();
 
 		//get readable database
 		db = dbHelper.getReadableDatabase();
-		
+
 		//define a projection that specifies which columns from the database to use
-				String[] projection = {
-						RuleEntry.RULE_COLUMN_TEXT,
-						RuleEntry.RULE_COLUMN_ONLYCONTACTS,
-				};
+		String[] projection = {
+				RuleEntry.RULE_COLUMN_TEXT,
+				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
+		};
 
-				//sort descending
-//				String sortOrder = BaseColumns._ID + " DESC";
+		//sort descending
+		//				String sortOrder = BaseColumns._ID + " DESC";
 
-				//create cursor with only entries with status = 1 (on) 
-				Cursor c = db.query(
-						RuleEntry.RULE_TABLE_NAME,  		// The table to query
-						projection,							// The columns to return
-						RuleEntry.RULE_COLUMN_STATUS + "=?",// The columns for the WHERE clause
-						new String[] { "1" },				// The values for the WHERE clause
-						null,			                    // don't group the rows
-						null,								// don't filter by row groups
-						null	            				// sort
-						);
-				
-				//move cursor to the beginning
-				c.moveToFirst();
+		//create cursor with only entries with status = 1 (on) 
+		Cursor c = db.query(
+				RuleEntry.RULE_TABLE_NAME,  		// The table to query
+				projection,							// The columns to return
+				RuleEntry.RULE_COLUMN_STATUS + "=?",// The columns for the WHERE clause
+				new String[] { "1" },				// The values for the WHERE clause
+				null,			                    // don't group the rows
+				null,								// don't filter by row groups
+				null	            				// sort
+				);
 
-				while(!c.isAfterLast())
-				{ //add the rules to the arraylist
-					ruleArray.add(new Rule("",	//no name
-							"",					//no description
-							c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
-							c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
-							1					//they should all be 1 (on) anyway
+		//move cursor to the beginning
+		c.moveToFirst();
+
+		while(!c.isAfterLast())
+		{ //add the rules to the arraylist
+			ruleArray.add(new Rule("",	//no name
+					"",					//no description
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
+					1					//they should all be 1 (on) anyway
 					));
-					c.moveToNext();
-				}
+			c.moveToNext();
+		}
 
-				db.close();
-				return ruleArray;
+		db.close();
+		return ruleArray;
 	}
 }

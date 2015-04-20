@@ -22,7 +22,7 @@ import android.widget.ToggleButton;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 19, 2015
+ * @version November April 20, 2015
  *  
  * Inspired by http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
  */
