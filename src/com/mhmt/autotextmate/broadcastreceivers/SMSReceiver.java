@@ -12,7 +12,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 16, 2015
+ * @version November April 20, 2015
  * 
  */
 public class SMSReceiver extends BroadcastReceiver{
@@ -26,6 +26,7 @@ public class SMSReceiver extends BroadcastReceiver{
 		SmsMessage[] msg = null;
 		
 		if (bundle != null) {
+			Log.i("SMSReceiver", "Non-null intent received");
 			Object[] pdus = (Object[]) bundle.get("pdus");
 			msg = new SmsMessage[pdus.length];
 			for (int i=0; i<msg.length; i++) {
@@ -45,9 +46,5 @@ public class SMSReceiver extends BroadcastReceiver{
 			Toast.makeText(context, "ATM has replied to a SMS", Toast.LENGTH_SHORT).show();
 			Log.i("SMSReceiver", "Sent out an SMS");
 		}
-	}
-	
-	public void invokeRules() {
-		
 	}
 }
