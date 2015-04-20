@@ -24,7 +24,7 @@ import android.widget.ToggleButton;
  * @author Mehmet Kologlu
  * @version November April 19, 2015
  *  
- *  Inspired by http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
+ * Inspired by http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
  */
 public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListener {
 
@@ -35,7 +35,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	private static LayoutInflater inflater=null;
 	public Resources res;
 	Rule tempValue=null;
-	int i=0;
+//	int i=0;
 
 	/*************  RuleListViewAdapter Constructor *****************/
 	public RuleListViewAdapter(Activity a, @SuppressWarnings("rawtypes") ArrayList d,Resources resLocal) {
