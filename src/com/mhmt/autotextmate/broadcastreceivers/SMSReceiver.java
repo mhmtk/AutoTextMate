@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
@@ -20,12 +21,16 @@ import android.widget.Toast;
  */
 public class SMSReceiver extends BroadcastReceiver{
 
+	
+	private static long delay = 2000;
+
 	@Override
-	public void onReceive(Context context, Intent intent) {
+	public void onReceive(final Context context, Intent intent) {
 		String phoneNo = "";
 //		String message = "";
 		
-		DatabaseManager dbManager = new DatabaseManager(context);
+		final DatabaseManager dbManager = new DatabaseManager(context);
+		
 		
 		Bundle bundle = intent.getExtras();
 		SmsMessage[] msg = null;
@@ -42,17 +47,22 @@ public class SMSReceiver extends BroadcastReceiver{
 //				message = msg[i].getMessageBody().toString();
 				
 			}
+			//REPLY			
+			final String pn = phoneNo;//re-create phone no string, to make it final 
 			
-			//Reply
-			SmsManager smsManager = SmsManager.getDefault();
-			for (Rule r : dbManager.getApplicableRules()) {
-				String replyText = r.getText();
-				smsManager.sendTextMessage(phoneNo, null, replyText, null, null);
-				//documentation & feedback
-				Toast.makeText(context, "Replied to" + phoneNo + ": " + replyText, Toast.LENGTH_SHORT).show();
-				Log.i("SMSReceiver", "Sent out an SMS");
-			}
-			
+		    Handler handler = new Handler(); 
+		    handler.postDelayed(new Runnable() { //Handler/Runnable usage in order to delay the reply
+		         public void run() {
+		              SmsManager smsManager = SmsManager.getDefault();
+		              for (Rule r : dbManager.getApplicableRules()) { //Reply for each rule
+		            	  String replyText = r.getText();
+		            	  smsManager.sendTextMessage(pn, null, replyText, null, null);
+		            	  //documentation & feedback
+		            	  Toast.makeText(context, "Replied to " + pn + ": " + replyText, Toast.LENGTH_SHORT).show();
+		            	  Log.i("SMSReceiver", "Sent out an SMS");
+		              }
+		         } 
+		    }, delay );
 		}
 	}
 }
