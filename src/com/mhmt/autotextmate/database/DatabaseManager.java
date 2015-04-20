@@ -145,7 +145,7 @@ public class DatabaseManager {
 							c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
 							c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
 							c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
-							c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
+							c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS))));
 					c.moveToNext();
 				}
 
