@@ -161,6 +161,7 @@ public class DatabaseManager {
 	}
 
 	/**
+	 * Called to change the status of the rule with the given name to the given state
 	 * 
 	 * @param name The name of the rule of which the status will be toggled
 	 * @param status The state the rule's status should be set to
@@ -178,6 +179,7 @@ public class DatabaseManager {
 		Log.i("DatabaseManager", "executed: "+ "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
+		
 		db.close();
 	}
 }
