@@ -9,7 +9,6 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +30,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 
 	/*********** Declare Used Variables *********/
 	private Activity activity;
+	@SuppressWarnings("rawtypes")
 	private ArrayList data;
 	private static LayoutInflater inflater=null;
 	public Resources res;
@@ -38,7 +38,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	int i=0;
 
 	/*************  RuleListViewAdapter Constructor *****************/
-	public RuleListViewAdapter(Activity a, ArrayList d,Resources resLocal) {
+	public RuleListViewAdapter(Activity a, @SuppressWarnings("rawtypes") ArrayList d,Resources resLocal) {
 
 		/********** Take passed values **********/
 		activity = a;
