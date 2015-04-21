@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/widget_textView"
+    <Button
+        android:id="@+id/widget_button"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" 
         android:text="test" >
-    </TextView>
+    </Button>
 
 </RelativeLayout>

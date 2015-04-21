@@ -1737,7 +1737,7 @@ containing a value of this type.
         public static final int title=0x7f0a0027;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
-        public static final int widget_textView=0x7f0a004f;
+        public static final int widget_button=0x7f0a004f;
         public static final int withText=0x7f0a0018;
         public static final int wrap_content=0x7f0a0009;
     }
