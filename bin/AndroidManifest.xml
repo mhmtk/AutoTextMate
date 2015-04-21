@@ -47,6 +47,9 @@
         <activity
             android:name=".ConfigureWidget"
             android:label="@string/title_activity_configure_widget" >
+            <intent-filter >
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
         </activity>
     </application>
 
