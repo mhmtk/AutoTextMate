@@ -1793,10 +1793,11 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030014;
         public static final int abc_simple_dropdown_hint=0x7f030015;
         public static final int activity_add_rule=0x7f030016;
-        public static final int activity_main=0x7f030017;
-        public static final int layout_widget=0x7f030018;
-        public static final int rule_list_item=0x7f030019;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
+        public static final int activity_configure_widget=0x7f030017;
+        public static final int activity_main=0x7f030018;
+        public static final int layout_widget=0x7f030019;
+        public static final int rule_list_item=0x7f03001a;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
     }
     public static final class menu {
         public static final int add_rule=0x7f0d0000;
@@ -1874,6 +1875,7 @@ containing a value of this type.
         public static final int textView_contactsOnly_text=0x7f0b0018;
         public static final int textView_replyTo_text=0x7f0b001c;
         public static final int title_activity_add_rule=0x7f0b0013;
+        public static final int title_activity_configure_widget=0x7f0b001f;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;

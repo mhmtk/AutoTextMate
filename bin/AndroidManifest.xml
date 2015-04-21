@@ -30,18 +30,24 @@
         <activity
             android:name=".activities.AddRule"
             android:label="@string/title_activity_add_rule"
-            android:parentActivityName="com.mhmt.autotextmate.activities.Main" >
+            android:parentActivityName=".activities.Main" >
+
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mhmt.autotextmate.activities.Main" />
         </activity>
 
-        <receiver android:name="com.mhmt.autotextmate.broadcastreceivers.SMSReceiver" >
+        <receiver android:name=".broadcastreceivers.SMSReceiver" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".ConfigureWidget"
+            android:label="@string/title_activity_configure_widget" >
+        </activity>
     </application>
 
 </manifest>

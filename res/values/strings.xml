@@ -6,7 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_rule">Add Rule</string>
     <string name="hello_world">Hello world!</string>
-
     <string name="editText_name">Name</string>
     <string name="editText_description">Add a short description</string>
     <string name="editText_text">The text to be replied to calls/texts</string>
@@ -17,5 +16,6 @@
     <string name="textView_replyTo_text">Reply to</string>
     <string name="button_add">Add</string>
     <string name="button_cancel">Cancel</string>
-    
+    <string name="title_activity_configure_widget">Add ATM Widget</string>
+
 </resources>
