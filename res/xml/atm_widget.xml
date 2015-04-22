@@ -5,6 +5,7 @@
     android:minResizeWidth="40dp"
     android:minWidth="40dp"
     android:updatePeriodMillis="0"
-    android:initialLayout="@layout/layout_widget">
+    android:initialLayout="@layout/layout_widget"
+    android:configure="com.mhmt.autotextmate.widget.ConfigureWidget">
 
 </appwidget-provider>
