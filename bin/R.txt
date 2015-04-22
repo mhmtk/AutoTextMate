@@ -433,7 +433,7 @@ int id title 0x7f0a0027
 int id up 0x7f0a0001
 int id useLogo 0x7f0a0013
 int id widget_button 0x7f0a0050
-int id widget_button_create 0x7f0a004e
+int id widget_configure_button_create 0x7f0a004e
 int id withText 0x7f0a0018
 int id wrap_content 0x7f0a0009
 int integer abc_config_activityDefaultDur 0x7f090001

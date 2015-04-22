@@ -6,6 +6,10 @@ import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.RemoteViews;
 
 public class ConfigureWidget extends Activity {
 
@@ -35,15 +39,26 @@ public class ConfigureWidget extends Activity {
 		
 		//CONFIGURE
 		
-		//get an instance of the app widget manager
-		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+		//get an instance of the app widget manager and remoteviews
+		final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+		final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
 		
-		//update the app widget
-		
-		//create return intent, finish the activity
-		Intent resultValue = new Intent();
-		resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
-		setResult(RESULT_OK, resultValue);
-		finish();
+		//Create Button
+		Button createButton = (Button) findViewById(R.id.widget_configure_button_create);
+		createButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Button widgetButton = (Button) findViewById(R.id.widget_button);
+				
+				//update the app widget
+				widgetManager.updateAppWidget(widgetID, views);
+				
+				//create return intent, finish the activity
+				Intent resultValue = new Intent();
+				resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
+				setResult(RESULT_OK, resultValue);
+				finish();
+			}
+		});
 	}
 }
