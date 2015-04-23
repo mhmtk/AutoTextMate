@@ -44,7 +44,7 @@ public class ConfigureWidget extends Activity {
 		final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
 		
 		//Create Button
-		Button createButton = (Button) findViewById(R.id.widget_configure_button_create);
+		Button createButton = (Button) findViewById(R.id.configure_button_create);
 		createButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
