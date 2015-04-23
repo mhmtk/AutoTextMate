@@ -1,7 +1,10 @@
 package com.mhmt.autotextmate.widget;
 
+import java.util.ArrayList;
+
 import com.mhmt.autotextmate.R;
 import com.mhmt.autotextmate.database.DatabaseManager;
+import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -20,6 +23,7 @@ public class ConfigureWidget extends Activity {
 	int widgetID;
 	private ListView ruleListView;
 	private DatabaseManager dbManager; 
+	private ArrayList<Rule> ruleArray;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +33,14 @@ public class ConfigureWidget extends Activity {
 		//set the initial result to canceled in case the user hits the back button
 		setResult(RESULT_CANCELED);
 		
+		//instantiate fields
 		dbManager = new DatabaseManager(getApplicationContext());
-		
+		ruleArray = dbManager.getRulesArray();
+		ruleListView = (ListView) findViewById(R.id.configure_list);
 		
 		//populate the list
-		ruleListView = (ListView) findViewById(R.id.configure_list);
 		ruleListView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1,
-				dbManager.getRulesArray()));
+				ruleArray));
 
 		//TODO add onclick to list items
 		
