@@ -348,6 +348,8 @@ int drawable call 0x7f020037
 int drawable ic_action_new 0x7f020038
 int drawable ic_launcher 0x7f020039
 int drawable sms 0x7f02003a
+int drawable widget_green 0x7f02003b
+int drawable widget_red 0x7f02003c
 int id action_bar 0x7f0a0031
 int id action_bar_activity_content 0x7f0a0003
 int id action_bar_container 0x7f0a0030
@@ -361,8 +363,8 @@ int id action_menu_presenter 0x7f0a0006
 int id action_mode_bar 0x7f0a002e
 int id action_mode_bar_stub 0x7f0a002d
 int id action_mode_close_button 0x7f0a0020
-int id action_new 0x7f0a0058
-int id action_settings 0x7f0a0059
+int id action_new 0x7f0a0059
+int id action_settings 0x7f0a005a
 int id activity_chooser_view_content 0x7f0a0021
 int id always 0x7f0a0014
 int id beginning 0x7f0a001b
@@ -395,12 +397,12 @@ int id linearLayout_buttons 0x7f0a004b
 int id linearLayout_contactsOnly 0x7f0a0042
 int id linearLayout_replyTo 0x7f0a0045
 int id listMode 0x7f0a000a
-int id list_call_image 0x7f0a0057
+int id list_call_image 0x7f0a0058
 int id list_item 0x7f0a0025
-int id list_sms_image 0x7f0a0056
-int id list_textView_description 0x7f0a0055
-int id list_textView_name 0x7f0a0053
-int id list_toggleButton_status 0x7f0a0054
+int id list_sms_image 0x7f0a0057
+int id list_textView_description 0x7f0a0056
+int id list_textView_name 0x7f0a0054
+int id list_toggleButton_status 0x7f0a0055
 int id main_list 0x7f0a0051
 int id middle 0x7f0a001d
 int id never 0x7f0a0017
@@ -435,7 +437,8 @@ int id textView_replyTo 0x7f0a0046
 int id title 0x7f0a0027
 int id up 0x7f0a0001
 int id useLogo 0x7f0a0013
-int id widget_button 0x7f0a0052
+int id widget_button 0x7f0a0053
+int id widget_image_status 0x7f0a0052
 int id withText 0x7f0a0018
 int id wrap_content 0x7f0a0009
 int integer abc_config_activityDefaultDur 0x7f090001

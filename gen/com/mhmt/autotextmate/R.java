@@ -1651,6 +1651,8 @@ containing a value of this type.
         public static final int ic_action_new=0x7f020038;
         public static final int ic_launcher=0x7f020039;
         public static final int sms=0x7f02003a;
+        public static final int widget_green=0x7f02003b;
+        public static final int widget_red=0x7f02003c;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0031;
@@ -1666,8 +1668,8 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_new=0x7f0a0058;
-        public static final int action_settings=0x7f0a0059;
+        public static final int action_new=0x7f0a0059;
+        public static final int action_settings=0x7f0a005a;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int always=0x7f0a0014;
         public static final int beginning=0x7f0a001b;
@@ -1700,12 +1702,12 @@ containing a value of this type.
         public static final int linearLayout_contactsOnly=0x7f0a0042;
         public static final int linearLayout_replyTo=0x7f0a0045;
         public static final int listMode=0x7f0a000a;
-        public static final int list_call_image=0x7f0a0057;
+        public static final int list_call_image=0x7f0a0058;
         public static final int list_item=0x7f0a0025;
-        public static final int list_sms_image=0x7f0a0056;
-        public static final int list_textView_description=0x7f0a0055;
-        public static final int list_textView_name=0x7f0a0053;
-        public static final int list_toggleButton_status=0x7f0a0054;
+        public static final int list_sms_image=0x7f0a0057;
+        public static final int list_textView_description=0x7f0a0056;
+        public static final int list_textView_name=0x7f0a0054;
+        public static final int list_toggleButton_status=0x7f0a0055;
         public static final int main_list=0x7f0a0051;
         public static final int middle=0x7f0a001d;
         public static final int never=0x7f0a0017;
@@ -1740,7 +1742,8 @@ containing a value of this type.
         public static final int title=0x7f0a0027;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
-        public static final int widget_button=0x7f0a0052;
+        public static final int widget_button=0x7f0a0053;
+        public static final int widget_image_status=0x7f0a0052;
         public static final int withText=0x7f0a0018;
         public static final int wrap_content=0x7f0a0009;
     }
