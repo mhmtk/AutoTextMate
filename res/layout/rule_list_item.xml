@@ -2,17 +2,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="top"
-    android:orientation="vertical"
-    android:paddingTop="0dip" >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp" 
-        android:weightSum="0.5" >
+        android:weightSum="1" >
 
         <TextView
             android:id="@+id/list_textView_name"
@@ -35,9 +31,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
         android:weightSum="1" >
         
 
@@ -54,9 +47,6 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
-            android:paddingBottom="0dp"
-            android:paddingLeft="0dp"
-            android:paddingTop="0dp"
             android:gravity="end|center" 
             android:layout_weight="0.5" >
 
@@ -65,16 +55,13 @@
                 android:layout_height = "wrap_content"
                 android:layout_width = "wrap_content"
                 android:scaleType="centerCrop"
-                android:background = "@drawable/sms"
-                />
+                android:background = "@drawable/sms" />
             <ImageView
                 android:id="@+id/list_call_image"
                 android:layout_height = "wrap_content"
                 android:layout_width = "wrap_content"
                 android:scaleType="centerCrop"
-                android:background = "@drawable/call" 
-                />
+                android:background = "@drawable/call" />
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
