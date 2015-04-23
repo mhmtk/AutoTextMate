@@ -38,7 +38,7 @@ public class Main extends ActionBarActivity {
 		dbManager = new DatabaseManager(getApplicationContext());
 
 		//Instantiate view(s)
-		ruleListView = (ListView) findViewById(R.id.listview_rulelist);
+		ruleListView = (ListView) findViewById(R.id.main_list);
 
 		populateListView();
 	}

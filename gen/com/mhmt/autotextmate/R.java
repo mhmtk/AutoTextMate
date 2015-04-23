@@ -1676,6 +1676,8 @@ containing a value of this type.
         public static final int checkBox_contactsOnly=0x7f0a0044;
         public static final int checkbox=0x7f0a0029;
         public static final int collapseActionView=0x7f0a0015;
+        public static final int configure_button_create=0x7f0a004f;
+        public static final int configure_list=0x7f0a004e;
         public static final int decor_content_parent=0x7f0a002f;
         public static final int default_activity_button=0x7f0a0024;
         public static final int dialog=0x7f0a0019;
@@ -1703,7 +1705,7 @@ containing a value of this type.
         public static final int list_textView_description=0x7f0a0054;
         public static final int list_textView_name=0x7f0a0052;
         public static final int list_toggleButton_status=0x7f0a0053;
-        public static final int listview_rulelist=0x7f0a0050;
+        public static final int main_list=0x7f0a0050;
         public static final int middle=0x7f0a001d;
         public static final int never=0x7f0a0017;
         public static final int none=0x7f0a000f;
@@ -1738,8 +1740,6 @@ containing a value of this type.
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
         public static final int widget_button=0x7f0a0051;
-        public static final int widget_configure_button_create=0x7f0a004f;
-        public static final int widget_configure_list=0x7f0a004e;
         public static final int withText=0x7f0a0018;
         public static final int wrap_content=0x7f0a0009;
     }

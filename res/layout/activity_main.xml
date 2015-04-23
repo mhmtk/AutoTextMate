@@ -9,10 +9,9 @@
     tools:context="com.mhmt.autotextmate.activities.Main" >
     
     <ListView
-        android:id="@+id/listview_rulelist"
+        android:id="@+id/main_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
     </ListView>
-
 
 </RelativeLayout>

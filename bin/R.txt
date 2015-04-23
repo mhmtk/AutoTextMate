@@ -371,6 +371,8 @@ int id button_cancel 0x7f0a004d
 int id checkBox_contactsOnly 0x7f0a0044
 int id checkbox 0x7f0a0029
 int id collapseActionView 0x7f0a0015
+int id configure_button_create 0x7f0a004f
+int id configure_list 0x7f0a004e
 int id decor_content_parent 0x7f0a002f
 int id default_activity_button 0x7f0a0024
 int id dialog 0x7f0a0019
@@ -398,7 +400,7 @@ int id list_sms_image 0x7f0a0055
 int id list_textView_description 0x7f0a0054
 int id list_textView_name 0x7f0a0052
 int id list_toggleButton_status 0x7f0a0053
-int id listview_rulelist 0x7f0a0050
+int id main_list 0x7f0a0050
 int id middle 0x7f0a001d
 int id never 0x7f0a0017
 int id none 0x7f0a000f
@@ -433,8 +435,6 @@ int id title 0x7f0a0027
 int id up 0x7f0a0001
 int id useLogo 0x7f0a0013
 int id widget_button 0x7f0a0051
-int id widget_configure_button_create 0x7f0a004f
-int id widget_configure_list 0x7f0a004e
 int id withText 0x7f0a0018
 int id wrap_content 0x7f0a0009
 int integer abc_config_activityDefaultDur 0x7f090001

@@ -5,13 +5,13 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <ListView 
-        android:id="@+id/widget_configure_list"
+        android:id="@+id/configure_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
         
     </ListView>
     <Button
-        android:id="@+id/widget_configure_button_create"
+        android:id="@+id/configure_button_create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
