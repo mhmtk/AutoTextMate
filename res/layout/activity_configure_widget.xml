@@ -10,11 +10,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/configure_info" />
+        android:text="@string/configure_info"
+        android:textStyle="bold" />
     
     <ListView 
         android:id="@+id/configure_list"
-        android:layout_width="fill_parent"
+        android:layout_below="@id/configure_text_info"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">    
     </ListView>
     
