@@ -1865,19 +1865,19 @@ containing a value of this type.
         public static final int action_new=0x7f0b0011;
         public static final int action_settings=0x7f0b0012;
         public static final int app_name=0x7f0b0010;
-        public static final int button_add=0x7f0b001d;
-        public static final int button_cancel=0x7f0b001e;
-        public static final int editText_description=0x7f0b0016;
-        public static final int editText_name=0x7f0b0015;
-        public static final int editText_text=0x7f0b0017;
-        public static final int hello_world=0x7f0b0014;
-        public static final int radio_both=0x7f0b001b;
-        public static final int radio_call=0x7f0b001a;
-        public static final int radio_sms=0x7f0b0019;
-        public static final int textView_contactsOnly_text=0x7f0b0018;
-        public static final int textView_replyTo_text=0x7f0b001c;
+        public static final int button_add=0x7f0b001c;
+        public static final int button_cancel=0x7f0b001d;
+        public static final int editText_description=0x7f0b0015;
+        public static final int editText_name=0x7f0b0014;
+        public static final int editText_text=0x7f0b0016;
+        public static final int radio_both=0x7f0b001a;
+        public static final int radio_call=0x7f0b0019;
+        public static final int radio_sms=0x7f0b0018;
+        public static final int textView_contactsOnly_text=0x7f0b0017;
+        public static final int textView_replyTo_text=0x7f0b001b;
         public static final int title_activity_add_rule=0x7f0b0013;
-        public static final int title_activity_configure_widget=0x7f0b001f;
+        public static final int title_activity_configure_widget=0x7f0b001e;
+        public static final int widget_configure_create=0x7f0b001f;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;
