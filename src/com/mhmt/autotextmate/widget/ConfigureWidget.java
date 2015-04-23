@@ -1,6 +1,7 @@
 package com.mhmt.autotextmate.widget;
 
 import com.mhmt.autotextmate.R;
+import com.mhmt.autotextmate.database.DatabaseManager;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -8,13 +9,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RemoteViews;
 
 public class ConfigureWidget extends Activity {
 
 	private ConfigureWidget context;
 	int widgetID;
+	private ListView ruleListView;
+	private DatabaseManager dbManager; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,16 @@ public class ConfigureWidget extends Activity {
 		
 		//set the initial result to canceled in case the user hits the back button
 		setResult(RESULT_CANCELED);
+		
+		dbManager = new DatabaseManager(getApplicationContext());
+		
+		
+		//populate the list
+		ruleListView = (ListView) findViewById(R.id.configure_list);
+		ruleListView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1,
+				dbManager.getRulesArray()));
+
+		//TODO add onclick to list items
 		
 		//set the context
 		context = this;
@@ -37,7 +52,6 @@ public class ConfigureWidget extends Activity {
 					AppWidgetManager.INVALID_APPWIDGET_ID);
 		}
 		
-		//CONFIGURE
 		
 		//get an instance of the app widget manager and remoteviews
 		final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
@@ -49,6 +63,8 @@ public class ConfigureWidget extends Activity {
 			@Override
 			public void onClick(View v) {
 				Button widgetButton = (Button) findViewById(R.id.widget_button);
+				
+				//TODO configure
 				
 				//update the app widget
 				widgetManager.updateAppWidget(widgetID, views);
