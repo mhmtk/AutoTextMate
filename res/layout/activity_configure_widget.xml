@@ -10,14 +10,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="@string/configure_info"
+        android:textSize="18sp"
         android:textStyle="bold" />
     
     <ListView 
         android:id="@+id/configure_list"
         android:layout_below="@id/configure_text_info"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">    
+        android:layout_height="wrap_content"
+        android:layout_above="@id/configure_button_create">    
     </ListView>
     
     <Button
