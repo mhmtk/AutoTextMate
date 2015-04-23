@@ -1678,8 +1678,8 @@ containing a value of this type.
         public static final int checkBox_contactsOnly=0x7f0a0044;
         public static final int checkbox=0x7f0a0029;
         public static final int collapseActionView=0x7f0a0015;
-        public static final int configure_button_create=0x7f0a0050;
-        public static final int configure_list=0x7f0a004f;
+        public static final int configure_button_create=0x7f0a004f;
+        public static final int configure_list=0x7f0a0050;
         public static final int configure_text_info=0x7f0a004e;
         public static final int decor_content_parent=0x7f0a002f;
         public static final int default_activity_button=0x7f0a0024;
