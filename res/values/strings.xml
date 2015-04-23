@@ -19,6 +19,7 @@
     <string name="button_cancel">Cancel</string>
     
     <string name="title_activity_configure_widget">Add ATM Widget</string>
-    <string name="widget_configure_create">Create Widget</string>
+    <string name="configure_create">Create Widget</string>
+    <string name="configure_info">Select a rule</string>
 
 </resources>

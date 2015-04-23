@@ -4,18 +4,26 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
+    <TextView
+        android:id="@+id/configure_text_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/configure_info" />
+    
     <ListView 
         android:id="@+id/configure_list"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        
+        android:layout_height="wrap_content">    
     </ListView>
+    
     <Button
         android:id="@+id/configure_button_create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/widget_configure_create" />
+        android:text="@string/configure_create" />
 
 </RelativeLayout>

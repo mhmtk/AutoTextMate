@@ -1666,8 +1666,8 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_new=0x7f0a0057;
-        public static final int action_settings=0x7f0a0058;
+        public static final int action_new=0x7f0a0058;
+        public static final int action_settings=0x7f0a0059;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int always=0x7f0a0014;
         public static final int beginning=0x7f0a001b;
@@ -1676,8 +1676,9 @@ containing a value of this type.
         public static final int checkBox_contactsOnly=0x7f0a0044;
         public static final int checkbox=0x7f0a0029;
         public static final int collapseActionView=0x7f0a0015;
-        public static final int configure_button_create=0x7f0a004f;
-        public static final int configure_list=0x7f0a004e;
+        public static final int configure_button_create=0x7f0a0050;
+        public static final int configure_list=0x7f0a004f;
+        public static final int configure_text_info=0x7f0a004e;
         public static final int decor_content_parent=0x7f0a002f;
         public static final int default_activity_button=0x7f0a0024;
         public static final int dialog=0x7f0a0019;
@@ -1699,13 +1700,13 @@ containing a value of this type.
         public static final int linearLayout_contactsOnly=0x7f0a0042;
         public static final int linearLayout_replyTo=0x7f0a0045;
         public static final int listMode=0x7f0a000a;
-        public static final int list_call_image=0x7f0a0056;
+        public static final int list_call_image=0x7f0a0057;
         public static final int list_item=0x7f0a0025;
-        public static final int list_sms_image=0x7f0a0055;
-        public static final int list_textView_description=0x7f0a0054;
-        public static final int list_textView_name=0x7f0a0052;
-        public static final int list_toggleButton_status=0x7f0a0053;
-        public static final int main_list=0x7f0a0050;
+        public static final int list_sms_image=0x7f0a0056;
+        public static final int list_textView_description=0x7f0a0055;
+        public static final int list_textView_name=0x7f0a0053;
+        public static final int list_toggleButton_status=0x7f0a0054;
+        public static final int main_list=0x7f0a0051;
         public static final int middle=0x7f0a001d;
         public static final int never=0x7f0a0017;
         public static final int none=0x7f0a000f;
@@ -1739,7 +1740,7 @@ containing a value of this type.
         public static final int title=0x7f0a0027;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
-        public static final int widget_button=0x7f0a0051;
+        public static final int widget_button=0x7f0a0052;
         public static final int withText=0x7f0a0018;
         public static final int wrap_content=0x7f0a0009;
     }
@@ -1868,6 +1869,8 @@ containing a value of this type.
         public static final int app_name=0x7f0b0010;
         public static final int button_add=0x7f0b001c;
         public static final int button_cancel=0x7f0b001d;
+        public static final int configure_create=0x7f0b001f;
+        public static final int configure_info=0x7f0b0020;
         public static final int editText_description=0x7f0b0015;
         public static final int editText_name=0x7f0b0014;
         public static final int editText_text=0x7f0b0016;
@@ -1878,7 +1881,6 @@ containing a value of this type.
         public static final int textView_replyTo_text=0x7f0b001b;
         public static final int title_activity_add_rule=0x7f0b0013;
         public static final int title_activity_configure_widget=0x7f0b001e;
-        public static final int widget_configure_create=0x7f0b001f;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;
