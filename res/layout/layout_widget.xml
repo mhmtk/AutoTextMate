@@ -3,13 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/widget_image_status"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/widget_green"
-        android:scaleType="centerCrop" />
-
     <Button
         android:id="@+id/widget_button"
         android:layout_width="fill_parent"

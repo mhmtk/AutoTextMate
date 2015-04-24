@@ -71,7 +71,6 @@ public class ConfigureWidget extends Activity {
 				final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 				final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
 
-				ImageView statusImage = (ImageView) findViewById(R.id.widget_image_status);
 				Button widgetButton = (Button) findViewById(R.id.widget_button);
 				
 				widgetButton.setOnClickListener(new View.OnClickListener() {
