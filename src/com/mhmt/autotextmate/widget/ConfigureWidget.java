@@ -76,9 +76,8 @@ public class ConfigureWidget extends Activity {
 				
 				widgetButton.setOnClickListener(new View.OnClickListener() {
 		             public void onClick(View v) {
-		                 // Perform action on click
-		            	 
 		            	 dbManager.toggleRule(ruleArray.get(position).getName(), true); //TODO ONLY SETS TRUE ATM
+		            	 
 		            	 //TODO change the color of the status image
 		             }
 		         });
