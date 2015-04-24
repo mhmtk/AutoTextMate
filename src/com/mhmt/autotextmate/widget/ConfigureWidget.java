@@ -57,6 +57,8 @@ public class ConfigureWidget extends Activity {
 				//DO EVERYTHING
 				Log.i("Configure", "pos: " + position + "id: " + id);
 
+				final Rule selectedRule = ruleArray.get(position);
+
 				//Get the intent that launched the activity
 				Intent intent = getIntent();
 				Bundle extras = intent.getExtras();
@@ -70,16 +72,24 @@ public class ConfigureWidget extends Activity {
 				//get an instance of the app widget manager and remoteviews
 				final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 				final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
-
+				
 				Button widgetButton = (Button) findViewById(R.id.widget_button);
 				
+				//set the text and background of the button
+				widgetButton.setBackgroundResource((selectedRule.getStatus()==1 ? R.drawable.widget_button_green : R.drawable.widget_button_red));
+				widgetButton.setText(selectedRule.getName());
+
 				widgetButton.setOnClickListener(new View.OnClickListener() {
-		             public void onClick(View v) {
-		            	 dbManager.toggleRule(ruleArray.get(position).getName(), true); //TODO ONLY SETS TRUE ATM
-		            	 
-		            	 //TODO change the color of the status image
-		             }
-		         });
+					public void onClick(View v) {
+						
+						//TODO et the rules current status from db
+						
+						//TODO Change the background image
+						
+						//TODO call toggleRule
+						
+					}
+				});
 
 				//TODO configure
 
