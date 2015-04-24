@@ -348,8 +348,10 @@ int drawable call 0x7f020037
 int drawable ic_action_new 0x7f020038
 int drawable ic_launcher 0x7f020039
 int drawable sms 0x7f02003a
-int drawable widget_green 0x7f02003b
-int drawable widget_red 0x7f02003c
+int drawable widget_button_green 0x7f02003b
+int drawable widget_button_red 0x7f02003c
+int drawable widget_green 0x7f02003d
+int drawable widget_red 0x7f02003e
 int id action_bar 0x7f0a0031
 int id action_bar_activity_content 0x7f0a0003
 int id action_bar_container 0x7f0a0030

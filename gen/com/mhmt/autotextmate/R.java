@@ -1651,8 +1651,10 @@ containing a value of this type.
         public static final int ic_action_new=0x7f020038;
         public static final int ic_launcher=0x7f020039;
         public static final int sms=0x7f02003a;
-        public static final int widget_green=0x7f02003b;
-        public static final int widget_red=0x7f02003c;
+        public static final int widget_button_green=0x7f02003b;
+        public static final int widget_button_red=0x7f02003c;
+        public static final int widget_green=0x7f02003d;
+        public static final int widget_red=0x7f02003e;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0031;
