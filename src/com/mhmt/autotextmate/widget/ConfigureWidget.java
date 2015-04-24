@@ -73,13 +73,14 @@ public class ConfigureWidget extends Activity {
 				final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 				final RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
 				
-				
+				//TODO delete this, it's useless 
 				Button widgetButton = (Button) findViewById(R.id.widget_button);
 				
 				//set the text and background of the button
 				rm.setImageViewResource(R.id.widget_backgroundImage, (selectedRule.getStatus()==1 ? R.drawable.widget_button_green : R.drawable.widget_button_red));
 				rm.setTextViewText(R.id.widget_button, selectedRule.getName());
 
+				//TODO change to use pending intent thru remoteviews
 				widgetButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
 						

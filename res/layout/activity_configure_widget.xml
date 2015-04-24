@@ -16,21 +16,13 @@
         android:text="@string/configure_info"
         android:textSize="18sp"
         android:textStyle="bold" />
-    
-    <Button
-        android:id="@+id/configure_button_create"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/configure_create" />
+
     
     <ListView 
         android:id="@+id/configure_list"
         android:layout_below="@id/configure_text_info"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/configure_button_create">    
+        android:layout_height="wrap_content">    
     </ListView>
     
 </RelativeLayout>
