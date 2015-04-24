@@ -71,13 +71,14 @@ public class ConfigureWidget extends Activity {
 
 				//get an instance of the app widget manager and remoteviews
 				final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-				final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
+				final RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
+				
 				
 				Button widgetButton = (Button) findViewById(R.id.widget_button);
 				
 				//set the text and background of the button
-				widgetButton.setBackgroundResource((selectedRule.getStatus()==1 ? R.drawable.widget_button_green : R.drawable.widget_button_red));
-				widgetButton.setText(selectedRule.getName());
+				rm.setImageViewResource(R.id.widget_backgroundImage, (selectedRule.getStatus()==1 ? R.drawable.widget_button_green : R.drawable.widget_button_red));
+				rm.setTextViewText(R.id.widget_button, selectedRule.getName());
 
 				widgetButton.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
@@ -91,10 +92,8 @@ public class ConfigureWidget extends Activity {
 					}
 				});
 
-				//TODO configure
-
 				//update the app widget
-				widgetManager.updateAppWidget(widgetID, views);
+				widgetManager.updateAppWidget(widgetID, rm);
 
 				//create return intent, finish the activity
 				Intent resultValue = new Intent();
