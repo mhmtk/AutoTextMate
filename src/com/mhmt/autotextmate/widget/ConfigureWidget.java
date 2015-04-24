@@ -12,11 +12,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RemoteViews;
 
@@ -53,7 +51,6 @@ public class ConfigureWidget extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,final int position, long id) {
-				final String item = (String) parent.getItemAtPosition(position);
 				//DO EVERYTHING
 				Log.i("Configure", "pos: " + position + "id: " + id);
 
