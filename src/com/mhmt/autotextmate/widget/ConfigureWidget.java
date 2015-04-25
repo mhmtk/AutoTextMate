@@ -18,6 +18,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RemoteViews;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version April 25, 2015
+ */
 public class ConfigureWidget extends Activity {
 
 	private ConfigureWidget context;
