@@ -7,7 +7,8 @@
     android:id="@+id/widget_backgroundImage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scaleType="fitXY"/>
+    android:scaleType="fitXY"
+    android:background="@drawable/widget_button_green"/>
     
     <Button
         android:id="@+id/widget_button"
@@ -15,7 +16,8 @@
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="test" >
+        android:text="test"
+        android:background="@android:color/transparent">
     </Button>
 
 </RelativeLayout>
