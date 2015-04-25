@@ -10,6 +10,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version April 25, 2015
+ */
 public class RuleWidgetProvider extends AppWidgetProvider {
 
 	@Override
