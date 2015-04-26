@@ -94,7 +94,7 @@ public class ConfigureWidget extends Activity {
 				// Create the intent (add the rule name as an extra) to launch at button onClick 
 				Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
 				onClickIntent.putExtra("rule_name", selectedRule.getName());
-				PendingIntent onClickPendingIntent = PendingIntent.getActivity(context, 0, onClickIntent, 0);
+				PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 				// Set the widget button to launch the onClickPendingIntent 
 				rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
