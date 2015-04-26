@@ -37,6 +37,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mhmt.autotextmate.activities.Main" />
         </activity>
+        
+        <receiver android:name="com.autotextmate.widget.RuleWidgetProvider">
+            <intent-filter>
+                <action android:name="AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION"/>
+            </intent-filter>
+        </receiver>
 
         <receiver android:name=".broadcastreceivers.SMSReceiver" >
             <intent-filter>

@@ -33,7 +33,7 @@ public class ConfigureWidget extends Activity {
 	private DatabaseManager dbManager; 
 	private ArrayList<Rule> ruleArray;
 
-//	public static String WIDGET_ONCLICK_ACTION = "WidgetOnClickAction";
+	private static String WIDGET_ONCLICK_ACTION = "AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,36 +91,13 @@ public class ConfigureWidget extends Activity {
 				rm.setImageViewResource(R.id.widget_backgroundImage, (selectedRule.getStatus()==1 ? R.drawable.widget_button_green : R.drawable.widget_button_red));
 				rm.setTextViewText(R.id.widget_button, selectedRule.getName());
 
-//				//Create intent and pending intent for the onClick action
-//				Intent onClickIntent = new Intent(context, RuleWidgetProvider.class);
-//				PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, 0);
+				// Create the intent (add the rule name as an extra) to launch at button onClick 
+				Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
+				onClickIntent.putExtra("rule_name", selectedRule.getName());
+				PendingIntent onClickPendingIntent = PendingIntent.getActivity(context, 0, onClickIntent, 0);
 
-				
-				
-				
-				
-//				rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
-
-
-				//				//TODO change to use pending intent thru remoteviews
-				//				widgetButton.setOnClickListener(new View.OnClickListener() {
-				//					public void onClick(View v) {
-				//						
-				//						//TODO et the rules current status from db
-				//						
-				//						//TODO Change the background image
-				//						
-				//						//TODO call toggleRule
-				//						
-				//					}
-				//				});
-
-				
-				
-				
-				
-				
-				
+				// Set the widget button to launch the onClickPendingIntent 
+				rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
 				
 				//update the app widget
 				widgetManager.updateAppWidget(widgetID, rm);
