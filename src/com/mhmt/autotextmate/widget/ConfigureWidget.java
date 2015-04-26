@@ -33,7 +33,7 @@ public class ConfigureWidget extends Activity {
 	private DatabaseManager dbManager; 
 	private ArrayList<Rule> ruleArray;
 
-	public static String WIDGET_ONCLICK_ACTION = "WidgetOnClickAction";
+//	public static String WIDGET_ONCLICK_ACTION = "WidgetOnClickAction";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,15 +91,15 @@ public class ConfigureWidget extends Activity {
 				rm.setImageViewResource(R.id.widget_backgroundImage, (selectedRule.getStatus()==1 ? R.drawable.widget_button_green : R.drawable.widget_button_red));
 				rm.setTextViewText(R.id.widget_button, selectedRule.getName());
 
-				//Create intent and pending intent for the onClick action
-				Intent onClickIntent = new Intent(context, RuleWidgetProvider.class);
-				PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, 0);
+//				//Create intent and pending intent for the onClick action
+//				Intent onClickIntent = new Intent(context, RuleWidgetProvider.class);
+//				PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, 0);
 
 				
 				
 				
 				
-				rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
+//				rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
 
 
 				//				//TODO change to use pending intent thru remoteviews
