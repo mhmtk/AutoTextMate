@@ -23,7 +23,7 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version April 25, 2015
+ * @version April 26, 2015
  */
 public class ConfigureWidget extends Activity {
 
@@ -55,13 +55,13 @@ public class ConfigureWidget extends Activity {
 		ruleListView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1,
 				ruleArray));
 
-		//TODO add onclick to list items
+		//OnClick of the rule list items
 		ruleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,final int position, long id) {
 				//DO EVERYTHING
-				Log.i("Configure", "pos: " + position + "id: " + id);
+				Log.i("Configure", "pos: " + position + ", id: " + id);
 
 				final Rule selectedRule = ruleArray.get(position);
 
