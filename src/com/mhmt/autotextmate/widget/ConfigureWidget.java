@@ -32,8 +32,8 @@ public class ConfigureWidget extends Activity {
 	private ListView ruleListView;
 	private DatabaseManager dbManager; 
 	private ArrayList<Rule> ruleArray;
-	
-	public static String BUTTON_ONCLICK_ACTION = "ButtonOnClickAction";
+
+	public static String WIDGET_ONCLICK_ACTION = "WidgetOnClickAction";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class ConfigureWidget extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,final int position, long id) {
-				//DO EVERYTHING
+				
 				Log.i("Configure", "pos: " + position + ", id: " + id);
 
 				final Rule selectedRule = ruleArray.get(position);
@@ -74,43 +74,54 @@ public class ConfigureWidget extends Activity {
 					widgetID = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID,
 							AppWidgetManager.INVALID_APPWIDGET_ID);
 				}
-				
+
 				// If they gave us an intent without the widget id, just bail.
-	            if (widgetID == AppWidgetManager.INVALID_APPWIDGET_ID) {
-	                finish();
-	            }
+				if (widgetID == AppWidgetManager.INVALID_APPWIDGET_ID) {
+					finish();
+				}
 
 				//get an instance of the app widget manager and remoteviews
 				final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 				final RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
-				
+
 				//TODO delete this, it's useless 
-//				Button widgetButton = (Button) findViewById(R.id.widget_button);
-				
+				//				Button widgetButton = (Button) findViewById(R.id.widget_button);
+
 				//set the text and background of the button
 				rm.setImageViewResource(R.id.widget_backgroundImage, (selectedRule.getStatus()==1 ? R.drawable.widget_button_green : R.drawable.widget_button_red));
 				rm.setTextViewText(R.id.widget_button, selectedRule.getName());
-				
+
 				//Create intent and pending intent for the onClick action
 				Intent onClickIntent = new Intent(context, RuleWidgetProvider.class);
 				PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, 0);
+
+				
+				
+				
 				
 				rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
-				
-				
-//				//TODO change to use pending intent thru remoteviews
-//				widgetButton.setOnClickListener(new View.OnClickListener() {
-//					public void onClick(View v) {
-//						
-//						//TODO et the rules current status from db
-//						
-//						//TODO Change the background image
-//						
-//						//TODO call toggleRule
-//						
-//					}
-//				});
 
+
+				//				//TODO change to use pending intent thru remoteviews
+				//				widgetButton.setOnClickListener(new View.OnClickListener() {
+				//					public void onClick(View v) {
+				//						
+				//						//TODO et the rules current status from db
+				//						
+				//						//TODO Change the background image
+				//						
+				//						//TODO call toggleRule
+				//						
+				//					}
+				//				});
+
+				
+				
+				
+				
+				
+				
+				
 				//update the app widget
 				widgetManager.updateAppWidget(widgetID, rm);
 
@@ -119,6 +130,6 @@ public class ConfigureWidget extends Activity {
 				resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 				setResult(RESULT_OK, resultValue);
 				finish();
-			}});
-	}
-}
+			}}); //end of new onClick and it's onClick method
+	} //end of onCreate
+}//end of class
