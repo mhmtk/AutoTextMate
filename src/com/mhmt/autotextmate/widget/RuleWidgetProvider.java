@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 /**
  * 
@@ -30,7 +29,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 
 			// Create the intent to launch at button onClick 
 			Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
-			PendingIntent onClickPendingIntent = PendingIntent.getActivity(context, 0, onClickIntent, 0);
+			PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 			// Set the widget button to launch the onClickPendingIntent 
 			RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
