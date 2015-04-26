@@ -84,9 +84,6 @@ public class ConfigureWidget extends Activity {
 				final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 				final RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
 
-				//TODO delete this, it's useless 
-				//				Button widgetButton = (Button) findViewById(R.id.widget_button);
-
 				//set the text and background of the button
 				rm.setImageViewResource(R.id.widget_backgroundImage, (selectedRule.getStatus()==1 ? R.drawable.widget_button_green : R.drawable.widget_button_red));
 				rm.setTextViewText(R.id.widget_button, selectedRule.getName());
@@ -94,6 +91,7 @@ public class ConfigureWidget extends Activity {
 				// Create the intent (add the rule name as an extra) to launch at button onClick 
 				Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
 				onClickIntent.putExtra("rule_name", selectedRule.getName());
+				onClickIntent.putExtra("widget_ID", widgetID);
 				PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 				// Set the widget button to launch the onClickPendingIntent 

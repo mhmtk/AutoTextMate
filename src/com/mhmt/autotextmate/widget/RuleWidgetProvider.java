@@ -19,7 +19,7 @@ import android.widget.RemoteViews;
 public class RuleWidgetProvider extends AppWidgetProvider {
 
 	private static String WIDGET_ONCLICK_ACTION = "AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION";
-	
+
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds){
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
@@ -43,42 +43,34 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		super.onReceive(context, intent);
-		
+
 		Log.i("Widget", "Widget received something");
 
-        if (WIDGET_ONCLICK_ACTION.equals(intent.getAction())) {
-        	Log.i("Widget", "Widget received the onclick action intent");
-        	
-        	//Make DB manager
-        	DatabaseManager dbManager = new DatabaseManager(context);
-        	
-        	//get the name of the rule the widget is on
-        	String ruleName = intent.getStringExtra("rule_name");
-        	
-        	Boolean statusToSet = true; //TODO
-        	
-    		//Change the status of the rule in the database
-    		dbManager.toggleRule(ruleName, statusToSet);
-    		
-    		//change the background of the widget 
-    		RemoteViews rm = new RemoteViews(context.getPackageName(),R.layout.layout_widget);
-    		rm.setImageViewResource(R.id.widget_backgroundImage, 
-    				(statusToSet ? R.drawable.widget_button_green : R.drawable.widget_button_red));
-    		
-//            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-//
-//            RemoteViews remoteViews;
-//            ComponentName watchWidget;
-//
-//            remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-//            watchWidget = new ComponentName(context, Widget.class);
-//
-//            remoteViews.setTextViewText(R.id.sync_button, "TESTING");
-//
-//            appWidgetManager.updateAppWidget(watchWidget, remoteViews);
-    		
-    		//documentation and feedback
-    		Log.i("Widget", ruleName);
-        }
+		if (WIDGET_ONCLICK_ACTION.equals(intent.getAction())) {
+			Log.i("Widget", "Widget received the onclick action intent");
+
+			//Make DB manager
+			DatabaseManager dbManager = new DatabaseManager(context);
+
+			//get the name of the rule the widget is on
+			String ruleName = intent.getStringExtra("rule_name");
+			int widgetID = intent.getIntExtra("widget_ID", AppWidgetManager.INVALID_APPWIDGET_ID);
+
+			Boolean statusToSet = true; //TODO
+
+			//Change the status of the rule in the database
+			dbManager.toggleRule(ruleName, statusToSet);
+
+			//change the background of the widget 
+			RemoteViews rm = new RemoteViews(context.getPackageName(),R.layout.layout_widget);
+			rm.setImageViewResource(R.id.widget_backgroundImage, 
+					(statusToSet ? R.drawable.widget_button_green : R.drawable.widget_button_red));
+
+			AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+			widgetManager.updateAppWidget(widgetID, rm);
+
+			//documentation and feedback
+			Log.i("Widget", "Rule: " + ruleName + ", wID: " + widgetID);
+		}
 	}
 }
