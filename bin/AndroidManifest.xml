@@ -38,7 +38,7 @@
                 android:value="com.mhmt.autotextmate.activities.Main" />
         </activity>
         
-        <receiver android:name="com.autotextmate.widget.RuleWidgetProvider">
+        <receiver android:name="com.mhmt.autotextmate.widget.RuleWidgetProvider">
             <intent-filter>
                 <action android:name="AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION"/>
             </intent-filter>

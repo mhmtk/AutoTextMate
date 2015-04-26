@@ -44,8 +44,12 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		super.onReceive(context, intent);
+		
+		Log.i("Widget", "Widget received something");
 
         if (WIDGET_ONCLICK_ACTION.equals(intent.getAction())) {
+        	Log.i("Widget", "Widget received the onclick action intent");
+        	
         	//Make DB manager
         	DatabaseManager dbManager = new DatabaseManager(context);
         	
