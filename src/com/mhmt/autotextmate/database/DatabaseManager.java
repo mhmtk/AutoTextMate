@@ -34,6 +34,24 @@ public class DatabaseManager {
 	}
 
 	/**
+	 * Sets the widget ID of the rule in the DB with the given name to widgetID
+	 * 
+	 * @param ruleName The name of the rule whose widgetID will be changed
+	 * @param widgetID The widget ID to set
+	 */
+	public void addWidgetID(String ruleName, int widgetID) {
+		Log.i("DatabaseManager", "Add widget ID was called");
+
+		//get writable database
+		db = dbHelper.getWritableDatabase();
+
+		db.execSQL("UPDATE " + RuleEntry.RULE_TABLE_NAME +
+				" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" );
+
+	}
+
+	/**
 	 * Adds the given rule to the database
 	 * 
 	 * @param rule Rule to be added
@@ -41,7 +59,7 @@ public class DatabaseManager {
 	public void addRule(Rule rule){
 		Log.i("DatabaseManager", "Add rule was called");
 
-		//get writeable database
+		//get writable database
 		db = dbHelper.getWritableDatabase();
 
 		// map of values
@@ -168,18 +186,18 @@ public class DatabaseManager {
 	 */
 	public void toggleRule(String name, boolean state) {
 		int status = state ? 1 : 0;
-		
+
 		//get readable database
 		db = dbHelper.getWritableDatabase();
-		
+
 		db.execSQL("UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
-		
+
 		Log.i("DatabaseManager", "executed: "+ "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
-		
+
 		db.close();
 	}
 }
