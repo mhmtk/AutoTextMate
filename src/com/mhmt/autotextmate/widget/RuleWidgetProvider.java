@@ -23,6 +23,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onEnabled(Context context){
 		super.onEnabled(context);
+		//TODO add widget ID to database
 	}
 	
 	@Override
@@ -83,7 +84,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
 		super.onDeleted(context, appWidgetIds);
-		//delete widget ID from DB
+		//TODO delete widget ID from DB
 
 	}
 }
