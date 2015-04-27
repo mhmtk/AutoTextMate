@@ -14,7 +14,7 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version April 26, 2015
+ * @version April 27, 2015
  */
 public class RuleWidgetProvider extends AppWidgetProvider {
 
@@ -44,10 +44,10 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	public void onReceive(Context context, Intent intent) {
 		super.onReceive(context, intent);
 
-		Log.i("Widget", "Widget received something");
+		Log.i("Widget", "Widget received a broadcast");
 
 		if (WIDGET_ONCLICK_ACTION.equals(intent.getAction())) {
-			Log.i("Widget", "Widget received the onclick action intent");
+			Log.i("Widget", "The broadcast matches the widget onClick action");
 
 			//Make DB manager
 			DatabaseManager dbManager = new DatabaseManager(context);
