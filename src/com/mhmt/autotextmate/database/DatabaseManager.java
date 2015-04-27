@@ -34,7 +34,9 @@ public class DatabaseManager {
 	}
 
 	/**
-	 * Sets the widget ID of the rule in the DB with the given name to widgetID
+	 * Sets the widget ID of the rule in the DB with the given name to widgetID.
+	 * Should also be called when a widget is deleted, and the INVALID_WIDGET_ID
+	 * should be passed as the widgetID.
 	 * 
 	 * @param ruleName The name of the rule whose widgetID will be changed
 	 * @param widgetID The widget ID to set
@@ -48,7 +50,10 @@ public class DatabaseManager {
 		db.execSQL("UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" );
-
+		
+		Log.i("DatabaseManager", "Executed: " + "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+				" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" );
 	}
 
 	/**
