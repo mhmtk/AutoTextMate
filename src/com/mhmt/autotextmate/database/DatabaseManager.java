@@ -42,7 +42,7 @@ public class DatabaseManager {
 	 * @param ruleName The name of the rule whose widgetID will be changed
 	 * @param widgetID The widget ID to set
 	 */
-	public void addWidgetID(String ruleName, int widgetID) {
+	public void setWidgetID(String ruleName, int widgetID) {
 		Log.i("DatabaseManager", "Add widget ID was called");
 
 		//get writable database

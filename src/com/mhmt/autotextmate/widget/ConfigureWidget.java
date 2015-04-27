@@ -82,7 +82,7 @@ public class ConfigureWidget extends Activity {
 				}
 
 				//Add the widget ID to the database
-				dbManager.addWidgetID(selectedRule.getName(), widgetID);
+				dbManager.setWidgetID(selectedRule.getName(), widgetID);
 				
 				//get an instance of the app widget manager and remoteviews
 				final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
