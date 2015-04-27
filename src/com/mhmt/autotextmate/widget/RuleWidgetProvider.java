@@ -21,24 +21,29 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	private static String WIDGET_ONCLICK_ACTION = "AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION";
 
 	@Override
+	public void onEnabled(Context context){
+		super.onEnabled(context);
+	}
+	
+	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds){
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 		Log.i("Widget", "onUpdate called");
 		for (int i=0; i<appWidgetIds.length; i++) {
 			int appWidgetId = appWidgetIds[i];
-			
+
 			Log.i("Widget", "Updating " + appWidgetId);
 
 			// Create the intent to launch at button onClick 
-//			Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
-//			PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+			//			Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
+			//			PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 			// Set the widget button to launch the onClickPendingIntent 
-//			RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
-//			rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
+			//			RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
+			//			rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
 
 			//perform an update on the current app widget
-//			appWidgetManager.updateAppWidget(appWidgetId, rm);
+			//			appWidgetManager.updateAppWidget(appWidgetId, rm);
 		}
 	}
 
@@ -74,5 +79,11 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			//documentation and feedback
 			Log.i("Widget", "Rule: " + ruleName + ", wID: " + widgetID + " changed");
 		}
+	}
+	@Override
+	public void onDeleted(Context context, int[] appWidgetIds) {
+		super.onDeleted(context, appWidgetIds);
+		//delete widget ID from DB
+
 	}
 }
