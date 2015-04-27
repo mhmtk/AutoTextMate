@@ -16,7 +16,7 @@
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="test"
+        android:text="Error"
         android:background="@android:color/transparent">
     </Button>
 
