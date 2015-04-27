@@ -2,6 +2,7 @@ package com.mhmt.autotextmate.widget;
 
 import com.mhmt.autotextmate.R;
 import com.mhmt.autotextmate.database.DatabaseManager;
+import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -36,8 +37,17 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 
 			Log.i("Widget", "Updating " + appWidgetId);
 			
-			//Get the rule from the DB
+			//get a dbManager
 			dbManager = new DatabaseManager(context);
+			
+			//Update the background image to match the status of the rule in the DB
+			RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
+			rm.setImageViewResource(R.id.widget_backgroundImage, 
+					((dbManager.getRule(appWidgetId).getStatus()==1) ? R.drawable.widget_button_green : R.drawable.widget_button_red));
+			
+			appWidgetManager.updateAppWidget(appWidgetId, rm);
+			
+			Log.i("Widget", "Updated " + appWidgetId);
 
 			// Create the intent to launch at button onClick 
 			//			Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
