@@ -64,6 +64,39 @@ public class DatabaseManager {
 	}
 
 	/**
+	 * Returns a rule object from the database that corresponds to the widgetID 
+	 * 
+	 * @param widgetID The widgetID associated with the rule to return
+	 * @return
+	 */
+	public Rule getRule(int widgetID) {
+		
+		db = dbHelper.getReadableDatabase();
+		
+		String selectQuery = "SELECT  * FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
+	            + RuleEntry.RULE_COLUMN_WIDGET_ID + " ='" + widgetID + "'";
+		
+		//Log the query
+		Log.i("DatabaseManager", selectQuery);
+		
+		Cursor c = db.rawQuery(selectQuery, null);
+		
+		if (c != null)
+	        c.moveToFirst();
+		else 
+			Log.e("DatabaseManager", "The cursor returned by getRule was null for given widgetID");
+		
+		Rule rule = new Rule(c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
+				c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
+				c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
+				c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
+				c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
+		
+		db.close();
+		
+		return rule;
+	}
+	/**
 	 * Adds the given rule to the database
 	 * 
 	 * @param rule Rule to be added
