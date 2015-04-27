@@ -46,7 +46,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	public void onReceive(Context context, Intent intent) {
 		super.onReceive(context, intent);
 
-		Log.i("Widget", "Widget received a broadcast");
+		Log.i("Widget", "Widget received " + intent);
 
 		if (WIDGET_ONCLICK_ACTION.equals(intent.getAction())) {
 			Log.i("Widget", "The broadcast matches the widget onClick action");
