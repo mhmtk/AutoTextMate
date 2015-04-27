@@ -25,6 +25,7 @@ public class RuleDatabaseContract {
 		public static final String RULE_COLUMN_TEXT = "text";
 		public static final String RULE_COLUMN_ONLYCONTACTS = "onlyContacts";
 		public static final String RULE_COLUMN_STATUS = "status";
+		public static final String RULE_COLUMN_WIDGET_ID = "widgetID";
 	}
 
 }
