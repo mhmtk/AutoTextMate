@@ -8,6 +8,7 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
@@ -47,13 +48,19 @@ public class DatabaseManager {
 		//get writable database
 		db = dbHelper.getWritableDatabase();
 
+		try {
 		db.execSQL("UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" );
+		} catch (SQLException e) {
+			Log.e("DatabaseManager", "SQLException " + e + "cought");
+		}
 		
 		Log.i("DatabaseManager", "Executed: " + "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" );
+		
+		db.close();
 	}
 
 	/**
