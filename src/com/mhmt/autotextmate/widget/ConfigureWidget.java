@@ -23,7 +23,7 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version April 26, 2015
+ * @version April 27, 2015
  */
 public class ConfigureWidget extends Activity {
 
@@ -92,7 +92,7 @@ public class ConfigureWidget extends Activity {
 				Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
 				onClickIntent.putExtra("rule_name", selectedRule.getName());
 				onClickIntent.putExtra("widget_ID", widgetID);
-				PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+				PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, widgetID, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 				// Set the widget button to launch the onClickPendingIntent 
 				rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
