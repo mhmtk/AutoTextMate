@@ -60,9 +60,10 @@ public class ConfigureWidget extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,final int position, long id) {
-				
+				//Log
 				Log.i("Configure", "pos: " + position + ", id: " + id);
 
+				//Store the selected Rule's name
 				final Rule selectedRule = ruleArray.get(position);
 
 				//Get the intent that launched the activity
@@ -80,6 +81,9 @@ public class ConfigureWidget extends Activity {
 					finish();
 				}
 
+				//Add the widget ID to the database
+				dbManager.addWidgetID(selectedRule.getName(), widgetID);
+				
 				//get an instance of the app widget manager and remoteviews
 				final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 				final RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
