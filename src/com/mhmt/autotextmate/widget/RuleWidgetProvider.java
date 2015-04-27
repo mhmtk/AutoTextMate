@@ -19,6 +19,7 @@ import android.widget.RemoteViews;
 public class RuleWidgetProvider extends AppWidgetProvider {
 
 	private static String WIDGET_ONCLICK_ACTION = "AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION";
+	private DatabaseManager dbManager; 
 
 	@Override
 	public void onEnabled(Context context){
@@ -34,6 +35,9 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			int appWidgetId = appWidgetIds[i];
 
 			Log.i("Widget", "Updating " + appWidgetId);
+			
+			//Get the rule from the DB
+			dbManager = new DatabaseManager(context);
 
 			// Create the intent to launch at button onClick 
 			//			Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
@@ -58,7 +62,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			Log.i("Widget", "The broadcast matches the widget onClick action");
 
 			//Make DB manager
-			DatabaseManager dbManager = new DatabaseManager(context);
+			dbManager = new DatabaseManager(context);
 
 			//get the name of the rule the widget is on
 			String ruleName = intent.getStringExtra("rule_name");
