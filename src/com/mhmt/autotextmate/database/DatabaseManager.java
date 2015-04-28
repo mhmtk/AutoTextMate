@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.mhmt.autotextmate.database.RuleDatabaseContract.RuleEntry;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
+import android.appwidget.AppWidgetManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -48,21 +49,43 @@ public class DatabaseManager {
 		//get writable database
 		db = dbHelper.getWritableDatabase();
 
-		try {
-		db.execSQL("UPDATE " + RuleEntry.RULE_TABLE_NAME +
+		String query = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" );
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" ;
+
+		try {
+			db.execSQL(query);
 		} catch (SQLException e) {
 			Log.e("DatabaseManager", "SQLException " + e + "cought");
 		}
-		
-		Log.i("DatabaseManager", "Executed: " + "UPDATE " + RuleEntry.RULE_TABLE_NAME +
-				" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" );
-		
+
+		Log.i("DatabaseManager", query);
+
 		db.close();
 	}
 
+	public void resetWidgetIDs(int[] widgetIDs) {
+		Log.i("DatabaseManager", "Reset widget ID was called");
+
+		//get writable database
+		db = dbHelper.getWritableDatabase();
+		String query;
+
+		for (int i=0; i<widgetIDs.length;i++) {
+			query = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+					" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + AppWidgetManager.INVALID_APPWIDGET_ID +"'" +
+					" WHERE " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetIDs[i] + "'" ;
+			try {
+				db.execSQL(query);
+			} catch (SQLException e) {
+				Log.e("DatabaseManager", "SQLException " + e + "cought");
+			}
+
+			Log.i("DatabaseManager", query);
+		}
+
+		db.close();
+	}
 	/**
 	 * Returns a rule object from the database that corresponds to the widgetID 
 	 * 
@@ -70,30 +93,30 @@ public class DatabaseManager {
 	 * @return
 	 */
 	public Rule getRule(int widgetID) {
-		
+
 		db = dbHelper.getReadableDatabase();
-		
+
 		String selectQuery = "SELECT  * FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
-	            + RuleEntry.RULE_COLUMN_WIDGET_ID + " ='" + widgetID + "'";
-		
+				+ RuleEntry.RULE_COLUMN_WIDGET_ID + " ='" + widgetID + "'";
+
 		//Log the query
 		Log.i("DatabaseManager", selectQuery);
-		
+
 		Cursor c = db.rawQuery(selectQuery, null);
-		
+
 		if (c != null)
-	        c.moveToFirst();
+			c.moveToFirst();
 		else 
 			Log.e("DatabaseManager", "The cursor returned by getRule was null for given widgetID");
-		
+
 		Rule rule = new Rule(c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
 				c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
 				c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
 				c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
 				c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
-		
+
 		db.close();
-		
+
 		return rule;
 	}
 	/**
