@@ -2,9 +2,7 @@ package com.mhmt.autotextmate.widget;
 
 import com.mhmt.autotextmate.R;
 import com.mhmt.autotextmate.database.DatabaseManager;
-import com.mhmt.autotextmate.dataobjects.Rule;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -15,7 +13,7 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version April 27, 2015
+ * @version April 28, 2015
  */
 public class RuleWidgetProvider extends AppWidgetProvider {
 
@@ -95,6 +93,10 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			Log.i("Widget", "Rule: " + ruleName + ", wID: " + widgetID + " changed");
 		}
 	}
+	
+	/**
+	 * Calls its super method, then also removes the deleted widget's ID from the DB
+	 */
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
 		super.onDeleted(context, appWidgetIds);

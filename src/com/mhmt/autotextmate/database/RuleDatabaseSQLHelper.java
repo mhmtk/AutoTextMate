@@ -12,7 +12,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 17, 2015
+ * @version November April 27, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{

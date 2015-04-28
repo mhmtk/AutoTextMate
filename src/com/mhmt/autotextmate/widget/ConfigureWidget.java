@@ -9,21 +9,19 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RemoteViews;
 
 /**
  * 
  * @author Mehmet Kologlu
- * @version April 27, 2015
+ * @version April 28, 2015
  */
 public class ConfigureWidget extends Activity {
 

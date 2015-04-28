@@ -17,7 +17,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 20, 2015
+ * @version November April 28, 2015
  * 
  */
 public class DatabaseManager {
@@ -64,6 +64,11 @@ public class DatabaseManager {
 		db.close();
 	}
 
+	/**
+	 * For the given widget ID, resets the widgetID cell in the DB to its default (invalid).
+	 * 
+	 * @param widgetIDs IDs of the widgets whose references should be removed from the DB
+	 */
 	public void resetWidgetIDs(int[] widgetIDs) {
 		Log.i("DatabaseManager", "Reset widget ID was called");
 
