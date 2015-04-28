@@ -27,7 +27,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 		super.onEnabled(context);
 		//TODO add widget ID to database
 	}
-	
+
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds){
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
@@ -36,17 +36,17 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			int appWidgetId = appWidgetIds[i];
 
 			Log.i("Widget", "Updating " + appWidgetId);
-			
+
 			//get a dbManager
 			dbManager = new DatabaseManager(context);
-			
+
 			//Update the background image to match the status of the rule in the DB
 			RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
 			rm.setImageViewResource(R.id.widget_backgroundImage, 
 					((dbManager.getRule(appWidgetId).getStatus()==1) ? R.drawable.widget_button_green : R.drawable.widget_button_red));
-			
+
 			appWidgetManager.updateAppWidget(appWidgetId, rm);
-			
+
 			Log.i("Widget", "Updated " + appWidgetId);
 
 			// Create the intent to launch at button onClick 
@@ -98,7 +98,12 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
 		super.onDeleted(context, appWidgetIds);
+		dbManager = new DatabaseManager(context);
+
+		Log.i("Widget", "Deleting widget(s) " + appWidgetIds.toString());
+
 		//TODO delete widget ID from DB
+		dbManager.resetWidgetIDs(appWidgetIds);
 
 	}
 }
