@@ -19,7 +19,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 24, 2015
+ * @version November April 28, 2015
  * 
  */
 public class Main extends ActionBarActivity {
@@ -131,6 +131,8 @@ public class Main extends ActionBarActivity {
 
 		//Change the status of the rule in the database
 		dbManager.toggleRule(mName, isChecked);
+		
+		//TODO Call for widget update
 	}
 
 }

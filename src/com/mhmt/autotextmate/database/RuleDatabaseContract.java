@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 16, 2015
+ * @version November April 27, 2015
  * 
  */
 public class RuleDatabaseContract {
@@ -25,6 +25,7 @@ public class RuleDatabaseContract {
 		public static final String RULE_COLUMN_TEXT = "text";
 		public static final String RULE_COLUMN_ONLYCONTACTS = "onlyContacts";
 		public static final String RULE_COLUMN_STATUS = "status";
+		public static final String RULE_COLUMN_WIDGET_ID = "widgetID";
 	}
 
 }

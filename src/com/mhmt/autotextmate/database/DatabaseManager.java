@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import com.mhmt.autotextmate.database.RuleDatabaseContract.RuleEntry;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
+import android.appwidget.AppWidgetManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
@@ -15,7 +17,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 20, 2015
+ * @version November April 28, 2015
  * 
  */
 public class DatabaseManager {
@@ -34,6 +36,95 @@ public class DatabaseManager {
 	}
 
 	/**
+	 * Sets the widget ID of the rule in the DB with the given name to widgetID.
+	 * Should also be called when a widget is deleted, and the INVALID_WIDGET_ID
+	 * should be passed as the widgetID.
+	 * 
+	 * @param ruleName The name of the rule whose widgetID will be changed
+	 * @param widgetID The widget ID to set
+	 */
+	public void setWidgetID(String ruleName, int widgetID) {
+		Log.i("DatabaseManager", "Add widget ID was called");
+
+		//get writable database
+		db = dbHelper.getWritableDatabase();
+
+		String query = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+				" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" ;
+
+		try {
+			db.execSQL(query);
+		} catch (SQLException e) {
+			Log.e("DatabaseManager", "SQLException " + e + "cought");
+		}
+
+		Log.i("DatabaseManager", query);
+
+		db.close();
+	}
+
+	/**
+	 * For the given widget ID, resets the widgetID cell in the DB to its default (invalid).
+	 * 
+	 * @param widgetIDs IDs of the widgets whose references should be removed from the DB
+	 */
+	public void resetWidgetIDs(int[] widgetIDs) {
+		Log.i("DatabaseManager", "Reset widget ID was called");
+
+		//get writable database
+		db = dbHelper.getWritableDatabase();
+		String query;
+
+		for (int i=0; i<widgetIDs.length;i++) {
+			query = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+					" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + AppWidgetManager.INVALID_APPWIDGET_ID +"'" +
+					" WHERE " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetIDs[i] + "'" ;
+			try {
+				db.execSQL(query);
+			} catch (SQLException e) {
+				Log.e("DatabaseManager", "SQLException " + e + "cought");
+			}
+
+			Log.i("DatabaseManager", query);
+		}
+
+		db.close();
+	}
+	/**
+	 * Returns a rule object from the database that corresponds to the widgetID 
+	 * 
+	 * @param widgetID The widgetID associated with the rule to return
+	 * @return
+	 */
+	public Rule getRule(int widgetID) {
+
+		db = dbHelper.getReadableDatabase();
+
+		String selectQuery = "SELECT  * FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
+				+ RuleEntry.RULE_COLUMN_WIDGET_ID + " ='" + widgetID + "'";
+
+		//Log the query
+		Log.i("DatabaseManager", selectQuery);
+
+		Cursor c = db.rawQuery(selectQuery, null);
+
+		if (c != null)
+			c.moveToFirst();
+		else 
+			Log.e("DatabaseManager", "The cursor returned by getRule was null for given widgetID");
+
+		Rule rule = new Rule(c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
+				c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
+				c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
+				c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
+				c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
+
+		db.close();
+
+		return rule;
+	}
+	/**
 	 * Adds the given rule to the database
 	 * 
 	 * @param rule Rule to be added
@@ -41,7 +132,7 @@ public class DatabaseManager {
 	public void addRule(Rule rule){
 		Log.i("DatabaseManager", "Add rule was called");
 
-		//get writeable database
+		//get writable database
 		db = dbHelper.getWritableDatabase();
 
 		// map of values
@@ -168,18 +259,18 @@ public class DatabaseManager {
 	 */
 	public void toggleRule(String name, boolean state) {
 		int status = state ? 1 : 0;
-		
+
 		//get readable database
 		db = dbHelper.getWritableDatabase();
-		
+
 		db.execSQL("UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
-		
+
 		Log.i("DatabaseManager", "executed: "+ "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
-		
+
 		db.close();
 	}
 }

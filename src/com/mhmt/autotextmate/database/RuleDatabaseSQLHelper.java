@@ -2,6 +2,7 @@ package com.mhmt.autotextmate.database;
 
 import com.mhmt.autotextmate.database.RuleDatabaseContract.RuleEntry;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,7 +12,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 17, 2015
+ * @version November April 27, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
@@ -34,7 +35,8 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 					RuleEntry.RULE_COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_TEXT + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_ONLYCONTACTS + INTEGER_TYPE + COMMA_SEP +
-					RuleEntry.RULE_COLUMN_STATUS + INTEGER_TYPE + DEFAULT + STATUS_DEFAULT_VALUE + ")";
+					RuleEntry.RULE_COLUMN_STATUS + INTEGER_TYPE + DEFAULT + STATUS_DEFAULT_VALUE + 
+					RuleEntry.RULE_COLUMN_WIDGET_ID + INTEGER_TYPE + DEFAULT + AppWidgetManager.INVALID_APPWIDGET_ID + ")";
 	
 	//SQL command to drop (delete) the rule table
 	private static final String SQL_DELETE_RULE_TABLE = 

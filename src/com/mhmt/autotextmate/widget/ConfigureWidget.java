@@ -9,21 +9,19 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RemoteViews;
 
 /**
  * 
  * @author Mehmet Kologlu
- * @version April 27, 2015
+ * @version April 28, 2015
  */
 public class ConfigureWidget extends Activity {
 
@@ -60,9 +58,10 @@ public class ConfigureWidget extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,final int position, long id) {
-				
+				//Log
 				Log.i("Configure", "pos: " + position + ", id: " + id);
 
+				//Store the selected Rule's name
 				final Rule selectedRule = ruleArray.get(position);
 
 				//Get the intent that launched the activity
@@ -80,6 +79,9 @@ public class ConfigureWidget extends Activity {
 					finish();
 				}
 
+				//Add the widget ID to the database
+				dbManager.setWidgetID(selectedRule.getName(), widgetID);
+				
 				//get an instance of the app widget manager and remoteviews
 				final AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 				final RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
