@@ -32,7 +32,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 		for (int i=0; i<appWidgetIds.length; i++) {
 			int appWidgetId = appWidgetIds[i];
 
-			Log.i("Widget", "Updating " + appWidgetId);
+			Log.i("Widget", "Widget onUpdate called for " + appWidgetId);
 
 			//get a dbManager
 			dbManager = new DatabaseManager(context);
@@ -78,18 +78,22 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			//Change the status of the rule in the database
 			dbManager.toggleRuleStatus(ruleName);
 			
-			//TODO tell the widget to update itself
+			//documentation and feedback
+			Log.i("Widget", "Rule: " + ruleName + ", wID: " + widgetID + " changed");
+			
+			//Send a broadcast for the widget to update itself
+			Intent updateWidgetIntent = new Intent();
+			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{widgetID} );
+			updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+			context.sendBroadcast(updateWidgetIntent);
+			Log.i("Widget", "Broadcasted " + updateWidgetIntent.toString());
 			
 //			//change the background of the widget 
 //			RemoteViews rm = new RemoteViews(context.getPackageName(),R.layout.layout_widget);
 //			rm.setImageViewResource(R.id.widget_backgroundImage, 
 //					(statusToSet ? R.drawable.widget_button_green : R.drawable.widget_button_red));
 //
-//			AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-//			widgetManager.updateAppWidget(widgetID, rm);
 //
-			//documentation and feedback
-			Log.i("Widget", "Rule: " + ruleName + ", wID: " + widgetID + " changed");
 		}
 	}
 	
