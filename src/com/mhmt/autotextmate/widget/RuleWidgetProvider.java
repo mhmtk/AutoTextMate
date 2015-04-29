@@ -23,7 +23,6 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onEnabled(Context context){
 		super.onEnabled(context);
-		//TODO add widget ID to database
 	}
 
 	@Override
