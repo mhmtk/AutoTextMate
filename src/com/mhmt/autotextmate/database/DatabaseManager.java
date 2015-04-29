@@ -17,7 +17,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 28, 2015
+ * @version November April 29, 2015
  * 
  */
 public class DatabaseManager {
@@ -252,24 +252,58 @@ public class DatabaseManager {
 	}
 
 	/**
+	 * Called to toggle the status of the rule with the given name
+	 * 
+	 * @param name The name of the rule of which the status will be toggled
+	 */
+	public void toggleRuleStatus(String name) {
+		db = dbHelper.getWritableDatabase();
+
+		String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_STATUS +" FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
+				+ RuleEntry.RULE_COLUMN_NAME + " ='" + name + "'";
+
+		//Log the query
+		Log.i("DatabaseManager", selectQuery);
+
+		Cursor c = db.rawQuery(selectQuery, null);
+
+		if (c != null)
+			c.moveToFirst();
+		else 
+			Log.e("DatabaseManager", "The cursor returned by toggleRule(Str s) was null for given ruleName");
+
+		int curStatus = c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS));
+		int statusToSet = (curStatus == 1) ? 0 : 1;
+
+		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + statusToSet + "'" +
+				" WHERE " + RuleEntry.RULE_COLUMN_STATUS + "='" + curStatus +"'" ;
+
+		db.execSQL(updateQuery);
+
+		Log.i("DatabaseManager", "Executed: " + updateQuery);
+
+		db.close();
+	}
+
+	/**
 	 * Called to change the status of the rule with the given name to the given state
 	 * 
 	 * @param name The name of the rule of which the status will be toggled
 	 * @param status The state the rule's status should be set to
 	 */
-	public void toggleRule(String name, boolean state) {
+	public void setRuleStatus(String name, boolean state) {
 		int status = state ? 1 : 0;
 
-		//get readable database
 		db = dbHelper.getWritableDatabase();
 
-		db.execSQL("UPDATE " + RuleEntry.RULE_TABLE_NAME +
+		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'";
 
-		Log.i("DatabaseManager", "executed: "+ "UPDATE " + RuleEntry.RULE_TABLE_NAME +
-				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
+		db.execSQL(updateQuery);
+
+		Log.i("DatabaseManager", "Executed: " + updateQuery);
 
 		db.close();
 	}

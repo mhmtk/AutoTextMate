@@ -130,7 +130,7 @@ public class Main extends ActionBarActivity {
 		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_LONG).show();
 
 		//Change the status of the rule in the database
-		dbManager.toggleRule(mName, isChecked);
+		dbManager.setRuleStatus(mName, isChecked);
 		
 		//TODO Call for widget update
 	}
