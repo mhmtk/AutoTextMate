@@ -71,23 +71,23 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			//Make DB manager
 			dbManager = new DatabaseManager(context);
 
-			//get the name of the rule the widget is on
+			//Get the rule name and widget ID from the intent
 			String ruleName = intent.getStringExtra("rule_name");
 			int widgetID = intent.getIntExtra("widget_ID", AppWidgetManager.INVALID_APPWIDGET_ID);
-
-			Boolean statusToSet = true; //TODO
-
+			
 			//Change the status of the rule in the database
-			dbManager.toggleRule(ruleName, statusToSet);
-
-			//change the background of the widget 
-			RemoteViews rm = new RemoteViews(context.getPackageName(),R.layout.layout_widget);
-			rm.setImageViewResource(R.id.widget_backgroundImage, 
-					(statusToSet ? R.drawable.widget_button_green : R.drawable.widget_button_red));
-
-			AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-			widgetManager.updateAppWidget(widgetID, rm);
-
+			dbManager.toggleRuleStatus(ruleName);
+			
+			//TODO tell the widget to update itself
+			
+//			//change the background of the widget 
+//			RemoteViews rm = new RemoteViews(context.getPackageName(),R.layout.layout_widget);
+//			rm.setImageViewResource(R.id.widget_backgroundImage, 
+//					(statusToSet ? R.drawable.widget_button_green : R.drawable.widget_button_red));
+//
+//			AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+//			widgetManager.updateAppWidget(widgetID, rm);
+//
 			//documentation and feedback
 			Log.i("Widget", "Rule: " + ruleName + ", wID: " + widgetID + " changed");
 		}
