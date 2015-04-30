@@ -17,7 +17,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 29, 2015
+ * @version November April 30, 2015
  * 
  */
 public class DatabaseManager {

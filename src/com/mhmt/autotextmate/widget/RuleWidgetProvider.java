@@ -81,6 +81,8 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			//documentation and feedback
 			Log.i("Widget", "Rule: " + ruleName + ", wID: " + widgetID + " changed");
 			
+//			onUpdate(context, appWidgetManager, appWidgetIds);
+			
 			//Send a broadcast for the widget to update itself
 			Intent updateWidgetIntent = new Intent();
 			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{widgetID} );
