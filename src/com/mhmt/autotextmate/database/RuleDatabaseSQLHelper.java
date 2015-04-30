@@ -35,7 +35,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 					RuleEntry.RULE_COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_TEXT + TEXT_TYPE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_ONLYCONTACTS + INTEGER_TYPE + COMMA_SEP +
-					RuleEntry.RULE_COLUMN_STATUS + INTEGER_TYPE + DEFAULT + STATUS_DEFAULT_VALUE + 
+					RuleEntry.RULE_COLUMN_STATUS + INTEGER_TYPE + DEFAULT + STATUS_DEFAULT_VALUE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_WIDGET_ID + INTEGER_TYPE + DEFAULT + AppWidgetManager.INVALID_APPWIDGET_ID + ")";
 	
 	//SQL command to drop (delete) the rule table
