@@ -7,6 +7,7 @@ import com.mhmt.autotextmate.adapters.RuleListViewAdapter;
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -125,14 +126,19 @@ public class Main extends ActionBarActivity {
 	 * @param isChecked True if toggle is on, false otherwise
 	 */
 	public void onItemToggleClicked(String mName, boolean isChecked) {
-		//documentation and feedback
+		//Documentation and feedback
 		Log.i("Main", "Toggle item of " + mName + " set to " + isChecked + ".");
 		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_LONG).show();
 
-		//Change the status of the rule in the database
-		dbManager.setRuleStatus(mName, isChecked);
+		//Change the status of the rule in the database-
+		int wID = dbManager.setRuleStatus(mName, isChecked);
 		
-		//TODO Call for widget update
+		//Send a broadcast for the widget to update itself
+		Intent updateWidgetIntent = new Intent();
+		updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} );
+		updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+		this.sendBroadcast(updateWidgetIntent);
+		Log.i("Widget", "Broadcasted " + updateWidgetIntent.toString());
 	}
 
 }

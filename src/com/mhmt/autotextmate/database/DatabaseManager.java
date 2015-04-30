@@ -259,8 +259,9 @@ public class DatabaseManager {
 	public void toggleRuleStatus(String name) {
 		db = dbHelper.getWritableDatabase();
 
-		String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_STATUS +" FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
-				+ RuleEntry.RULE_COLUMN_NAME + " ='" + name + "'";
+		String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_STATUS + 
+				" FROM " + RuleEntry.RULE_TABLE_NAME + 
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " ='" + name + "'";
 
 		//Log the query
 		Log.i("DatabaseManager", selectQuery);
@@ -291,20 +292,35 @@ public class DatabaseManager {
 	 * 
 	 * @param name The name of the rule of which the status will be toggled
 	 * @param status The state the rule's status should be set to
+	 * 
+	 * @return Returns the widget ID of the 
 	 */
-	public void setRuleStatus(String name, boolean state) {
+	public int setRuleStatus(String name, boolean state) {
 		int status = state ? 1 : 0;
 
 		db = dbHelper.getWritableDatabase();
 
+		//Get the widget ID of the rule whose state is about to change
+		String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_WIDGET_ID + 
+				" FROM " + RuleEntry.RULE_TABLE_NAME +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " ='" + name + "'";
+		Cursor c = db.rawQuery(selectQuery, null); //Cursor with the select query
+		Log.i("DatabaseManager", selectQuery); //Log
+		if (c != null) //make sure cursor isnt empty
+			c.moveToFirst();
+		else //Cursor is empty = Error
+			Log.e("DatabaseManager", "The cursor returned by setRuleStatus(Str n, bool s) was null for given ruleName");
+		int wID = c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID)); //save the widget ID
+				
+		// Update the database to set the state of the rule to the parameter
 		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'";
-
 		db.execSQL(updateQuery);
-
 		Log.i("DatabaseManager", "Executed: " + updateQuery);
 
 		db.close();
+		
+		return wID; //return the widget ID
 	}
 }
