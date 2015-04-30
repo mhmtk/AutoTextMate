@@ -278,7 +278,7 @@ public class DatabaseManager {
 
 		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + statusToSet + "'" +
-				" WHERE " + RuleEntry.RULE_COLUMN_STATUS + "='" + curStatus +"'" ;
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name + "'";
 
 		db.execSQL(updateQuery);
 
