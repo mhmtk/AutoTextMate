@@ -24,6 +24,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onEnabled(Context context){
 		super.onEnabled(context);
+		Log.i("Widget", "onEnabled was called");
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 
 			Log.i("Widget", "Widget onUpdate called for " + appWidgetId);
 
-			//get a dbManager
+			//Get a dbManager
 			dbManager = new DatabaseManager(context);
 			Rule rule = dbManager.getRule(appWidgetId);
 			
@@ -67,9 +68,8 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		super.onReceive(context, intent);
-
 		Log.i("Widget", "Widget received " + intent);
+		super.onReceive(context, intent);
 
 		if (WIDGET_ONCLICK_ACTION.equals(intent.getAction())) {
 			Log.i("Widget", "The broadcast matches the widget onClick action");
