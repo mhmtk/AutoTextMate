@@ -20,7 +20,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 30, 2015
+ * @version November May 1, 2015
  * 
  */
 public class Main extends ActionBarActivity {
@@ -133,12 +133,17 @@ public class Main extends ActionBarActivity {
 		//Change the status of the rule in the database-
 		int wID = dbManager.setRuleStatus(mName, isChecked);
 		
-		//Send a broadcast for the widget to update itself
-		Intent updateWidgetIntent = new Intent();
-		updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} );
-		updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-		this.sendBroadcast(updateWidgetIntent);
-		Log.i("Widget", "Broadcasted " + updateWidgetIntent.toString());
+		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
+			//Send a broadcast for the widget to update itself
+			Intent updateWidgetIntent = new Intent();
+			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} );
+			updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+			this.sendBroadcast(updateWidgetIntent);
+			Log.i("Main", "Broadcasted " + updateWidgetIntent.toString());			
+		}
+		else
+			Log.i("Main", "Did not broadcast widget update b/c " + mName + " has no widget");
+		
 	}
 
 }

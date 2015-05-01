@@ -21,7 +21,7 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version April 29--------, 2015
+ * @version May 1, 2015
  */
 public class ConfigureWidget extends Activity {
 
