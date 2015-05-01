@@ -46,6 +46,9 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 				//Update the background image to match the status of the rule in the DB
 				rm.setImageViewResource(R.id.widget_backgroundImage, 
 						((rule.getStatus()==1) ? R.drawable.widget_button_green : R.drawable.widget_button_red));
+				//Update the widget text (useful after relaunch)
+				rm.setTextViewText(R.id.widget_button,
+						rule.getName());
 				
 			}
 			else 
