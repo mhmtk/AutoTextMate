@@ -17,7 +17,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 30, 2015
+ * @version November May 1, 2015
  * 
  */
 public class DatabaseManager {
@@ -95,7 +95,7 @@ public class DatabaseManager {
 	 * Returns a rule object from the database that corresponds to the widgetID 
 	 * 
 	 * @param widgetID The widgetID associated with the rule to return
-	 * @return
+	 * @return MAY return null if no widgetID matches
 	 */
 	public Rule getRule(int widgetID) {
 
@@ -109,17 +109,18 @@ public class DatabaseManager {
 
 		Cursor c = db.rawQuery(selectQuery, null);
 
-		if (c != null)
-			c.moveToFirst();
+		Rule rule = null;
+		
+		if (c.moveToFirst()) {
+			rule = new Rule(c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
+		}
 		else 
-			Log.e("DatabaseManager", "The cursor returned by getRule was null for given widgetID");
-
-		Rule rule = new Rule(c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
-				c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
-				c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
-				c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
-				c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
-
+			Log.i("DatabaseManager", "The cursor returned by getRule was null for given widgetID. This is normal during widget creation");
+		
 		db.close();
 
 		return rule;
@@ -184,7 +185,10 @@ public class DatabaseManager {
 				);
 
 		//move cursor to the beginning
-		c.moveToFirst();
+		if (c != null)
+			c.moveToFirst();
+		else 
+			Log.e("DatabaseManager", "The cursor returned by getRulesArray was null");
 
 		while(!c.isAfterLast())
 		{
@@ -234,7 +238,11 @@ public class DatabaseManager {
 				);
 
 		//move cursor to the beginning
-		c.moveToFirst();
+		if (c != null)
+			c.moveToFirst();
+		else 
+			Log.e("DatabaseManager", "The cursor returned by getApplicableRules was null");
+
 
 		while(!c.isAfterLast())
 		{ //add the rules to the arraylist
@@ -311,7 +319,7 @@ public class DatabaseManager {
 		else //Cursor is empty = Error
 			Log.e("DatabaseManager", "The cursor returned by setRuleStatus(Str n, bool s) was null for given ruleName");
 		int wID = c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID)); //save the widget ID
-				
+
 		// Update the database to set the state of the rule to the parameter
 		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
@@ -320,7 +328,7 @@ public class DatabaseManager {
 		Log.i("DatabaseManager", "Executed: " + updateQuery);
 
 		db.close();
-		
+
 		return wID; //return the widget ID
 	}
 }

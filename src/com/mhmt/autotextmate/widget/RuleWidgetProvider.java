@@ -2,6 +2,7 @@ package com.mhmt.autotextmate.widget;
 
 import com.mhmt.autotextmate.R;
 import com.mhmt.autotextmate.database.DatabaseManager;
+import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -13,7 +14,7 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version April 29, 2015
+ * @version May 1, 2015
  */
 public class RuleWidgetProvider extends AppWidgetProvider {
 
@@ -36,14 +37,19 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 
 			//get a dbManager
 			dbManager = new DatabaseManager(context);
-
-			//Update the background image to match the status of the rule in the DB
+			Rule rule = dbManager.getRule(appWidgetId);
+			
 			RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
-			rm.setImageViewResource(R.id.widget_backgroundImage, 
-					((dbManager.getRule(appWidgetId).getStatus()==1) ? R.drawable.widget_button_green : R.drawable.widget_button_red));
-
-			appWidgetManager.updateAppWidget(appWidgetId, rm);
-
+			
+			if (rule != null) { //if there's a rule associated with the widgetID
+				//Update the background image to match the status of the rule in the DB
+				rm.setImageViewResource(R.id.widget_backgroundImage, 
+						((rule.getStatus()==1) ? R.drawable.widget_button_green : R.drawable.widget_button_red));
+				
+			}
+			else 
+				Log.i("Widget", "No rule associated with wID " + appWidgetId);
+			appWidgetManager.updateAppWidget(appWidgetId, rm);				
 			Log.i("Widget", "Updated " + appWidgetId);
 
 			// Create the intent to launch at button onClick 
@@ -81,15 +87,16 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			//documentation and feedback
 			Log.i("Widget", "Rule: " + ruleName + ", wID: " + widgetID + " changed");
 			
-//			onUpdate(context, appWidgetManager, new int[]{widgetID});
+			//Call for a widget update thru the onUpdate method (faster than broadcasting)
+			onUpdate(context, AppWidgetManager.getInstance(context), new int[]{widgetID});
 			
-			//Send a broadcast for the widget to update itself
-			Intent updateWidgetIntent = new Intent();
-			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{widgetID} );
-			updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-			context.sendBroadcast(updateWidgetIntent);
-			Log.i("Widget", "Broadcasted " + updateWidgetIntent.toString());
-			
+//			//Send a broadcast for the widget to update itself
+//			Intent updateWidgetIntent = new Intent();
+//			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{widgetID} );
+//			updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+//			context.sendBroadcast(updateWidgetIntent);
+//			Log.i("Widget", "Broadcasted " + updateWidgetIntent.toString());
+//			
 //			//change the background of the widget 
 //			RemoteViews rm = new RemoteViews(context.getPackageName(),R.layout.layout_widget);
 //			rm.setImageViewResource(R.id.widget_backgroundImage, 
