@@ -67,9 +67,7 @@ public class Rule {
 	}
 	
 	public String toString() {
-		
 		return name + ":\t" +  ((text.length() <= 30) ? (text) : (text.substring(0, 30) + "...")) + "\n"
 				+ ((onlyContacts == 1) ? "Contacts Only"  : "Any sender");
-		
 	}
 }
