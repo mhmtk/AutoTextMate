@@ -132,9 +132,10 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 
 			//			vi.setOnTouchListener(new onItemTouchListener(position));
 
+			// On touch listener to detect swipe event
 			vi.setOnTouchListener(new View.OnTouchListener() {
 
-				float upX, upY, downX = 0, downY = 0;
+				float downX = 0, downY = 0;
 
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
@@ -146,6 +147,17 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 						downY = event.getY();
 						Log.i(logTag, "Action down detected. DownX = " + downX + ", downY = " + downY);
 						return false; // allow other events like Click to be processed
+					}
+					case MotionEvent.ACTION_UP: {
+						float deltaX = event.getX() - downX;
+						float deltaY = event.getY() - downY;
+						Log.i(logTag, "Action up detected. upX = " + event.getX() + ", upY = " + event.getY() +" dx = " + deltaX + ", dy = " + deltaY);
+						if (deltaX > 0 && deltaX > MIN_X_DISTANCE && Math.abs(deltaY) < MAX_Y_DISTANCE) {
+							Log.i(logTag, "Swipe right detected.");
+							//TODO Swipe right action
+							return true;
+						}
+						return false;
 					}
 //					case MotionEvent.ACTION_MOVE: {
 //						Log.i(logTag, "Action move detected");
@@ -181,20 +193,10 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 //						}
 //						return true;
 //					}
-					case MotionEvent.ACTION_UP: {
-						float deltaX = event.getX() - downX;
-						float deltaY = event.getY() - downY;
-						Log.i(logTag, "Action up detected. upX = " + event.getX() + ", upY = " + event.getY() +" dx = " + deltaX + ", dy = " + deltaY);
-						if (deltaX > 0 && deltaX > MIN_X_DISTANCE && Math.abs(deltaY) < MAX_Y_DISTANCE) {
-							Log.i(logTag, "Swipe right detected.");
-							return true;
-						}
-						return false;
-					}
+					
 					}
 					return false;
 				}
-
 			});
 		}
 		return vi;
