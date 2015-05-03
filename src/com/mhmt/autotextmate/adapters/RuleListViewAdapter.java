@@ -22,7 +22,7 @@ import android.widget.ToggleButton;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 20, 2015
+ * @version November May 2, 2015
  *  
  * Inspired by http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
  */
@@ -106,8 +106,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 
 		if(data.size()<=0)
 		{
-			holder.nameText.setText("No Data");
-
+			//No data in the given array.
 		}
 		else
 		{
@@ -160,6 +159,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	 * OnItemClickListener class for the usage of each row of the list. Will call
 	 * the onItemClick method of the Main activity, passing it the position of the row
 	 * 
+	 * @author Mehmet Kologlu
 	 */
 	private class OnItemClickListener implements OnClickListener{           
 		private int mPosition;
