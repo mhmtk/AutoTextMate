@@ -9,9 +9,12 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
@@ -26,7 +29,10 @@ import android.widget.ToggleButton;
  *  
  * Inspired by http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
  */
+
 public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListener {
+
+	private String logTag = "RuleListViewAdapter";
 
 	/*********** Declare Used Variables *********/
 	private Activity activity;
@@ -35,7 +41,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	private static LayoutInflater inflater=null;
 	public Resources res;
 	Rule tempValue=null;
-//	int i=0;
+	//	int i=0;
 
 	/*************  RuleListViewAdapter Constructor *****************/
 	public RuleListViewAdapter(Activity a, @SuppressWarnings("rawtypes") ArrayList d,Resources resLocal) {
@@ -121,8 +127,63 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 			holder.statusToggle.setChecked((tempValue.getStatus() == 1) ? true : false);  
 
 			//Set onClick for each row, and their respective ToggleButton
-			vi.setOnClickListener(new OnItemClickListener( position ));
+			vi.setOnClickListener(new OnItemClickListener(position));
 			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tempValue.getName()));
+
+			//			vi.setOnTouchListener(new onItemTouchListener(position));
+
+			vi.setOnTouchListener(new View.OnTouchListener() {
+
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					float upX, upY, downX = 0, downY = 0;
+					final int MIN_DISTANCE = 50; 
+					switch (event.getAction())  {
+					case MotionEvent.ACTION_DOWN: {
+						Log.i(logTag, "Action down detected");
+						downX = event.getX();
+						downY = event.getY();
+						return false; // allow other events like Click to be processed
+					}
+					case MotionEvent.ACTION_MOVE: {
+						Log.i(logTag, "Action move detected");
+						upX = event.getX();
+						upY = event.getY();
+						float deltaX = downX - upX;
+						float deltaY = downY - upY;
+
+						// horizontal swipe detection
+						if (Math.abs(deltaX) > MIN_DISTANCE) {
+							// left or right
+							if (deltaX < 0) {
+								Log.i(logTag, "Swipe Left to Right");
+								return true;
+							}
+							if (deltaX > 0) {
+								Log.i(logTag, "Swipe Right to Left");
+								return true;
+							}
+						} else {
+							// vertical swipe detection
+							if (Math.abs(deltaY) > MIN_DISTANCE) {
+								// top or down
+								if (deltaY < 0) {
+									Log.i(logTag, "Swipe Top to Bottom");
+									return false;
+								}
+								if (deltaY > 0) {
+									Log.i(logTag, "Swipe Bottom to Top");
+									return false;
+								}
+							} 
+						}
+						return true;
+					}
+					}
+					return false;
+				}
+
+			});
 		}
 		return vi;
 	}
@@ -130,6 +191,27 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	//	@Override
 	//	public void onClick(View v) {
 	//		Log.v("RuleListViewAdapter", "Row button clicked");
+	//	}
+
+	//	/**
+	//	 * 
+	//	 * @author mehmetk
+	//	 *
+	//	 */
+	//	private class onItemTouchListener implements View.OnTouchListener {
+	//		private int mPosition;
+	//		
+	//		//implement constructor to enable passing the position
+	//		onItemTouchListener(int position){
+	//			mPosition = position;
+	//		}
+	//
+	//		@Override
+	//		public boolean onTouch(View v, MotionEvent event){
+	//
+	//
+	//			return true;
+	//		}
 	//	}
 
 	/**
