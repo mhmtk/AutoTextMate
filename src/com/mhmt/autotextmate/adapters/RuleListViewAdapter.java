@@ -134,50 +134,62 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 
 			vi.setOnTouchListener(new View.OnTouchListener() {
 
+				float upX, upY, downX = 0, downY = 0;
+
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
-					float upX, upY, downX = 0, downY = 0;
-					final int MIN_DISTANCE = 50; 
+					final int MIN_X_DISTANCE = 50;
+					final int MAX_Y_DISTANCE = 20;
 					switch (event.getAction())  {
 					case MotionEvent.ACTION_DOWN: {
-						Log.i(logTag, "Action down detected");
 						downX = event.getX();
 						downY = event.getY();
+						Log.i(logTag, "Action down detected. DownX = " + downX + ", downY = " + downY);
 						return false; // allow other events like Click to be processed
 					}
-					case MotionEvent.ACTION_MOVE: {
-						Log.i(logTag, "Action move detected");
-						upX = event.getX();
-						upY = event.getY();
-						float deltaX = downX - upX;
-						float deltaY = downY - upY;
-
-						// horizontal swipe detection
-						if (Math.abs(deltaX) > MIN_DISTANCE) {
-							// left or right
-							if (deltaX < 0) {
-								Log.i(logTag, "Swipe Left to Right");
-								return true;
-							}
-							if (deltaX > 0) {
-								Log.i(logTag, "Swipe Right to Left");
-								return true;
-							}
-						} else {
-							// vertical swipe detection
-							if (Math.abs(deltaY) > MIN_DISTANCE) {
-								// top or down
-								if (deltaY < 0) {
-									Log.i(logTag, "Swipe Top to Bottom");
-									return false;
-								}
-								if (deltaY > 0) {
-									Log.i(logTag, "Swipe Bottom to Top");
-									return false;
-								}
-							} 
+//					case MotionEvent.ACTION_MOVE: {
+//						Log.i(logTag, "Action move detected");
+//						upX = event.getX();
+//						upY = event.getY();
+//						float deltaX = downX - upX;
+//						float deltaY = downY - upY;
+//
+//						// horizontal swipe detection
+//						if (Math.abs(deltaX) > MIN_DISTANCE) {
+//							// left or right
+//							if (deltaX < 0) {
+//								Log.i(logTag, "Swipe Left to Right");
+//								return true;
+//							}
+//							if (deltaX > 0) {
+//								Log.i(logTag, "Swipe Right to Left");
+//								return true;
+//							}
+//						} else {
+//							// vertical swipe detection
+//							if (Math.abs(deltaY) > MIN_DISTANCE) {
+//								// top or down
+//								if (deltaY < 0) {
+//									Log.i(logTag, "Swipe Top to Bottom");
+//									return false;
+//								}
+//								if (deltaY > 0) {
+//									Log.i(logTag, "Swipe Bottom to Top");
+//									return false;
+//								}
+//							} 
+//						}
+//						return true;
+//					}
+					case MotionEvent.ACTION_UP: {
+						float deltaX = event.getX() - downX;
+						float deltaY = event.getY() - downY;
+						Log.i(logTag, "Action up detected. upX = " + event.getX() + ", upY = " + event.getY() +" dx = " + deltaX + ", dy = " + deltaY);
+						if (deltaX > 0 && deltaX > MIN_X_DISTANCE && Math.abs(deltaY) < MAX_Y_DISTANCE) {
+							Log.i(logTag, "Swipe right detected.");
+							return true;
 						}
-						return true;
+						return false;
 					}
 					}
 					return false;
