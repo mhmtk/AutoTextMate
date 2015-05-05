@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -179,12 +180,26 @@ public class Main extends ActionBarActivity {
 		.show();
 	}
 
+	/**
+	 * Queries to delete the rule with the given name, prompts the user to remove the rule's widget if there is one.
+	 * Then re-populates the listView
+	 * 
+	 * @param ruleName Name of the rule to be deleted
+	 */
 	public void deleteRule(String ruleName){
-		// TODO remove the rules widget
 
-		// TODO delete from DB / reconstruct view
-		dbManager.deleteRule(ruleName);
-		Toast.makeText(getApplicationContext(), "Rule " + ruleName + " deleted.", Toast.LENGTH_SHORT).show();
-		populateListView();
+		//Delete the rule from the DB
+		if (dbManager.deleteRule(ruleName)) {
+			// if there is a widget associated with the rule, prompt the user to remove it manually
+			Toast t = Toast.makeText(getApplicationContext(), "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
+			t.setGravity(Gravity.TOP, 0, 50);
+			t.show();
+		}
+		
+		// Feedback
+		Toast.makeText(getApplicationContext(), "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();			
+		
+		// Reconstruct view
+		populateListView();	
 	}
 }

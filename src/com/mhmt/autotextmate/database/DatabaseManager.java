@@ -338,15 +338,26 @@ public class DatabaseManager {
 	 * Deletes the given rule from the database
 	 * 
 	 * @param ruleName The name of the rule to delete
+	 * @return True if the rule had a widget, false otherwise
 	 */
-	public void deleteRule(String ruleName) {
+	public boolean deleteRule(String ruleName) {
 		
 		db = dbHelper.getWritableDatabase();
 		
-		int result = db.delete(RuleEntry.RULE_TABLE_NAME, RuleEntry.RULE_COLUMN_NAME + "=?", new String[] {ruleName});
+		String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_WIDGET_ID + 
+				" FROM " + RuleEntry.RULE_TABLE_NAME +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " ='?'";
+		Cursor c = db.rawQuery(selectQuery, new String[] {ruleName}); //Cursor with the select query
+		Log.i(logTag, selectQuery + " ** " + ruleName);
+		if (c != null) //make sure cursor isnt empty
+			c.moveToFirst();
 		
+		// Delete and close DB
+		int result = db.delete(RuleEntry.RULE_TABLE_NAME, RuleEntry.RULE_COLUMN_NAME + "=?", new String[] {ruleName});			
 		Log.i(logTag, "Deleted " + result + " entries.");
-		
 		db.close();
+		
+		//return the result
+		return (c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID)) != AppWidgetManager.INVALID_APPWIDGET_ID) ? true : false;
 	}
 }
