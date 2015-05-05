@@ -12,11 +12,13 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 27, 2015
+ * @version November April 5, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 
+	private String logTag = "DatabaseHelper";
+	
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String INTEGER_TYPE = " INTEGER";
 	private static final String COMMA_SEP = ",";
@@ -53,13 +55,13 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	 */
 	public RuleDatabaseSQLHelper(Context context, String name,CursorFactory factory, int version) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		Log.i("DatabaseHelper", "constructor called " + SQL_CREATE_RULE);
+		Log.i(logTag, "constructor called " + SQL_CREATE_RULE);
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(SQL_CREATE_RULE);
-		Log.i("DatabaseHelper", "Table created (onCraete called) " + SQL_CREATE_RULE);
+		Log.i(logTag, "Table created (onCraete called) " + SQL_CREATE_RULE);
 	}
 
 
@@ -69,7 +71,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL(SQL_DELETE_RULE_TABLE);
-		Log.d("Database operations",  "Database upgraded from " + oldVersion + " to " + newVersion);
+		Log.i(logTag,  "Database upgraded from " + oldVersion + " to " + newVersion);
 	}
 	
 //	public void delete(SQLiteDatabase db, String name) {
