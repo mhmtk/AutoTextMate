@@ -116,7 +116,7 @@ public class Main extends ActionBarActivity {
 	//	{
 	//		//documentation and feedback
 	//		Log.i(logTag, "Item " + mPosition + " clicked.");
-	//		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_LONG).show();
+	//		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_SHORT).show();
 	//		// Edit window?
 	//		// more info?
 	//	}
@@ -131,7 +131,7 @@ public class Main extends ActionBarActivity {
 	public void onItemToggleClicked(String mName, boolean isChecked) {
 		//Documentation and feedback
 		Log.i(logTag, "Toggle item of " + mName + " set to " + isChecked + ".");
-		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_SHORT).show();
 
 		//Change the status of the rule in the database-
 		int wID = dbManager.setRuleStatus(mName, isChecked);
@@ -184,6 +184,7 @@ public class Main extends ActionBarActivity {
 
 		// TODO delete from DB / reconstruct view
 		dbManager.deleteRule(ruleName);
+		Toast.makeText(getApplicationContext(), "Rule " + ruleName + " deleted.", Toast.LENGTH_SHORT).show();
 		populateListView();
 	}
 }
