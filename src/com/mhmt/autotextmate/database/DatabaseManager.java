@@ -346,7 +346,7 @@ public class DatabaseManager {
 		
 		String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_WIDGET_ID + 
 				" FROM " + RuleEntry.RULE_TABLE_NAME +
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " ='?'";
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " =?";
 		Cursor c = db.rawQuery(selectQuery, new String[] {ruleName}); //Cursor with the select query
 		Log.i(logTag, selectQuery + " ** " + ruleName);
 		if (c != null) //make sure cursor isnt empty
