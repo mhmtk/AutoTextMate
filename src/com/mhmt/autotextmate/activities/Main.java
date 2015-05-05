@@ -174,7 +174,10 @@ public class Main extends ActionBarActivity {
 	}
 
 	/**
-	 * Queries to delete the rule with the given name, prompts the user to remove the rule's widget if there is one.
+	 * Queries to delete the rule with the given name.
+	 * If there is a widget associated with the rule, prompts the user for its removal and
+	 * broadcasts the widget to update itself
+	 * 
 	 * Then re-populates the listView
 	 * 
 	 * @param ruleName Name of the rule to be deleted
