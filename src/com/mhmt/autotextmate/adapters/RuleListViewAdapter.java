@@ -129,7 +129,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 			holder.statusToggle.setChecked((tempValue.getStatus() == 1) ? true : false);  
 
 			//Set onClick and onLongClick for each row, and their respective ToggleButton
-			vi.setOnClickListener(new OnItemClickListener(position));
+//			vi.setOnClickListener(new OnItemClickListener(position));
 			vi.setOnLongClickListener(new OnItemLongClickListener(tempValue.getName()));
 			
 			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tempValue.getName()));
@@ -324,28 +324,28 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 		
 	}
 	
-	/**
-	 * OnItemClickListener class for the usage of each row of the list. Will call
-	 * the onItemClick method of the Main activity, passing it the position of the row
-	 * 
-	 * @author Mehmet Kologlu
-	 */
-	private class OnItemClickListener implements OnClickListener{           
-		private int mPosition;
-
-		//implement constructor to enable passing the position
-		OnItemClickListener(int position){
-			mPosition = position;
-		}
-
-		@Override
-		public void onClick(View arg0) {
-
-			//get an instance of the main activity
-			Main sct = (Main) activity;
-
-			//call the onItemClick method of the Main activity
-			sct.onItemClick(mPosition);
-		}               
-	}   
+//	/**
+//	 * OnItemClickListener class for the usage of each row of the list. Will call
+//	 * the onItemClick method of the Main activity, passing it the position of the row
+//	 * 
+//	 * @author Mehmet Kologlu
+//	 */
+//	private class OnItemClickListener implements OnClickListener{           
+//		private int mPosition;
+//
+//		//implement constructor to enable passing the position
+//		OnItemClickListener(int position){
+//			mPosition = position;
+//		}
+//
+//		@Override
+//		public void onClick(View arg0) {
+//
+//			//get an instance of the main activity
+//			Main sct = (Main) activity;
+//
+//			//call the onItemClick method of the Main activity
+//			sct.onItemClick(mPosition);
+//		}               
+//	}   
 }

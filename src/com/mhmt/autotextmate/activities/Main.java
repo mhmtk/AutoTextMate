@@ -107,19 +107,19 @@ public class Main extends ActionBarActivity {
 		startActivity(new Intent (this, AddRule.class));
 	}
 
-	/**
-	 * onClick of each row of the listView, called thru the RuleListViewAdapter
-	 * 
-	 * @param mPosition the position of the item on the list, 0 indexed
-	 */
-	public void onItemClick(int mPosition)
-	{
-		//documentation and feedback
-		Log.i(logTag, "Item " + mPosition + " clicked.");
-		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_LONG).show();
-		// Edit window?
-		// more info?
-	}
+//	/**
+//	 * onClick of each row of the listView, called thru the RuleListViewAdapter
+//	 * 
+//	 * @param mPosition the position of the item on the list, 0 indexed
+//	 */
+//	public void onItemClick(int mPosition)
+//	{
+//		//documentation and feedback
+//		Log.i(logTag, "Item " + mPosition + " clicked.");
+//		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_LONG).show();
+//		// Edit window?
+//		// more info?
+//	}
 
 	/**
 	 * onClick-ish method for the togglebutton in each row of the listView, 
@@ -167,12 +167,12 @@ public class Main extends ActionBarActivity {
 	    .setTitle(mName)
 	    .setPositiveButton(R.string.dialog_edit, new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) { 
-	            // edit
+	            // TODO open edit activity
 	        }
 	     })
 	    .setNegativeButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) { 
-	            // delete
+	            // TODO delete from DB / reconstruct view
 	        }
 	     })
 //	    .setIcon(android.R.drawable.ic_dialog_alert)
