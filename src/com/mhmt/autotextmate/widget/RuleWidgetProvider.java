@@ -52,8 +52,10 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 						rule.getName());
 				
 			}
-			else 
+			else {
 				Log.i(logTag, "No rule associated with wID " + appWidgetId);
+				rm.setTextViewText(R.id.widget_button, "ERROR");
+			}
 			appWidgetManager.updateAppWidget(appWidgetId, rm);				
 			Log.i(logTag, "Updated " + appWidgetId);
 
