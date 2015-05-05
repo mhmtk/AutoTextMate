@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -129,6 +130,8 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 
 			//Set onClick for each row, and their respective ToggleButton
 			vi.setOnClickListener(new OnItemClickListener(position));
+			vi.setOnLongClickListener(new OnItemLongClickListener(position));
+			
 			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tempValue.getName()));
 
 //			// On touch listener to detect swipe event
@@ -298,6 +301,29 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 		}
 	}
 
+	/**
+	 * OnItemLongClickListener class for the usage of each row of the list. Will call
+	 * the onLongItemClick method of the Main activity, passing it the position of the row
+	 * 
+	 * @author Mehmet Kologlu
+	 */
+	private class OnItemLongClickListener implements OnLongClickListener {
+		private int mPosition;
+		
+		OnItemLongClickListener(int position){
+			mPosition = position;
+		}
+		
+		@Override
+		public boolean onLongClick(View v) {
+			// TODO Auto-generated method stub
+			Main sct = (Main) activity;
+			sct.onLongItemClick(mPosition);
+			return true;
+		}
+		
+	}
+	
 	/**
 	 * OnItemClickListener class for the usage of each row of the list. Will call
 	 * the onItemClick method of the Main activity, passing it the position of the row

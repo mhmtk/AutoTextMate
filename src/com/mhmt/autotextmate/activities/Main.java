@@ -147,4 +147,9 @@ public class Main extends ActionBarActivity {
 		
 	}
 
+	public void onLongItemClick(int mPosition) {
+		// TODO show alert/dialog box to select delete or edit
+		
+	}
+
 }
