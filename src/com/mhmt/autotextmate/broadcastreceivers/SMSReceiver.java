@@ -16,13 +16,14 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 20, 2015
+ * @version November May 5, 2015
  * 
  */
 public class SMSReceiver extends BroadcastReceiver{
 
 	
 	private static long delay = 2000;
+	private String logTag = "SMSReceiver"; 
 
 	@Override
 	public void onReceive(final Context context, Intent intent) {
@@ -36,7 +37,7 @@ public class SMSReceiver extends BroadcastReceiver{
 		SmsMessage[] msg = null;
 		
 		if (bundle != null) {
-			Log.i("SMSReceiver", "Non-null intent received");
+			Log.i(logTag, "Non-null intent received");
 			Object[] pdus = (Object[]) bundle.get("pdus");
 			msg = new SmsMessage[pdus.length];
 			for (int i=0; i<msg.length; i++) {
@@ -59,7 +60,7 @@ public class SMSReceiver extends BroadcastReceiver{
 		            	  smsManager.sendTextMessage(pn, null, replyText, null, null);
 		            	  //documentation & feedback
 		            	  Toast.makeText(context, "Replied to " + pn + ": " + replyText, Toast.LENGTH_SHORT).show();
-		            	  Log.i("SMSReceiver", "Sent out an SMS");
+		            	  Log.i(logTag, "Sent out an SMS");
 		              }
 		         } 
 		    }, delay );

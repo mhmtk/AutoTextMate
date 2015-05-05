@@ -14,27 +14,28 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version May 1, 2015
+ * @version May 5, 2015
  */
 public class RuleWidgetProvider extends AppWidgetProvider {
 
 	private static String WIDGET_ONCLICK_ACTION = "AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION";
+	private String logTag = "WidgetProvider";
 	private DatabaseManager dbManager; 
 
 	@Override
 	public void onEnabled(Context context){
 		super.onEnabled(context);
-		Log.i("Widget", "onEnabled was called");
+		Log.i(logTag, "onEnabled was called");
 	}
 
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds){
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
-		Log.i("Widget", "onUpdate called");
+		Log.i(logTag, "onUpdate called");
 		for (int i=0; i<appWidgetIds.length; i++) {
 			int appWidgetId = appWidgetIds[i];
 
-			Log.i("Widget", "Widget onUpdate called for " + appWidgetId);
+			Log.i(logTag, "Widget onUpdate called for " + appWidgetId);
 
 			//Get a dbManager
 			dbManager = new DatabaseManager(context);
@@ -52,9 +53,9 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 				
 			}
 			else 
-				Log.i("Widget", "No rule associated with wID " + appWidgetId);
+				Log.i(logTag, "No rule associated with wID " + appWidgetId);
 			appWidgetManager.updateAppWidget(appWidgetId, rm);				
-			Log.i("Widget", "Updated " + appWidgetId);
+			Log.i(logTag, "Updated " + appWidgetId);
 
 			// Create the intent to launch at button onClick 
 			//			Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
@@ -71,11 +72,11 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.i("Widget", "Widget received " + intent);
+		Log.i(logTag, "Widget received " + intent);
 		super.onReceive(context, intent);
 
 		if (WIDGET_ONCLICK_ACTION.equals(intent.getAction())) {
-			Log.i("Widget", "The broadcast matches the widget onClick action");
+			Log.i(logTag, "The broadcast matches the widget onClick action");
 
 			//Make DB manager
 			dbManager = new DatabaseManager(context);
@@ -88,7 +89,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			dbManager.toggleRuleStatus(ruleName);
 			
 			//documentation and feedback
-			Log.i("Widget", "Rule: " + ruleName + ", wID: " + widgetID + " changed");
+			Log.i(logTag, "Rule: " + ruleName + ", wID: " + widgetID + " changed");
 			
 			//Call for a widget update thru the onUpdate method (faster than broadcasting)
 			onUpdate(context, AppWidgetManager.getInstance(context), new int[]{widgetID});
@@ -98,7 +99,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 //			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{widgetID} );
 //			updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 //			context.sendBroadcast(updateWidgetIntent);
-//			Log.i("Widget", "Broadcasted " + updateWidgetIntent.toString());
+//			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());
 //			
 //			//change the background of the widget 
 //			RemoteViews rm = new RemoteViews(context.getPackageName(),R.layout.layout_widget);
@@ -117,7 +118,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 		super.onDeleted(context, appWidgetIds);
 		dbManager = new DatabaseManager(context);
 
-		Log.i("Widget", "Deleting widget(s) " + appWidgetIds.toString());
+		Log.i(logTag, "Deleting widget(s) " + appWidgetIds.toString());
 
 		//TODO delete widget ID from DB
 		dbManager.resetWidgetIDs(appWidgetIds);

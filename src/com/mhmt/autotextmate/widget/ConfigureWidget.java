@@ -21,15 +21,16 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version May 1, 2015
+ * @version May 5, 2015
  */
 public class ConfigureWidget extends Activity {
 
 	private ConfigureWidget context;
 	int widgetID;
 	private ListView ruleListView;
-	private DatabaseManager dbManager; 
+	private DatabaseManager dbManager;
 	private ArrayList<Rule> ruleArray;
+	private String logTag = "Configure";
 
 	private static String WIDGET_ONCLICK_ACTION = "AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION";
 
@@ -58,12 +59,12 @@ public class ConfigureWidget extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,final int position, long id) {
-				//Log
-				Log.i("Configure", "pos: " + position + ", id: " + id);
-
 				//Store the selected Rule's name
 				final Rule selectedRule = ruleArray.get(position);
 
+				//Log
+				Log.i(logTag, "Widget of rule " + selectedRule.getName() + " with ID "+ id + " clicked.");
+				
 				//Get the intent that launched the activity
 				Intent launchedIntent = getIntent();
 				Bundle extras = launchedIntent.getExtras();

@@ -20,7 +20,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 1, 2015
+ * @version November May 5, 2015
  * 
  */
 public class Main extends ActionBarActivity {
@@ -28,10 +28,11 @@ public class Main extends ActionBarActivity {
 	private ListView ruleListView;
 	private DatabaseManager dbManager;
 	private ArrayList<Rule> ruleArray;
+	private String logTag = "Main";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Log.i("Main", "onCreate called");
+		Log.i(logTag, "onCreate called");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -50,7 +51,7 @@ public class Main extends ActionBarActivity {
 	private void populateListView(){
 		//Get DB Data
 		ruleArray = dbManager.getRulesArray();
-		Log.i("Main", "rule array loaded");
+		Log.i(logTag, "rule array loaded");
 
 		if(ruleArray.isEmpty()) //if the loaded database is empty
 		{
@@ -61,7 +62,7 @@ public class Main extends ActionBarActivity {
 		{	
 			//pass the adapter with the array to the list view
 			ruleListView.setAdapter(new RuleListViewAdapter(this, ruleArray, getResources()));
-			Log.i("Main", "adapter to rulelistview set");
+			Log.i(logTag, "adapter to rulelistview set");
 		}
 	}
 
@@ -74,7 +75,7 @@ public class Main extends ActionBarActivity {
 
 	@Override
 	public void onResume(){
-		Log.i("Main", "onResume called");
+		Log.i(logTag, "onResume called");
 
 		super.onResume();
 
@@ -112,7 +113,7 @@ public class Main extends ActionBarActivity {
 	public void onItemClick(int mPosition)
 	{
 		//documentation and feedback
-		Log.i("Main", "Item " + mPosition + " clicked.");
+		Log.i(logTag, "Item " + mPosition + " clicked.");
 		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_LONG).show();
 		// Edit window?
 		// more info?
@@ -127,7 +128,7 @@ public class Main extends ActionBarActivity {
 	 */
 	public void onItemToggleClicked(String mName, boolean isChecked) {
 		//Documentation and feedback
-		Log.i("Main", "Toggle item of " + mName + " set to " + isChecked + ".");
+		Log.i(logTag, "Toggle item of " + mName + " set to " + isChecked + ".");
 		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_LONG).show();
 
 		//Change the status of the rule in the database-
@@ -139,10 +140,10 @@ public class Main extends ActionBarActivity {
 			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} );
 			updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 			this.sendBroadcast(updateWidgetIntent);
-			Log.i("Main", "Broadcasted " + updateWidgetIntent.toString());			
+			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());			
 		}
 		else
-			Log.i("Main", "Did not broadcast widget update b/c " + mName + " has no widget");
+			Log.i(logTag, "Did not broadcast widget update b/c " + mName + " has no widget");
 		
 	}
 

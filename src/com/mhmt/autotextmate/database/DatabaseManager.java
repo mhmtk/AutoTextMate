@@ -17,7 +17,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 1, 2015
+ * @version November May 5, 2015
  * 
  */
 public class DatabaseManager {
@@ -25,6 +25,7 @@ public class DatabaseManager {
 	private RuleDatabaseSQLHelper dbHelper;
 	private SQLiteDatabase db;
 	private ArrayList<Rule> ruleArray;
+	private String logTag = "DatabaseManager";
 
 	/**
 	 * Constructor
@@ -44,7 +45,7 @@ public class DatabaseManager {
 	 * @param widgetID The widget ID to set
 	 */
 	public void setWidgetID(String ruleName, int widgetID) {
-		Log.i("DatabaseManager", "Add widget ID was called");
+		Log.i(logTag, "Add widget ID was called");
 
 		//get writable database
 		db = dbHelper.getWritableDatabase();
@@ -56,10 +57,10 @@ public class DatabaseManager {
 		try {
 			db.execSQL(query);
 		} catch (SQLException e) {
-			Log.e("DatabaseManager", "SQLException " + e + "cought");
+			Log.e(logTag, "SQLException " + e + "cought");
 		}
 
-		Log.i("DatabaseManager", query);
+		Log.i(logTag, query);
 
 		db.close();
 	}
@@ -70,7 +71,7 @@ public class DatabaseManager {
 	 * @param widgetIDs IDs of the widgets whose references should be removed from the DB
 	 */
 	public void resetWidgetIDs(int[] widgetIDs) {
-		Log.i("DatabaseManager", "Reset widget ID was called");
+		Log.i(logTag, "Reset widget ID was called");
 
 		//get writable database
 		db = dbHelper.getWritableDatabase();
@@ -83,10 +84,10 @@ public class DatabaseManager {
 			try {
 				db.execSQL(query);
 			} catch (SQLException e) {
-				Log.e("DatabaseManager", "SQLException " + e + "cought");
+				Log.e(logTag, "SQLException " + e + "cought");
 			}
 
-			Log.i("DatabaseManager", query);
+			Log.i(logTag, query);
 		}
 
 		db.close();
@@ -105,7 +106,7 @@ public class DatabaseManager {
 				+ RuleEntry.RULE_COLUMN_WIDGET_ID + " ='" + widgetID + "'";
 
 		//Log the query
-		Log.i("DatabaseManager", selectQuery);
+		Log.i(logTag, selectQuery);
 
 		Cursor c = db.rawQuery(selectQuery, null);
 
@@ -119,7 +120,7 @@ public class DatabaseManager {
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
 		}
 		else 
-			Log.i("DatabaseManager", "The cursor returned by getRule was null for given widgetID. This is normal during widget creation");
+			Log.i(logTag, "The cursor returned by getRule was null for given widgetID. This is normal during widget creation");
 		
 		db.close();
 
@@ -131,7 +132,7 @@ public class DatabaseManager {
 	 * @param rule Rule to be added
 	 */
 	public void addRule(Rule rule){
-		Log.i("DatabaseManager", "Add rule was called");
+		Log.i(logTag, "Add rule was called");
 
 		//get writable database
 		db = dbHelper.getWritableDatabase();
@@ -188,7 +189,7 @@ public class DatabaseManager {
 		if (c != null)
 			c.moveToFirst();
 		else 
-			Log.e("DatabaseManager", "The cursor returned by getRulesArray was null");
+			Log.e(logTag, "The cursor returned by getRulesArray was null");
 
 		while(!c.isAfterLast())
 		{
@@ -241,7 +242,7 @@ public class DatabaseManager {
 		if (c != null)
 			c.moveToFirst();
 		else 
-			Log.e("DatabaseManager", "The cursor returned by getApplicableRules was null");
+			Log.e(logTag, "The cursor returned by getApplicableRules was null");
 
 
 		while(!c.isAfterLast())
@@ -272,14 +273,14 @@ public class DatabaseManager {
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " ='" + name + "'";
 
 		//Log the query
-		Log.i("DatabaseManager", selectQuery);
+		Log.i(logTag, selectQuery);
 
 		Cursor c = db.rawQuery(selectQuery, null);
 
 		if (c != null)
 			c.moveToFirst();
 		else 
-			Log.e("DatabaseManager", "The cursor returned by toggleRule(Str s) was null for given ruleName");
+			Log.e(logTag, "The cursor returned by toggleRule(Str s) was null for given ruleName");
 
 		int curStatus = c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS));
 		int statusToSet = (curStatus == 1) ? 0 : 1;
@@ -290,7 +291,7 @@ public class DatabaseManager {
 
 		db.execSQL(updateQuery);
 
-		Log.i("DatabaseManager", "Executed: " + updateQuery);
+		Log.i(logTag, "Executed: " + updateQuery);
 
 		db.close();
 	}
@@ -313,11 +314,11 @@ public class DatabaseManager {
 				" FROM " + RuleEntry.RULE_TABLE_NAME +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " ='" + name + "'";
 		Cursor c = db.rawQuery(selectQuery, null); //Cursor with the select query
-		Log.i("DatabaseManager", selectQuery); //Log
+		Log.i(logTag, selectQuery); //Log
 		if (c != null) //make sure cursor isnt empty
 			c.moveToFirst();
 		else //Cursor is empty = Error
-			Log.e("DatabaseManager", "The cursor returned by setRuleStatus(Str n, bool s) was null for given ruleName");
+			Log.e(logTag, "The cursor returned by setRuleStatus(Str n, bool s) was null for given ruleName");
 		int wID = c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID)); //save the widget ID
 
 		// Update the database to set the state of the rule to the parameter
@@ -325,7 +326,7 @@ public class DatabaseManager {
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'";
 		db.execSQL(updateQuery);
-		Log.i("DatabaseManager", "Executed: " + updateQuery);
+		Log.i(logTag, "Executed: " + updateQuery);
 
 		db.close();
 
