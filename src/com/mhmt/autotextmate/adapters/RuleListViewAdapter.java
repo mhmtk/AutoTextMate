@@ -128,9 +128,9 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 			holder.descriptionText.setText( tempValue.getDescription() );
 			holder.statusToggle.setChecked((tempValue.getStatus() == 1) ? true : false);  
 
-			//Set onClick for each row, and their respective ToggleButton
+			//Set onClick and onLongClick for each row, and their respective ToggleButton
 			vi.setOnClickListener(new OnItemClickListener(position));
-			vi.setOnLongClickListener(new OnItemLongClickListener(position));
+			vi.setOnLongClickListener(new OnItemLongClickListener(tempValue.getName()));
 			
 			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tempValue.getName()));
 
@@ -308,17 +308,17 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	 * @author Mehmet Kologlu
 	 */
 	private class OnItemLongClickListener implements OnLongClickListener {
-		private int mPosition;
+		private String mName;
 		
-		OnItemLongClickListener(int position){
-			mPosition = position;
+		OnItemLongClickListener(String name){
+			mName = name;
 		}
 		
 		@Override
 		public boolean onLongClick(View v) {
 			// TODO Auto-generated method stub
 			Main sct = (Main) activity;
-			sct.onLongItemClick(mPosition);
+			sct.onLongItemClick(mName);
 			return true;
 		}
 		

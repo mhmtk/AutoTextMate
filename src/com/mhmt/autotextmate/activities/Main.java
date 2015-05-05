@@ -152,10 +152,10 @@ public class Main extends ActionBarActivity {
 	/**
 	 * onLongClick of each row of the listView, called thru the RuleListViewAdapter
 	 * 
-	 * @param mPosition the position of the item on the list, 0 indexed
+	 * @param mName the position of the item on the list, 0 indexed
 	 */
-	public void onLongItemClick(int mPosition) {
-		Log.i(logTag, "Long click detected at " + mPosition);
+	public void onLongItemClick(String mName) {
+		Log.i(logTag, "Long click detected at " + mName);
 		
 //		Bundle bundle = new Bundle();
 //		bundle.putString("ruleName", String.valueOf(mPosition));
@@ -164,7 +164,7 @@ public class Main extends ActionBarActivity {
 //		fragment.show();
 		
 		new AlertDialog.Builder(this)
-	    .setTitle(String.valueOf(mPosition))
+	    .setTitle(mName)
 	    .setPositiveButton(R.string.dialog_edit, new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) { 
 	            // edit
