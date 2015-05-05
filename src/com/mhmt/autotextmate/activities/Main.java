@@ -184,7 +184,6 @@ public class Main extends ActionBarActivity {
 
 		// TODO delete from DB / reconstruct view
 		dbManager.deleteRule(ruleName);
-		mListAdapter.notifyDataSetChanged();
+		populateListView();
 	}
-
 }
