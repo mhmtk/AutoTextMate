@@ -144,7 +144,8 @@ public class DatabaseManager {
 		values.put(RuleEntry.RULE_COLUMN_TEXT, rule.getText());
 		values.put(RuleEntry.RULE_COLUMN_ONLYCONTACTS, rule.getOnlyContacts());
 
-		// Insert the new row
+		// TODO FEEDBACK
+		//Insert the new row
 		db.insertOrThrow(RuleEntry.RULE_TABLE_NAME, null, values);
 		RuleDatabaseSQLHelper.INITIALIZED = true;
 
@@ -331,5 +332,21 @@ public class DatabaseManager {
 		db.close();
 
 		return wID; //return the widget ID
+	}
+
+	/**
+	 * Deletes the given rule from the database
+	 * 
+	 * @param ruleName The name of the rule to delete
+	 */
+	public void deleteRule(String ruleName) {
+		
+		db = dbHelper.getWritableDatabase();
+		
+		int result = db.delete(RuleEntry.RULE_TABLE_NAME, RuleEntry.RULE_COLUMN_NAME + "=?", new String[] {ruleName});
+		
+		Log.i(logTag, "Deleted " + result + " entries.");
+		
+		db.close();
 	}
 }

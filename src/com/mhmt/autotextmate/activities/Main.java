@@ -154,8 +154,8 @@ public class Main extends ActionBarActivity {
 	 * 
 	 * @param mName the position of the item on the list, 0 indexed
 	 */
-	public void onLongItemClick(String mName) {
-		Log.i(logTag, "Long click detected at " + mName);
+	public void onLongItemClick(final String ruleName) {
+		Log.i(logTag, "Long click detected at " + ruleName);
 		
 //		Bundle bundle = new Bundle();
 //		bundle.putString("ruleName", String.valueOf(mPosition));
@@ -164,19 +164,26 @@ public class Main extends ActionBarActivity {
 //		fragment.show();
 		
 		new AlertDialog.Builder(this)
-	    .setTitle(mName)
+	    .setTitle(ruleName)
 	    .setPositiveButton(R.string.dialog_edit, new DialogInterface.OnClickListener() {
 	        public void onClick(DialogInterface dialog, int which) { 
 	            // TODO open edit activity
 	        }
 	     })
 	    .setNegativeButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog, int which) { 
-	            // TODO delete from DB / reconstruct view
+	        public void onClick(DialogInterface dialog, int which) {
+	        	deleteRule(ruleName);
 	        }
 	     })
 //	    .setIcon(android.R.drawable.ic_dialog_alert)
 	    .show();
+	}
+	
+	public void deleteRule(String ruleName){
+		// TODO remove the rules widget
+		
+        // TODO delete from DB / reconstruct view
+    	dbManager.deleteRule(ruleName);
 	}
 
 }
