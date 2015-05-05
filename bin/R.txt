@@ -498,6 +498,8 @@ int string button_add 0x7f0b001c
 int string button_cancel 0x7f0b001d
 int string configure_create 0x7f0b001f
 int string configure_info 0x7f0b0020
+int string dialog_delete 0x7f0b0022
+int string dialog_edit 0x7f0b0021
 int string editText_description 0x7f0b0015
 int string editText_name 0x7f0b0014
 int string editText_text 0x7f0b0016

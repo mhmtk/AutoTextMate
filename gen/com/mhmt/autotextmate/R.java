@@ -1875,6 +1875,8 @@ containing a value of this type.
         public static final int button_cancel=0x7f0b001d;
         public static final int configure_create=0x7f0b001f;
         public static final int configure_info=0x7f0b0020;
+        public static final int dialog_delete=0x7f0b0022;
+        public static final int dialog_edit=0x7f0b0021;
         public static final int editText_description=0x7f0b0015;
         public static final int editText_name=0x7f0b0014;
         public static final int editText_text=0x7f0b0016;

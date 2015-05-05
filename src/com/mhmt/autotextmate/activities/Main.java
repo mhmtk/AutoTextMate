@@ -7,7 +7,9 @@ import com.mhmt.autotextmate.adapters.RuleListViewAdapter;
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
+import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -106,7 +108,7 @@ public class Main extends ActionBarActivity {
 	}
 
 	/**
-	 * onClick button of each row of the listView, called thru the RuleListViewAdapter
+	 * onClick of each row of the listView, called thru the RuleListViewAdapter
 	 * 
 	 * @param mPosition the position of the item on the list, 0 indexed
 	 */
@@ -147,9 +149,34 @@ public class Main extends ActionBarActivity {
 		
 	}
 
+	/**
+	 * onLongClick of each row of the listView, called thru the RuleListViewAdapter
+	 * 
+	 * @param mPosition the position of the item on the list, 0 indexed
+	 */
 	public void onLongItemClick(int mPosition) {
-		// TODO show alert/dialog box to select delete or edit
+		Log.i(logTag, "Long click detected at " + mPosition);
 		
+//		Bundle bundle = new Bundle();
+//		bundle.putString("ruleName", String.valueOf(mPosition));
+//		EditDeleteRuleDialogFragment fragment = new EditDeleteRuleDialogFragment();
+//		fragment.setArguments(bundle);
+//		fragment.show();
+		
+		new AlertDialog.Builder(this)
+	    .setTitle(String.valueOf(mPosition))
+	    .setPositiveButton(R.string.dialog_edit, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	            // edit
+	        }
+	     })
+	    .setNegativeButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	            // delete
+	        }
+	     })
+//	    .setIcon(android.R.drawable.ic_dialog_alert)
+	    .show();
 	}
 
 }
