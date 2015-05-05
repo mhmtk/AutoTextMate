@@ -183,7 +183,7 @@ public class Main extends ActionBarActivity {
 	public void deleteRule(String ruleName){
 
 		//Delete the rule from the DB
-		int wID = dbManager.deleteRule(ruleName) 
+		int wID = dbManager.deleteRule(ruleName);
 		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
 			// Prompt the user to remove it manually
 			Toast t = Toast.makeText(getApplicationContext(), "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
