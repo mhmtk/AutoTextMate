@@ -158,12 +158,6 @@ public class Main extends ActionBarActivity {
 	public void onLongItemClick(final String ruleName) {
 		Log.i(logTag, "Long click detected at " + ruleName);
 
-		//		Bundle bundle = new Bundle();
-		//		bundle.putString("ruleName", String.valueOf(mPosition));
-		//		EditDeleteRuleDialogFragment fragment = new EditDeleteRuleDialogFragment();
-		//		fragment.setArguments(bundle);
-		//		fragment.show();
-
 		new AlertDialog.Builder(this)
 		.setTitle(ruleName)
 		.setPositiveButton(R.string.dialog_edit, new DialogInterface.OnClickListener() {
@@ -189,11 +183,19 @@ public class Main extends ActionBarActivity {
 	public void deleteRule(String ruleName){
 
 		//Delete the rule from the DB
-		if (dbManager.deleteRule(ruleName)) {
-			// if there is a widget associated with the rule, prompt the user to remove it manually
+		int wID = dbManager.deleteRule(ruleName) 
+		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
+			// Prompt the user to remove it manually
 			Toast t = Toast.makeText(getApplicationContext(), "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
 			t.setGravity(Gravity.TOP, 0, 50);
 			t.show();
+			
+			// Broadcsat widget Update so the text sets to ERROR
+			Intent updateWidgetIntent = new Intent();
+			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} );
+			updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+			this.sendBroadcast(updateWidgetIntent);
+			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
 		}
 		
 		// Feedback

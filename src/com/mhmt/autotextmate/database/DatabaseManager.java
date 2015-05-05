@@ -338,9 +338,9 @@ public class DatabaseManager {
 	 * Deletes the given rule from the database
 	 * 
 	 * @param ruleName The name of the rule to delete
-	 * @return True if the rule had a widget, false otherwise
+	 * @return The widget ID of the deleted rule
 	 */
-	public boolean deleteRule(String ruleName) {
+	public int deleteRule(String ruleName) {
 		
 		db = dbHelper.getWritableDatabase();
 		
@@ -358,6 +358,6 @@ public class DatabaseManager {
 		db.close();
 		
 		//return the result
-		return (c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID)) != AppWidgetManager.INVALID_APPWIDGET_ID) ? true : false;
+		return c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID));
 	}
 }
