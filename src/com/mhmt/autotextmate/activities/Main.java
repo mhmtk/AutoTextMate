@@ -140,7 +140,7 @@ public class Main extends ActionBarActivity {
 		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
 			//Send a broadcast for the widget to update itself
 			Intent updateWidgetIntent = new Intent();
-			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 			this.sendBroadcast(updateWidgetIntent);
 			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());			
 		}
@@ -194,7 +194,7 @@ public class Main extends ActionBarActivity {
 			
 			// Broadcsat widget Update so the text sets to ERROR
 			Intent updateWidgetIntent = new Intent();
-			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 			this.sendBroadcast(updateWidgetIntent);
 			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
 		}
