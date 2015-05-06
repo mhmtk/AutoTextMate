@@ -165,6 +165,7 @@ public class Main extends ActionBarActivity {
 		.setPositiveButton(R.string.dialog_edit, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
 				// TODO open edit activity
+				launchEditRule(ruleName);
 			}
 		})
 		.setNegativeButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
@@ -172,10 +173,16 @@ public class Main extends ActionBarActivity {
 				deleteRule(ruleName);
 			}
 		})
-		//	    .setIcon(android.R.drawable.ic_dialog_alert)
 		.show();
 	}
 
+	/**
+	 * 
+	 * @param ruleName
+	 */
+	private void launchEditRule(String ruleName) {
+		
+	}
 	/**
 	 * Queries to delete the rule with the given name.
 	 * If there is a widget associated with the rule, prompts the user for its removal and
