@@ -4,6 +4,7 @@ import com.mhmt.autotextmate.R;
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 19, 2015
+ * @version November May 6, 2015
  * 
  */
 public class AddRule extends ActionBarActivity {
@@ -29,6 +30,8 @@ public class AddRule extends ActionBarActivity {
 	private EditText editTextText;
 	private CheckBox checkBoxContacts;
 	private RadioGroup radioReplyTo;
+	
+	private boolean edit;
 
 	DatabaseManager dbManager;
 
@@ -39,7 +42,19 @@ public class AddRule extends ActionBarActivity {
 
 		assignViewVariables();
 
+		Intent intent = getIntent();
+		if (intent.hasExtra("ruleName")) {
+			edit = true;
+			populateViews();
+		}
+		
+		// For up navigation thru the action bar
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+
+	private void populateViews() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
