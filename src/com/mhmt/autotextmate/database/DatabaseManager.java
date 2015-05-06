@@ -163,11 +163,13 @@ public class DatabaseManager {
 	}
 	
 	/**
+	 * Updates the columns of the rule with the given oldRuleName to the fields of newRule.
+	 * If requested, returns the wID of the rule. 
 	 * 
-	 * @param widgetIdRequestFlag
-	 * @param oldRuleName
-	 * @param newRule
-	 * @return
+	 * @param widgetIdRequestFlag True if the widgetID of the rule is requested, false otherwise.
+	 * @param oldRuleName The name of the rule to be changed
+	 * @param newRule A rule object that will take the old rules place in the DB
+	 * @return Returns the wID of the old rule if it has been requested (flag == true), -1 otherwise.
 	 */
 	public int editRule(boolean widgetIdRequestFlag, String oldRuleName, Rule newRule) {
 		Log.i(logTag, "editRule was called");

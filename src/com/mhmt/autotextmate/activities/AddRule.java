@@ -92,8 +92,8 @@ public class AddRule extends ActionBarActivity {
 	}
 
 	/**
-	 * Called when the add button on the AddRule Activity is clicked
-	 * @param view
+	 * Called when the save button on the AddRule Activity is clicked
+	 * 
 	 */
 	public void saveButtonClicked(View view) {
 		Log.i(logTag, "Save button clicked with edit as " + edit);
