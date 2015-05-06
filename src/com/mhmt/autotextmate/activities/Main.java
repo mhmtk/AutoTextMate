@@ -33,6 +33,7 @@ public class Main extends ActionBarActivity {
 	private ArrayList<Rule> ruleArray;
 	private String logTag = "Main";
 	private RuleListViewAdapter mListAdapter;
+	private boolean runResume;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class Main extends ActionBarActivity {
 		ruleListView = (ListView) findViewById(R.id.main_list);
 
 		populateListView();
+		runResume = false;
 	}
 
 	/**
@@ -79,10 +81,11 @@ public class Main extends ActionBarActivity {
 	@Override
 	public void onResume(){
 		Log.i(logTag, "onResume called");
-
 		super.onResume();
-
-		populateListView();
+		if(runResume)
+			populateListView();
+		else
+			runResume = true;
 	}
 
 	@Override
