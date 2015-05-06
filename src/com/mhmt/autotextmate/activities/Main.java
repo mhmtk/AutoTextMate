@@ -97,8 +97,8 @@ public class Main extends ActionBarActivity {
 		case R.id.action_new:
 			launchAddRuleActivity();
 			return true;
-//		case R.id.action_settings:
-//			return true;
+		case R.id.action_settings:
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
