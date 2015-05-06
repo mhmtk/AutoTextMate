@@ -17,7 +17,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 5, 2015
+ * @version November May 6, 2015
  * 
  */
 public class DatabaseManager {
@@ -92,8 +92,43 @@ public class DatabaseManager {
 
 		db.close();
 	}
+	
 	/**
-	 * Returns a rule object from the database that corresponds to the widgetID 
+	 * Returns a rule object from the database that corresponds to the given rule name
+	 * 
+	 * @param ruleName The name of the rule requested
+	 * @return The Rule object of the given rule
+	 */
+	public Rule getRule(String ruleName) {
+		db = dbHelper.getReadableDatabase();
+
+		String selectQuery = "SELECT  * FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
+				+ RuleEntry.RULE_COLUMN_NAME+ " =?";
+
+		//Log the query
+		Log.i(logTag, selectQuery + " ** " + ruleName);
+
+		Cursor c = db.rawQuery(selectQuery, new String[] {ruleName});
+
+		Rule rule = null;
+		
+		if (c.moveToFirst()) {
+			rule = new Rule(c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
+		}
+		else 
+			Log.e(logTag, "The cursor returned by getRule was null for given rule name. This should NOT happen");
+		
+		db.close();
+		
+		return rule;
+	}
+	
+	/**
+	 * Returns a rule object from the database that corresponds to the given widgetID 
 	 * 
 	 * @param widgetID The widgetID associated with the rule to return
 	 * @return MAY return null if no widgetID matches
@@ -126,6 +161,38 @@ public class DatabaseManager {
 
 		return rule;
 	}
+	
+	/**
+	 * 
+	 * @param rule
+	 */
+	public void editRule(String oldRuleName, Rule newRule) {
+		Log.i(logTag, "editRule was called");
+
+		//get writable database
+		db = dbHelper.getWritableDatabase();
+		
+		// Edit the rule in the DB
+		String query = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+				" SET " + RuleEntry.RULE_COLUMN_NAME + "=?" + 
+				" SET " + RuleEntry.RULE_COLUMN_DESCRIPTION + "=?" +
+				" SET " + RuleEntry.RULE_COLUMN_TEXT + "=?" +
+				" SET " + RuleEntry.RULE_COLUMN_ONLYCONTACTS + "=?" +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "=?" ;		
+		String[] queryArgs = new String[] {
+				newRule.getName(),
+				newRule.getDescription(),
+				newRule.getText(),
+				String.valueOf(newRule.getOnlyContacts()),
+				oldRuleName
+		};
+		db.execSQL(query, queryArgs);
+		Log.i(logTag, "query" + " ** " + queryArgs.toString());
+
+		db.close(); //close database 
+		
+	}
+	
 	/**
 	 * Adds the given rule to the database
 	 * 
