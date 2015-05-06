@@ -164,32 +164,55 @@ public class DatabaseManager {
 	
 	/**
 	 * 
-	 * @param rule
+	 * @param widgetIdRequestFlag
+	 * @param oldRuleName
+	 * @param newRule
+	 * @return
 	 */
-	public void editRule(String oldRuleName, Rule newRule) {
+	public int editRule(boolean widgetIdRequestFlag, String oldRuleName, Rule newRule) {
 		Log.i(logTag, "editRule was called");
 
 		//get writable database
 		db = dbHelper.getWritableDatabase();
 		
+		int wID = -1; // create an arbitrary wID
+		
+		// if the wID is requested, get it from the DB
+		if (widgetIdRequestFlag) {
+			// Get the widget ID
+			String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_WIDGET_ID +
+					" FROM " + RuleEntry.RULE_TABLE_NAME + 
+					" WHERE " + RuleEntry.RULE_COLUMN_NAME + " =?";
+			Cursor c = db.rawQuery(selectQuery, new String[] {oldRuleName});
+			Log.i(logTag, selectQuery + " ** " + oldRuleName);
+					
+			if (c.moveToFirst()) {
+				wID = c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID));
+			}
+			else 
+				Log.i(logTag, "The cursor returned by getRule was null for given widgetID. This is normal during widget creation");			
+		}
+		
 		// Edit the rule in the DB
-		String query = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_NAME + "=?" + 
 				" SET " + RuleEntry.RULE_COLUMN_DESCRIPTION + "=?" +
 				" SET " + RuleEntry.RULE_COLUMN_TEXT + "=?" +
 				" SET " + RuleEntry.RULE_COLUMN_ONLYCONTACTS + "=?" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "=?" ;		
-		String[] queryArgs = new String[] {
+		String[] updateQueryArgs = new String[] {
 				newRule.getName(),
 				newRule.getDescription(),
 				newRule.getText(),
 				String.valueOf(newRule.getOnlyContacts()),
 				oldRuleName
 		};
-		db.execSQL(query, queryArgs);
-		Log.i(logTag, "query" + " ** " + queryArgs.toString());
+		db.execSQL(updateQuery, updateQueryArgs);
+		Log.i(logTag, "query" + " ** " + updateQueryArgs.toString());
 
 		db.close(); //close database 
+		
+		return wID; //return the widgetID
 		
 	}
 	

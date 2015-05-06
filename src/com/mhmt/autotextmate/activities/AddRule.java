@@ -4,6 +4,7 @@ import com.mhmt.autotextmate.R;
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
 import android.os.AsyncTask;
@@ -27,7 +28,7 @@ import android.widget.Toast;
  * 
  */
 public class AddRule extends ActionBarActivity {
-	
+
 	private String logTag = "AddRule";
 
 	private EditText editTextName;
@@ -37,9 +38,9 @@ public class AddRule extends ActionBarActivity {
 	private RadioGroup radioReplyTo;
 	private ProgressBar progressBar;
 	private LinearLayout fields;
-	
+
 	private DatabaseManager dbManager;
-	
+
 	private boolean edit;
 	private String oldRuleName;
 
@@ -56,11 +57,11 @@ public class AddRule extends ActionBarActivity {
 			oldRuleName = intent.getStringExtra("ruleName");
 			new PopulateFieldsTask().execute(new String[] {oldRuleName});
 		}
-		
+
 		// For up navigation thru the action bar
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
-	
+
 	/**
 	 * Loads the views on the activity
 	 */
@@ -96,24 +97,42 @@ public class AddRule extends ActionBarActivity {
 	 */
 	public void saveButtonClicked(View view) {
 		Log.i(logTag, "Save button clicked with edit as " + edit);
-		
+
 		dbManager = new DatabaseManager(getApplicationContext()); //get a DB
-		
+
 		if (edit) { //Edit functionality
 			try {
+
 				String newRuleName = editTextName.getText().toString();
-				dbManager.editRule(oldRuleName, new Rule(newRuleName,
-						editTextDescription.getText().toString(),
-						editTextText.getText().toString(),
-						checkBoxContacts.isChecked()));
+
+				// If the name of the rule is changed request the wID from the DB.
+				// Then call for the widgets update if theres one
+				if (oldRuleName != newRuleName) { //changed
+					int wID = dbManager.editRule(true, oldRuleName, new Rule(newRuleName,
+							editTextDescription.getText().toString(),
+							editTextText.getText().toString(),
+							checkBoxContacts.isChecked()));
+					
+					// If the rule has a widget, call to update it
+					if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
+						Intent updateWidgetIntent = new Intent();
+						updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+						this.sendBroadcast(updateWidgetIntent);
+						Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
+					}
+				}
+				else { //if the name hasnt changed, dont request a wID
+					dbManager.editRule(false, oldRuleName, new Rule(newRuleName,
+							editTextDescription.getText().toString(),
+							editTextText.getText().toString(),
+							checkBoxContacts.isChecked()));
+				}
+
 				Log.i(logTag, "Rule edited successfully");
 				Toast.makeText(getApplicationContext(), "Rule edited", Toast.LENGTH_SHORT).show();
-				
-				// If the rule at hand has a widget and it's name is changed, call for a widget update
-				if (oldRuleName == newRuleName) {
-					
-				}
-				
+
+
+
 				//return to homepage
 				super.onBackPressed();
 			}
@@ -151,40 +170,40 @@ public class AddRule extends ActionBarActivity {
 		super.onBackPressed();
 		//return to homepage
 	}
-	
+
 	/**
 	 * AsyncTask to populate the fields if the activity was launched by an edit intent
 	 * 
 	 * @author Mehmet Kologlu
 	 */
 	private class PopulateFieldsTask extends AsyncTask <String,Void,Rule>{
-	    @Override
-	    protected void onPreExecute(){
-	    	fields.setVisibility(View.INVISIBLE);
-	        progressBar.setVisibility(View.VISIBLE);
-	    }
+		@Override
+		protected void onPreExecute(){
+			fields.setVisibility(View.INVISIBLE);
+			progressBar.setVisibility(View.VISIBLE);
+		}
 
-	    @Override
-	    protected Rule doInBackground(String... ruleName) {
-	    	// Return the rule matching the rule name from the DB
-	    	dbManager = new DatabaseManager(getApplicationContext());
-	    	Rule rule = dbManager.getRule(ruleName[0]);
-	    	return rule;
-	    }
+		@Override
+		protected Rule doInBackground(String... ruleName) {
+			// Return the rule matching the rule name from the DB
+			dbManager = new DatabaseManager(getApplicationContext());
+			Rule rule = dbManager.getRule(ruleName[0]);
+			return rule;
+		}
 
-	    @Override
-	    protected void onPostExecute(Rule rule) {
-	    	// Populate the views
-	    	editTextName.setText(rule.getName());
+		@Override
+		protected void onPostExecute(Rule rule) {
+			// Populate the views
+			editTextName.setText(rule.getName());
 			editTextDescription.setText(rule.getDescription());
 			editTextText.setText(rule.getText());
 			checkBoxContacts.setChecked( (rule.getOnlyContacts() == 1) ? true : false);
-	    	
+
 			// Progress bar disappears
 			progressBar.setVisibility(View.GONE);
-			
+
 			// The fields are shown
 			fields.setVisibility(View.VISIBLE);
-	    }
+		}
 	}
 }
