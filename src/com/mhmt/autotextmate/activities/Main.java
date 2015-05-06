@@ -181,6 +181,10 @@ public class Main extends ActionBarActivity {
 	 * @param ruleName
 	 */
 	private void launchEditRule(String ruleName) {
+		Intent editIntent = new Intent(this, AddRule,class);
+		editIntent.putExtra("ruleName", ruleName);
+		startActivity(editIntent);
+		
 		
 	}
 	/**
