@@ -193,12 +193,13 @@ public class DatabaseManager {
 				Log.i(logTag, "The cursor returned by getRule was null for given widgetID. This is normal during widget creation");			
 		}
 		
+		
 		// Edit the rule in the DB
 		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_NAME + "=?" + 
-				" SET " + RuleEntry.RULE_COLUMN_DESCRIPTION + "=?" +
-				" SET " + RuleEntry.RULE_COLUMN_TEXT + "=?" +
-				" SET " + RuleEntry.RULE_COLUMN_ONLYCONTACTS + "=?" +
+				" , " + RuleEntry.RULE_COLUMN_DESCRIPTION + "=?" +
+				" , " + RuleEntry.RULE_COLUMN_TEXT + "=?" +
+				" , " + RuleEntry.RULE_COLUMN_ONLYCONTACTS + "=?" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "=?" ;		
 		String[] updateQueryArgs = new String[] {
 				newRule.getName(),
@@ -207,8 +208,8 @@ public class DatabaseManager {
 				String.valueOf(newRule.getOnlyContacts()),
 				oldRuleName
 		};
+		Log.i(logTag, updateQuery + " ** " + updateQueryArgs.toString());
 		db.execSQL(updateQuery, updateQueryArgs);
-		Log.i(logTag, "query" + " ** " + updateQueryArgs.toString());
 
 		db.close(); //close database 
 		
