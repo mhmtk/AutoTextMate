@@ -1648,13 +1648,15 @@ containing a value of this type.
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020035;
         public static final int abc_textfield_search_material=0x7f020036;
         public static final int call=0x7f020037;
-        public static final int ic_action_new=0x7f020038;
-        public static final int ic_launcher=0x7f020039;
-        public static final int sms=0x7f02003a;
-        public static final int widget_button_green=0x7f02003b;
-        public static final int widget_button_red=0x7f02003c;
-        public static final int widget_green=0x7f02003d;
-        public static final int widget_red=0x7f02003e;
+        public static final int ic_action_done=0x7f020038;
+        public static final int ic_action_new=0x7f020039;
+        public static final int ic_action_save=0x7f02003a;
+        public static final int ic_launcher=0x7f02003b;
+        public static final int sms=0x7f02003c;
+        public static final int widget_button_green=0x7f02003d;
+        public static final int widget_button_red=0x7f02003e;
+        public static final int widget_green=0x7f02003f;
+        public static final int widget_red=0x7f020040;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0031;
@@ -1671,7 +1673,6 @@ containing a value of this type.
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
         public static final int action_new=0x7f0a0058;
-        public static final int action_settings=0x7f0a0059;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int always=0x7f0a0014;
         public static final int beginning=0x7f0a001b;

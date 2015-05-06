@@ -23,7 +23,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 5, 2015
+ * @version November May 6, 2015
  * 
  */
 public class Main extends ActionBarActivity {
@@ -97,8 +97,8 @@ public class Main extends ActionBarActivity {
 		case R.id.action_new:
 			launchAddRuleActivity();
 			return true;
-		case R.id.action_settings:
-			return true;
+//		case R.id.action_settings:
+//			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
