@@ -7,12 +7,16 @@
     <item
         android:id="@+id/action_new"
         android:icon="@drawable/ic_action_new"
-        android:showAsAction="ifRoom"
-        android:title="@string/action_new"/>
+        android:showAsAction="ifRoom|collapseActionView"
+        android:orderInCategory="1"
+        android:visible="true"
+        android:enabled="true"
+        android:title="@string/action_new" />
     <!-- Settings, should always be in the overflow -->
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_action_save"
+        android:orderInCategory="2"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
 
