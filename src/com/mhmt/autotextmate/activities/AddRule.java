@@ -102,8 +102,7 @@ public class AddRule extends ActionBarActivity {
 
 		if (edit) { //Edit functionality
 			try {
-
-				String newRuleName = editTextName.getText().toString();
+				String newRuleName = editTextName.getText().toString(); //get the new rule name
 
 				// If the name of the rule is changed request the wID from the DB.
 				// Then call for the widgets update if theres one
@@ -119,6 +118,7 @@ public class AddRule extends ActionBarActivity {
 						updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 						this.sendBroadcast(updateWidgetIntent);
 						Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
+						Toast.makeText(getApplicationContext(), "Rule edited, its widget will automatically update.", Toast.LENGTH_SHORT).show();
 					}
 				}
 				else { //if the name hasnt changed, dont request a wID
@@ -126,10 +126,10 @@ public class AddRule extends ActionBarActivity {
 							editTextDescription.getText().toString(),
 							editTextText.getText().toString(),
 							checkBoxContacts.isChecked()));
+					Toast.makeText(getApplicationContext(), "Rule edited.", Toast.LENGTH_SHORT).show();
 				}
 
-				Log.i(logTag, "Rule edited successfully");
-				Toast.makeText(getApplicationContext(), "Rule edited", Toast.LENGTH_SHORT).show();
+				Log.i(logTag, "Rule edited");
 
 
 
