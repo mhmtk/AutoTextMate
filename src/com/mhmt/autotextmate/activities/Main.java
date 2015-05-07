@@ -11,24 +11,29 @@ import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 6, 2015
+ * @version November May 7, 2015
  * 
  */
 public class Main extends ActionBarActivity {
 
 	private ListView ruleListView;
+	private ProgressBar progressBar;
+	
 	private DatabaseManager dbManager;
 	private ArrayList<Rule> ruleArray;
 	private String logTag = "Main";
@@ -46,18 +51,55 @@ public class Main extends ActionBarActivity {
 
 		//Instantiate view(s)
 		ruleListView = (ListView) findViewById(R.id.main_list);
-
-		populateListView();
+		progressBar = (ProgressBar) findViewById(R.id.main_progress_bar);
+		
+		new PopulateListTask().execute();
+		
+//		populateListView();
 		runResume = false;
+	}
+	
+	/**
+	 * AsyncTask to populate the listview with a list of rules
+	 * 
+	 * @author Mehmet Kologlu
+	 */
+	private class PopulateListTask extends AsyncTask <Void,Void,ArrayList<Rule>>{
+		@Override
+		protected void onPreExecute(){
+			Log.i(logTag, "PopulateListTask is started.");
+			ruleListView.setVisibility(View.INVISIBLE);
+			progressBar.setVisibility(View.VISIBLE);
+		}
+
+		@Override
+		protected ArrayList<Rule> doInBackground(Void... params) {
+			//Get data from DB
+			ruleArray = dbManager.getRulesArray();
+			Log.i(logTag, "Retreived rule array from the DB.");
+			return ruleArray;
+		}
+		
+		@Override
+		protected void onPostExecute(ArrayList<Rule> ruleArray) {
+			populateListView(ruleArray);
+			
+			// Hide the progress bar
+			progressBar.setVisibility(View.GONE);
+
+			// Show the list
+			ruleListView.setVisibility(View.VISIBLE);
+			Log.i(logTag, "PopulateListTask complete.");
+		}
 	}
 
 	/**
 	 * populates the ListView with the database data
 	 */
-	private void populateListView(){
+	private void populateListView(ArrayList<Rule> ruleArray){
 		//Get DB Data
-		ruleArray = dbManager.getRulesArray();
-		Log.i(logTag, "rule array loaded");
+//		ruleArray = dbManager.getRulesArray();
+		Log.i(logTag, "populateListView called.");
 
 		if(ruleArray.isEmpty()) //if the loaded database is empty
 		{
@@ -68,7 +110,7 @@ public class Main extends ActionBarActivity {
 		//pass the adapter with the array to the list view
 		mListAdapter = new RuleListViewAdapter(this, ruleArray, getResources());
 		ruleListView.setAdapter(mListAdapter);
-		Log.i(logTag, "adapter to rulelistview set");
+		Log.i(logTag, "Adapter to rulelistview set");
 	}
 
 	@Override
@@ -76,16 +118,6 @@ public class Main extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
-	}
-
-	@Override
-	public void onResume(){
-		Log.i(logTag, "onResume called");
-		super.onResume();
-		if(runResume)
-			populateListView();
-		else
-			runResume = true;
 	}
 
 	@Override
@@ -102,6 +134,19 @@ public class Main extends ActionBarActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	@Override
+	public void onResume(){
+		Log.i(logTag, "onResume called");
+		super.onResume();
+		if(runResume) {
+//			populateListView();
+			Log.i(logTag, "onResume is going to populate the list");
+			new PopulateListTask().execute();
+		}
+		else
+			runResume = true;
 	}
 
 	/**
@@ -217,6 +262,7 @@ public class Main extends ActionBarActivity {
 		Toast.makeText(getApplicationContext(), "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();			
 		
 		// Reconstruct view
-		populateListView();	
+//		populateListView();
+		new PopulateListTask().execute();
 	}
 }

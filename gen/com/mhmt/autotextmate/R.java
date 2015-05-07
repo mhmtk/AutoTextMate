@@ -1673,10 +1673,11 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_new=0x7f0a005a;
-        public static final int action_settings=0x7f0a005b;
+        public static final int action_new=0x7f0a005c;
+        public static final int action_settings=0x7f0a005d;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int addRule_fields=0x7f0a0040;
+        public static final int add_action_new=0x7f0a005b;
         public static final int addedit_progress_bar=0x7f0a003f;
         public static final int always=0x7f0a0014;
         public static final int beginning=0x7f0a001b;
@@ -1708,13 +1709,14 @@ containing a value of this type.
         public static final int linearLayout_contactsOnly=0x7f0a0044;
         public static final int linearLayout_replyTo=0x7f0a0047;
         public static final int listMode=0x7f0a000a;
-        public static final int list_call_image=0x7f0a0059;
+        public static final int list_call_image=0x7f0a005a;
         public static final int list_item=0x7f0a0025;
-        public static final int list_sms_image=0x7f0a0058;
-        public static final int list_textView_description=0x7f0a0057;
-        public static final int list_textView_name=0x7f0a0055;
-        public static final int list_toggleButton_status=0x7f0a0056;
+        public static final int list_sms_image=0x7f0a0059;
+        public static final int list_textView_description=0x7f0a0058;
+        public static final int list_textView_name=0x7f0a0056;
+        public static final int list_toggleButton_status=0x7f0a0057;
         public static final int main_list=0x7f0a0052;
+        public static final int main_progress_bar=0x7f0a0053;
         public static final int middle=0x7f0a001d;
         public static final int never=0x7f0a0017;
         public static final int none=0x7f0a000f;
@@ -1748,8 +1750,8 @@ containing a value of this type.
         public static final int title=0x7f0a0027;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
-        public static final int widget_backgroundImage=0x7f0a0053;
-        public static final int widget_button=0x7f0a0054;
+        public static final int widget_backgroundImage=0x7f0a0054;
+        public static final int widget_button=0x7f0a0055;
         public static final int withText=0x7f0a0018;
         public static final int wrap_content=0x7f0a0009;
     }
@@ -1874,24 +1876,25 @@ containing a value of this type.
          */
         public static final int abc_toolbar_collapse_description=0x7f0b0004;
         public static final int action_new=0x7f0b0011;
+        public static final int action_save=0x7f0b0014;
         public static final int action_settings=0x7f0b0012;
         public static final int app_name=0x7f0b0010;
-        public static final int button_cancel=0x7f0b001d;
-        public static final int button_save=0x7f0b001c;
-        public static final int configure_create=0x7f0b001f;
-        public static final int configure_info=0x7f0b0020;
-        public static final int dialog_delete=0x7f0b0022;
-        public static final int dialog_edit=0x7f0b0021;
-        public static final int editText_description=0x7f0b0015;
-        public static final int editText_name=0x7f0b0014;
-        public static final int editText_text=0x7f0b0016;
-        public static final int radio_both=0x7f0b001a;
-        public static final int radio_call=0x7f0b0019;
-        public static final int radio_sms=0x7f0b0018;
-        public static final int textView_contactsOnly_text=0x7f0b0017;
-        public static final int textView_replyTo_text=0x7f0b001b;
+        public static final int button_cancel=0x7f0b001e;
+        public static final int button_save=0x7f0b001d;
+        public static final int configure_create=0x7f0b0020;
+        public static final int configure_info=0x7f0b0021;
+        public static final int dialog_delete=0x7f0b0023;
+        public static final int dialog_edit=0x7f0b0022;
+        public static final int editText_description=0x7f0b0016;
+        public static final int editText_name=0x7f0b0015;
+        public static final int editText_text=0x7f0b0017;
+        public static final int radio_both=0x7f0b001b;
+        public static final int radio_call=0x7f0b001a;
+        public static final int radio_sms=0x7f0b0019;
+        public static final int textView_contactsOnly_text=0x7f0b0018;
+        public static final int textView_replyTo_text=0x7f0b001c;
         public static final int title_activity_add_rule=0x7f0b0013;
-        public static final int title_activity_configure_widget=0x7f0b001e;
+        public static final int title_activity_configure_widget=0x7f0b001f;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;
