@@ -53,6 +53,7 @@ public class AddEditRule extends ActionBarActivity {
 		// If this activity is launched with an editing intent, start the asynctask to populate the fields
 		Intent intent = getIntent();
 		if (intent.hasExtra("ruleName")) {
+			Log.i(logTag, "AddEdit launched with intent that contains rulename extra: \n" + intent.toString());
 			setTitle("Edit Rule");
 			edit = true;
 			oldRuleName = intent.getStringExtra("ruleName");
