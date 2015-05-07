@@ -88,10 +88,8 @@ public class AddRule extends ActionBarActivity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
-		case R.id.action_new:
+		case R.id.add_action_save:
 			saveButtonClicked();
-			return true;
-		case R.id.action_settings:
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

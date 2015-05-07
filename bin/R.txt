@@ -372,7 +372,7 @@ int id action_new 0x7f0a0059
 int id action_settings 0x7f0a005a
 int id activity_chooser_view_content 0x7f0a0021
 int id addRule_fields 0x7f0a0040
-int id add_action_new 0x7f0a0058
+int id add_action_save 0x7f0a0058
 int id addedit_progress_bar 0x7f0a003f
 int id always 0x7f0a0014
 int id beginning 0x7f0a001b

@@ -1677,7 +1677,7 @@ containing a value of this type.
         public static final int action_settings=0x7f0a005a;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int addRule_fields=0x7f0a0040;
-        public static final int add_action_new=0x7f0a0058;
+        public static final int add_action_save=0x7f0a0058;
         public static final int addedit_progress_bar=0x7f0a003f;
         public static final int always=0x7f0a0014;
         public static final int beginning=0x7f0a001b;

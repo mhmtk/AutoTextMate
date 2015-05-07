@@ -4,7 +4,7 @@
     tools:context="com.mhmt.autotextmate.AddRule" >
     
     <item
-        android:id="@+id/add_action_new"
+        android:id="@+id/add_action_save"
         android:icon="@drawable/ic_action_save"
         app:showAsAction="ifRoom|collapseActionView"
         android:title="@string/action_save" />
