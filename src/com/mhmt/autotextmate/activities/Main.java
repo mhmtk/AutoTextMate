@@ -187,7 +187,6 @@ public class Main extends ActionBarActivity {
 		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_SHORT).show();
 
 		//Change the status of the rule in the database-
-		// TODO runnable
 		new Runnable() {
 			@Override
 			public void run() {
@@ -242,7 +241,6 @@ public class Main extends ActionBarActivity {
 	public void deleteRule(final String ruleName){
 
 		//Delete the rule from the DB
-		// TODO runnable
 		new Runnable() {
 			@Override
 			public void run() {
