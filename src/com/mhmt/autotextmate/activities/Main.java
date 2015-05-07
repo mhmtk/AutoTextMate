@@ -182,6 +182,7 @@ public class Main extends ActionBarActivity {
 		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_SHORT).show();
 
 		//Change the status of the rule in the database-
+		// TODO runnable
 		int wID = dbManager.setRuleStatus(mName, isChecked);
 
 		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -231,6 +232,7 @@ public class Main extends ActionBarActivity {
 	public void deleteRule(String ruleName){
 
 		//Delete the rule from the DB
+		// TODO runnable
 		int wID = dbManager.deleteRule(ruleName);
 		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
 			// Prompt the user to remove it manually
