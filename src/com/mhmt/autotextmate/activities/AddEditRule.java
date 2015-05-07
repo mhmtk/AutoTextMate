@@ -27,9 +27,9 @@ import android.widget.Toast;
  * @version November May 7, 2015
  * 
  */
-public class AddRule extends ActionBarActivity {
+public class AddEditRule extends ActionBarActivity {
 
-	private String logTag = "AddRule";
+	private String logTag = "AddEditRule";
 
 	private EditText editTextName;
 	private EditText editTextDescription;
@@ -97,7 +97,7 @@ public class AddRule extends ActionBarActivity {
 	}
 
 	/**
-	 * Called when the save button on the AddRule Activity is clicked
+	 * Called when the save button on the AddEditRule Activity is clicked
 	 * 
 	 */
 	public void saveButtonClicked() {
@@ -166,7 +166,7 @@ public class AddRule extends ActionBarActivity {
 	}
 
 //	/**
-//	 * Called when the cancel button on the AddRule Activity is clicked
+//	 * Called when the cancel button on the AddEditRule Activity is clicked
 //	 * @param view
 //	 */
 //	public void cancelButtonClicked(View view) {

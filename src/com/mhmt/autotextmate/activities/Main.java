@@ -152,18 +152,18 @@ public class Main extends ActionBarActivity {
 	}
 
 	/**
-	 * onClick method for Add button from the action bar, launches the AddRule activity.
+	 * onClick method for Add button from the action bar, launches the AddEditRule activity.
 	 * Will only launch the activity if the list is populated.
 	 */
 	private void launchAddEditRuleActivity(String ruleName) {
 		if (ruleName == null) {
 			if (listLoaded)
-				startActivity(new Intent (this, AddRule.class));
+				startActivity(new Intent (this, AddEditRule.class));
 			else
 				Toast.makeText(getApplicationContext(), "Please wait until the list is loaded to add another rule", Toast.LENGTH_SHORT).show();			
 		}
 		else{
-			Intent editIntent = new Intent(this, AddRule.class);
+			Intent editIntent = new Intent(this, AddEditRule.class);
 			editIntent.putExtra("ruleName", ruleName);
 			startActivity(editIntent);	
 		}
