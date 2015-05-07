@@ -471,7 +471,7 @@ int layout abc_screen_toolbar 0x7f030012
 int layout abc_search_dropdown_item_icons_2line 0x7f030013
 int layout abc_search_view 0x7f030014
 int layout abc_simple_dropdown_hint 0x7f030015
-int layout activity_add_rule 0x7f030016
+int layout activity_add_edit_rule 0x7f030016
 int layout activity_configure_widget 0x7f030017
 int layout activity_main 0x7f030018
 int layout layout_widget 0x7f030019
@@ -513,7 +513,7 @@ int string radio_call 0x7f0b001a
 int string radio_sms 0x7f0b0019
 int string textView_contactsOnly_text 0x7f0b0018
 int string textView_replyTo_text 0x7f0b001c
-int string title_activity_add_rule 0x7f0b0013
+int string title_activity_add_edit_rule 0x7f0b0013
 int string title_activity_configure_widget 0x7f0b001f
 int style Animation_AppCompat_DropDownUp 0x7f0c00cf
 int style AppBaseTheme 0x7f0c00f8

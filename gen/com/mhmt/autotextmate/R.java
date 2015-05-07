@@ -1804,7 +1804,7 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030013;
         public static final int abc_search_view=0x7f030014;
         public static final int abc_simple_dropdown_hint=0x7f030015;
-        public static final int activity_add_rule=0x7f030016;
+        public static final int activity_add_edit_rule=0x7f030016;
         public static final int activity_configure_widget=0x7f030017;
         public static final int activity_main=0x7f030018;
         public static final int layout_widget=0x7f030019;
@@ -1890,7 +1890,7 @@ containing a value of this type.
         public static final int radio_sms=0x7f0b0019;
         public static final int textView_contactsOnly_text=0x7f0b0018;
         public static final int textView_replyTo_text=0x7f0b001c;
-        public static final int title_activity_add_rule=0x7f0b0013;
+        public static final int title_activity_add_edit_rule=0x7f0b0013;
         public static final int title_activity_configure_widget=0x7f0b001f;
     }
     public static final class style {

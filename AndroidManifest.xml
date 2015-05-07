@@ -29,8 +29,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.AddRule"
-            android:label="@string/title_activity_add_rule"
+            android:name=".activities.AddEditRule"
+            android:label="@string/title_activity_add_edit_rule"
             android:parentActivityName=".activities.Main" >
 
             <!-- The meta-data element is needed for versions lower than 4.1 -->

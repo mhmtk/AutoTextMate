@@ -6,7 +6,7 @@
     <string name="action_new">Add Rule</string>
     <string name="action_settings">Settings</string>
     
-    <string name="title_activity_add_rule">Add Rule</string>
+    <string name="title_activity_add_edit_rule">Add Rule</string>
     <string name="action_save">Save</string>
     <string name="editText_name">Name</string>
     <string name="editText_description">Add a short description</string>

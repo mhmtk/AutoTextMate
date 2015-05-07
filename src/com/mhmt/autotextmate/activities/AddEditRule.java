@@ -47,12 +47,13 @@ public class AddEditRule extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_add_rule);
+		setContentView(R.layout.activity_add_edit_rule);
 		assignViewFields();
 
 		// If this activity is launched with an editing intent, start the asynctask to populate the fields
 		Intent intent = getIntent();
 		if (intent.hasExtra("ruleName")) {
+			setTitle("Edit Rule");
 			edit = true;
 			oldRuleName = intent.getStringExtra("ruleName");
 			new PopulateFieldsTask().execute(new String[] {oldRuleName});
