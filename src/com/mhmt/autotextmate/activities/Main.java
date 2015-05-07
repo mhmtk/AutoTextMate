@@ -111,16 +111,16 @@ public class Main extends ActionBarActivity {
 	}
 
 	/**
-	 * populates the ListView with the database data
+	 * Populates the listView with the data of the given ruleArray by
+	 * settings the views adapter as a RuleListViewAdapter
+	 * 
+	 * @param ruleArray An arraylist of rules to be used as data
 	 */
 	private void populateListView(ArrayList<Rule> ruleArray){
 		Log.i(logTag, "populateListView called.");
 
 		if(ruleArray.isEmpty()) //if the loaded rule array is empty
-		{
-			//Feedback
 			Toast.makeText(getApplicationContext(), "You have no saved rules to view", Toast.LENGTH_SHORT).show();
-		}
 
 		//pass the adapter with the array to the list view
 		mListAdapter = new RuleListViewAdapter(this, ruleArray, getResources());
@@ -161,6 +161,17 @@ public class Main extends ActionBarActivity {
 		else
 			Toast.makeText(getApplicationContext(), "Please wait until the list is loaded to add another rule", Toast.LENGTH_SHORT).show();
 	}
+	
+	/**
+	 * Launches the AddRule activity in edit mode for the rule with the given name
+	 * 
+	 * @param ruleName A rule name
+	 */
+	private void launchEditRule(String ruleName) {
+		Intent editIntent = new Intent(this, AddRule.class);
+		editIntent.putExtra("ruleName", ruleName);
+		startActivity(editIntent);
+	}
 
 	/**
 	 * onClick-ish method for the togglebutton in each row of the listView, 
@@ -186,7 +197,6 @@ public class Main extends ActionBarActivity {
 		}
 		else
 			Log.i(logTag, "Did not broadcast widget update b/c " + mName + " has no widget");
-
 	}
 
 	/**
@@ -211,16 +221,6 @@ public class Main extends ActionBarActivity {
 			}
 		})
 		.show();
-	}
-
-	/**
-	 * 
-	 * @param ruleName
-	 */
-	private void launchEditRule(String ruleName) {
-		Intent editIntent = new Intent(this, AddRule.class);
-		editIntent.putExtra("ruleName", ruleName);
-		startActivity(editIntent);
 	}
 	
 	/**
