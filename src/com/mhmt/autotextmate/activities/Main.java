@@ -142,7 +142,7 @@ public class Main extends ActionBarActivity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 		case R.id.action_new:
-			launchAddRuleActivity();
+			launchAddEditRuleActivity(null); //launch addEdit rule in add mode
 			return true;
 		case R.id.action_settings:
 			return true;
@@ -155,22 +155,18 @@ public class Main extends ActionBarActivity {
 	 * onClick method for Add button from the action bar, launches the AddRule activity.
 	 * Will only launch the activity if the list is populated.
 	 */
-	private void launchAddRuleActivity() {
-		if (listLoaded)
-			startActivity(new Intent (this, AddRule.class));
-		else
-			Toast.makeText(getApplicationContext(), "Please wait until the list is loaded to add another rule", Toast.LENGTH_SHORT).show();
-	}
-	
-	/**
-	 * Launches the AddRule activity in edit mode for the rule with the given name
-	 * 
-	 * @param ruleName A rule name
-	 */
-	private void launchEditRule(String ruleName) {
-		Intent editIntent = new Intent(this, AddRule.class);
-		editIntent.putExtra("ruleName", ruleName);
-		startActivity(editIntent);
+	private void launchAddEditRuleActivity(String ruleName) {
+		if (ruleName == null) {
+			if (listLoaded)
+				startActivity(new Intent (this, AddRule.class));
+			else
+				Toast.makeText(getApplicationContext(), "Please wait until the list is loaded to add another rule", Toast.LENGTH_SHORT).show();			
+		}
+		else{
+			Intent editIntent = new Intent(this, AddRule.class);
+			editIntent.putExtra("ruleName", ruleName);
+			startActivity(editIntent);	
+		}
 	}
 
 	/**
@@ -212,7 +208,7 @@ public class Main extends ActionBarActivity {
 		.setPositiveButton(R.string.dialog_edit, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
 				// TODO open edit activity
-				launchEditRule(ruleName);
+				launchAddEditRuleActivity(ruleName);
 			}
 		})
 		.setNegativeButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
