@@ -104,6 +104,8 @@ public class AddEditRule extends ActionBarActivity {
 	public void saveButtonClicked() {
 		Log.i(logTag, "Save button clicked with edit as " + edit);
 
+		// TODO runnable
+		
 		dbManager = new DatabaseManager(getApplicationContext()); //get a DB
 
 		if (edit) { //Edit functionality
