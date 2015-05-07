@@ -39,6 +39,7 @@ public class Main extends ActionBarActivity {
 	private String logTag = "Main";
 	private RuleListViewAdapter mListAdapter;
 	private boolean runResume;
+	private boolean listLoaded = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +47,27 @@ public class Main extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		//Populate the list view of the activity with the items from the database
-		dbManager = new DatabaseManager(getApplicationContext());
 
 		//Instantiate view(s)
 		ruleListView = (ListView) findViewById(R.id.main_list);
 		progressBar = (ProgressBar) findViewById(R.id.main_progress_bar);
 		
-		new PopulateListTask().execute();
-		
-//		populateListView();
 		runResume = false;
+		
+		// Call for listview population
+		new PopulateListTask().execute(true);
+	}
+	
+	@Override
+	public void onResume(){
+		Log.i(logTag, "onResume called");
+		super.onResume();
+		if(runResume) {
+			Log.i(logTag, "onResume is going to populate the list");
+			new PopulateListTask().execute(false);
+		}
+		else
+			runResume = true;
 	}
 	
 	/**
@@ -64,16 +75,22 @@ public class Main extends ActionBarActivity {
 	 * 
 	 * @author Mehmet Kologlu
 	 */
-	private class PopulateListTask extends AsyncTask <Void,Void,ArrayList<Rule>>{
+	private class PopulateListTask extends AsyncTask <Boolean,Void,ArrayList<Rule>>{
 		@Override
 		protected void onPreExecute(){
+			listLoaded = false; // The list is not loaded
 			Log.i(logTag, "PopulateListTask is started.");
 			ruleListView.setVisibility(View.INVISIBLE);
 			progressBar.setVisibility(View.VISIBLE);
 		}
 
 		@Override
-		protected ArrayList<Rule> doInBackground(Void... params) {
+		protected ArrayList<Rule> doInBackground(Boolean... getDB) {
+			Log.i(logTag, "PopulateListTask background task started with runResume = " + runResume);
+			// If runResume == false, then onCreate called this, so get a DBmanager
+			if (getDB[0]) { 
+				dbManager = new DatabaseManager(getApplicationContext());
+			}
 			//Get data from DB
 			ruleArray = dbManager.getRulesArray();
 			Log.i(logTag, "Retreived rule array from the DB.");
@@ -82,13 +99,13 @@ public class Main extends ActionBarActivity {
 		
 		@Override
 		protected void onPostExecute(ArrayList<Rule> ruleArray) {
+			// Populate the listview before completing the task
 			populateListView(ruleArray);
-			
 			// Hide the progress bar
 			progressBar.setVisibility(View.GONE);
-
 			// Show the list
 			ruleListView.setVisibility(View.VISIBLE);
+			listLoaded = true; //The list is now loaded
 			Log.i(logTag, "PopulateListTask complete.");
 		}
 	}
@@ -97,11 +114,9 @@ public class Main extends ActionBarActivity {
 	 * populates the ListView with the database data
 	 */
 	private void populateListView(ArrayList<Rule> ruleArray){
-		//Get DB Data
-//		ruleArray = dbManager.getRulesArray();
 		Log.i(logTag, "populateListView called.");
 
-		if(ruleArray.isEmpty()) //if the loaded database is empty
+		if(ruleArray.isEmpty()) //if the loaded rule array is empty
 		{
 			//Feedback
 			Toast.makeText(getApplicationContext(), "You have no saved rules to view", Toast.LENGTH_SHORT).show();
@@ -135,40 +150,17 @@ public class Main extends ActionBarActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
-	@Override
-	public void onResume(){
-		Log.i(logTag, "onResume called");
-		super.onResume();
-		if(runResume) {
-//			populateListView();
-			Log.i(logTag, "onResume is going to populate the list");
-			new PopulateListTask().execute();
-		}
-		else
-			runResume = true;
-	}
 
 	/**
-	 * onClick method for Add button from the action bar, launches the AddRule activity
+	 * onClick method for Add button from the action bar, launches the AddRule activity.
+	 * Will only launch the activity if the list is populated.
 	 */
 	private void launchAddRuleActivity() {
-		startActivity(new Intent (this, AddRule.class));
+		if (listLoaded)
+			startActivity(new Intent (this, AddRule.class));
+		else
+			Toast.makeText(getApplicationContext(), "Please wait until the list is loaded to add another rule", Toast.LENGTH_SHORT).show();
 	}
-
-	//	/**
-	//	 * onClick of each row of the listView, called thru the RuleListViewAdapter
-	//	 * 
-	//	 * @param mPosition the position of the item on the list, 0 indexed
-	//	 */
-	//	public void onItemClick(int mPosition)
-	//	{
-	//		//documentation and feedback
-	//		Log.i(logTag, "Item " + mPosition + " clicked.");
-	//		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_SHORT).show();
-	//		// Edit window?
-	//		// more info?
-	//	}
 
 	/**
 	 * onClick-ish method for the togglebutton in each row of the listView, 
@@ -229,9 +221,8 @@ public class Main extends ActionBarActivity {
 		Intent editIntent = new Intent(this, AddRule.class);
 		editIntent.putExtra("ruleName", ruleName);
 		startActivity(editIntent);
-		
-		
 	}
+	
 	/**
 	 * Queries to delete the rule with the given name.
 	 * If there is a widget associated with the rule, prompts the user for its removal and
@@ -262,7 +253,20 @@ public class Main extends ActionBarActivity {
 		Toast.makeText(getApplicationContext(), "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();			
 		
 		// Reconstruct view
-//		populateListView();
-		new PopulateListTask().execute();
+		new PopulateListTask().execute(false);
 	}
+
+	//	/**
+	//	 * onClick of each row of the listView, called thru the RuleListViewAdapter
+	//	 * 
+	//	 * @param mPosition the position of the item on the list, 0 indexed
+	//	 */
+	//	public void onItemClick(int mPosition)
+	//	{
+	//		//documentation and feedback
+	//		Log.i(logTag, "Item " + mPosition + " clicked.");
+	//		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_SHORT).show();
+	//		// Edit window?
+	//		// more info?
+	//	}
 }
