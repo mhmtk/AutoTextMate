@@ -9,6 +9,7 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -40,11 +41,15 @@ public class Main extends ActionBarActivity {
 	private RuleListViewAdapter mListAdapter;
 	private boolean runResume;
 	private boolean listLoaded = false;
+	
+	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.i(logTag, "onCreate called");
 		super.onCreate(savedInstanceState);
+		context = this;
+		
 		setContentView(R.layout.activity_main);
 
 
@@ -176,24 +181,30 @@ public class Main extends ActionBarActivity {
 	 * @param mName the position of the toggle's item on the list, 0 indexed
 	 * @param isChecked True if toggle is on, false otherwise
 	 */
-	public void onItemToggleClicked(String mName, boolean isChecked) {
+	public void onItemToggleClicked(final String mName, final boolean isChecked) {
 		//Documentation and feedback
 		Log.i(logTag, "Toggle item of " + mName + " set to " + isChecked + ".");
 		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_SHORT).show();
 
 		//Change the status of the rule in the database-
 		// TODO runnable
-		int wID = dbManager.setRuleStatus(mName, isChecked);
+		new Runnable() {
+			@Override
+			public void run() {
+				int wID = dbManager.setRuleStatus(mName, isChecked);				
+				if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
+					//Send a broadcast for the widget to update itself
+					Intent updateWidgetIntent = new Intent();
+					updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+					context.sendBroadcast(updateWidgetIntent);
+					Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());			
+				}
+				else
+					Log.i(logTag, "Did not broadcast widget update b/c " + mName + " has no widget");
+			}
+		};
+		
 
-		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
-			//Send a broadcast for the widget to update itself
-			Intent updateWidgetIntent = new Intent();
-			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-			this.sendBroadcast(updateWidgetIntent);
-			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());			
-		}
-		else
-			Log.i(logTag, "Did not broadcast widget update b/c " + mName + " has no widget");
 	}
 
 	/**
@@ -208,7 +219,6 @@ public class Main extends ActionBarActivity {
 		.setTitle(ruleName)
 		.setPositiveButton(R.string.dialog_edit, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
-				// TODO open edit activity
 				launchAddEditRuleActivity(ruleName);
 			}
 		})
@@ -229,26 +239,31 @@ public class Main extends ActionBarActivity {
 	 * 
 	 * @param ruleName Name of the rule to be deleted
 	 */
-	public void deleteRule(String ruleName){
+	public void deleteRule(final String ruleName){
 
 		//Delete the rule from the DB
 		// TODO runnable
-		int wID = dbManager.deleteRule(ruleName);
-		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
-			// Prompt the user to remove it manually
-			Toast t = Toast.makeText(getApplicationContext(), "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
-			t.setGravity(Gravity.TOP, 0, 50);
-			t.show();
-			
-			// Broadcsat widget Update so the text sets to ERROR
-			Intent updateWidgetIntent = new Intent();
-			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-			this.sendBroadcast(updateWidgetIntent);
-			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
-		}
-		
-		// Feedback
-		Toast.makeText(getApplicationContext(), "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();			
+		new Runnable() {
+			@Override
+			public void run() {
+				int wID = dbManager.deleteRule(ruleName);
+				if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
+					// Prompt the user to remove it manually
+					Toast t = Toast.makeText(getApplicationContext(), "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
+					t.setGravity(Gravity.TOP, 0, 50);
+					t.show();
+					
+					// Broadcsat widget Update so the text sets to ERROR
+					Intent updateWidgetIntent = new Intent();
+					updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+					context.sendBroadcast(updateWidgetIntent);
+					Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
+				}
+				
+				// Feedback
+				Toast.makeText(getApplicationContext(), "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();							
+			}
+		};
 		
 		// Reconstruct view
 		new PopulateListTask().execute(false);
