@@ -24,7 +24,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 6, 2015
+ * @version November May 7, 2015
  * 
  */
 public class AddRule extends ActionBarActivity {
@@ -87,15 +87,22 @@ public class AddRule extends ActionBarActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-
-		return super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		case R.id.action_new:
+			saveButtonClicked();
+			return true;
+		case R.id.action_settings:
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	/**
 	 * Called when the save button on the AddRule Activity is clicked
 	 * 
 	 */
-	public void saveButtonClicked(View view) {
+	public void saveButtonClicked() {
 		Log.i(logTag, "Save button clicked with edit as " + edit);
 
 		dbManager = new DatabaseManager(getApplicationContext()); //get a DB
@@ -105,7 +112,7 @@ public class AddRule extends ActionBarActivity {
 				String newRuleName = editTextName.getText().toString(); //get the new rule name
 
 				// If the name of the rule is changed request the wID from the DB.
-				// Then call for the widgets update if theres one
+				// Then call for the widgets update if there's one
 				if (oldRuleName != newRuleName) { //changed
 					int wID = dbManager.editRule(true, oldRuleName, new Rule(newRuleName,
 							editTextDescription.getText().toString(),
@@ -160,16 +167,16 @@ public class AddRule extends ActionBarActivity {
 		}
 	}
 
-	/**
-	 * Called when the cancel button on the AddRule Activity is clicked
-	 * @param view
-	 */
-	public void cancelButtonClicked(View view) {
-		//cancel
-		Log.i(logTag, "Cancel clicked");
-		super.onBackPressed();
-		//return to homepage
-	}
+//	/**
+//	 * Called when the cancel button on the AddRule Activity is clicked
+//	 * @param view
+//	 */
+//	public void cancelButtonClicked(View view) {
+//		//cancel
+//		Log.i(logTag, "Cancel clicked");
+//		super.onBackPressed();
+//		//return to homepage
+//	}
 
 	/**
 	 * AsyncTask to populate the fields if the activity was launched by an edit intent
