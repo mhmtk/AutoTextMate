@@ -33,7 +33,6 @@ public class DatabaseManager {
 	 */
 	public DatabaseManager(Context context){
 		this.dbHelper = new RuleDatabaseSQLHelper(context, "", null, 0);
-
 	}
 
 	/**
@@ -47,7 +46,7 @@ public class DatabaseManager {
 	public void setWidgetID(String ruleName, int widgetID) {
 		Log.i(logTag, "Add widget ID was called");
 
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get writable database
 		db = dbHelper.getWritableDatabase();
 
@@ -74,7 +73,7 @@ public class DatabaseManager {
 	public void resetWidgetIDs(int[] widgetIDs) {
 		Log.i(logTag, "Reset widget ID was called");
 
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get writable database
 		db = dbHelper.getWritableDatabase();
 		String query;
@@ -102,7 +101,7 @@ public class DatabaseManager {
 	 * @return The Rule object of the given rule
 	 */
 	public Rule getRule(String ruleName) {
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		db = dbHelper.getReadableDatabase();
 
 		String selectQuery = "SELECT  * FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
@@ -138,7 +137,7 @@ public class DatabaseManager {
 	 */
 	public Rule getRule(int widgetID) {
 
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		db = dbHelper.getReadableDatabase();
 
 		String selectQuery = "SELECT  * FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
@@ -178,7 +177,7 @@ public class DatabaseManager {
 	public int editRule(boolean widgetIdRequestFlag, String oldRuleName, Rule newRule) {
 		Log.i(logTag, "editRule was called");
 
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get writable database
 		db = dbHelper.getWritableDatabase();
 		
@@ -232,7 +231,7 @@ public class DatabaseManager {
 	public void addRule(Rule rule){
 		Log.i(logTag, "Add rule was called");
 
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get writable database
 		db = dbHelper.getWritableDatabase();
 
@@ -259,7 +258,7 @@ public class DatabaseManager {
 	public ArrayList<Rule> getRulesArray() {
 		ruleArray = new ArrayList<Rule>();
 		
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it 
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it 
 		//get readable database
 		db = dbHelper.getReadableDatabase();
 		//define a projection that specifies which columns from the database to use
@@ -316,7 +315,7 @@ public class DatabaseManager {
 	public ArrayList<Rule> getApplicableRules(){		
 		ruleArray = new ArrayList<Rule>();
 
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get readable database
 		db = dbHelper.getReadableDatabase();
 
@@ -369,7 +368,7 @@ public class DatabaseManager {
 	 */
 	public void toggleRuleStatus(String name) {
 		
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		db = dbHelper.getWritableDatabase();
 
 		String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_STATUS + 
@@ -411,7 +410,7 @@ public class DatabaseManager {
 	public int setRuleStatus(String name, boolean state) {
 		int status = state ? 1 : 0;
 
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		db = dbHelper.getWritableDatabase();
 
 		//Get the widget ID of the rule whose state is about to change
@@ -446,7 +445,7 @@ public class DatabaseManager {
 	 */
 	public int deleteRule(String ruleName) {
 		
-		while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		// while (db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		
 		db = dbHelper.getWritableDatabase();
 		
