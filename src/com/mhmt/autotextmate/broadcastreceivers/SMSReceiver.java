@@ -51,8 +51,7 @@ public class SMSReceiver extends BroadcastReceiver{
 			//REPLY			
 			final String pn = phoneNo;//re-create phone no string, to make it final 
 			
-		    Handler handler = new Handler(); 
-		    handler.postDelayed(new Runnable() { //Handler/Runnable usage in order to delay the reply
+		    new Handler().postDelayed(new Runnable() { //Handler/Runnable usage in order to delay the reply
 		         public void run() {
 		              SmsManager smsManager = SmsManager.getDefault();
 		              for (Rule r : dbManager.getApplicableRules()) { //Reply for each rule
