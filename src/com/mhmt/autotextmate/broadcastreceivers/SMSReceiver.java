@@ -16,13 +16,13 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 5, 2015
+ * @version November May 8, 2015
  * 
  */
 public class SMSReceiver extends BroadcastReceiver{
 
 	
-	private static long delay = 2000;
+	private static long delay = 2000; // 2 secs delay before responding
 	private String logTag = "SMSReceiver"; 
 
 	@Override
@@ -32,12 +32,12 @@ public class SMSReceiver extends BroadcastReceiver{
 		
 		final DatabaseManager dbManager = new DatabaseManager(context);
 		
-		
 		Bundle bundle = intent.getExtras();
 		SmsMessage[] msg = null;
 		
 		if (bundle != null) {
 			Log.i(logTag, "Non-null intent received");
+			Log.i(logTag, bundle.toString());
 			Object[] pdus = (Object[]) bundle.get("pdus");
 			msg = new SmsMessage[pdus.length];
 			for (int i=0; i<msg.length; i++) {
