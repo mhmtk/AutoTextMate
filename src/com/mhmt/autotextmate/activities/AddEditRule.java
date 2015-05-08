@@ -107,60 +107,71 @@ public class AddEditRule extends ActionBarActivity {
 
 		// TODO runnable
 		
-		dbManager = new DatabaseManager(getApplicationContext()); //get a DB
+		String newRuleName = editTextName.getText().toString().trim(); //get the new rule name
+		String ruleText = editTextText.getText().toString().trim(); //get the text
 
-		if (edit) { //Edit functionality
-			try {
-				String newRuleName = editTextName.getText().toString(); //get the new rule name
-
-				// If the name of the rule is changed request the wID from the DB.
-				// Then call for the widgets update if there's one
-				if (oldRuleName != newRuleName) { //changed
-					int wID = dbManager.editRule(true, oldRuleName, new Rule(newRuleName,
-							editTextDescription.getText().toString(),
-							editTextText.getText().toString(),
-							checkBoxContacts.isChecked()));
-					
-					// If the rule has a widget, call to update it
-					if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
-						Intent updateWidgetIntent = new Intent();
-						updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-						this.sendBroadcast(updateWidgetIntent);
-						Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
-						Toast.makeText(getApplicationContext(), "Rule edited, its widget will automatically update.", Toast.LENGTH_SHORT).show();
-					}
-				}
-				else { //if the name hasnt changed, dont request a wID
-					dbManager.editRule(false, oldRuleName, new Rule(newRuleName,
-							editTextDescription.getText().toString(),
-							editTextText.getText().toString(),
-							checkBoxContacts.isChecked()));
-					Toast.makeText(getApplicationContext(), "Rule edited.", Toast.LENGTH_SHORT).show();
-				}
-				Log.i(logTag, "Rule edited");
-				//return to homepage
-				super.onBackPressed();
-			}
-			catch(SQLiteConstraintException ex){ //catch constraint exceptions, and give error feedback to user
-				Toast.makeText(getApplicationContext(), "ERROR: A rule with that name already exists.", Toast.LENGTH_SHORT).show();
-				Log.i(logTag, "Rule not added, cought " + ex);
-			}
+		// Validate input
+		if (newRuleName == ""){
+			Toast.makeText(getApplicationContext(), "Name field cannot be empty", Toast.LENGTH_SHORT).show();
 		}
-		else { //Add functionality
-			//add Rule to DB
-			try {
-				dbManager.addRule(new Rule(editTextName.getText().toString(),
-						editTextDescription.getText().toString(),
-						editTextText.getText().toString(),
-						checkBoxContacts.isChecked()));
-				Log.i(logTag, "Rule added successfully");
-				Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
-				//return to homepage
-				super.onBackPressed();
+		else if(ruleText == ""){
+			Toast.makeText(getApplicationContext(), "Text field cannot be empty", Toast.LENGTH_SHORT).show();
+		}
+		else { //Input is valid
+			dbManager = new DatabaseManager(getApplicationContext()); //get a DB
+
+			if (edit) { //Edit functionality
+				try {
+
+					// If the name of the rule is changed request the wID from the DB.
+					// Then call for the widgets update if there's one
+					if (oldRuleName != newRuleName) { //changed
+						int wID = dbManager.editRule(true, oldRuleName, new Rule(newRuleName,
+								editTextDescription.getText().toString().trim(),
+								ruleText,
+								checkBoxContacts.isChecked()));
+
+						// If the rule has a widget, call to update it
+						if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
+							Intent updateWidgetIntent = new Intent();
+							updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+							this.sendBroadcast(updateWidgetIntent);
+							Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
+							Toast.makeText(getApplicationContext(), "Rule edited, its widget will automatically update.", Toast.LENGTH_SHORT).show();
+						}
+					}
+					else { //if the name hasnt changed, dont request a wID
+						dbManager.editRule(false, oldRuleName, new Rule(newRuleName,
+								editTextDescription.getText().toString(),
+								editTextText.getText().toString(),
+								checkBoxContacts.isChecked()));
+						Toast.makeText(getApplicationContext(), "Rule edited.", Toast.LENGTH_SHORT).show();
+					}
+					Log.i(logTag, "Rule edited");
+					//return to homepage
+					super.onBackPressed();
+				}
+				catch(SQLiteConstraintException ex){ //catch constraint exceptions, and give error feedback to user
+					Toast.makeText(getApplicationContext(), "ERROR: A rule with that name already exists.", Toast.LENGTH_SHORT).show();
+					Log.i(logTag, "Rule not added, cought " + ex);
+				}
 			}
-			catch(SQLiteConstraintException ex){ //catch constraint exceptions, and give error feedback to user
-				Toast.makeText(getApplicationContext(), "ERROR: Rule NOT added, name must be unique!", Toast.LENGTH_SHORT).show();
-				Log.i(logTag, "Rule not added, cought " + ex);
+			else { //Add functionality
+				//add Rule to DB
+				try {
+					dbManager.addRule(new Rule(editTextName.getText().toString(),
+							editTextDescription.getText().toString(),
+							editTextText.getText().toString(),
+							checkBoxContacts.isChecked()));
+					Log.i(logTag, "Rule added successfully");
+					Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
+					//return to homepage
+					super.onBackPressed();
+				}
+				catch(SQLiteConstraintException ex){ //catch constraint exceptions, and give error feedback to user
+					Toast.makeText(getApplicationContext(), "ERROR: Rule NOT added, name must be unique!", Toast.LENGTH_SHORT).show();
+					Log.i(logTag, "Rule not added, cought " + ex);
+				}
 			}
 		}
 	}
