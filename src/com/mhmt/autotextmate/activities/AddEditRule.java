@@ -114,10 +114,10 @@ public class AddEditRule extends ActionBarActivity {
 		String ruleText = editTextText.getText().toString().trim(); //get the text
 
 		// Validate input
-		if (newRuleName == ""){
+		if (newRuleName.length() == 0){
 			Toast.makeText(getApplicationContext(), "Name field cannot be empty", Toast.LENGTH_SHORT).show();
 		}
-		else if(ruleText == ""){
+		else if(ruleText.length() == 0){
 			Toast.makeText(getApplicationContext(), "Text field cannot be empty", Toast.LENGTH_SHORT).show();
 		}
 		else { //Input is valid
