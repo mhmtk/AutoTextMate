@@ -24,7 +24,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 7, 2015
+ * @version November May 8, 2015
  * 
  */
 public class AddEditRule extends ActionBarActivity {
@@ -137,11 +137,7 @@ public class AddEditRule extends ActionBarActivity {
 							checkBoxContacts.isChecked()));
 					Toast.makeText(getApplicationContext(), "Rule edited.", Toast.LENGTH_SHORT).show();
 				}
-
 				Log.i(logTag, "Rule edited");
-
-
-
 				//return to homepage
 				super.onBackPressed();
 			}
@@ -168,17 +164,6 @@ public class AddEditRule extends ActionBarActivity {
 			}
 		}
 	}
-
-//	/**
-//	 * Called when the cancel button on the AddEditRule Activity is clicked
-//	 * @param view
-//	 */
-//	public void cancelButtonClicked(View view) {
-//		//cancel
-//		Log.i(logTag, "Cancel clicked");
-//		super.onBackPressed();
-//		//return to homepage
-//	}
 
 	/**
 	 * AsyncTask to populate the fields if the activity was launched by an edit intent
