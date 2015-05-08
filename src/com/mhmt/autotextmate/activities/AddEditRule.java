@@ -49,6 +49,9 @@ public class AddEditRule extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_edit_rule);
 		assignViewFields();
+		
+		// For up navigation thru the action bar
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// If this activity is launched with an editing intent, start the asynctask to populate the fields
 		Intent intent = getIntent();
@@ -59,13 +62,10 @@ public class AddEditRule extends ActionBarActivity {
 			oldRuleName = intent.getStringExtra("ruleName");
 			new PopulateFieldsTask().execute(new String[] {oldRuleName});
 		}
-
-		// For up navigation thru the action bar
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	/**
-	 * Loads the views on the activity
+	 * Loads the views of the activity
 	 */
 	private void assignViewFields() {
 		editTextName = (EditText) findViewById(R.id.editText_name);
@@ -84,6 +84,9 @@ public class AddEditRule extends ActionBarActivity {
 		return true;
 	}
 
+	/**
+	 * If the save button is clicked, call hte saveButtonClicked() method
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -106,7 +109,7 @@ public class AddEditRule extends ActionBarActivity {
 		Log.i(logTag, "Save button clicked with edit as " + edit);
 
 		// TODO runnable
-		
+
 		String newRuleName = editTextName.getText().toString().trim(); //get the new rule name
 		String ruleText = editTextText.getText().toString().trim(); //get the text
 
@@ -119,7 +122,6 @@ public class AddEditRule extends ActionBarActivity {
 		}
 		else { //Input is valid
 			dbManager = new DatabaseManager(getApplicationContext()); //get a DB
-
 			if (edit) { //Edit functionality
 				try {
 
