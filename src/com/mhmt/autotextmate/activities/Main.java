@@ -34,14 +34,14 @@ public class Main extends ActionBarActivity {
 
 	private ListView ruleListView;
 	private ProgressBar progressBar;
-	
+
 	private DatabaseManager dbManager;
 	private ArrayList<Rule> ruleArray;
 	private String logTag = "Main";
 	private RuleListViewAdapter mListAdapter;
 	private boolean runResume;
 	private boolean listLoaded = false;
-	
+
 	private Context context;
 
 	@Override
@@ -49,20 +49,19 @@ public class Main extends ActionBarActivity {
 		Log.i(logTag, "onCreate called");
 		super.onCreate(savedInstanceState);
 		context = this;
-		
-		setContentView(R.layout.activity_main);
 
+		setContentView(R.layout.activity_main);
 
 		//Instantiate view(s)
 		ruleListView = (ListView) findViewById(R.id.main_list);
 		progressBar = (ProgressBar) findViewById(R.id.main_progress_bar);
-		
+
 		runResume = false;
-		
+
 		// Call for listview population
 		new PopulateListTask().execute(true);
 	}
-	
+
 	@Override
 	public void onResume(){
 		Log.i(logTag, "onResume called");
@@ -74,7 +73,7 @@ public class Main extends ActionBarActivity {
 		else
 			runResume = true;
 	}
-	
+
 	/**
 	 * AsyncTask to populate the listview with a list of rules
 	 * 
@@ -101,7 +100,7 @@ public class Main extends ActionBarActivity {
 			Log.i(logTag, "Retreived rule array from the DB.");
 			return ruleArray;
 		}
-		
+
 		@Override
 		protected void onPostExecute(ArrayList<Rule> ruleArray) {
 			// Populate the listview before completing the task
@@ -202,7 +201,7 @@ public class Main extends ActionBarActivity {
 					Log.i(logTag, "Did not broadcast widget update b/c " + mName + " has no widget");
 			}
 		};
-		
+
 
 	}
 
@@ -228,7 +227,7 @@ public class Main extends ActionBarActivity {
 		})
 		.show();
 	}
-	
+
 	/**
 	 * Queries to delete the rule with the given name.
 	 * If there is a widget associated with the rule, prompts the user for its removal and
@@ -240,29 +239,25 @@ public class Main extends ActionBarActivity {
 	 */
 	public void deleteRule(final String ruleName){
 
-		//Delete the rule from the DB
-		new Runnable() {
-			@Override
-			public void run() {
-				int wID = dbManager.deleteRule(ruleName);
-				if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
-					// Prompt the user to remove it manually
-					Toast t = Toast.makeText(getApplicationContext(), "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
-					t.setGravity(Gravity.TOP, 0, 50);
-					t.show();
-					
-					// Broadcsat widget Update so the text sets to ERROR
-					Intent updateWidgetIntent = new Intent();
-					updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-					context.sendBroadcast(updateWidgetIntent);
-					Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
-				}
-				
-				// Feedback
-				Toast.makeText(getApplicationContext(), "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();							
-			}
-		};
-		
+		Log.i(logTag, "Delete rule requested for Rule: " + ruleName);
+
+		int wID = dbManager.deleteRule(ruleName);
+		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
+			// Prompt the user to remove it manually
+			Toast t = Toast.makeText(getApplicationContext(), "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
+			t.setGravity(Gravity.TOP, 0, 50);
+			t.show();
+
+			// Broadcsat widget Update so the text sets to ERROR
+			Intent updateWidgetIntent = new Intent();
+			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+			context.sendBroadcast(updateWidgetIntent);
+			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
+		}
+
+		// Feedback
+		Toast.makeText(getApplicationContext(), "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();							
+
 		// Reconstruct view
 		new PopulateListTask().execute(false);
 	}
