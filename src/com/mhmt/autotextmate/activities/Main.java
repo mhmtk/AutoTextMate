@@ -91,8 +91,9 @@ public class Main extends ActionBarActivity {
 		@Override
 		protected ArrayList<Rule> doInBackground(Boolean... getDB) {
 			Log.i(logTag, "PopulateListTask background task started with runResume = " + runResume);
-			// If runResume == false, then onCreate called this, so get a DBmanager
+			// Should I get a DBmanager?
 			if (getDB[0]) { 
+				Log.i(logTag, "PopulateListTask is gettign a new DBManager.");
 				dbManager = new DatabaseManager(getApplicationContext());
 			}
 			//Get data from DB
