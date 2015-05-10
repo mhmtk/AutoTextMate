@@ -190,7 +190,6 @@ public class Main extends ActionBarActivity {
 			public void run() {
 				int wID = dbManager.setRuleStatus(mName, isChecked);
 				Log.i(logTag, "Rule status toggle complete");
-				Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_SHORT).show();
 				if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
 					//Send a broadcast for the widget to update itself
 					Intent updateWidgetIntent = new Intent();
