@@ -183,14 +183,14 @@ public class Main extends ActionBarActivity {
 	 */
 	public void onItemToggleClicked(final String mName, final boolean isChecked) {
 		//Documentation and feedback
-		Log.i(logTag, "Toggle item of " + mName + " set to " + isChecked + ".");
-		Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_SHORT).show();
 
 		//Change the status of the rule in the database-
 		new Runnable() {
 			@Override
 			public void run() {
-				int wID = dbManager.setRuleStatus(mName, isChecked);				
+				int wID = dbManager.setRuleStatus(mName, isChecked);
+				Log.i(logTag, "Rule status toggle complete");
+				Toast.makeText(getApplicationContext(), "Rule " + mName + " turned " + ( (isChecked) ? "on" : "off"),Toast.LENGTH_SHORT).show();
 				if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
 					//Send a broadcast for the widget to update itself
 					Intent updateWidgetIntent = new Intent();
@@ -201,7 +201,7 @@ public class Main extends ActionBarActivity {
 				else
 					Log.i(logTag, "Did not broadcast widget update b/c " + mName + " has no widget");
 			}
-		};
+		}.run();
 	}
 
 	/**
