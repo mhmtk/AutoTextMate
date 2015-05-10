@@ -201,8 +201,6 @@ public class Main extends ActionBarActivity {
 					Log.i(logTag, "Did not broadcast widget update b/c " + mName + " has no widget");
 			}
 		};
-
-
 	}
 
 	/**
