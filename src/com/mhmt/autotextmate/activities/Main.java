@@ -206,9 +206,10 @@ public class Main extends ActionBarActivity {
 	/**
 	 * onLongClick of each row of the listView, called thru the RuleListViewAdapter
 	 * 
-	 * @param mName the position of the item on the list, 0 indexed
+	 * @param mName The name of the rule long clicked on
+	 * @param text The text of the rule long clicked on
 	 */
-	public void onLongItemClick(final String ruleName) {
+	public void onLongItemClick(final String ruleName, String text) {
 		Log.i(logTag, "Long click detected at " + ruleName);
 
 		new AlertDialog.Builder(this)
@@ -223,6 +224,7 @@ public class Main extends ActionBarActivity {
 				deleteRule(ruleName);
 			}
 		})
+		.setMessage(text)
 		.show();
 	}
 

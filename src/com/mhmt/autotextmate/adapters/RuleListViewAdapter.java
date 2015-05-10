@@ -43,7 +43,11 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	private static LayoutInflater inflater=null;
 	public Resources res;
 	Rule tempValue=null;
+	private String tName;
+	private String tText;
+
 	//	int i=0;
+
 
 	/*************  RuleListViewAdapter Constructor *****************/
 	public RuleListViewAdapter(Activity a, @SuppressWarnings("rawtypes") ArrayList d,Resources resLocal) {
@@ -121,18 +125,20 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 			/***** Get each Model object from Arraylist ********/
 			tempValue=null;
 			tempValue = ( Rule ) data.get( position );
+			tName = tempValue.getName();
+			tText = tempValue.getText();
 
 			/************  Set Model values in Holder elements ***********/
 
-			holder.nameText.setText( tempValue.getName());
-			holder.descriptionText.setText( tempValue.getDescription() );
+			holder.nameText.setText(tName);
+			holder.descriptionText.setText(tText);
 			holder.statusToggle.setChecked((tempValue.getStatus() == 1) ? true : false);  
 
 			//Set onClick and onLongClick for each row, and their respective ToggleButton
 //			vi.setOnClickListener(new OnItemClickListener(position));
-			vi.setOnLongClickListener(new OnItemLongClickListener(tempValue.getName()));
+			vi.setOnLongClickListener(new OnItemLongClickListener(tName, tText));
 			
-			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tempValue.getName()));
+			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tName));
 
 //			// On touch listener to detect swipe event
 //			vi.setOnTouchListener(new View.OnTouchListener() {
@@ -309,16 +315,18 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	 */
 	private class OnItemLongClickListener implements OnLongClickListener {
 		private String mName;
+		private String mText;
 		
-		OnItemLongClickListener(String name){
+		OnItemLongClickListener(String name, String text){
 			mName = name;
+			mText = text;
 		}
 		
 		@Override
 		public boolean onLongClick(View v) {
 			// TODO Auto-generated method stub
 			Main sct = (Main) activity;
-			sct.onLongItemClick(mName);
+			sct.onLongItemClick(mName, mText);
 			return true;
 		}
 		
