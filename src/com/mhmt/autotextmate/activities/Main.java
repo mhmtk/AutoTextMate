@@ -181,15 +181,15 @@ public class Main extends ActionBarActivity {
 	 * @param mName the position of the toggle's item on the list, 0 indexed
 	 * @param isChecked True if toggle is on, false otherwise
 	 */
-	public void onItemToggleClicked(final String mName, final boolean isChecked) {
+	public void onItemToggleClicked(final String mName, final boolean status) {
 		//Documentation and feedback
 
 		//Change the status of the rule in the database-
 		new Runnable() {
 			@Override
 			public void run() {
-				int wID = dbManager.setRuleStatus(mName, isChecked);
-				Log.i(logTag, "Rule status toggle complete");
+				int wID = dbManager.setRuleStatus(mName, status);
+				Log.i(logTag, mName + " set to " + status);
 				if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
 					//Send a broadcast for the widget to update itself
 					Intent updateWidgetIntent = new Intent();
