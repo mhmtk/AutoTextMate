@@ -54,7 +54,8 @@ public class Main extends ActionBarActivity {
 
 		runResume = false;
 
-		// Call for listview population
+		// Call for ListView population in a background thread
+		Log.i(logTag, "onCreate is going to populate the list");
 		new PopulateListTask().execute(true);
 	}
 
@@ -100,6 +101,7 @@ public class Main extends ActionBarActivity {
 
 		@Override
 		protected void onPostExecute(ArrayList<Rule> ruleArray) {
+			Log.i(logTag, "Background part of populateListTask has ended");
 			// Populate the listview before completing the task
 			populateListView(ruleArray);
 			// Hide the progress bar
@@ -158,7 +160,7 @@ public class Main extends ActionBarActivity {
 			if (listLoaded)
 				startActivity(new Intent (this, AddEditRule.class));
 			else
-				Toast.makeText(this, "Please wait until the list is loaded to add another rule", Toast.LENGTH_SHORT).show();			
+				Toast.makeText(this, "Please wait for the list to load before adding another rule", Toast.LENGTH_SHORT).show();			
 		}
 		else{
 			Intent editIntent = new Intent(this, AddEditRule.class);
@@ -178,9 +180,6 @@ public class Main extends ActionBarActivity {
 	 * @param isChecked True if toggle is on, false otherwise
 	 */
 	public void onItemToggleClicked(final String mName, final boolean status) {
-		//Documentation and feedback
-
-		//Change the status of the rule in the database-
 		new Runnable() {
 			@Override
 			public void run() {
