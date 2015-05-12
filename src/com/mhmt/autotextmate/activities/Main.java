@@ -9,7 +9,6 @@ import com.mhmt.autotextmate.dataobjects.Rule;
 
 import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -42,13 +41,10 @@ public class Main extends ActionBarActivity {
 	private boolean runResume;
 	private boolean listLoaded = false;
 
-	private Context context;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.i(logTag, "onCreate called");
 		super.onCreate(savedInstanceState);
-		context = this;
 
 		setContentView(R.layout.activity_main);
 
