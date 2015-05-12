@@ -4,7 +4,7 @@ package com.mhmt.autotextmate.dataobjects;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 24, 2015
+ * @version November May 12, 2015
  * 
  */
 public class Rule {
@@ -13,20 +13,23 @@ public class Rule {
 	String description;
 	String text;
 	int onlyContacts;
+	int replyTo;
 	int status;
-	
+
 	/**
 	 * 
 	 * @param name	Name of the rule
 	 * @param description Description of the rule
 	 * @param text Text SMS text of the rule
 	 * @param onlyContacts	Should the rule only apply to contacts?
+	 * @param replyTo SMS, Call, or Both
 	 */
-	public Rule(String name, String description, String text, Boolean onlyContacts) {
+	public Rule(String name, String description, String text, boolean onlyContacts, int replyTo) {
 		this.name = name;
 		this.description = description;
 		this.text = text;
 		this.onlyContacts = onlyContacts ? 1 : 0;
+		this.replyTo = replyTo;
 		this.status = 1;
 	}
 	
@@ -36,14 +39,16 @@ public class Rule {
 	 * @param description Description of the rule
 	 * @param text Text SMS text of the rule
 	 * @param onlyContacts	Should the rule only apply to contacts?
+	 * @param replyTo SMS, Call, or Both
 	 * @param status Is the rule on or off
 	 */
-	public Rule(String name, String description, String text, int onlyContacts, int status) {
+	public Rule(String name, String description, String text, int onlyContacts, int replyTo, int status) {
 		this.name = name;
 		this.description = description;
 		this.text = text;
 		this.onlyContacts = onlyContacts;
 		this.status = status;
+		this.replyTo = replyTo;
 	}
 
 	public String getName() {
@@ -60,6 +65,16 @@ public class Rule {
 
 	public int getOnlyContacts() {
 		return onlyContacts;
+	}
+	
+	/**
+	 * 0 = Both
+	 * 1 = SMS
+	 * 2 = Call
+	 * @return
+	 */
+	public int getReplyTo() {
+		return replyTo;
 	}
 	
 	public int getStatus() {

@@ -23,7 +23,8 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp" >
+
         <LinearLayout
             android:id="@+id/addRule_fields"
             android:layout_width="fill_parent"
@@ -101,27 +102,31 @@
                     android:layout_height="wrap_content" >
 
                     <RadioButton
+                        android:id="@+id/radio_both"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:tag="0"
+                        android:text="@string/radio_both" />
+
+                    <RadioButton
                         android:id="@+id/radio_sms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="1"
                         android:text="@string/radio_sms" />
 
                     <RadioButton
                         android:id="@+id/radio_call"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
+                        android:tag="2"
                         android:text="@string/radio_call" />
-
-                    <RadioButton
-                        android:id="@+id/radio_both"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/radio_both" />
                 </RadioGroup>
             </LinearLayout>
 
-<!--             <LinearLayout
+            <!--
+                 <LinearLayout
                 android:id="@+id/linearLayout_buttons"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -146,7 +151,8 @@
                     android:paddingEnd="15dp"
                     android:paddingRight="15dp"
                     android:text="@string/button_cancel" />
-            </LinearLayout> -->
+            </LinearLayout>
+            -->
         </LinearLayout>
     </ScrollView>
 

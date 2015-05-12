@@ -416,10 +416,10 @@ int id normal 0x7f0a000b
 int id progress_circular 0x7f0a0007
 int id progress_horizontal 0x7f0a0008
 int id radio 0x7f0a002b
-int id radio_both 0x7f0a004c
-int id radio_call 0x7f0a004b
+int id radio_both 0x7f0a004a
+int id radio_call 0x7f0a004c
 int id radio_replyTo 0x7f0a0049
-int id radio_sms 0x7f0a004a
+int id radio_sms 0x7f0a004b
 int id search_badge 0x7f0a0035
 int id search_bar 0x7f0a0034
 int id search_button 0x7f0a0036

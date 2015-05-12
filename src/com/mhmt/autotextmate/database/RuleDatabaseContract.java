@@ -1,12 +1,11 @@
 package com.mhmt.autotextmate.database;
 
-
 import android.provider.BaseColumns;
 
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 27, 2015
+ * @version November May 12, 2015
  * 
  */
 public class RuleDatabaseContract {
@@ -24,6 +23,7 @@ public class RuleDatabaseContract {
 		public static final String RULE_COLUMN_DESCRIPTION = "description";
 		public static final String RULE_COLUMN_TEXT = "text";
 		public static final String RULE_COLUMN_ONLYCONTACTS = "onlyContacts";
+		public static final String RULE_COLUMN_REPLY_TO = "replyTo";
 		public static final String RULE_COLUMN_STATUS = "status";
 		public static final String RULE_COLUMN_WIDGET_ID = "widgetID";
 	}

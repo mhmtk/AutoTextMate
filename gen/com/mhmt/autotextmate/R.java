@@ -1721,10 +1721,10 @@ containing a value of this type.
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a002b;
-        public static final int radio_both=0x7f0a004c;
-        public static final int radio_call=0x7f0a004b;
+        public static final int radio_both=0x7f0a004a;
+        public static final int radio_call=0x7f0a004c;
         public static final int radio_replyTo=0x7f0a0049;
-        public static final int radio_sms=0x7f0a004a;
+        public static final int radio_sms=0x7f0a004b;
         public static final int search_badge=0x7f0a0035;
         public static final int search_bar=0x7f0a0034;
         public static final int search_button=0x7f0a0036;

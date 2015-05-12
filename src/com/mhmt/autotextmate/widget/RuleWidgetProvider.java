@@ -14,7 +14,7 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version May 5, 2015
+ * @version May 12, 2015
  */
 public class RuleWidgetProvider extends AppWidgetProvider {
 

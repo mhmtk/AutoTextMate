@@ -1,6 +1,7 @@
 package com.mhmt.autotextmate.database;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.mhmt.autotextmate.database.RuleDatabaseContract.RuleEntry;
 import com.mhmt.autotextmate.dataobjects.Rule;
@@ -17,7 +18,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 6, 2015
+ * @version November May 12, 2015
  * 
  */
 public class DatabaseManager {
@@ -119,6 +120,7 @@ public class DatabaseManager {
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
 		}
 		else 
@@ -155,6 +157,7 @@ public class DatabaseManager {
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
 		}
 		else 
@@ -206,15 +209,17 @@ public class DatabaseManager {
 				" , " + RuleEntry.RULE_COLUMN_DESCRIPTION + "=?" +
 				" , " + RuleEntry.RULE_COLUMN_TEXT + "=?" +
 				" , " + RuleEntry.RULE_COLUMN_ONLYCONTACTS + "=?" +
+				" , " + RuleEntry.RULE_COLUMN_REPLY_TO + "=?" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "=?" ;		
 		String[] updateQueryArgs = new String[] {
 				newRule.getName(),
 				newRule.getDescription(),
 				newRule.getText(),
 				String.valueOf(newRule.getOnlyContacts()),
+				String.valueOf(newRule.getReplyTo()),
 				oldRuleName
 		};
-		Log.i(logTag, updateQuery + " ** " + updateQueryArgs.toString());
+		Log.i(logTag, updateQuery + " ** " + Arrays.toString(updateQueryArgs));
 		db.execSQL(updateQuery, updateQueryArgs);
 
 		db.close(); //close database 
@@ -268,6 +273,7 @@ public class DatabaseManager {
 				RuleEntry.RULE_COLUMN_DESCRIPTION,
 				RuleEntry.RULE_COLUMN_TEXT,
 				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
+				RuleEntry.RULE_COLUMN_REPLY_TO,
 				RuleEntry.RULE_COLUMN_STATUS
 		};
 
@@ -297,8 +303,8 @@ public class DatabaseManager {
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)))
-			;
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
 			ruleArray.add(p);
 			c.moveToNext();
 		}
@@ -347,13 +353,14 @@ public class DatabaseManager {
 
 
 		while(!c.isAfterLast())
-		{ //add the rules to the arraylist
+		{ //add the rules to the ArrayList
 			ruleArray.add(new Rule("",	//no name
 					"",					//no description
-					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
-					1					//they should all be 1 (on) anyway
-					));
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)), //text
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), //onlyContacts
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)), //reply to
+					1					//status - all should be 1 (on) anyway
+					)); // TODO new constructor with only used fields
 			c.moveToNext();
 		}
 

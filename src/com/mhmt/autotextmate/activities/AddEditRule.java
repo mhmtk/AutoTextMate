@@ -18,13 +18,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 8, 2015
+ * @version November May 12, 2015
  * 
  */
 public class AddEditRule extends ActionBarActivity {
@@ -49,7 +50,7 @@ public class AddEditRule extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_edit_rule);
 		assignViewFields();
-		
+
 		// For up navigation thru the action bar
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -131,7 +132,8 @@ public class AddEditRule extends ActionBarActivity {
 						int wID = dbManager.editRule(true, oldRuleName, new Rule(newRuleName,
 								editTextDescription.getText().toString().trim(),
 								ruleText,
-								checkBoxContacts.isChecked()));
+								checkBoxContacts.isChecked(),
+								getReplyTo()));
 
 						// If the rule has a widget, call to update it
 						if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -146,7 +148,8 @@ public class AddEditRule extends ActionBarActivity {
 						dbManager.editRule(false, oldRuleName, new Rule(newRuleName,
 								editTextDescription.getText().toString(),
 								editTextText.getText().toString(),
-								checkBoxContacts.isChecked()));
+								checkBoxContacts.isChecked(),
+								getReplyTo()));
 						Toast.makeText(getApplicationContext(), "Rule edited.", Toast.LENGTH_SHORT).show();
 					}
 					Log.i(logTag, "Rule edited");
@@ -164,7 +167,8 @@ public class AddEditRule extends ActionBarActivity {
 					dbManager.addRule(new Rule(editTextName.getText().toString(),
 							editTextDescription.getText().toString(),
 							editTextText.getText().toString(),
-							checkBoxContacts.isChecked()));
+							checkBoxContacts.isChecked(),
+							getReplyTo()));
 					Log.i(logTag, "Rule added successfully");
 					Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
 					//return to homepage
@@ -176,6 +180,12 @@ public class AddEditRule extends ActionBarActivity {
 				}
 			}
 		}
+	}
+
+	private int getReplyTo() {
+		Log.i(logTag, "returning replyto " + radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId())));
+		return radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId()));
+		//		return Integer.parseInt((String) ((RadioButton) findViewById(radioReplyTo.getCheckedRadioButtonId())).getTag());
 	}
 
 	/**
@@ -205,6 +215,8 @@ public class AddEditRule extends ActionBarActivity {
 			editTextDescription.setText(rule.getDescription());
 			editTextText.setText(rule.getText());
 			checkBoxContacts.setChecked( (rule.getOnlyContacts() == 1) ? true : false);
+			Log.i(logTag, "replyto index: " + rule.getReplyTo());
+			((RadioButton) radioReplyTo.getChildAt(rule.getReplyTo())).setChecked(true);
 
 			// Progress bar disappears
 			progressBar.setVisibility(View.GONE);

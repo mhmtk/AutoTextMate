@@ -12,7 +12,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 5, 2015
+ * @version November April 12, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
@@ -25,9 +25,11 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	private static final String NOT_NULL = " NOT_NULL";
 	private static final String UNIQUE = " UNIQUE";
 	private static final String DEFAULT = " DEFAULT";
+	private static final String REPLY_TO_CHECK = " CHECK(" + RuleEntry.RULE_COLUMN_REPLY_TO + " < 3)" ;
 	private static final String STATUS_DEFAULT_VALUE = " 1";
 	
 	public static boolean INITIALIZED = false;
+
 
 	//SQL command to create RULE table
 	private static final String SQL_CREATE_RULE=
@@ -35,10 +37,12 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 					RuleEntry._ID + " INTEGER PRIMARY KEY," +
 					RuleEntry.RULE_COLUMN_NAME + TEXT_TYPE + NOT_NULL + UNIQUE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
-					RuleEntry.RULE_COLUMN_TEXT + TEXT_TYPE + COMMA_SEP +
+					RuleEntry.RULE_COLUMN_TEXT + TEXT_TYPE + NOT_NULL + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_ONLYCONTACTS + INTEGER_TYPE + COMMA_SEP +
+					RuleEntry.RULE_COLUMN_REPLY_TO + INTEGER_TYPE + COMMA_SEP +
+//					RuleEntry.RULE_COLUMN_REPLY_TO + INTEGER_TYPE + REPLY_TO_CHECK + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_STATUS + INTEGER_TYPE + DEFAULT + STATUS_DEFAULT_VALUE + COMMA_SEP +
-					RuleEntry.RULE_COLUMN_WIDGET_ID + INTEGER_TYPE + DEFAULT + AppWidgetManager.INVALID_APPWIDGET_ID + ")";
+					RuleEntry.RULE_COLUMN_WIDGET_ID + INTEGER_TYPE + DEFAULT + " " + AppWidgetManager.INVALID_APPWIDGET_ID + ")";
 	
 	//SQL command to drop (delete) the rule table
 	private static final String SQL_DELETE_RULE_TABLE = 

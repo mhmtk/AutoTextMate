@@ -27,7 +27,7 @@ import android.widget.ToggleButton;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 5, 2015
+ * @version November May 12, 2015
  *  
  * Inspired by http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
  */
@@ -133,128 +133,142 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 			holder.nameText.setText(tName);
 			holder.descriptionText.setText(tText);
 			holder.statusToggle.setChecked((tempValue.getStatus() == 1) ? true : false);  
+			switch (tempValue.getReplyTo()) {
+				case 0:
+					holder.smsImage.setVisibility(View.VISIBLE);
+					holder.callImage.setVisibility(View.VISIBLE);
+					break;
+				case 1: // 1 = SMS, so hide call
+					holder.smsImage.setVisibility(View.VISIBLE);
+					holder.callImage.setVisibility(View.INVISIBLE);
+					break;
+				case 2: // 1 = Call, so hide SMS
+					holder.smsImage.setVisibility(View.INVISIBLE);
+					holder.callImage.setVisibility(View.VISIBLE);
+					break;
+			}
 
 			//Set onClick and onLongClick for each row, and their respective ToggleButton
-//			vi.setOnClickListener(new OnItemClickListener(position));
+			//			vi.setOnClickListener(new OnItemClickListener(position));
 			vi.setOnLongClickListener(new OnItemLongClickListener(tName, tText));
-			
+
 			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tName));
 
-//			// On touch listener to detect swipe event
-//			vi.setOnTouchListener(new View.OnTouchListener() {
-//
-//			    int initialX = 0;
-//			    final float slop = ViewConfiguration.get(activity).getScaledTouchSlop();
-//			    int DEFAULT_THRESHOLD = 100;
-//
-//			    public boolean onTouch(final View view, MotionEvent event) {
-//			        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//			            initialX = (int) event.getX();
-//			            view.setPadding(0, 0, 0, 0);
-//			            return false;
-//			        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-//			            int currentX = (int) event.getX();
-//			            int offset = currentX - initialX;
-//			            if (Math.abs(offset) > slop) {
-//			                view.setPadding(offset, 0, 0, 0);
-//
-//			                if (offset > DEFAULT_THRESHOLD) {
-//			                    // TODO :: Do Right to Left action! And do nothing on action_up.
-//			                	return true;
-//			                } else if (offset < -DEFAULT_THRESHOLD) {
-//			                    // TODO :: Do Left to Right action! And do nothing on action_up.
-//			                	return true;
-//			                }
-//			            }
-//			        } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-//			            // Animate back if no action was performed.
-//			            ValueAnimator animator = ValueAnimator.ofInt(view.getPaddingLeft(), 0);
-//			            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//			                @Override
-//			                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-//			                    view.setPadding((Integer) valueAnimator.getAnimatedValue(), 0, 0, 0);
-//			                }
-//			            });
-//			            animator.setDuration(150);
-//			            animator.start();
-//			            return false;
-//			        }
-//			        return false;
-//			}});
-			
-			
-//			vi.setOnTouchListener(new onItemTouchListener(position));
-			
+			//			// On touch listener to detect swipe event
+			//			vi.setOnTouchListener(new View.OnTouchListener() {
+			//
+			//			    int initialX = 0;
+			//			    final float slop = ViewConfiguration.get(activity).getScaledTouchSlop();
+			//			    int DEFAULT_THRESHOLD = 100;
+			//
+			//			    public boolean onTouch(final View view, MotionEvent event) {
+			//			        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			//			            initialX = (int) event.getX();
+			//			            view.setPadding(0, 0, 0, 0);
+			//			            return false;
+			//			        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+			//			            int currentX = (int) event.getX();
+			//			            int offset = currentX - initialX;
+			//			            if (Math.abs(offset) > slop) {
+			//			                view.setPadding(offset, 0, 0, 0);
+			//
+			//			                if (offset > DEFAULT_THRESHOLD) {
+			//			                    // TODO :: Do Right to Left action! And do nothing on action_up.
+			//			                	return true;
+			//			                } else if (offset < -DEFAULT_THRESHOLD) {
+			//			                    // TODO :: Do Left to Right action! And do nothing on action_up.
+			//			                	return true;
+			//			                }
+			//			            }
+			//			        } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+			//			            // Animate back if no action was performed.
+			//			            ValueAnimator animator = ValueAnimator.ofInt(view.getPaddingLeft(), 0);
+			//			            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+			//			                @Override
+			//			                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+			//			                    view.setPadding((Integer) valueAnimator.getAnimatedValue(), 0, 0, 0);
+			//			                }
+			//			            });
+			//			            animator.setDuration(150);
+			//			            animator.start();
+			//			            return false;
+			//			        }
+			//			        return false;
+			//			}});
 
-//			vi.setOnTouchListener(new View.OnTouchListener() {
-//
-//				float downX = 0, downY = 0;
-//
-//				@Override
-//				public boolean onTouch(View v, MotionEvent event) {
-//					final int MIN_X_DISTANCE = 50;
-//					final int MAX_Y_DISTANCE = 20;
-//					switch (event.getAction())  {
-//					case MotionEvent.ACTION_DOWN: {
-//						downX = event.getX();
-//						downY = event.getY();
-//						Log.i(logTag, "Action down detected. DownX = " + downX + ", downY = " + downY);
-//						return false; // allow other events like Click to be processed
-//					}
-//					case MotionEvent.ACTION_UP: {
-//						float deltaX = event.getX() - downX;
-//						float deltaY = event.getY() - downY;
-//						Log.i(logTag, "Action up detected. upX = " + event.getX() + ", upY = " + event.getY() +" dx = " + deltaX + ", dy = " + deltaY);
-//						if (deltaX > 0 && deltaX > MIN_X_DISTANCE && Math.abs(deltaY) < MAX_Y_DISTANCE) {
-//							Log.i(logTag, "Swipe right detected.");
-//							//TODO Swipe right action
-//							v.setPadding(50, 0, 0, 0);
-//							
-//							return true;
-//						}
-//						return false;
-//					}
-////					case MotionEvent.ACTION_MOVE: {
-////						Log.i(logTag, "Action move detected");
-////						upX = event.getX();
-////						upY = event.getY();
-////						float deltaX = downX - upX;
-////						float deltaY = downY - upY;
-////
-////						// horizontal swipe detection
-////						if (Math.abs(deltaX) > MIN_DISTANCE) {
-////							// left or right
-////							if (deltaX < 0) {
-////								Log.i(logTag, "Swipe Left to Right");
-////								return true;
-////							}
-////							if (deltaX > 0) {
-////								Log.i(logTag, "Swipe Right to Left");
-////								return true;
-////							}
-////						} else {
-////							// vertical swipe detection
-////							if (Math.abs(deltaY) > MIN_DISTANCE) {
-////								// top or down
-////								if (deltaY < 0) {
-////									Log.i(logTag, "Swipe Top to Bottom");
-////									return false;
-////								}
-////								if (deltaY > 0) {
-////									Log.i(logTag, "Swipe Bottom to Top");
-////									return false;
-////								}
-////							} 
-////						}
-////						return true;
-////					}
-//					
-//					}
-//					return false;
-//				}
-//			}); //end of vi.setOnTouchListener
+
+			//			vi.setOnTouchListener(new onItemTouchListener(position));
+
+
+			//			vi.setOnTouchListener(new View.OnTouchListener() {
+			//
+			//				float downX = 0, downY = 0;
+			//
+			//				@Override
+			//				public boolean onTouch(View v, MotionEvent event) {
+			//					final int MIN_X_DISTANCE = 50;
+			//					final int MAX_Y_DISTANCE = 20;
+			//					switch (event.getAction())  {
+			//					case MotionEvent.ACTION_DOWN: {
+			//						downX = event.getX();
+			//						downY = event.getY();
+			//						Log.i(logTag, "Action down detected. DownX = " + downX + ", downY = " + downY);
+			//						return false; // allow other events like Click to be processed
+			//					}
+			//					case MotionEvent.ACTION_UP: {
+			//						float deltaX = event.getX() - downX;
+			//						float deltaY = event.getY() - downY;
+			//						Log.i(logTag, "Action up detected. upX = " + event.getX() + ", upY = " + event.getY() +" dx = " + deltaX + ", dy = " + deltaY);
+			//						if (deltaX > 0 && deltaX > MIN_X_DISTANCE && Math.abs(deltaY) < MAX_Y_DISTANCE) {
+			//							Log.i(logTag, "Swipe right detected.");
+			//							//TODO Swipe right action
+			//							v.setPadding(50, 0, 0, 0);
+			//							
+			//							return true;
+			//						}
+			//						return false;
+			//					}
+			////					case MotionEvent.ACTION_MOVE: {
+			////						Log.i(logTag, "Action move detected");
+			////						upX = event.getX();
+			////						upY = event.getY();
+			////						float deltaX = downX - upX;
+			////						float deltaY = downY - upY;
+			////
+			////						// horizontal swipe detection
+			////						if (Math.abs(deltaX) > MIN_DISTANCE) {
+			////							// left or right
+			////							if (deltaX < 0) {
+			////								Log.i(logTag, "Swipe Left to Right");
+			////								return true;
+			////							}
+			////							if (deltaX > 0) {
+			////								Log.i(logTag, "Swipe Right to Left");
+			////								return true;
+			////							}
+			////						} else {
+			////							// vertical swipe detection
+			////							if (Math.abs(deltaY) > MIN_DISTANCE) {
+			////								// top or down
+			////								if (deltaY < 0) {
+			////									Log.i(logTag, "Swipe Top to Bottom");
+			////									return false;
+			////								}
+			////								if (deltaY > 0) {
+			////									Log.i(logTag, "Swipe Bottom to Top");
+			////									return false;
+			////								}
+			////							} 
+			////						}
+			////						return true;
+			////					}
+			//					
+			//					}
+			//					return false;
+			//				}
+			//			}); //end of vi.setOnTouchListener
 		} //end of else
-		
+
 		return vi;
 	}
 
@@ -316,12 +330,12 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 	private class OnItemLongClickListener implements OnLongClickListener {
 		private String mName;
 		private String mText;
-		
+
 		OnItemLongClickListener(String name, String text){
 			mName = name;
 			mText = text;
 		}
-		
+
 		@Override
 		public boolean onLongClick(View v) {
 			// TODO Auto-generated method stub
@@ -329,31 +343,31 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 			sct.onLongItemClick(mName, mText);
 			return true;
 		}
-		
+
 	}
-	
-//	/**
-//	 * OnItemClickListener class for the usage of each row of the list. Will call
-//	 * the onItemClick method of the Main activity, passing it the position of the row
-//	 * 
-//	 * @author Mehmet Kologlu
-//	 */
-//	private class OnItemClickListener implements OnClickListener{           
-//		private int mPosition;
-//
-//		//implement constructor to enable passing the position
-//		OnItemClickListener(int position){
-//			mPosition = position;
-//		}
-//
-//		@Override
-//		public void onClick(View arg0) {
-//
-//			//get an instance of the main activity
-//			Main sct = (Main) activity;
-//
-//			//call the onItemClick method of the Main activity
-//			sct.onItemClick(mPosition);
-//		}               
-//	}   
+
+	//	/**
+	//	 * OnItemClickListener class for the usage of each row of the list. Will call
+	//	 * the onItemClick method of the Main activity, passing it the position of the row
+	//	 * 
+	//	 * @author Mehmet Kologlu
+	//	 */
+	//	private class OnItemClickListener implements OnClickListener{           
+	//		private int mPosition;
+	//
+	//		//implement constructor to enable passing the position
+	//		OnItemClickListener(int position){
+	//			mPosition = position;
+	//		}
+	//
+	//		@Override
+	//		public void onClick(View arg0) {
+	//
+	//			//get an instance of the main activity
+	//			Main sct = (Main) activity;
+	//
+	//			//call the onItemClick method of the Main activity
+	//			sct.onItemClick(mPosition);
+	//		}               
+	//	}   
 }
