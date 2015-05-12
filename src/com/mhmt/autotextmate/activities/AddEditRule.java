@@ -49,7 +49,15 @@ public class AddEditRule extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_edit_rule);
-		assignViewFields();
+		
+		// Get views
+		editTextName = (EditText) findViewById(R.id.editText_name);
+		editTextDescription = (EditText) findViewById(R.id.editText_description);
+		editTextText = (EditText) findViewById(R.id.editText_text);
+		checkBoxContacts = (CheckBox) findViewById(R.id.checkBox_contactsOnly);
+		radioReplyTo = (RadioGroup) findViewById(R.id.radio_replyTo);
+		progressBar = (ProgressBar) findViewById(R.id.addedit_progress_bar);
+		fields = (LinearLayout) findViewById(R.id.addRule_fields);
 
 		// For up navigation thru the action bar
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -63,19 +71,6 @@ public class AddEditRule extends ActionBarActivity {
 			oldRuleName = intent.getStringExtra("ruleName");
 			new PopulateFieldsTask().execute(new String[] {oldRuleName});
 		}
-	}
-
-	/**
-	 * Loads the views of the activity
-	 */
-	private void assignViewFields() {
-		editTextName = (EditText) findViewById(R.id.editText_name);
-		editTextDescription = (EditText) findViewById(R.id.editText_description);
-		editTextText = (EditText) findViewById(R.id.editText_text);
-		checkBoxContacts = (CheckBox) findViewById(R.id.checkBox_contactsOnly);
-		radioReplyTo = (RadioGroup) findViewById(R.id.radio_replyTo);
-		progressBar = (ProgressBar) findViewById(R.id.addedit_progress_bar);
-		fields = (LinearLayout) findViewById(R.id.addRule_fields);
 	}
 
 	@Override
