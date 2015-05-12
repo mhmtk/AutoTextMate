@@ -26,7 +26,6 @@ import android.widget.Toast;
  */
 public class SMSReceiver extends BroadcastReceiver{
 
-
 	private static long delay = 2000; // 2 secs delay before responding
 	private String logTag = "SMSReceiver"; 
 	private Context context;
@@ -112,7 +111,6 @@ public class SMSReceiver extends BroadcastReceiver{
 					contactLookup.close();
 			}
 		}
-
-		return false; //TODO
+		return false;
 	}
 }
