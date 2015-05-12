@@ -63,10 +63,18 @@ public class Rule {
 		this.description = "";
 		this.text = "";
 		this.onlyContacts = -1;
-		this.status = -1;
 		this.replyTo = -1;
 		this.status = status;
 	}
+	public Rule(String text, int onlyContacts, int replyTo) {
+		this.name = "";
+		this.description = "";
+		this.text = text;
+		this.onlyContacts = onlyContacts;
+		this.replyTo = replyTo;
+		this.status = -1;
+	}
+
 	public String getName() {
 		return name;
 	}

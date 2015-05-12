@@ -314,7 +314,7 @@ public class DatabaseManager {
 	/**
 	 * Returns the rules that are on
 	 * 
-	 * @return an arraylist<rule> of rules that are turned on (status == 1)
+	 * @return an ArrayList<rule> of rules that are turned on (status == 1)
 	 */
 	public ArrayList<Rule> getEnabledSMSRules(){		
 		ruleArray = new ArrayList<Rule>();
@@ -352,13 +352,11 @@ public class DatabaseManager {
 
 		while(!c.isAfterLast())
 		{ //add the rules to the ArrayList
-			ruleArray.add(new Rule("",	//no name
-					"",					//no description
+			ruleArray.add(new Rule(
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)), //text
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), //onlyContacts
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)), //reply to
-					1					//status - all should be 1 (on) anyway
-					)); // TODO new constructor with only used fields
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)) //reply to
+					));
 			c.moveToNext();
 		}
 
