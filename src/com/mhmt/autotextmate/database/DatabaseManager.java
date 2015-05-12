@@ -142,22 +142,20 @@ public class DatabaseManager {
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		db = dbHelper.getReadableDatabase();
 
-		String selectQuery = "SELECT  * FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
-				+ RuleEntry.RULE_COLUMN_WIDGET_ID + " ='" + widgetID + "'";
+		String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_NAME 
+				+ " , " + RuleEntry.RULE_COLUMN_STATUS + 
+				" FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
+				+ RuleEntry.RULE_COLUMN_WIDGET_ID + " =?";
 
 		//Log the query
-		Log.i(logTag, selectQuery);
+		Log.i(logTag, selectQuery + " ** " + widgetID);
 
-		Cursor c = db.rawQuery(selectQuery, null);
+		Cursor c = db.rawQuery(selectQuery, new String[] {String.valueOf(widgetID)});
 
-		Rule rule = null;
+		Rule rule = null; //dummy instantiation
 
 		if (c.moveToFirst()) {
 			rule = new Rule(c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
-					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
-					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
 		}
 		else 

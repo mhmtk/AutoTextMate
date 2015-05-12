@@ -51,6 +51,22 @@ public class Rule {
 		this.replyTo = replyTo;
 	}
 
+	/**
+	 * Constructing a Rule with only name and status, the rest will be either "" or 0.
+	 * For use of getRule(widgetID), so it does less work, avoids unnecessary fields
+	 * 
+	 * @param name
+	 * @param status
+	 */
+	public Rule(String name, int status) {
+		this.name = name;
+		this.description = "";
+		this.text = "";
+		this.onlyContacts = -1;
+		this.status = -1;
+		this.replyTo = -1;
+		this.status = status;
+	}
 	public String getName() {
 		return name;
 	}
