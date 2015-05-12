@@ -27,7 +27,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 7, 2015
+ * @version November May 12, 2015
  * 
  */
 public class Main extends ActionBarActivity {
@@ -125,7 +125,7 @@ public class Main extends ActionBarActivity {
 		Log.i(logTag, "populateListView called.");
 
 		if(ruleArray.isEmpty()) //if the loaded rule array is empty
-			Toast.makeText(getApplicationContext(), "You have no saved rules to view", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "You have no saved rules to view", Toast.LENGTH_SHORT).show();
 
 		//pass the adapter with the array to the list view
 		mListAdapter = new RuleListViewAdapter(this, ruleArray, getResources());
@@ -135,21 +135,18 @@ public class Main extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 		case R.id.action_new:
 			launchAddEditRuleActivity(null); //launch addEdit rule in add mode
 			return true;
 		case R.id.action_settings:
+			// TODO launch settings?
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -165,7 +162,7 @@ public class Main extends ActionBarActivity {
 			if (listLoaded)
 				startActivity(new Intent (this, AddEditRule.class));
 			else
-				Toast.makeText(getApplicationContext(), "Please wait until the list is loaded to add another rule", Toast.LENGTH_SHORT).show();			
+				Toast.makeText(this, "Please wait until the list is loaded to add another rule", Toast.LENGTH_SHORT).show();			
 		}
 		else{
 			Intent editIntent = new Intent(this, AddEditRule.class);
@@ -175,8 +172,11 @@ public class Main extends ActionBarActivity {
 	}
 
 	/**
-	 * onClick-ish method for the togglebutton in each row of the listView, 
-	 * called thru the RuleListViewAdapter 
+	 * onToggle method for the toggle button in each row of the listView, 
+	 * called thru the RuleListViewAdapter.
+	 * 
+	 * Creates a new thread to run in the background that queries the DB to
+	 * change the rule's status and then braodcasts a widget update if needed.
 	 * 
 	 * @param mName the position of the toggle's item on the list, 0 indexed
 	 * @param isChecked True if toggle is on, false otherwise
@@ -194,7 +194,7 @@ public class Main extends ActionBarActivity {
 					//Send a broadcast for the widget to update itself
 					Intent updateWidgetIntent = new Intent();
 					updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-					context.sendBroadcast(updateWidgetIntent);
+					getApplicationContext().sendBroadcast(updateWidgetIntent);
 					Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());			
 				}
 				else
@@ -204,7 +204,9 @@ public class Main extends ActionBarActivity {
 	}
 
 	/**
-	 * onLongClick of each row of the listView, called thru the RuleListViewAdapter
+	 * onLongClick of each row of the listView, called thru the RuleListViewAdapter.
+	 * 
+	 * Launches a dialog with the rule name, text, and delete and edit options.
 	 * 
 	 * @param mName The name of the rule long clicked on
 	 * @param text The text of the rule long clicked on
@@ -231,7 +233,11 @@ public class Main extends ActionBarActivity {
 	/**
 	 * Queries to delete the rule with the given name.
 	 * If there is a widget associated with the rule, prompts the user for its removal and
-	 * broadcasts the widget to update itself
+	 * broadcasts the widget to update itself.
+	 * 
+	 * The database query is done on the UI thread b/c:
+	 * 		1) It should be quick
+	 * 		2) Deletion needs to be finished before re-populating the view anyway  
 	 * 
 	 * Then re-populates the listView
 	 * 
@@ -244,35 +250,21 @@ public class Main extends ActionBarActivity {
 		int wID = dbManager.deleteRule(ruleName);
 		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
 			// Prompt the user to remove it manually
-			Toast t = Toast.makeText(getApplicationContext(), "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
-			t.setGravity(Gravity.TOP, 0, 50);
+			Toast t = Toast.makeText(this, "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
+			t.setGravity(Gravity.TOP, 0, 100);
 			t.show();
 
-			// Broadcsat widget Update so the text sets to ERROR
+			// Broadcast widget Update so the text sets to ERROR
 			Intent updateWidgetIntent = new Intent();
 			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-			context.sendBroadcast(updateWidgetIntent);
+			this.sendBroadcast(updateWidgetIntent);
 			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
 		}
 
 		// Feedback
-		Toast.makeText(getApplicationContext(), "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();							
+		Toast.makeText(this, "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();							
 
 		// Reconstruct view
 		new PopulateListTask().execute(false);
 	}
-
-	//	/**
-	//	 * onClick of each row of the listView, called thru the RuleListViewAdapter
-	//	 * 
-	//	 * @param mPosition the position of the item on the list, 0 indexed
-	//	 */
-	//	public void onItemClick(int mPosition)
-	//	{
-	//		//documentation and feedback
-	//		Log.i(logTag, "Item " + mPosition + " clicked.");
-	//		Toast.makeText(getApplicationContext(), "Item " + mPosition + " clicked.",Toast.LENGTH_SHORT).show();
-	//		// Edit window?
-	//		// more info?
-	//	}
 }
