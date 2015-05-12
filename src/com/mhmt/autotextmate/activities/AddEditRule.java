@@ -133,7 +133,7 @@ public class AddEditRule extends ActionBarActivity {
 								editTextDescription.getText().toString().trim(),
 								ruleText,
 								checkBoxContacts.isChecked(),
-								getReplyTo()));
+								radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId()))));
 
 						// If the rule has a widget, call to update it
 						if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
@@ -149,7 +149,7 @@ public class AddEditRule extends ActionBarActivity {
 								editTextDescription.getText().toString(),
 								editTextText.getText().toString(),
 								checkBoxContacts.isChecked(),
-								getReplyTo()));
+								radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId()))));
 						Toast.makeText(getApplicationContext(), "Rule edited.", Toast.LENGTH_SHORT).show();
 					}
 					Log.i(logTag, "Rule edited");
@@ -168,7 +168,7 @@ public class AddEditRule extends ActionBarActivity {
 							editTextDescription.getText().toString(),
 							editTextText.getText().toString(),
 							checkBoxContacts.isChecked(),
-							getReplyTo()));
+							radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId()))));
 					Log.i(logTag, "Rule added successfully");
 					Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
 					//return to homepage
@@ -180,10 +180,6 @@ public class AddEditRule extends ActionBarActivity {
 				}
 			}
 		}
-	}
-
-	private int getReplyTo() {
-		return radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId()));
 	}
 
 	/**
