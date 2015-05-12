@@ -316,7 +316,7 @@ public class DatabaseManager {
 	 * 
 	 * @return an arraylist<rule> of rules that are turned on (status == 1)
 	 */
-	public ArrayList<Rule> getApplicableRules(){		
+	public ArrayList<Rule> getEnabledSMSRules(){		
 		ruleArray = new ArrayList<Rule>();
 
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it

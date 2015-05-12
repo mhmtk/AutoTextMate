@@ -61,7 +61,7 @@ public class SMSReceiver extends BroadcastReceiver{
 			new Handler().postDelayed(new Runnable() { //Handler/Runnable usage in order to delay the reply
 				public void run() {
 					SmsManager smsManager = SmsManager.getDefault();
-					for (Rule r : dbManager.getApplicableRules()) { //Reply for each rule
+					for (Rule r : dbManager.getEnabledSMSRules()) { //Reply for each rule
 						if (r.getOnlyContacts() == 1) { // Reply only if the sender no is in the contacts
 							if (inContacts(pn)) { // Check if the sender is in the contacts
 								String replyText = r.getText();
