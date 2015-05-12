@@ -332,12 +332,12 @@ public class DatabaseManager {
 		//sort descending
 		//				String sortOrder = BaseColumns._ID + " DESC";
 
-		//create cursor with only entries with status = 1 (on) 
+		//create cursor with only entries with status = 1 (on)  and replyTo = 0 or 1
 		Cursor c = db.query(
 				RuleEntry.RULE_TABLE_NAME,  		// The table to query
 				projection,							// The columns to return
-				RuleEntry.RULE_COLUMN_STATUS + "=?",// The columns for the WHERE clause
-				new String[] { "1" },				// The values for the WHERE clause
+				RuleEntry.RULE_COLUMN_STATUS + "='1'  AND " + RuleEntry.RULE_COLUMN_REPLY_TO + " IN (0, 1)",						// The columns for the WHERE clause
+				null,								// The values for the WHERE clause
 				null,			                    // don't group the rows
 				null,								// don't filter by row groups
 				null	            				// sort
