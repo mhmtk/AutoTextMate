@@ -120,7 +120,7 @@ public class DatabaseManager {
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLYTO)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
 		}
 		else 
@@ -167,6 +167,60 @@ public class DatabaseManager {
 	}
 
 	/**
+	 * Returns the rules that are on
+	 * 
+	 * @return an ArrayList<rule> of rules that are turned on (status == 1)
+	 */
+	public ArrayList<Rule> getEnabledSMSRules(){		
+		ruleArray = new ArrayList<Rule>();
+	
+		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		//get readable database
+		db = dbHelper.getReadableDatabase();
+	
+		//define a projection that specifies which columns from the database to use
+		String[] projection = {
+				RuleEntry.RULE_COLUMN_TEXT,
+				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
+				RuleEntry.RULE_COLUMN_REPLYTO
+		};
+	
+		//sort descending
+		//				String sortOrder = BaseColumns._ID + " DESC";
+	
+		//create cursor with only entries with status = 1 (on)  and replyTo = 0 or 1
+		Cursor c = db.query(
+				RuleEntry.RULE_TABLE_NAME,  		// The table to query
+				projection,							// The columns to return
+				RuleEntry.RULE_COLUMN_STATUS + "='1'  AND " + RuleEntry.RULE_COLUMN_REPLYTO + " IN (0, 1)",						// The columns for the WHERE clause
+				null,								// The values for the WHERE clause
+				null,			                    // don't group the rows
+				null,								// don't filter by row groups
+				null	            				// sort
+				);
+	
+		//move cursor to the beginning
+		if (c != null)
+			c.moveToFirst();
+		else 
+			Log.w(logTag, "The cursor returned by getApplicableRules was null");
+	
+	
+		while(!c.isAfterLast())
+		{ //add the rules to the ArrayList
+			ruleArray.add(new Rule(
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)), //text
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), //onlyContacts
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLYTO)) //reply to
+					));
+			c.moveToNext();
+		}
+	
+		db.close();
+		return ruleArray;
+	}
+
+	/**
 	 * Updates the columns of the rule with the given oldRuleName to the fields of newRule.
 	 * If requested, returns the wID of the rule. 
 	 * 
@@ -207,7 +261,7 @@ public class DatabaseManager {
 				" , " + RuleEntry.RULE_COLUMN_DESCRIPTION + "=?" +
 				" , " + RuleEntry.RULE_COLUMN_TEXT + "=?" +
 				" , " + RuleEntry.RULE_COLUMN_ONLYCONTACTS + "=?" +
-				" , " + RuleEntry.RULE_COLUMN_REPLY_TO + "=?" +
+				" , " + RuleEntry.RULE_COLUMN_REPLYTO + "=?" +
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "=?" ;		
 		String[] updateQueryArgs = new String[] {
 				newRule.getName(),
@@ -244,6 +298,7 @@ public class DatabaseManager {
 		values.put(RuleEntry.RULE_COLUMN_DESCRIPTION, rule.getDescription());
 		values.put(RuleEntry.RULE_COLUMN_TEXT, rule.getText());
 		values.put(RuleEntry.RULE_COLUMN_ONLYCONTACTS, rule.getOnlyContacts());
+		values.put(RuleEntry.RULE_COLUMN_REPLYTO, rule.getReplyTo());
 
 		// TODO FEEDBACK
 		//Insert the new row
@@ -271,7 +326,7 @@ public class DatabaseManager {
 				RuleEntry.RULE_COLUMN_DESCRIPTION,
 				RuleEntry.RULE_COLUMN_TEXT,
 				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
-				RuleEntry.RULE_COLUMN_REPLY_TO,
+				RuleEntry.RULE_COLUMN_REPLYTO,
 				RuleEntry.RULE_COLUMN_STATUS
 		};
 
@@ -301,62 +356,9 @@ public class DatabaseManager {
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLYTO)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
 			ruleArray.add(p);
-			c.moveToNext();
-		}
-
-		db.close();
-		return ruleArray;
-	}
-
-	/**
-	 * Returns the rules that are on
-	 * 
-	 * @return an ArrayList<rule> of rules that are turned on (status == 1)
-	 */
-	public ArrayList<Rule> getEnabledSMSRules(){		
-		ruleArray = new ArrayList<Rule>();
-
-		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
-		//get readable database
-		db = dbHelper.getReadableDatabase();
-
-		//define a projection that specifies which columns from the database to use
-		String[] projection = {
-				RuleEntry.RULE_COLUMN_TEXT,
-				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
-		};
-
-		//sort descending
-		//				String sortOrder = BaseColumns._ID + " DESC";
-
-		//create cursor with only entries with status = 1 (on)  and replyTo = 0 or 1
-		Cursor c = db.query(
-				RuleEntry.RULE_TABLE_NAME,  		// The table to query
-				projection,							// The columns to return
-				RuleEntry.RULE_COLUMN_STATUS + "='1'  AND " + RuleEntry.RULE_COLUMN_REPLY_TO + " IN (0, 1)",						// The columns for the WHERE clause
-				null,								// The values for the WHERE clause
-				null,			                    // don't group the rows
-				null,								// don't filter by row groups
-				null	            				// sort
-				);
-
-		//move cursor to the beginning
-		if (c != null)
-			c.moveToFirst();
-		else 
-			Log.e(logTag, "The cursor returned by getApplicableRules was null");
-
-
-		while(!c.isAfterLast())
-		{ //add the rules to the ArrayList
-			ruleArray.add(new Rule(
-					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)), //text
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), //onlyContacts
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLY_TO)) //reply to
-					));
 			c.moveToNext();
 		}
 

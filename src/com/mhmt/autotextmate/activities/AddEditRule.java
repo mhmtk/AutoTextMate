@@ -183,9 +183,7 @@ public class AddEditRule extends ActionBarActivity {
 	}
 
 	private int getReplyTo() {
-		Log.i(logTag, "returning replyto " + radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId())));
 		return radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId()));
-		//		return Integer.parseInt((String) ((RadioButton) findViewById(radioReplyTo.getCheckedRadioButtonId())).getTag());
 	}
 
 	/**
