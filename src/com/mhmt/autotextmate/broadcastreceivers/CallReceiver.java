@@ -10,12 +10,13 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 7, 2015
+ * @version November April 13, 2015
  * 
  */
 public class CallReceiver extends BroadcastReceiver{
 	
 	private String logTag = "CallReceiver";
+	
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		MPhoneStateListener phoneListener=new MPhoneStateListener();
