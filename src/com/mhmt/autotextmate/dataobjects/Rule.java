@@ -4,7 +4,7 @@ package com.mhmt.autotextmate.dataobjects;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 12, 2015
+ * @version November May 14, 2015
  * 
  */
 public class Rule {
@@ -55,8 +55,8 @@ public class Rule {
 	 * Constructing a Rule with only name and status, the rest will be either "" or 0.
 	 * For use of getRule(widgetID), so it does less work, avoids unnecessary fields
 	 * 
-	 * @param name
-	 * @param status
+	 * @param name Name of the rule
+	 * @param status The rules status
 	 */
 	public Rule(String name, int status) {
 		this.name = name;
@@ -66,6 +66,14 @@ public class Rule {
 		this.replyTo = -1;
 		this.status = status;
 	}
+	
+	/**
+	 * Used by getEnabled***Rules() of the DBManager, creates a lightweight Rule object
+	 * 
+	 * @param text
+	 * @param onlyContacts
+	 * @param replyTo
+	 */
 	public Rule(String text, int onlyContacts, int replyTo) {
 		this.name = "";
 		this.description = "";
@@ -95,7 +103,7 @@ public class Rule {
 	 * 0 = Both
 	 * 1 = SMS
 	 * 2 = Call
-	 * @return
+	 * @return an int corresponding to the replyTo field
 	 */
 	public int getReplyTo() {
 		return replyTo;
@@ -105,6 +113,7 @@ public class Rule {
 		return status;
 	}
 	
+	// TODO improve
 	public String toString() {
 		return name + ":\t" +  ((text.length() <= 30) ? (text) : (text.substring(0, 30) + "...")) + "\n"
 				+ ((onlyContacts == 1) ? "Contacts Only"  : "Any sender");
