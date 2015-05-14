@@ -19,17 +19,18 @@ public class CallReceiver extends BroadcastReceiver{
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		Log.i(logTag, "Received call intent" + intent);
 		MPhoneStateListener phoneListener=new MPhoneStateListener();
-		TelephonyManager telephony = (TelephonyManager) 
-				context.getSystemService(Context.TELEPHONY_SERVICE);
+		TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 		telephony.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
 	}
 	
 	private class MPhoneStateListener extends PhoneStateListener {
 		
-		private String logTag = "MPhoneStateListener";
-		
+		@Override
 		public void onCallStateChanged(int state,String incomingNumber){
+			super.onCallStateChanged(state, incomingNumber);
+			Log.i(logTag, "Call state changed");
 			switch(state){
 			case TelephonyManager.CALL_STATE_IDLE:
 				Log.i(logTag, "IDLE");
