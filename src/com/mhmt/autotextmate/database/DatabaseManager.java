@@ -209,9 +209,8 @@ public class DatabaseManager {
 		while(!c.isAfterLast())
 		{ //add the rules to the ArrayList
 			ruleArray.add(new Rule(
-					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)), //text
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), //onlyContacts
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLYTO)) //reply to
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), // OC
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)) // Text
 					));
 			c.moveToNext();
 		}
@@ -237,7 +236,7 @@ public class DatabaseManager {
 		//sort descending
 		//				String sortOrder = BaseColumns._ID + " DESC";
 	
-		//create cursor with only entries with status = 1 (on)  and replyTo = 0 or 1
+		//create cursor with only entries with status = 1 (on) and replyTo = 0 or 2
 		Cursor c = db.query(
 				RuleEntry.RULE_TABLE_NAME,  		// The table to query
 				projection,							// The columns to return
@@ -257,9 +256,8 @@ public class DatabaseManager {
 		while(!c.isAfterLast())
 		{ //add the rules to the ArrayList
 			ruleArray.add(new Rule(
-					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)), //text
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), //onlyContacts
-					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLYTO)) //reply to
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT))
 					));
 			c.moveToNext();
 		}

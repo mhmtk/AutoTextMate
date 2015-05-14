@@ -38,7 +38,7 @@ public class Rule {
 	 * @param name	Name of the rule
 	 * @param description Description of the rule
 	 * @param text Text SMS text of the rule
-	 * @param onlyContacts	Should the rule only apply to contacts?
+	 * @param onlyContacts Should the rule only apply to contacts?
 	 * @param replyTo SMS, Call, or Both
 	 * @param status Is the rule on or off
 	 */
@@ -68,18 +68,18 @@ public class Rule {
 	}
 	
 	/**
-	 * Used by getEnabled***Rules() of the DBManager, creates a lightweight Rule object
+	 * Used by getEnabled***Rules() of the DBManager, creates a lightweight Rule object.
+	 * Parameter order is reversed to differentiate from Rule(String name, int status).
 	 * 
-	 * @param text
-	 * @param onlyContacts
-	 * @param replyTo
+	 * @param onlyContacts Should the rule only apply to contacts?
+	 * @param text Reply text of the rule
 	 */
-	public Rule(String text, int onlyContacts, int replyTo) {
+	public Rule(int onlyContacts, String text) {
 		this.name = "";
 		this.description = "";
 		this.text = text;
 		this.onlyContacts = onlyContacts;
-		this.replyTo = replyTo;
+		this.replyTo = -1;
 		this.status = -1;
 	}
 
