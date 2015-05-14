@@ -26,26 +26,35 @@ import android.widget.Toast;
 public class CallReceiver extends BroadcastReceiver{
 
 	private String logTag = "CallReceiver";
-	private Context context;
 	private DatabaseManager dbManager;
-	private SmsManager smsManager;
+	private SmsManager smsManager = SmsManager.getDefault();
+
+	private static MPhoneStateListener phoneListener;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.i(logTag, "Received call intent" + intent);
+		Log.i(logTag, "Received call intent");
 
 		// instantiate variables for the use of MPhoneStateListener
-		dbManager = new DatabaseManager(context);
-		smsManager = SmsManager.getDefault();
-		this.context = context;
 
-		MPhoneStateListener phoneListener=new MPhoneStateListener();
 		TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-		telephony.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
+
+		if (phoneListener == null) {
+			dbManager = new DatabaseManager(context);
+			phoneListener = new MPhoneStateListener(context);
+			telephony.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
+		}
 	}
 
 	private class MPhoneStateListener extends PhoneStateListener {
 
+		// Flag used to avoid invoking rules multiple times due to receiving more than one one RINGING state change
+		private boolean handled = false;
+		private Context mContext;
+
+		private MPhoneStateListener(Context c) {
+			mContext = c;
+		}
 		@Override
 		public void onCallStateChanged(int state,String incomingNumber){
 			super.onCallStateChanged(state, incomingNumber);
@@ -53,32 +62,40 @@ public class CallReceiver extends BroadcastReceiver{
 			switch(state){
 			case TelephonyManager.CALL_STATE_IDLE:
 				Log.i(logTag, "IDLE");
+				handled = false;
+				Log.i(logTag, "Reset handled flag");
 				break;
 			case TelephonyManager.CALL_STATE_OFFHOOK:
-				Log.i(logTag, "OFFHOOK " + incomingNumber);
+				Log.i(logTag, "OFFHOOK ");
+				handled = false;
+				Log.i(logTag, "Reset handled flag");
 				break;
 			case TelephonyManager.CALL_STATE_RINGING:
 				Log.i(logTag, "RINGING");
-				// TODO only make it reply once in the same call
-
-				for (Rule r : dbManager.getEnabledCallRules()) { //Reply for each rule
-					if (r.getOnlyContacts() == 1) { // Reply only if the sender no is in the contacts
-						if (inContacts(incomingNumber)) { // Check if the sender is in the contacts
+				if (!handled) { // In order 
+					Log.i(logTag, "Call hasn't been handled, will invoke applicable rules");
+					for (Rule r : dbManager.getEnabledCallRules()) { //Reply for each rule
+						if (r.getOnlyContacts() == 1) { // Reply only if the sender no is in the contacts
+							if (inContacts(mContext, incomingNumber)) { // Check if the sender is in the contacts
+								String replyText = r.getText();
+								smsManager.sendTextMessage(incomingNumber, null, replyText, null, null);
+								//documentation & feedback
+								Toast.makeText(mContext, "Replied to " + incomingNumber + ": " + replyText, Toast.LENGTH_SHORT).show();
+								Log.i(logTag, "Sent out an SMS to " + incomingNumber);
+							}
+						}
+						else {
 							String replyText = r.getText();
 							smsManager.sendTextMessage(incomingNumber, null, replyText, null, null);
 							//documentation & feedback
-							Toast.makeText(context, "Replied to " + incomingNumber + ": " + replyText, Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, "Replied to " + incomingNumber + ": " + replyText, Toast.LENGTH_SHORT).show();		            		  
 							Log.i(logTag, "Sent out an SMS to " + incomingNumber);
 						}
-					}
-					else {
-						String replyText = r.getText();
-						smsManager.sendTextMessage(incomingNumber, null, replyText, null, null);
-						//documentation & feedback
-						Toast.makeText(context, "Replied to " + incomingNumber + ": " + replyText, Toast.LENGTH_SHORT).show();		            		  
-						Log.i(logTag, "Sent out an SMS to " + incomingNumber);
-					}
-				}
+					} //end of for each loop
+					handled = true;
+				} // end of if (!handled)
+				else
+					Log.i(logTag, "Call has been handled, will not try to invoke rules");
 				break;
 			} //end of ringing case
 		} 
@@ -87,14 +104,15 @@ public class CallReceiver extends BroadcastReceiver{
 	/**
 	 * Checks if the given no is in the contacts
 	 * 
+	 * @param c Context 
 	 * @param no The phone no to check for
 	 * @return True if the passed no is saved in the contacts, false otherwise 
 	 */
-	public boolean inContacts(String no) {
+	public boolean inContacts(Context c, String no) {
 		Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(no));
 		//	    String name = "?";
 
-		ContentResolver contentResolver = context.getContentResolver();
+		ContentResolver contentResolver = c.getContentResolver();
 		Cursor contactLookup = contentResolver.query(uri,
 				new String[] {BaseColumns._ID }, //ContactsContract.PhoneLookup.DISPLAY_NAME }
 				null, null, null);
