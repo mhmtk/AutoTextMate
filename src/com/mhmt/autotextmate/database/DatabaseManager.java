@@ -18,7 +18,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 12, 2015
+ * @version November May 14, 2015
  * 
  */
 public class DatabaseManager {
@@ -205,6 +205,54 @@ public class DatabaseManager {
 		else 
 			Log.w(logTag, "The cursor returned by getApplicableRules was null");
 	
+	
+		while(!c.isAfterLast())
+		{ //add the rules to the ArrayList
+			ruleArray.add(new Rule(
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)), //text
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), //onlyContacts
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLYTO)) //reply to
+					));
+			c.moveToNext();
+		}
+	
+		db.close();
+		return ruleArray;
+	}
+
+	public ArrayList<Rule> getEnabledCallRules() {
+		ruleArray = new ArrayList<Rule>();
+		
+		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		//get readable database
+		db = dbHelper.getReadableDatabase();
+	
+		//define a projection that specifies which columns from the database to use
+		String[] projection = {
+				RuleEntry.RULE_COLUMN_TEXT,
+				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
+				RuleEntry.RULE_COLUMN_REPLYTO
+		};
+	
+		//sort descending
+		//				String sortOrder = BaseColumns._ID + " DESC";
+	
+		//create cursor with only entries with status = 1 (on)  and replyTo = 0 or 1
+		Cursor c = db.query(
+				RuleEntry.RULE_TABLE_NAME,  		// The table to query
+				projection,							// The columns to return
+				RuleEntry.RULE_COLUMN_STATUS + "='1'  AND " + RuleEntry.RULE_COLUMN_REPLYTO + " IN (0, 2)",						// The columns for the WHERE clause
+				null,								// The values for the WHERE clause
+				null,			                    // don't group the rows
+				null,								// don't filter by row groups
+				null	            				// sort
+				);
+	
+		//move cursor to the beginning
+		if (c != null)
+			c.moveToFirst();
+		else 
+			Log.w(logTag, "The cursor returned by getApplicableRules was null");
 	
 		while(!c.isAfterLast())
 		{ //add the rules to the ArrayList
