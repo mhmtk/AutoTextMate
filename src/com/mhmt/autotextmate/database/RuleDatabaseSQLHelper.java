@@ -12,7 +12,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 12, 2015
+ * @version November April 15, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
@@ -25,7 +25,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	private static final String NOT_NULL = " NOT_NULL";
 	private static final String UNIQUE = " UNIQUE";
 	private static final String DEFAULT = " DEFAULT";
-	private static final String REPLY_TO_CHECK = " CHECK(" + RuleEntry.RULE_COLUMN_REPLYTO + " < 3)" ;
+	private static final String REPLY_TO_CHECK = " CHECK(" + RuleEntry.RULE_COLUMN_REPLYTO + " < 3)";
 	private static final String STATUS_DEFAULT_VALUE = " 1";
 	
 	public static boolean INITIALIZED = false;

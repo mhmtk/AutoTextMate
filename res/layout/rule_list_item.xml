@@ -49,6 +49,13 @@
             android:orientation="horizontal"
             android:gravity="end|center" 
             android:layout_weight="0.1" >
+            
+            <ImageView 
+                android:id="@+id/list_onlyContacts_image"
+                android:layout_height = "wrap_content"
+                android:layout_width = "wrap_content"
+                android:scaleType="centerCrop"
+                android:background = "@drawable/ic_action_person" />
 
             <ImageView 
                 android:id="@+id/list_sms_image"

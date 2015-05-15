@@ -1650,14 +1650,15 @@ containing a value of this type.
         public static final int call=0x7f020037;
         public static final int ic_action_done=0x7f020038;
         public static final int ic_action_new=0x7f020039;
-        public static final int ic_action_save=0x7f02003a;
-        public static final int ic_launcher=0x7f02003b;
-        public static final int progress=0x7f02003c;
-        public static final int sms=0x7f02003d;
-        public static final int widget_button_green=0x7f02003e;
-        public static final int widget_button_red=0x7f02003f;
-        public static final int widget_green=0x7f020040;
-        public static final int widget_red=0x7f020041;
+        public static final int ic_action_person=0x7f02003a;
+        public static final int ic_action_save=0x7f02003b;
+        public static final int ic_launcher=0x7f02003c;
+        public static final int progress=0x7f02003d;
+        public static final int sms=0x7f02003e;
+        public static final int widget_button_green=0x7f02003f;
+        public static final int widget_button_red=0x7f020040;
+        public static final int widget_green=0x7f020041;
+        public static final int widget_red=0x7f020042;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0031;
@@ -1673,11 +1674,11 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_new=0x7f0a0059;
-        public static final int action_settings=0x7f0a005a;
+        public static final int action_new=0x7f0a005a;
+        public static final int action_settings=0x7f0a005b;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int addRule_fields=0x7f0a0040;
-        public static final int add_action_save=0x7f0a0058;
+        public static final int add_action_save=0x7f0a0059;
         public static final int addedit_progress_bar=0x7f0a003f;
         public static final int always=0x7f0a0014;
         public static final int beginning=0x7f0a001b;
@@ -1706,9 +1707,10 @@ containing a value of this type.
         public static final int linearLayout_contactsOnly=0x7f0a0044;
         public static final int linearLayout_replyTo=0x7f0a0047;
         public static final int listMode=0x7f0a000a;
-        public static final int list_call_image=0x7f0a0057;
+        public static final int list_call_image=0x7f0a0058;
         public static final int list_item=0x7f0a0025;
-        public static final int list_sms_image=0x7f0a0056;
+        public static final int list_onlyContacts_image=0x7f0a0056;
+        public static final int list_sms_image=0x7f0a0057;
         public static final int list_textView_description=0x7f0a0055;
         public static final int list_textView_name=0x7f0a0053;
         public static final int list_toggleButton_status=0x7f0a0054;

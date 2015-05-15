@@ -27,7 +27,7 @@ import android.widget.ToggleButton;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 12, 2015
+ * @version November May 15, 2015
  *  
  * Inspired by http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
  */
@@ -85,6 +85,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 		public TextView nameText;
 		public TextView descriptionText;
 		public ToggleButton statusToggle;
+		public ImageView onlyContactsImage;
 		public ImageView smsImage;
 		public ImageView callImage;
 
@@ -107,6 +108,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 			holder.nameText = (TextView) vi.findViewById(R.id.list_textView_name);
 			holder.descriptionText =(TextView) vi.findViewById(R.id.list_textView_description);
 			holder.statusToggle = (ToggleButton) vi.findViewById(R.id.list_toggleButton_status);
+			holder.onlyContactsImage = (ImageView) vi.findViewById(R.id.list_onlyContacts_image);
 			holder.smsImage = (ImageView) vi.findViewById(R.id.list_sms_image);
 			holder.callImage = (ImageView) vi.findViewById(R.id.list_call_image);
 
@@ -132,7 +134,9 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 
 			holder.nameText.setText(tName);
 			holder.descriptionText.setText(tText);
-			holder.statusToggle.setChecked((tempValue.getStatus() == 1) ? true : false);  
+			holder.statusToggle.setChecked((tempValue.getStatus() == 1) ? true : false);
+			if (tempValue.getOnlyContacts() == 0)
+				holder.onlyContactsImage.setVisibility(View.INVISIBLE);
 			switch (tempValue.getReplyTo()) {
 				case 0:
 					holder.smsImage.setVisibility(View.VISIBLE);
