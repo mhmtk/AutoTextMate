@@ -29,6 +29,7 @@ import android.widget.ToggleButton;
 
 public class RuleListViewAdapter extends BaseAdapter {
 
+	@SuppressWarnings("unused")
 	private String logTag = "RuleListViewAdapter";
 
 	/*********** Declare Used Variables *********/
@@ -86,7 +87,7 @@ public class RuleListViewAdapter extends BaseAdapter {
 		if(convertView==null){
 
 			// Inflate the view (row)
-			vi = inflater.inflate(R.layout.rule_list_item_table, null);
+			vi = inflater.inflate(R.layout.rule_list_item_table, parent, false);
 
 			// Match the view elements in the holder to their counterparts in the layout
 			holder = new ViewHolder();
