@@ -211,11 +211,12 @@ public class Main extends ActionBarActivity {
 	 * onLongClick of each row of the listView, called thru the RuleListViewAdapter.
 	 * 
 	 * Launches a dialog with the rule name, text, and delete and edit options.
+	 * @param position 
 	 * 
 	 * @param mName The name of the rule long clicked on
 	 * @param text The text of the rule long clicked on
 	 */
-	public void onLongItemClick(final String ruleName, String text) {
+	public void onLongItemClick(final String ruleName, final int position, String text) {
 		Log.i(logTag, "Long click detected at " + ruleName);
 
 		new AlertDialog.Builder(this)
@@ -227,7 +228,7 @@ public class Main extends ActionBarActivity {
 		})
 		.setNegativeButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				deleteRule(ruleName);
+				deleteRule(ruleName, position);
 			}
 		})
 		.setMessage(text)
@@ -246,8 +247,9 @@ public class Main extends ActionBarActivity {
 	 * Then re-populates the listView
 	 * 
 	 * @param ruleName Name of the rule to be deleted
+	 * @param position 
 	 */
-	public void deleteRule(final String ruleName){
+	public void deleteRule(final String ruleName, int position){
 
 		Log.i(logTag, "Delete rule requested for Rule: " + ruleName);
 
@@ -265,10 +267,13 @@ public class Main extends ActionBarActivity {
 			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
 		}
 
+		ruleArray.remove(position);
+		mListAdapter.notifyDataSetChanged();
+		
 		// Feedback
 		Toast.makeText(this, "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();							
 
 		// Reconstruct view
-		new PopulateListTask().execute(false);
+//		new PopulateListTask().execute(false);
 	}
 }

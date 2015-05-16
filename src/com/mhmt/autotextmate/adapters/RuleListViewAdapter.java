@@ -136,7 +136,7 @@ public class RuleListViewAdapter extends BaseAdapter {
 			}
 
 			// Set onLongClick for the row and onClick for the ToggleButton
-			vi.setOnLongClickListener(new OnItemLongClickListener(tName, tText));
+			vi.setOnLongClickListener(new OnItemLongClickListener(tName, position, tText));
 			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tName, position));
 		} //end of else
 		return vi;
@@ -176,16 +176,18 @@ public class RuleListViewAdapter extends BaseAdapter {
 	private class OnItemLongClickListener implements OnLongClickListener {
 		private String mName;
 		private String mText;
+		private int mPosition;
 
-		OnItemLongClickListener(String name, String text){
+		OnItemLongClickListener(String name, int position, String text){
 			mName = name;
 			mText = text;
+			mPosition = position;
 		}
 
 		@Override
 		public boolean onLongClick(View v) {
 			Main sct = (Main) activity;
-			sct.onLongItemClick(mName, mText);
+			sct.onLongItemClick(mName, mPosition, mText);
 			return true;
 		}
 
