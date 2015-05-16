@@ -15,7 +15,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -102,7 +101,7 @@ public class Main extends ActionBarActivity {
 		@Override
 		protected void onPostExecute(ArrayList<Rule> ruleArray) {
 			Log.i(logTag, "Background part of populateListTask has ended");
-			// Populate the listview before completing the task
+			// Populate the ListView before completing the task
 			populateListView(ruleArray);
 			// Hide the progress bar
 			progressBar.setVisibility(View.GONE);
@@ -181,12 +180,17 @@ public class Main extends ActionBarActivity {
 	 * @param isChecked True if toggle is on, false otherwise
 	 */
 	public void onItemToggleClicked(final String name, int position, final boolean status) {
+		
+		Log.i(logTag, "onItemToggleClicked for " + name + " at " + position + ", settign status to " + status);
+		
 		// Get the old rule to make it easier to construct the new one
 		Rule cRule = ruleArray.get(position);
 
 		// Change the rule in the rule list
 		ruleArray.set(position, new Rule(name, cRule.getDescription(), cRule.getText(),
 				cRule.getOnlyContacts(), cRule.getReplyTo(), ((status) ? 1 : 0)));
+		
+		// ruleArray.get(position).setStatus(status); // Alternate method
 
 		mListAdapter.notifyDataSetChanged();
 
