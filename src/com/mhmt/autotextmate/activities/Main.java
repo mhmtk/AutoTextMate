@@ -183,13 +183,13 @@ public class Main extends ActionBarActivity {
 	public void onItemToggleClicked(final String name, int position, final boolean status) {
 		// Get the old rule to make it easier to construct the new one
 		Rule cRule = ruleArray.get(position);
-		
+
 		// Change the rule in the rule list
 		ruleArray.set(position, new Rule(name, cRule.getDescription(), cRule.getText(),
 				cRule.getOnlyContacts(), cRule.getReplyTo(), ((status) ? 1 : 0)));
-		
+
 		mListAdapter.notifyDataSetChanged();
-		
+
 		// Change the rule in the DB
 		new Runnable() {
 			@Override
@@ -242,11 +242,7 @@ public class Main extends ActionBarActivity {
 	 * If there is a widget associated with the rule, prompts the user for its removal and
 	 * broadcasts the widget to update itself.
 	 * 
-	 * The database query is done on the UI thread b/c:
-	 * 		1) It should be quick
-	 * 		2) Deletion needs to be finished before re-populating the view anyway  
-	 * 
-	 * Then re-populates the listView
+	 * Then refreshes the view thru notifying the ListView adapter
 	 * 
 	 * @param ruleName Name of the rule to be deleted
 	 * @param position 
@@ -255,27 +251,25 @@ public class Main extends ActionBarActivity {
 
 		Log.i(logTag, "Delete rule requested for Rule: " + ruleName);
 
-		int wID = dbManager.deleteRule(ruleName);
-		if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
-			// Prompt the user to remove it manually
-			Toast t = Toast.makeText(this, "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT);
-			t.setGravity(Gravity.TOP, 0, 100);
-			t.show();
+		new Runnable() {
+			@Override
+			public void run() {
+				int wID = dbManager.deleteRule(ruleName);
+				if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) { //if there is a widget associated with the rule
+					// Prompt the user to remove it manually
+					Toast.makeText(getApplicationContext(), "Remember to remove the widget associated with the deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();
 
-			// Broadcast widget Update so the text sets to ERROR
-			Intent updateWidgetIntent = new Intent();
-			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-			this.sendBroadcast(updateWidgetIntent);
-			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
-		}
+					// Broadcast widget Update so the text sets to ERROR
+					Intent updateWidgetIntent = new Intent();
+					updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+					getApplicationContext().sendBroadcast(updateWidgetIntent);
+					Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());	
+				}
+			}
+		}.run();
 
+		// Remove the rule from the rule array and notify the list adapter that the data has changed so the view refreshes
 		ruleArray.remove(position);
 		mListAdapter.notifyDataSetChanged();
-		
-		// Feedback
-		Toast.makeText(this, "Deleted rule: " + ruleName, Toast.LENGTH_SHORT).show();							
-
-		// Reconstruct view
-//		new PopulateListTask().execute(false);
 	}
 }
