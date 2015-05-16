@@ -17,6 +17,8 @@ public class Rule {
 	int status;
 
 	/**
+	 * Constructor with all fields except status, used when adding a rule,
+	 * sets status = 1 because new rules are always set to be enabled.
 	 * 
 	 * @param name	Name of the rule
 	 * @param description Description of the rule
@@ -34,6 +36,7 @@ public class Rule {
 	}
 	
 	/**
+	 * Constructor with all fields
 	 * 
 	 * @param name	Name of the rule
 	 * @param description Description of the rule
