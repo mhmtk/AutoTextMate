@@ -23,7 +23,9 @@
     <string name="title_activity_configure_widget">Add ATM Widget</string>
     <string name="configure_create">Create Widget</string>
     <string name="configure_info">Select a rule</string>
+    <string name="configure_empty">You have no Rules from which to create a widget</string>
     
     <string name="dialog_edit">Edit</string>
     <string name="dialog_delete">Delete</string>
+    
 </resources>
