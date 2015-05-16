@@ -1810,7 +1810,8 @@ containing a value of this type.
         public static final int activity_main=0x7f030018;
         public static final int layout_widget=0x7f030019;
         public static final int rule_list_item=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int rule_list_item_table=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
         public static final int add_rule=0x7f0d0000;

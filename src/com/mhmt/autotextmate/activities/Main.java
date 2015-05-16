@@ -26,7 +26,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 12, 2015
+ * @version November May 16, 2015
  * 
  */
 public class Main extends ActionBarActivity {
@@ -72,7 +72,7 @@ public class Main extends ActionBarActivity {
 	}
 
 	/**
-	 * AsyncTask to populate the listview with a list of rules
+	 * AsyncTask to populate the ListView with a list of rules
 	 * 
 	 * @author Mehmet Kologlu
 	 */
@@ -117,7 +117,7 @@ public class Main extends ActionBarActivity {
 	 * Populates the listView with the data of the given ruleArray by
 	 * settings the views adapter as a RuleListViewAdapter
 	 * 
-	 * @param ruleArray An arraylist of rules to be used as data
+	 * @param ruleArray An ArrayList of rules to be used as data
 	 */
 	private void populateListView(ArrayList<Rule> ruleArray){
 		Log.i(logTag, "populateListView called.");

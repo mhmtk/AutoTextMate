@@ -27,7 +27,7 @@ import android.widget.ToggleButton;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 15, 2015
+ * @version November May 16, 2015
  *  
  * Inspired by http://androidexample.com/How_To_Create_A_Custom_Listview_-_Android_Example/index.php?view=article_discription&aid=67&aaid=92
  */
@@ -100,7 +100,8 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 		if(convertView==null){
 
 			/****** Inflate tabitem.xml file for each row ( Defined below ) *******/
-			vi = inflater.inflate(R.layout.rule_list_item, null);
+//			vi = inflater.inflate(R.layout.rule_list_item, null);
+			vi = inflater.inflate(R.layout.rule_list_item_table, null);
 
 			/****** View Holder Object to contain tabitem.xml file elements ******/
 
