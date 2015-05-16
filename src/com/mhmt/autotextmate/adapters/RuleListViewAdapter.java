@@ -41,7 +41,6 @@ public class RuleListViewAdapter extends BaseAdapter {
 	private String tName;
 	private String tText;
 
-	/*************  RuleListViewAdapter Constructor *****************/
 	public RuleListViewAdapter(Activity a, ArrayList<Rule> d,Resources resLocal) {
 
 		// Store passed values into their respective fields
@@ -138,7 +137,7 @@ public class RuleListViewAdapter extends BaseAdapter {
 
 			// Set onLongClick for the row and onClick for the ToggleButton
 			vi.setOnLongClickListener(new OnItemLongClickListener(tName, tText));
-			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tName));
+			holder.statusToggle.setOnCheckedChangeListener(new onItemToggleChangedListener(tName, position));
 		} //end of else
 		return vi;
 	}
@@ -153,16 +152,18 @@ public class RuleListViewAdapter extends BaseAdapter {
 	 */
 	private class onItemToggleChangedListener implements CompoundButton.OnCheckedChangeListener {
 		private String mName;
+		private int mPosition;
 
 		//implement constructor to enable passing the position
-		onItemToggleChangedListener(String name){
+		onItemToggleChangedListener(String name, int position){
 			mName = name;
+			mPosition = position;
 		}
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 			Main sct = (Main) activity;
 
-			sct.onItemToggleClicked(mName, isChecked);
+			sct.onItemToggleClicked(mName, mPosition, isChecked);
 		}
 	}
 

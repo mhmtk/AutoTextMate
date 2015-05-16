@@ -174,17 +174,26 @@ public class Main extends ActionBarActivity {
 	 * called thru the RuleListViewAdapter.
 	 * 
 	 * Creates a new thread to run in the background that queries the DB to
-	 * change the rule's status and then braodcasts a widget update if needed.
+	 * change the rule's status and then broadcasts a widget update if needed.
 	 * 
-	 * @param mName the position of the toggle's item on the list, 0 indexed
+	 * @param name the position of the toggle's item on the list, 0 indexed
+	 * @param position 
 	 * @param isChecked True if toggle is on, false otherwise
 	 */
-	public void onItemToggleClicked(final String mName, final boolean status) {
+	public void onItemToggleClicked(final String name, int position, final boolean status) {
+		// Get the old rule to make it easier to construct the new one
+		Rule cRule = ruleArray.get(position);
+		
+		// Change the rule in the rule list
+		ruleArray.set(position, new Rule(name, cRule.getDescription(), cRule.getText(),
+				cRule.getOnlyContacts(), cRule.getReplyTo(), ((status) ? 1 : 0)));
+		
+		// Change the rule in the DB
 		new Runnable() {
 			@Override
 			public void run() {
-				int wID = dbManager.setRuleStatus(mName, status);
-				Log.i(logTag, mName + " set to " + status);
+				int wID = dbManager.setRuleStatus(name, status);
+				Log.i(logTag, name + " set to " + status);
 				if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
 					//Send a broadcast for the widget to update itself
 					Intent updateWidgetIntent = new Intent();
@@ -193,7 +202,7 @@ public class Main extends ActionBarActivity {
 					Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());			
 				}
 				else
-					Log.i(logTag, "Did not broadcast widget update b/c " + mName + " has no widget");
+					Log.i(logTag, "Did not broadcast widget update b/c " + name + " has no widget");
 			}
 		}.run();
 	}
