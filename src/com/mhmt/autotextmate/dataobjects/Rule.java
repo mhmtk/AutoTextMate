@@ -4,7 +4,7 @@ package com.mhmt.autotextmate.dataobjects;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 14, 2015
+ * @version November May 16, 2015
  * 
  */
 public class Rule {
@@ -113,7 +113,6 @@ public class Rule {
 		return status;
 	}
 	
-	// TODO improve
 	public String toString() {
 		return name + ":\t" +  ((description.length() <= 30) ? (description) : (description.substring(0, 30) + "...")) + "\n"
 				+ ((text.length() <= 60) ? (text) : (text.substring(0, 60) + "...")) + "\n"
