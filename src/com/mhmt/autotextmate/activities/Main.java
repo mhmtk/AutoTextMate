@@ -188,6 +188,8 @@ public class Main extends ActionBarActivity {
 		ruleArray.set(position, new Rule(name, cRule.getDescription(), cRule.getText(),
 				cRule.getOnlyContacts(), cRule.getReplyTo(), ((status) ? 1 : 0)));
 		
+		mListAdapter.notifyDataSetChanged();
+		
 		// Change the rule in the DB
 		new Runnable() {
 			@Override
