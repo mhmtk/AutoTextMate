@@ -26,7 +26,6 @@ public class ConfigureWidget extends ListActivity {
 
 	private ConfigureWidget context;
 	int widgetID;
-//	private ListView ruleListView;
 	private DatabaseManager dbManager;
 	private ArrayList<Rule> ruleArray;
 	private String logTag = "Configure";
