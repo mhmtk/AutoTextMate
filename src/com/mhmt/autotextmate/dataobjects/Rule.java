@@ -116,6 +116,7 @@ public class Rule {
 	public String toString() {
 		return name + ":\t" +  ((description.length() <= 30) ? (description) : (description.substring(0, 30) + "...")) + "\n"
 				+ ((text.length() <= 60) ? (text) : (text.substring(0, 60) + "...")) + "\n"
-				+ ((onlyContacts == 1) ? "Contacts Only"  : "Any sender");
+				+ ((getReplyTo() == 0) ? "SMS & Calls" : ((getReplyTo() == 1) ? "SMS" : "Calls")) + "\n"
+				+ ((onlyContacts == 1) ? "+\n Contacts Only"  : "");
 	}
 }
