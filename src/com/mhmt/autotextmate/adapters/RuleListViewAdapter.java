@@ -68,7 +68,7 @@ public class RuleListViewAdapter extends BaseAdapter { //implements OnClickListe
 
 		if(data.size()<=0)
 			return 0;
-		return data.size();
+		return (data.size() < 0) ? 0 : data.size();
 	}
 
 	public Object getItem(int position) {
