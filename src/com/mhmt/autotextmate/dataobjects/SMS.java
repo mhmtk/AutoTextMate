@@ -7,20 +7,20 @@ package com.mhmt.autotextmate.dataobjects;
  * 
  */
 public class SMS {
-	
+
 	private int time;
 	private String text;
 	private String to;
 	private String rule;
-	
+
 	public SMS(int time, String text, String to, String rule) {
 		this.time = time;
 		this.text = text;
 		this.to = to;
 		this.rule = rule;
-		
+
 	}
-	
+
 	public int getTime() {
 		return time;
 	}
@@ -35,5 +35,11 @@ public class SMS {
 
 	public String getRule() {
 		return rule;
+	}
+
+	public String toString() {
+		return "At " + time + ", To: " + to + "\n" +
+				text + "\n" +
+				"by Rule " + rule;
 	}
 }
