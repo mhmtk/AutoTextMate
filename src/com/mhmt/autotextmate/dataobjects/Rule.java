@@ -77,8 +77,8 @@ public class Rule {
 	 * @param onlyContacts Should the rule only apply to contacts?
 	 * @param text Reply text of the rule
 	 */
-	public Rule(int onlyContacts, String text) {
-		this.name = "";
+	public Rule(String name, int onlyContacts, String text) {
+		this.name = name;
 		this.description = "";
 		this.text = text;
 		this.onlyContacts = onlyContacts;

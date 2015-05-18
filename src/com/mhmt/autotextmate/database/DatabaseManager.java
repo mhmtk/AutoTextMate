@@ -183,9 +183,9 @@ public class DatabaseManager {
 	
 		//define a projection that specifies which columns from the database to use
 		String[] projection = {
+				RuleEntry.RULE_COLUMN_NAME,
 				RuleEntry.RULE_COLUMN_TEXT,
 				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
-				RuleEntry.RULE_COLUMN_REPLYTO
 		};
 	
 		//sort descending
@@ -212,6 +212,7 @@ public class DatabaseManager {
 		while(!c.isAfterLast())
 		{ //add the rules to the ArrayList
 			ruleArray.add(new Rule(
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), // OC
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)) // Text
 					));
@@ -231,9 +232,9 @@ public class DatabaseManager {
 	
 		//define a projection that specifies which columns from the database to use
 		String[] projection = {
+				RuleEntry.RULE_COLUMN_NAME,
 				RuleEntry.RULE_COLUMN_TEXT,
 				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
-				RuleEntry.RULE_COLUMN_REPLYTO
 		};
 	
 		//sort descending
@@ -259,6 +260,7 @@ public class DatabaseManager {
 		while(!c.isAfterLast())
 		{ //add the rules to the ArrayList
 			ruleArray.add(new Rule(
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)), //name
 					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)), //onlyContacts
 					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT))
 					));
