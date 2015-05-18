@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 12, 2015
+ * @version November May 18, 2015
  * 
  */
 public class RuleDatabaseContract {
@@ -17,7 +17,6 @@ public class RuleDatabaseContract {
 	/*Inner class defines table contents */
 	public static abstract class RuleEntry implements BaseColumns{
 
-		//Income table
 		public static final String RULE_TABLE_NAME = "rules";
 		public static final String RULE_COLUMN_NAME = "name";
 		public static final String RULE_COLUMN_DESCRIPTION = "description";
