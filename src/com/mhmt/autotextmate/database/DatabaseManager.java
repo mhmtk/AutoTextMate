@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.mhmt.autotextmate.database.RuleDatabaseContract.RuleEntry;
+import com.mhmt.autotextmate.database.RuleDatabaseContract.SMSEntry;
 import com.mhmt.autotextmate.dataobjects.Rule;
+import com.mhmt.autotextmate.dataobjects.SMS;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ContentValues;
@@ -27,6 +29,7 @@ public class DatabaseManager {
 	private SQLiteDatabase db;
 	private ArrayList<Rule> ruleArray;
 	private String logTag = "DatabaseManager";
+	private ArrayList<SMS> smsArray;
 
 	/**
 	 * Constructor
@@ -515,5 +518,59 @@ public class DatabaseManager {
 
 		//return the result
 		return c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID));
+	}
+	
+	// METHODS RELATED TO SMS TABLE //
+	
+	/**
+	 * 
+	 * @return an ArrayList of SMS objects containing all items of the SMS table
+	 */
+	public ArrayList<SMS> getSMSArray() {
+		smsArray = new ArrayList<SMS>();
+
+		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it 
+		//get readable database
+		db = dbHelper.getReadableDatabase();
+		//define a projection that specifies which columns from the database to use
+		String[] projection = {
+				SMSEntry.SMS_COLUMN_TIME,
+				SMSEntry.SMS_COLUMN_TEXT,
+				SMSEntry.SMS_COLUMN_TO,
+				SMSEntry.SMS_COLUMN_RULE,
+		};
+
+		//sort descending
+		String sortOrder = SMSEntry.SMS_COLUMN_TIME + " DESC";
+
+		//create cursor with the whole database
+		Cursor c = db.query(
+				SMSEntry.SMS_TABLE_NAME,  // The table to query
+				projection,				// The columns to return
+				null,		            // The columns for the WHERE clause
+				null,                   // The values for the WHERE clause
+				null,                   // don't group the rows
+				null,					// don't filter by row groups
+				sortOrder	            // sort
+				);
+
+		//move cursor to the beginning
+		if (c != null)
+			c.moveToFirst();
+		else 
+			Log.e(logTag, "The cursor returned by getSMSArray was null");
+
+		while(!c.isAfterLast())
+		{
+			SMS s = new SMS(c.getInt(c.getColumnIndexOrThrow(SMSEntry.SMS_COLUMN_TIME)),
+					c.getString(c.getColumnIndexOrThrow(SMSEntry.SMS_COLUMN_TEXT)),
+					c.getString(c.getColumnIndexOrThrow(SMSEntry.SMS_COLUMN_TO)),
+					c.getString(c.getColumnIndexOrThrow(SMSEntry.SMS_COLUMN_RULE)));
+			smsArray.add(s);
+			c.moveToNext();
+		}
+
+		db.close();
+		return smsArray;
 	}
 }
