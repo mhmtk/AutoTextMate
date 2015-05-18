@@ -27,5 +27,13 @@ public class RuleDatabaseContract {
 		public static final String RULE_COLUMN_STATUS = "status";
 		public static final String RULE_COLUMN_WIDGET_ID = "widgetID";
 	}
+	
+	public static abstract class SMSEntry implements BaseColumns{
+		public static final String SMS_TABLE_NAME = "texts";
+		public static final String SMS_COLUMN_TEXT = "text";
+		public static final String SMS_COLUMN_TO = "to";
+		public static final String SMS_COLUMN_TIME = "time";
+		public static final String SMS_COLUMN_RULE = "rule";
+	}
 
 }
