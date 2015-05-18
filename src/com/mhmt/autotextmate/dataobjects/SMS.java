@@ -13,6 +13,13 @@ public class SMS {
 	private String to;
 	private String rule;
 
+	/**
+	 * 
+	 * @param time Time the SMS was sent
+	 * @param text Text of the SMS
+	 * @param to To whom the SMS was sent
+	 * @param rule Name of the Rule the SMS was sent by
+	 */
 	public SMS(int time, String text, String to, String rule) {
 		this.time = time;
 		this.text = text;
