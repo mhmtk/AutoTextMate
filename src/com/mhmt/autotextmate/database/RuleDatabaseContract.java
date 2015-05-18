@@ -31,7 +31,7 @@ public class RuleDatabaseContract {
 		public static final String SMS_TABLE_NAME = "texts";
 		public static final String SMS_COLUMN_TIME = "time";
 		public static final String SMS_COLUMN_TEXT = "text";
-		public static final String SMS_COLUMN_TO = "to";
+		public static final String SMS_COLUMN_TO = "recipient";
 		public static final String SMS_COLUMN_RULE = "rule";
 	}
 

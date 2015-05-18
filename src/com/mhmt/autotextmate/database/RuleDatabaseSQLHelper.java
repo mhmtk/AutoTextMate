@@ -50,7 +50,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 					SMSEntry.SMS_COLUMN_TIME + INTEGER_TYPE + NOT_NULL + COMMA_SEP +
 					SMSEntry.SMS_COLUMN_TEXT + TEXT_TYPE + NOT_NULL + COMMA_SEP +
 					SMSEntry.SMS_COLUMN_TO + TEXT_TYPE + NOT_NULL + COMMA_SEP +
-					SMSEntry.SMS_COLUMN_RULE + TEXT_TYPE + NOT_NULL + COMMA_SEP + ")";
+					SMSEntry.SMS_COLUMN_RULE + TEXT_TYPE + NOT_NULL + ")";
 	
 	//SQL command to drop (delete) the rule table
 	private static final String SQL_DELETE_RULE_TABLE = 
