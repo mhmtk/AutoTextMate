@@ -2,6 +2,7 @@ package com.mhmt.autotextmate.broadcastreceivers;
 
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
+import com.mhmt.autotextmate.dataobjects.SMS;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -77,16 +78,26 @@ public class CallReceiver extends BroadcastReceiver{
 					for (Rule r : dbManager.getEnabledCallRules()) { //Reply for each rule
 						if (r.getOnlyContacts() == 1) { // Reply only if the sender no is in the contacts
 							if (inContacts(mContext, incomingNumber)) { // Check if the sender is in the contacts
+								// Reply
 								String replyText = r.getText();
 								smsManager.sendTextMessage(incomingNumber, null, replyText, null, null);
+								
+								// Add the reply to the Outbox DB
+								dbManager.addSMS(new SMS((int) System.currentTimeMillis(), replyText, String.valueOf(incomingNumber), r.getName()));
+								
 								//documentation & feedback
 								Toast.makeText(mContext, "Replied to " + incomingNumber + ": " + replyText, Toast.LENGTH_SHORT).show();
 								Log.i(logTag, "Sent out an SMS to " + incomingNumber);
 							}
 						}
 						else {
+							// Reply
 							String replyText = r.getText();
 							smsManager.sendTextMessage(incomingNumber, null, replyText, null, null);
+							
+							// Add the reply to the Outbox DB
+							dbManager.addSMS(new SMS((int) System.currentTimeMillis(), replyText, String.valueOf(incomingNumber), r.getName()));
+							
 							//documentation & feedback
 							Toast.makeText(mContext, "Replied to " + incomingNumber + ": " + replyText, Toast.LENGTH_SHORT).show();		            		  
 							Log.i(logTag, "Sent out an SMS to " + incomingNumber);
