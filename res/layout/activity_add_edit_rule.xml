@@ -40,7 +40,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/editText_name"
+                android:hint="@string/addedit_editText_name"
                 android:maxLength="20" >
             </EditText>
 
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="@string/editText_description" />
+                android:hint="@string/addedit_editText_description" />
 
             <EditText
                 android:id="@+id/editText_text"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="@string/editText_text"
+                android:hint="@string/addedit_editText_text"
                 android:inputType="textMultiLine" />
 
             <LinearLayout
@@ -73,7 +73,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="@string/textView_contactsOnly_text" />
+                    android:text="@string/addedit_textView_contacts" />
 
                 <CheckBox
                     android:id="@+id/checkBox_contactsOnly"
@@ -94,7 +94,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/textView_replyTo_text" />
+                    android:text="@string/addedit_textView_replyTo" />
 
                 <RadioGroup
                     android:id="@+id/radio_replyTo"
@@ -107,52 +107,24 @@
                         android:layout_height="wrap_content"
                         android:checked="true"
                         android:tag="0"
-                        android:text="@string/radio_both" />
+                        android:text="@string/addedit_radio_both" />
 
                     <RadioButton
                         android:id="@+id/radio_sms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:tag="1"
-                        android:text="@string/radio_sms" />
+                        android:text="@string/addedit_radio_sms" />
 
                     <RadioButton
                         android:id="@+id/radio_call"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:tag="2"
-                        android:text="@string/radio_call" />
+                        android:text="@string/addedit_radio_call" />
                 </RadioGroup>
             </LinearLayout>
 
-            <!--
-                 <LinearLayout
-                android:id="@+id/linearLayout_buttons"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/button_save"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="saveButtonClicked"
-                    android:paddingLeft="15dp"
-                    android:paddingStart="15dp"
-                    android:text="@string/button_save" />
-
-                <Button
-                    android:id="@+id/button_cancel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="cancelButtonClicked"
-                    android:paddingEnd="15dp"
-                    android:paddingRight="15dp"
-                    android:text="@string/button_cancel" />
-            </LinearLayout>
-            -->
         </LinearLayout>
     </ScrollView>
 

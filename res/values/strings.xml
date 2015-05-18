@@ -2,30 +2,28 @@
 <resources>
 
     <string name="app_name">ATM</string>
-    
-    <string name="action_new">Add Rule</string>
-    <string name="action_settings">Settings</string>
-    
-    <string name="title_activity_add_edit_rule">Add Rule</string>
-    <string name="action_save">Save</string>
-    <string name="editText_name">Name</string>
-    <string name="editText_description">Add a short description</string>
-    <string name="editText_text">The text to be replied to calls/texts</string>
-    <string name="textView_contactsOnly_text">Contacts only?</string>
-    <string name="radio_sms">Texts</string>
-    <string name="radio_call">Call</string>
-    <string name="radio_both">Both</string>
-    <string name="textView_replyTo_text">Reply to</string>
-    
-    <string name="button_save">Save</string>
-    <string name="button_cancel">Cancel</string>
-    
+    <!-- Main -->
+    <string name="main_dialog_edit">Edit</string>
+    <string name="main_dialog_delete">Delete</string>
+    <!-- Main menu-->
+    <string name="main_menu_new">Add Rule</string>
+    <string name="main_menu_settings">Settings</string>
+    <string name="main_menu_outbox">View Outbox</string>
+    <!-- AddEdit -->
+    <string name="addedit_title">Add Rule</string>
+    <string name="addedit_editText_name">A unique name</string>
+    <string name="addedit_editText_description">A short description</string>
+    <string name="addedit_editText_text">The text to be replied to calls/texts</string>
+    <string name="addedit_textView_contacts">Contacts only?</string>
+    <string name="addedit_textView_replyTo">Reply to</string>
+    <string name="addedit_radio_both">Both</string>
+    <string name="addedit_radio_sms">Texts</string>
+    <string name="addedit_radio_call">Calls</string>
+    <!-- AddEdit menu -->
+    <string name="addedit_menu_save">Save</string>
+    <!-- Widget -->
     <string name="title_activity_configure_widget">Add ATM Widget</string>
-    <string name="configure_create">Create Widget</string>
-    <string name="configure_info">Select a rule</string>
-    <string name="configure_empty">You have no Rules from which to create a widget</string>
-    
-    <string name="dialog_edit">Edit</string>
-    <string name="dialog_delete">Delete</string>
+    <string name="configure_text_info">Select a rule</string>
+    <string name="configure_text_empty">You have no Rules from which to create a widget</string>
     
 </resources>

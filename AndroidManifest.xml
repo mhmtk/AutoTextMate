@@ -32,7 +32,7 @@
         </activity>
         <activity
             android:name=".activities.AddEditRule"
-            android:label="@string/title_activity_add_edit_rule"
+            android:label="@string/addedit_title"
             android:parentActivityName=".activities.Main" >
 
             <!-- The meta-data element is needed for versions lower than 4.1 -->

@@ -227,12 +227,12 @@ public class Main extends ActionBarActivity {
 
 		new AlertDialog.Builder(this)
 		.setTitle(ruleName)
-		.setPositiveButton(R.string.dialog_edit, new DialogInterface.OnClickListener() {
+		.setPositiveButton(R.string.main_dialog_edit, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) { 
 				launchAddEditRuleActivity(ruleName);
 			}
 		})
-		.setNegativeButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
+		.setNegativeButton(R.string.main_dialog_delete, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				deleteRule(ruleName, position);
 			}
