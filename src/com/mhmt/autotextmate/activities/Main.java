@@ -171,8 +171,11 @@ public class Main extends ActionBarActivity {
 		}
 	}
 
+	/**
+	 * Launches the Outbox activity
+	 */
 	private void launchOutboxActivity() {
-		
+		startActivity(new Intent(this, Outbox.class));
 	}
 	/**
 	 * onToggle method for the toggle button in each row of the listView, 
