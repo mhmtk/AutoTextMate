@@ -5,7 +5,7 @@
     <!-- Main -->
     <string name="main_dialog_edit">Edit</string>
     <string name="main_dialog_delete">Delete</string>
-    <!-- Main menu-->
+    <!-- Main menu -->
     <string name="main_menu_new">Add Rule</string>
     <string name="main_menu_settings">Settings</string>
     <string name="main_menu_outbox">View Outbox</string>
@@ -21,9 +21,11 @@
     <string name="addedit_radio_call">Calls</string>
     <!-- AddEdit menu -->
     <string name="addedit_menu_save">Save</string>
+    <!-- Outbox -->
+    <string name="outbox_title">Outbox</string>
     <!-- Widget -->
-    <string name="title_activity_configure_widget">Add ATM Widget</string>
+    <string name="configure_title">Add ATM Widget</string>
     <string name="configure_text_info">Select a rule</string>
     <string name="configure_text_empty">You have no Rules from which to create a widget</string>
-    
+
 </resources>

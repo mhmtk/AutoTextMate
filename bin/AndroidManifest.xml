@@ -40,42 +40,45 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mhmt.autotextmate.activities.Main" />
         </activity>
-        
-        <receiver android:name=".widget.RuleWidgetProvider">
+
+        <receiver android:name=".widget.RuleWidgetProvider" >
             <intent-filter>
-                <action android:name="AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION"/>
+                <action android:name="AUTO_TEXT_MATE.WIGDET_ONCLICK_ACTION" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".broadcastreceivers.SMSReceiver" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-        
         <receiver android:name=".broadcastreceivers.CallReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
-
             </intent-filter>
         </receiver>
 
         <activity
-            android:name="com.mhmt.autotextmate.widget.ConfigureWidget"
-            android:label="@string/title_activity_configure_widget" >
+            android:name=".widget.ConfigureWidget"
+            android:label="@string/configure_title" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.mhmt.autotextmate.widget.RuleWidgetProvider" >
+        <receiver android:name=".widget.RuleWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data 
+
+            <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/atm_widget"/>
+                android:resource="@xml/atm_widget" />
         </receiver>
+
+        <activity
+            android:name="com.mhmt.autotextmate.activities.Outbox"
+            android:label="@string/outbox_title" >
+        </activity>
     </application>
 
 </manifest>

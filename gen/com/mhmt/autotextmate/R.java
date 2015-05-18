@@ -1809,10 +1809,11 @@ containing a value of this type.
         public static final int activity_add_edit_rule=0x7f030016;
         public static final int activity_configure_widget=0x7f030017;
         public static final int activity_main=0x7f030018;
-        public static final int layout_widget=0x7f030019;
-        public static final int rule_list_item=0x7f03001a;
-        public static final int rule_list_item_table=0x7f03001b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
+        public static final int activity_outbox=0x7f030019;
+        public static final int layout_widget=0x7f03001a;
+        public static final int rule_list_item=0x7f03001b;
+        public static final int rule_list_item_table=0x7f03001c;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
     public static final class menu {
         public static final int addedit_rule=0x7f0d0000;
@@ -1890,20 +1891,23 @@ containing a value of this type.
          */
         public static final int addedit_title=0x7f0b0016;
         public static final int app_name=0x7f0b0010;
-        public static final int configure_text_empty=0x7f0b0022;
-        public static final int configure_text_info=0x7f0b0021;
+        public static final int configure_text_empty=0x7f0b0023;
+        public static final int configure_text_info=0x7f0b0022;
+        /**  Widget 
+         */
+        public static final int configure_title=0x7f0b0021;
         public static final int main_dialog_delete=0x7f0b0012;
         /**  Main 
          */
         public static final int main_dialog_edit=0x7f0b0011;
-        /**  Main menu
+        /**  Main menu 
          */
         public static final int main_menu_new=0x7f0b0013;
         public static final int main_menu_outbox=0x7f0b0015;
         public static final int main_menu_settings=0x7f0b0014;
-        /**  Widget 
+        /**  Outbox 
          */
-        public static final int title_activity_configure_widget=0x7f0b0020;
+        public static final int outbox_title=0x7f0b0020;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;
