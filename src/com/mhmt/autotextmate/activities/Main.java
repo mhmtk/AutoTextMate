@@ -142,6 +142,9 @@ public class Main extends ActionBarActivity {
 		case R.id.action_new:
 			launchAddEditRuleActivity(null); //launch addEdit rule in add mode
 			return true;
+		case R.id.action_outbox:
+			launchOutboxActivity();
+			return true;
 		case R.id.action_settings:
 			// TODO launch settings?
 			return true;
@@ -168,6 +171,9 @@ public class Main extends ActionBarActivity {
 		}
 	}
 
+	private void launchOutboxActivity() {
+		
+	}
 	/**
 	 * onToggle method for the toggle button in each row of the listView, 
 	 * called thru the RuleListViewAdapter.

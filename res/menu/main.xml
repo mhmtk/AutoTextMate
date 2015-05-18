@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mhmt.autotextmate.Main" >
 
-    <!-- New, should appear as action button -->
     <item
         android:id="@+id/action_new"
         android:icon="@drawable/ic_action_new"
@@ -11,13 +10,18 @@
         android:orderInCategory="1"
         android:visible="true"
         android:enabled="true"
-        android:title="@string/action_new" />
-    <!-- Settings, should always be in the overflow -->
+        android:title="@string/main_menu_new" />
+    
     <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/ic_action_save"
+        android:id="@+id/action_outbox"
         android:orderInCategory="2"
         app:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/main_menu_outbox"/>
+    
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="3"
+        app:showAsAction="never"
+        android:title="@string/main_menu_settings"/>
 
 </menu>
