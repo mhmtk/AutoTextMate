@@ -1,6 +1,7 @@
 package com.mhmt.autotextmate.database;
 
 import com.mhmt.autotextmate.database.RuleDatabaseContract.RuleEntry;
+import com.mhmt.autotextmate.database.RuleDatabaseContract.SMSEntry;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -12,13 +13,13 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 15, 2015
+ * @version November May 18, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 
 	private String logTag = "DatabaseHelper";
-	
+
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String INTEGER_TYPE = " INTEGER";
 	private static final String COMMA_SEP = ",";
@@ -27,7 +28,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	private static final String DEFAULT = " DEFAULT";
 	private static final String REPLY_TO_CHECK = " CHECK(" + RuleEntry.RULE_COLUMN_REPLYTO + " < 3)";
 	private static final String STATUS_DEFAULT_VALUE = " 1";
-	
+
 	public static boolean INITIALIZED = false;
 
 
@@ -43,6 +44,13 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 //					RuleEntry.RULE_COLUMN_REPLYTO + INTEGER_TYPE + REPLY_TO_CHECK + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_STATUS + INTEGER_TYPE + DEFAULT + STATUS_DEFAULT_VALUE + COMMA_SEP +
 					RuleEntry.RULE_COLUMN_WIDGET_ID + INTEGER_TYPE + DEFAULT + " " + AppWidgetManager.INVALID_APPWIDGET_ID + ")";
+
+	private static final String SQL_CREATE_SMS = 
+			"CREATE TABLE IF NOT EXISTS " + SMSEntry.SMS_TABLE_NAME + " (" +
+					SMSEntry.SMS_COLUMN_TIME + INTEGER_TYPE + NOT_NULL + COMMA_SEP +
+					SMSEntry.SMS_COLUMN_TEXT + TEXT_TYPE + NOT_NULL + COMMA_SEP +
+					SMSEntry.SMS_COLUMN_TO + TEXT_TYPE + NOT_NULL + COMMA_SEP +
+					SMSEntry.SMS_COLUMN_RULE + TEXT_TYPE + NOT_NULL + COMMA_SEP + ")";
 	
 	//SQL command to drop (delete) the rule table
 	private static final String SQL_DELETE_RULE_TABLE = 
@@ -50,7 +58,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 
 	private static final String DATABASE_NAME = "ATMRuleDatabase.db";
 	private static final int DATABASE_VERSION = 1;
-	
+
 	/**
 	 * @param context
 	 * @param name - The name of the database
@@ -65,7 +73,8 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(SQL_CREATE_RULE);
-		Log.i(logTag, "Table created (onCraete called) " + SQL_CREATE_RULE);
+		db.execSQL(SQL_CREATE_SMS);
+		Log.i(logTag, "Table created (onCreate called) " + SQL_CREATE_RULE);
 	}
 
 
@@ -77,10 +86,10 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 		db.execSQL(SQL_DELETE_RULE_TABLE);
 		Log.i(logTag,  "Database upgraded from " + oldVersion + " to " + newVersion);
 	}
-	
-//	public void delete(SQLiteDatabase db, String name) {
-//		db.execSQL("DELETE FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
-//				+ RuleEntry.RULE_COLUMN_NAME + "='" + name + "'"
-//				);
-//	}
+
+	//	public void delete(SQLiteDatabase db, String name) {
+	//		db.execSQL("DELETE FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
+	//				+ RuleEntry.RULE_COLUMN_NAME + "='" + name + "'"
+	//				);
+	//	}
 }
