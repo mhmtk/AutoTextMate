@@ -524,9 +524,36 @@ public class DatabaseManager {
 	
 	/**
 	 * 
+	 * @param sms The SMS to be added to the SMS table
+	 */
+	public void addSMS(SMS sms) {
+		Log.i(logTag, "addSMS was called");
+
+		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
+		//get writable database
+		db = dbHelper.getWritableDatabase();
+
+		// map of values
+		ContentValues values = new ContentValues();
+		values.put(SMSEntry.SMS_COLUMN_TIME, sms.getTime());
+		values.put(SMSEntry.SMS_COLUMN_TEXT, sms.getText());
+		values.put(SMSEntry.SMS_COLUMN_TO, sms.getTo());
+		values.put(SMSEntry.SMS_COLUMN_RULE, sms.getRule());
+
+		// TODO FEEDBACK
+		//Insert the new row
+		db.insertOrThrow(SMSEntry.SMS_TABLE_NAME, null, values);
+
+		db.close(); //close database 
+		
+	}
+	
+	/**
+	 * 
 	 * @return an ArrayList of SMS objects containing all items of the SMS table
 	 */
 	public ArrayList<SMS> getSMSArray() {
+		Log.i(logTag, "getSMSArray was called");
 		smsArray = new ArrayList<SMS>();
 
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it 
