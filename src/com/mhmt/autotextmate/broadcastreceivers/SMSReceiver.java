@@ -1,8 +1,5 @@
 package com.mhmt.autotextmate.broadcastreceivers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
 import com.mhmt.autotextmate.dataobjects.SMS;
@@ -94,13 +91,6 @@ public class SMSReceiver extends BroadcastReceiver{
 		
 		// Add the reply to the Outbox DB
 		dbManager.addSMS(new SMS(System.currentTimeMillis(), replyText, String.valueOf(phoneNo), r.getName()));
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yy");
-		
-		Log.i(logTag, "Added SMS to DB, timestamp:\n" 
-		+ "in long " + System.currentTimeMillis() + "\n"
-		+ "in int " + (int) System.currentTimeMillis() + "\n"
-		+ "in date " + dateFormat.format(new Date(System.currentTimeMillis())));
 		
 		//documentation & feedback
 		Toast.makeText(context, "Replied to " + phoneNo + ": " + replyText, Toast.LENGTH_SHORT).show();
