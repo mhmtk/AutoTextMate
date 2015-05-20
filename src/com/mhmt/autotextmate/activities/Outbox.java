@@ -7,7 +7,9 @@ import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.SMS;
 
 import android.support.v4.app.ListFragment;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * 
@@ -26,7 +29,7 @@ import android.widget.ListView;
  */
 public class Outbox extends ActionBarActivity {
 
-	
+
 	private Context context;
 	private DatabaseManager dbManager;
 	private ArrayList<SMS> smsArray;
@@ -39,7 +42,7 @@ public class Outbox extends ActionBarActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		mListFragment fragment = new mListFragment();
-        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
 	}
 
 	@Override
@@ -48,24 +51,49 @@ public class Outbox extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.outbox_menu, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.outbox_action_deleteAll:
+			onDeleteAllClicked();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
+	private void onDeleteAllClicked() {
+		new AlertDialog.Builder(this)
+		.setTitle("Delete All")
+		.setPositiveButton(R.string.outbox_dialog_deleteAll, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				// clear DB
+				new Runnable() {
+					@Override
+					public void run() {
+						dbManager.clearOutbox();
+						Toast.makeText(getApplicationContext(), "Successfully cleared the outbox.", Toast.LENGTH_SHORT).show();
+					}
+				}.run();
+			}
+		})
+		.setNegativeButton(R.string.outbox_dialog_cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				//do nothing
+			}
+		})
+		.setMessage("Are you sure you want to delete all entries from the Outbox?")
+		.show();
+	}
+
 	public class mListFragment extends ListFragment {
-		
+
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	        return inflater.inflate(R.layout.activity_outbox, container, false);
-	    }
-		
+			return inflater.inflate(R.layout.activity_outbox, container, false);
+		}
+
 		public void onActivityCreated(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			// Set the list adapter

@@ -24,6 +24,8 @@
     <!-- Outbox -->
     <string name="outbox_title">Outbox</string>
     <string name="outbox_text_empty">You have no messages to view</string>
+    <string name="outbox_dialog_deleteAll">Delete All</string>
+    <string name="outbox_dialog_cancel">Cancel</string>
     <!-- Outbox menu -->
     <string name="outbox_menu_deleteAll">Delete All</string>
     <!-- Widget -->

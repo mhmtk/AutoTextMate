@@ -602,4 +602,15 @@ public class DatabaseManager {
 		db.close();
 		return smsArray;
 	}
+
+	/**
+	 * 
+	 */
+	public void clearOutbox() {
+		Log.i(logTag, "Clear Outbox called");
+		db = dbHelper.getWritableDatabase();
+		int count = db.delete(SMSEntry.SMS_TABLE_NAME, null, null);			
+		Log.i(logTag, "Deleted " + count+ "entries from the SMS table");
+		db.close();
+	}
 }

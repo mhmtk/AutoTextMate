@@ -1894,11 +1894,11 @@ containing a value of this type.
          */
         public static final int addedit_title=0x7f0b0016;
         public static final int app_name=0x7f0b0010;
-        public static final int configure_text_empty=0x7f0b0025;
-        public static final int configure_text_info=0x7f0b0024;
+        public static final int configure_text_empty=0x7f0b0027;
+        public static final int configure_text_info=0x7f0b0026;
         /**  Widget 
          */
-        public static final int configure_title=0x7f0b0023;
+        public static final int configure_title=0x7f0b0025;
         public static final int main_dialog_delete=0x7f0b0012;
         /**  Main 
          */
@@ -1908,9 +1908,11 @@ containing a value of this type.
         public static final int main_menu_new=0x7f0b0013;
         public static final int main_menu_outbox=0x7f0b0015;
         public static final int main_menu_settings=0x7f0b0014;
+        public static final int outbox_dialog_cancel=0x7f0b0023;
+        public static final int outbox_dialog_deleteAll=0x7f0b0022;
         /**  Outbox menu 
          */
-        public static final int outbox_menu_deleteAll=0x7f0b0022;
+        public static final int outbox_menu_deleteAll=0x7f0b0024;
         public static final int outbox_text_empty=0x7f0b0021;
         /**  Outbox 
          */
