@@ -24,6 +24,8 @@
     <!-- Outbox -->
     <string name="outbox_title">Outbox</string>
     <string name="outbox_text_empty">You have no messages to view</string>
+    <!-- Outbox menu -->
+    <string name="outbox_menu_deleteAll">Delete All</string>
     <!-- Widget -->
     <string name="configure_title">Add ATM Widget</string>
     <string name="configure_text_info">Select a rule</string>

@@ -1648,17 +1648,18 @@ containing a value of this type.
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020035;
         public static final int abc_textfield_search_material=0x7f020036;
         public static final int call=0x7f020037;
-        public static final int ic_action_done=0x7f020038;
-        public static final int ic_action_new=0x7f020039;
-        public static final int ic_action_person=0x7f02003a;
-        public static final int ic_action_save=0x7f02003b;
-        public static final int ic_launcher=0x7f02003c;
-        public static final int progress=0x7f02003d;
-        public static final int sms=0x7f02003e;
-        public static final int widget_button_green=0x7f02003f;
-        public static final int widget_button_red=0x7f020040;
-        public static final int widget_green=0x7f020041;
-        public static final int widget_red=0x7f020042;
+        public static final int ic_action_discard=0x7f020038;
+        public static final int ic_action_done=0x7f020039;
+        public static final int ic_action_new=0x7f02003a;
+        public static final int ic_action_person=0x7f02003b;
+        public static final int ic_action_save=0x7f02003c;
+        public static final int ic_launcher=0x7f02003d;
+        public static final int progress=0x7f02003e;
+        public static final int sms=0x7f02003f;
+        public static final int widget_button_green=0x7f020040;
+        public static final int widget_button_red=0x7f020041;
+        public static final int widget_green=0x7f020042;
+        public static final int widget_red=0x7f020043;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0031;
@@ -1720,6 +1721,7 @@ containing a value of this type.
         public static final int never=0x7f0a0017;
         public static final int none=0x7f0a000f;
         public static final int normal=0x7f0a000b;
+        public static final int outbox_action_deleteAll=0x7f0a005c;
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a002b;
@@ -1818,6 +1820,7 @@ containing a value of this type.
     public static final class menu {
         public static final int addedit_rule=0x7f0d0000;
         public static final int main=0x7f0d0001;
+        public static final int outbox_menu=0x7f0d0002;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1891,11 +1894,11 @@ containing a value of this type.
          */
         public static final int addedit_title=0x7f0b0016;
         public static final int app_name=0x7f0b0010;
-        public static final int configure_text_empty=0x7f0b0024;
-        public static final int configure_text_info=0x7f0b0023;
+        public static final int configure_text_empty=0x7f0b0025;
+        public static final int configure_text_info=0x7f0b0024;
         /**  Widget 
          */
-        public static final int configure_title=0x7f0b0022;
+        public static final int configure_title=0x7f0b0023;
         public static final int main_dialog_delete=0x7f0b0012;
         /**  Main 
          */
@@ -1905,6 +1908,9 @@ containing a value of this type.
         public static final int main_menu_new=0x7f0b0013;
         public static final int main_menu_outbox=0x7f0b0015;
         public static final int main_menu_settings=0x7f0b0014;
+        /**  Outbox menu 
+         */
+        public static final int outbox_menu_deleteAll=0x7f0b0022;
         public static final int outbox_text_empty=0x7f0b0021;
         /**  Outbox 
          */
