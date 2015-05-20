@@ -1,7 +1,6 @@
 package com.mhmt.autotextmate.dataobjects;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -31,13 +30,20 @@ public class SMS {
 		this.text = text;
 		this.to = to;
 		this.rule = rule;
-
 	}
 
-	public long getTimeAsMilli() {
+	/**
+	 * 
+	 * @return The 'time' field of this SMS in milliseconds
+	 */
+	public long getTimeInMilli() {
 		return time;
 	}
 	
+	/**
+	 * 
+	 * @return The 'time' field of this SMS as a locally formatted String
+	 */
 	public String getTimeAsDate() {
 		return dateFormat.format(new Date(time));
 	}

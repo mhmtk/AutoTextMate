@@ -20,7 +20,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 14, 2015
+ * @version November May 20, 2015
  * 
  */
 public class DatabaseManager {
@@ -537,7 +537,7 @@ public class DatabaseManager {
 
 		// map of values
 		ContentValues values = new ContentValues();
-		values.put(SMSEntry.SMS_COLUMN_TIME, sms.getTimeAsMilli());
+		values.put(SMSEntry.SMS_COLUMN_TIME, sms.getTimeInMilli());
 		values.put(SMSEntry.SMS_COLUMN_TEXT, sms.getText());
 		values.put(SMSEntry.SMS_COLUMN_TO, sms.getTo());
 		values.put(SMSEntry.SMS_COLUMN_RULE, sms.getRule());
