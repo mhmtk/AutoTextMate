@@ -537,7 +537,7 @@ public class DatabaseManager {
 
 		// map of values
 		ContentValues values = new ContentValues();
-		values.put(SMSEntry.SMS_COLUMN_TIME, sms.getTime());
+		values.put(SMSEntry.SMS_COLUMN_TIME, sms.getTimeAsMilli());
 		values.put(SMSEntry.SMS_COLUMN_TEXT, sms.getText());
 		values.put(SMSEntry.SMS_COLUMN_TO, sms.getTo());
 		values.put(SMSEntry.SMS_COLUMN_RULE, sms.getRule());

@@ -1,5 +1,8 @@
 package com.mhmt.autotextmate.dataobjects;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * 
  * @author Mehmet Kologlu
@@ -12,6 +15,7 @@ public class SMS {
 	private String text;
 	private String to;
 	private String rule;
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yy");
 
 	/**
 	 * 
@@ -28,8 +32,12 @@ public class SMS {
 
 	}
 
-	public int getTime() {
+	public int getTimeAsMilli() {
 		return time;
+	}
+	
+	public String getTimeAsDate() {
+		return dateFormat.format(new Date(time));
 	}
 
 	public String getText() {
@@ -45,7 +53,7 @@ public class SMS {
 	}
 
 	public String toString() {
-		return "At " + time + ", To: " + to + "\n" +
+		return getTimeAsDate() + ", To: " + to + "\n" +
 				text + "\n" +
 				"by Rule " + rule;
 	}
