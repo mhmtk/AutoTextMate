@@ -15,7 +15,8 @@
     <item
         android:id="@+id/action_outbox"
         android:orderInCategory="2"
-        app:showAsAction="never"
+        android:icon="@drawable/ic_action_outbox"
+        app:showAsAction="ifRoom|collapseActionView"
         android:title="@string/main_menu_outbox"/>
     
     <item

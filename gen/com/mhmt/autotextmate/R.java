@@ -1651,15 +1651,16 @@ containing a value of this type.
         public static final int ic_action_discard=0x7f020038;
         public static final int ic_action_done=0x7f020039;
         public static final int ic_action_new=0x7f02003a;
-        public static final int ic_action_person=0x7f02003b;
-        public static final int ic_action_save=0x7f02003c;
-        public static final int ic_launcher=0x7f02003d;
-        public static final int progress=0x7f02003e;
-        public static final int sms=0x7f02003f;
-        public static final int widget_button_green=0x7f020040;
-        public static final int widget_button_red=0x7f020041;
-        public static final int widget_green=0x7f020042;
-        public static final int widget_red=0x7f020043;
+        public static final int ic_action_outbox=0x7f02003b;
+        public static final int ic_action_person=0x7f02003c;
+        public static final int ic_action_save=0x7f02003d;
+        public static final int ic_launcher=0x7f02003e;
+        public static final int progress=0x7f02003f;
+        public static final int sms=0x7f020040;
+        public static final int widget_button_green=0x7f020041;
+        public static final int widget_button_red=0x7f020042;
+        public static final int widget_green=0x7f020043;
+        public static final int widget_red=0x7f020044;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0031;
