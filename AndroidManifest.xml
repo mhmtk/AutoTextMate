@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="16"
         android:targetSdkVersion="22" />
 
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -18,8 +18,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:label="@string/app_name" >
         <activity
             android:name=".activities.Main"
             android:label="@string/app_name"
@@ -33,12 +32,8 @@
         <activity
             android:name=".activities.AddEditRule"
             android:label="@string/addedit_title"
-            android:parentActivityName=".activities.Main" >
-
-            <!-- The meta-data element is needed for versions lower than 4.1 -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mhmt.autotextmate.activities.Main" />
+            android:parentActivityName=".activities.Main"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         </activity>
 
         <receiver android:name=".widget.RuleWidgetProvider" >
@@ -59,6 +54,7 @@
 
         <activity
             android:name=".widget.ConfigureWidget"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             android:label="@string/configure_title" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -77,6 +73,7 @@
 
         <activity
             android:name="com.mhmt.autotextmate.activities.Outbox"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
             android:label="@string/outbox_title" >
         </activity>
     </application>

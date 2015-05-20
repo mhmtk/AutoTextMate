@@ -7,6 +7,7 @@ import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.SMS;
 
 import android.app.ListActivity;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
@@ -20,6 +21,8 @@ public class Outbox extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_outbox);
 
+		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		
 		// instantiate fields
 		dbManager = new DatabaseManager(getApplicationContext());
 		smsArray = dbManager.getSMSArray();
