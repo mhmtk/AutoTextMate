@@ -29,7 +29,6 @@ public class Outbox extends ListActivity {
 
 		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-//		getActionBar().setDisplayUseLogoEnabled(false);
 		
 		// instantiate fields
 		dbManager = new DatabaseManager(getApplicationContext());
