@@ -33,6 +33,8 @@ public class Outbox extends ActionBarActivity {
 	private Context context;
 	private DatabaseManager dbManager;
 	private ArrayList<SMS> smsArray;
+	private OutboxListFragment listFragment;
+	private ArrayAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,8 @@ public class Outbox extends ActionBarActivity {
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		mListFragment fragment = new mListFragment();
-		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+		listFragment = new OutboxListFragment();
+		getSupportFragmentManager().beginTransaction().replace(android.R.id.content, listFragment).commit();
 	}
 
 	@Override
@@ -76,6 +78,9 @@ public class Outbox extends ActionBarActivity {
 						Toast.makeText(getApplicationContext(), "Successfully cleared the outbox.", Toast.LENGTH_SHORT).show();
 					}
 				}.run();
+				// Refresh the view
+				smsArray.clear();
+				adapter.notifyDataSetChanged();
 			}
 		})
 		.setNegativeButton(R.string.outbox_dialog_cancel, new DialogInterface.OnClickListener() {
@@ -87,7 +92,7 @@ public class Outbox extends ActionBarActivity {
 		.show();
 	}
 
-	public class mListFragment extends ListFragment {
+	public class OutboxListFragment extends ListFragment {
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -99,7 +104,8 @@ public class Outbox extends ActionBarActivity {
 			// Set the list adapter
 			dbManager = new DatabaseManager(context);
 			smsArray = dbManager.getSMSArray();
-			setListAdapter(new ArrayAdapter<SMS>(context, android.R.layout.simple_list_item_1, smsArray));
+			adapter = new ArrayAdapter<SMS>(context, android.R.layout.simple_list_item_1, smsArray);
+			setListAdapter(adapter);
 		}
 
 		public void onListItemClick(ListView listView, View view, int position, long id) {
