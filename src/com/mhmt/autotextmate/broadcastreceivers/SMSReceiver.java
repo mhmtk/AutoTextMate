@@ -22,14 +22,16 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 10, 2015
+ * @version November May 20, 2015
  * 
  */
 public class SMSReceiver extends BroadcastReceiver{
 
 	private static long delay = 2000; // 2 secs delay before responding
 	private String logTag = "SMSReceiver"; 
+	private SmsManager smsManager;
 	private Context context;
+	private DatabaseManager dbManager;
 
 	@Override
 	public void onReceive(final Context c, Intent intent) {
@@ -38,13 +40,14 @@ public class SMSReceiver extends BroadcastReceiver{
 		String phoneNo = "";
 		//		String message = "";
 
-		final DatabaseManager dbManager = new DatabaseManager(c);
-
 		Bundle bundle = intent.getExtras();
 		SmsMessage[] msg = null;
 
 		if (bundle != null) {
 			Log.i(logTag, "Non-null intent received");
+			
+			dbManager = new DatabaseManager(c);
+			
 			Object[] pdus = (Object[]) bundle.get("pdus");
 			msg = new SmsMessage[pdus.length];
 			for (int i=0; i<msg.length; i++) {
@@ -60,33 +63,15 @@ public class SMSReceiver extends BroadcastReceiver{
 
 			new Handler().postDelayed(new Runnable() { //Handler/Runnable usage in order to delay the reply
 				public void run() {
-					SmsManager smsManager = SmsManager.getDefault();
+					smsManager = SmsManager.getDefault();
 					for (Rule r : dbManager.getEnabledSMSRules()) { //Reply for each rule
 						if (r.getOnlyContacts() == 1) { // Reply only if the sender no is in the contacts
 							if (inContacts(pn)) { // Check if the sender is in the contacts
-								// Reply
-								String replyText = r.getText();
-								smsManager.sendTextMessage(pn, null, replyText, null, null);
-								
-								// Add the reply to the Outbox DB
-								dbManager.addSMS(new SMS((int) System.currentTimeMillis(), replyText, String.valueOf(pn), r.getName()));
-								
-								//documentation & feedback
-								Toast.makeText(context, "Replied to " + pn + ": " + replyText, Toast.LENGTH_SHORT).show();
-								Log.i(logTag, "Sent out an SMS to " + String.valueOf(pn));
+								sendSMS(r, pn);
 							}
 						}
 						else {
-							// Reply
-							String replyText = r.getText();
-							smsManager.sendTextMessage(pn, null, replyText, null, null);
-
-							// Add the reply to the Outbox DB
-							dbManager.addSMS(new SMS((int) System.currentTimeMillis(), replyText, String.valueOf(pn), r.getName()));
-							
-							//documentation & feedback
-							Toast.makeText(context, "Replied to " + pn + ": " + replyText, Toast.LENGTH_SHORT).show();		            		  
-							Log.i(logTag, "Sent out an SMS to " + String.valueOf(pn));
+							sendSMS(r, pn);
 						}
 					}
 				} 
@@ -95,12 +80,30 @@ public class SMSReceiver extends BroadcastReceiver{
 	}
 
 	/**
+	 * Sends out an SMS to phoneNo using Rule r, also logs this action to SMS table for outbox usage.
+	 * @param r
+	 * @param phoneNo
+	 */
+	private void sendSMS(Rule r, String phoneNo) {
+		// Reply
+		String replyText = r.getText();
+		smsManager.sendTextMessage(phoneNo, null, replyText, null, null);
+		
+		// Add the reply to the Outbox DB
+		dbManager.addSMS(new SMS((int) System.currentTimeMillis(), replyText, String.valueOf(phoneNo), r.getName()));
+		
+		//documentation & feedback
+		Toast.makeText(context, "Replied to " + phoneNo + ": " + replyText, Toast.LENGTH_SHORT).show();
+		Log.i(logTag, "Sent out an SMS to " + String.valueOf(phoneNo));
+	}
+	
+	/**
 	 * Checks if the given no is in the contacts
 	 * 
 	 * @param no The phone no to check for
 	 * @return True if the passed no is saved in the contacts, false otherwise 
 	 */
-	public boolean inContacts(String no) {
+	private boolean inContacts(String no) {
 		Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(no));
 		//	    String name = "?";
 

@@ -21,7 +21,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November April 14, 2015
+ * @version November May 20, 2015
  * 
  */
 public class CallReceiver extends BroadcastReceiver{
@@ -78,29 +78,11 @@ public class CallReceiver extends BroadcastReceiver{
 					for (Rule r : dbManager.getEnabledCallRules()) { //Reply for each rule
 						if (r.getOnlyContacts() == 1) { // Reply only if the sender no is in the contacts
 							if (inContacts(mContext, incomingNumber)) { // Check if the sender is in the contacts
-								// Reply
-								String replyText = r.getText();
-								smsManager.sendTextMessage(incomingNumber, null, replyText, null, null);
-								
-								// Add the reply to the Outbox DB
-								dbManager.addSMS(new SMS((int) System.currentTimeMillis(), replyText, String.valueOf(incomingNumber), r.getName()));
-								
-								//documentation & feedback
-								Toast.makeText(mContext, "Replied to " + incomingNumber + ": " + replyText, Toast.LENGTH_SHORT).show();
-								Log.i(logTag, "Sent out an SMS to " + incomingNumber);
+								sendSMS(r, incomingNumber);
 							}
 						}
 						else {
-							// Reply
-							String replyText = r.getText();
-							smsManager.sendTextMessage(incomingNumber, null, replyText, null, null);
-							
-							// Add the reply to the Outbox DB
-							dbManager.addSMS(new SMS((int) System.currentTimeMillis(), replyText, String.valueOf(incomingNumber), r.getName()));
-							
-							//documentation & feedback
-							Toast.makeText(mContext, "Replied to " + incomingNumber + ": " + replyText, Toast.LENGTH_SHORT).show();		            		  
-							Log.i(logTag, "Sent out an SMS to " + incomingNumber);
+							sendSMS(r, incomingNumber);
 						}
 					} //end of for each loop
 					handled = true;
@@ -109,9 +91,27 @@ public class CallReceiver extends BroadcastReceiver{
 					Log.i(logTag, "Call has been handled, will not try to invoke rules");
 				break;
 			} //end of ringing case
-		} 
-	}
+		}
+		
+		/**
+		 * Sends out an SMS to phoneNo using Rule r, also logs this action to SMS table for outbox usage.
+		 * @param r
+		 * @param phoneNo
+		 */
+		private void sendSMS(Rule r, String phoneNo) {
+			// Reply
+			String replyText = r.getText();
+			smsManager.sendTextMessage(phoneNo, null, replyText, null, null);
 
+			// Add the reply to the Outbox DB
+			dbManager.addSMS(new SMS((int) System.currentTimeMillis(), replyText, String.valueOf(phoneNo), r.getName()));
+
+			//documentation & feedback
+			Toast.makeText(mContext, "Replied to " + phoneNo + ": " + replyText, Toast.LENGTH_SHORT).show();
+			Log.i(logTag, "Sent out an SMS to " + phoneNo);
+		}
+	}
+	
 	/**
 	 * Checks if the given no is in the contacts
 	 * 
@@ -119,7 +119,7 @@ public class CallReceiver extends BroadcastReceiver{
 	 * @param no The phone no to check for
 	 * @return True if the passed no is saved in the contacts, false otherwise 
 	 */
-	public boolean inContacts(Context c, String no) {
+	private boolean inContacts(Context c, String no) {
 		Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(no));
 		//	    String name = "?";
 
