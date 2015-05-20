@@ -11,6 +11,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version November May 20, 2015
+ * 
+ */
 public class Outbox extends ListActivity {
 
 	private DatabaseManager dbManager;
@@ -22,6 +28,8 @@ public class Outbox extends ListActivity {
 		setContentView(R.layout.activity_outbox);
 
 		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+//		getActionBar().setDisplayUseLogoEnabled(false);
 		
 		// instantiate fields
 		dbManager = new DatabaseManager(getApplicationContext());

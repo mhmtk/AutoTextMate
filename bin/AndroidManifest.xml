@@ -35,6 +35,22 @@
             android:parentActivityName=".activities.Main"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         </activity>
+        
+        <activity
+            android:name="com.mhmt.autotextmate.activities.Outbox"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
+            android:parentActivityName="activities.Main"
+            android:label="@string/outbox_title" >
+        </activity>
+        
+        <activity
+            android:name=".widget.ConfigureWidget"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:label="@string/configure_title" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
 
         <receiver android:name=".widget.RuleWidgetProvider" >
             <intent-filter>
@@ -52,15 +68,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".widget.ConfigureWidget"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:label="@string/configure_title" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
-        </activity>
-
         <receiver android:name=".widget.RuleWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -70,12 +77,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/atm_widget" />
         </receiver>
-
-        <activity
-            android:name="com.mhmt.autotextmate.activities.Outbox"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
-            android:label="@string/outbox_title" >
-        </activity>
     </application>
 
 </manifest>
