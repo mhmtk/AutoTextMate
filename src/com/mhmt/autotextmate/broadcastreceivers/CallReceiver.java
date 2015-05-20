@@ -104,7 +104,7 @@ public class CallReceiver extends BroadcastReceiver{
 			smsManager.sendTextMessage(phoneNo, null, replyText, null, null);
 
 			// Add the reply to the Outbox DB
-			dbManager.addSMS(new SMS((int) System.currentTimeMillis(), replyText, String.valueOf(phoneNo), r.getName()));
+			dbManager.addSMS(new SMS(System.currentTimeMillis(), replyText, String.valueOf(phoneNo), r.getName()));
 
 			//documentation & feedback
 			Toast.makeText(mContext, "Replied to " + phoneNo + ": " + replyText, Toast.LENGTH_SHORT).show();

@@ -591,7 +591,7 @@ public class DatabaseManager {
 
 		while(!c.isAfterLast())
 		{
-			SMS s = new SMS(c.getInt(c.getColumnIndexOrThrow(SMSEntry.SMS_COLUMN_TIME)),
+			SMS s = new SMS(c.getLong(c.getColumnIndexOrThrow(SMSEntry.SMS_COLUMN_TIME)),
 					c.getString(c.getColumnIndexOrThrow(SMSEntry.SMS_COLUMN_TEXT)),
 					c.getString(c.getColumnIndexOrThrow(SMSEntry.SMS_COLUMN_TO)),
 					c.getString(c.getColumnIndexOrThrow(SMSEntry.SMS_COLUMN_RULE)));

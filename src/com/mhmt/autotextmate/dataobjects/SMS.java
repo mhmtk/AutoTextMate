@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class SMS {
 
-	private int time;
+	private long time;
 	private String text;
 	private String to;
 	private String rule;
@@ -24,7 +24,7 @@ public class SMS {
 	 * @param to To whom the SMS was sent
 	 * @param rule Name of the Rule the SMS was sent by
 	 */
-	public SMS(int time, String text, String to, String rule) {
+	public SMS(long time, String text, String to, String rule) {
 		this.time = time;
 		this.text = text;
 		this.to = to;
@@ -32,7 +32,7 @@ public class SMS {
 
 	}
 
-	public int getTimeAsMilli() {
+	public long getTimeAsMilli() {
 		return time;
 	}
 	
