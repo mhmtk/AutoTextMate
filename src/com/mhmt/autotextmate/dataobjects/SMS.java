@@ -1,12 +1,14 @@
 package com.mhmt.autotextmate.dataobjects;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 18, 2015
+ * @version November May 20, 2015
  * 
  */
 public class SMS {
@@ -15,7 +17,7 @@ public class SMS {
 	private String text;
 	private String to;
 	private String rule;
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm dd/MM/yy");
+	private DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, Locale.getDefault());
 
 	/**
 	 * 
