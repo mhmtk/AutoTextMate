@@ -2,6 +2,7 @@ package com.mhmt.autotextmate.database;
 
 import com.mhmt.autotextmate.database.RuleDatabaseContract.RuleEntry;
 import com.mhmt.autotextmate.database.RuleDatabaseContract.SMSEntry;
+import com.mhmt.autotextmate.dataobjects.SMS;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -13,7 +14,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 18, 2015
+ * @version November May 21, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
@@ -55,6 +56,8 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	//SQL command to drop (delete) the rule table
 	private static final String SQL_DELETE_RULE_TABLE = 
 			"DROP TABLE IF EXISTS " + RuleEntry.RULE_TABLE_NAME;
+	private static final String SQL_DELETE_SMS_TABLE =
+			"DROP TABLE IF EXISTS " + SMSEntry.SMS_TABLE_NAME;
 
 	private static final String DATABASE_NAME = "ATMRuleDatabase.db";
 	private static final int DATABASE_VERSION = 1;
@@ -74,22 +77,18 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(SQL_CREATE_RULE);
 		db.execSQL(SQL_CREATE_SMS);
-		Log.i(logTag, "Table created (onCreate called) " + SQL_CREATE_RULE);
+		Log.i(logTag, "Table created (onCreate called) " + SQL_CREATE_RULE + "\n" + SQL_CREATE_SMS);
 	}
 
 
 	/* (non-Javadoc)
 	 * @see android.database.sqlite.SQLiteOpenHelper#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)
+	 * 
+	 * Does nothing
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL(SQL_DELETE_RULE_TABLE);
+//		db.execSQL(SQL_DELETE_RULE_TABLE);
 		Log.i(logTag,  "Database upgraded from " + oldVersion + " to " + newVersion);
 	}
-
-	//	public void delete(SQLiteDatabase db, String name) {
-	//		db.execSQL("DELETE FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
-	//				+ RuleEntry.RULE_COLUMN_NAME + "='" + name + "'"
-	//				);
-	//	}
 }

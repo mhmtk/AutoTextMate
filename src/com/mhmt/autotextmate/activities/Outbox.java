@@ -34,7 +34,7 @@ public class Outbox extends ActionBarActivity {
 	private DatabaseManager dbManager;
 	private ArrayList<SMS> smsArray;
 	private OutboxListFragment listFragment;
-	private ArrayAdapter adapter;
+	private ArrayAdapter<SMS> adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
