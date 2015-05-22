@@ -1,0 +1,58 @@
+package com.mhmt.autotextmate.activities;
+
+import com.mhmt.autotextmate.R;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+public class Settings extends Activity {
+
+	private String[] spinnerArray;
+	private SharedPreferences sharedPref;
+	private SharedPreferences.Editor sPrefEditor;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_settings);
+
+		// Instantiate fields
+		Spinner muteSpinner = (Spinner) findViewById(R.id.settings_spinner_mute);
+		
+		// Get shared preferences, and it's editor
+		sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key),Context.MODE_PRIVATE);
+		sharedPref.edit();
+		
+		// Get spinner array from resources
+		spinnerArray = getResources().getStringArray(R.array.settings_mute_spinner_array);
+		
+		ArrayAdapter<CharSequence> muteAdapter = ArrayAdapter.createFromResource(this,
+		        R.array.settings_mute_spinner_array, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		muteAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		muteSpinner.setAdapter(muteAdapter);
+		
+		// Set onItemSelectedListener of the mute spinner
+		muteSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				if (position !=0) {
+				sPrefEditor.putInt(getString(R.string.settings_mute_key), Integer.valueOf(spinnerArray[position]));
+				sPrefEditor.commit();
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+		});
+	}
+}
