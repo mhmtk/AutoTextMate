@@ -36,7 +36,7 @@
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         </activity>
         <activity
-            android:name=".activities.Outbox"
+            android:name="com.mhmt.autotextmate.activities.Outbox"
             android:label="@string/outbox_title"
             android:parentActivityName=".activities.Main"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
@@ -74,15 +74,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/atm_widget" />
         </receiver>
-
-        <activity
-            android:name="com.mhmt.autotextmate.activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".activities.Main" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mhmt.autotextmate.activities.Main" />
-        </activity>
     </application>
 
 </manifest>

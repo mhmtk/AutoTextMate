@@ -9,6 +9,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
@@ -29,6 +30,7 @@ public class CallReceiver extends BroadcastReceiver{
 	private String logTag = "CallReceiver";
 	private DatabaseManager dbManager;
 	private SmsManager smsManager = SmsManager.getDefault();
+	private AudioManager aManager;
 
 	private static MPhoneStateListener phoneListener;
 
@@ -43,6 +45,8 @@ public class CallReceiver extends BroadcastReceiver{
 		if (phoneListener == null) {
 			dbManager = new DatabaseManager(context);
 			phoneListener = new MPhoneStateListener(context);
+			aManager = (AudioManager) context
+	                .getSystemService(Context.AUDIO_SERVICE);
 			telephony.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
 		}
 	}
@@ -52,6 +56,7 @@ public class CallReceiver extends BroadcastReceiver{
 		// Flag used to avoid invoking rules multiple times due to receiving more than one one RINGING state change
 		private boolean handled = false;
 		private Context mContext;
+		
 
 		private MPhoneStateListener(Context c) {
 			mContext = c;
@@ -78,11 +83,11 @@ public class CallReceiver extends BroadcastReceiver{
 					for (Rule r : dbManager.getEnabledCallRules()) { //Reply for each rule
 						if (r.getOnlyContacts() == 1) { // Reply only if the sender no is in the contacts
 							if (inContacts(mContext, incomingNumber)) { // Check if the sender is in the contacts
-								sendSMS(r, incomingNumber);
+								applyRule(r, incomingNumber);
 							}
 						}
 						else {
-							sendSMS(r, incomingNumber);
+							applyRule(r, incomingNumber);
 						}
 					} //end of for each loop
 					handled = true;
@@ -94,11 +99,14 @@ public class CallReceiver extends BroadcastReceiver{
 		}
 		
 		/**
-		 * Sends out an SMS to phoneNo using Rule r, also logs this action to SMS table for outbox usage.
+		 * Applies the rule for the given phoneNo.
+		 * 
+		 * That is sends and SMS, and mutes the ringer.
+		 * 
 		 * @param r
 		 * @param phoneNo
 		 */
-		private void sendSMS(Rule r, String phoneNo) {
+		private void applyRule(Rule r, String phoneNo) {
 			// Reply
 			String replyText = r.getText();
 			smsManager.sendTextMessage(phoneNo, null, replyText, null, null);
@@ -109,6 +117,9 @@ public class CallReceiver extends BroadcastReceiver{
 			//documentation & feedback
 			Toast.makeText(mContext, "Replied to " + phoneNo + ": " + replyText, Toast.LENGTH_SHORT).show();
 			Log.i(logTag, "Sent out an SMS to " + phoneNo);
+			
+			aManager.setStreamMute(AudioManager.STREAM_RING, true);
+			Log.i(logTag, "Muted");
 		}
 	}
 	
