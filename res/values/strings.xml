@@ -14,7 +14,8 @@
     <string name="addedit_editText_name">A unique name</string>
     <string name="addedit_editText_description">A short description</string>
     <string name="addedit_editText_text">The text to be replied to calls/texts</string>
-    <string name="addedit_textView_contacts">Contacts only?</string>
+    <string name="addedit_textView_contacts">Only contacts</string>
+    <string name="addedit_button_contactFilter">Filter</string>
     <string name="addedit_textView_replyTo">Reply to</string>
     <string name="addedit_radio_both">Both</string>
     <string name="addedit_radio_sms">Texts</string>

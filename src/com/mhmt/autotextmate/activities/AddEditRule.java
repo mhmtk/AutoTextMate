@@ -96,6 +96,14 @@ public class AddEditRule extends ActionBarActivity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	/**
+	 * onClick method of 'Filter' button, assigned thru the xml
+	 * @param v
+	 */
+	public void contactsFilterClicked(View v) {
+		
+	}
 
 	/**
 	 * Called when the save button on the AddEditRule Activity is clicked
