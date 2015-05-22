@@ -3,7 +3,6 @@ package com.mhmt.autotextmate.activities;
 import com.mhmt.autotextmate.R;
 import com.mhmt.autotextmate.database.DatabaseManager;
 import com.mhmt.autotextmate.dataobjects.Rule;
-import com.mhmt.autotextmate.fragments.ContactsFragment;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
@@ -50,7 +49,7 @@ public class AddEditRule extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_edit_rule);
-
+		
 		// Get views
 		editTextName = (EditText) findViewById(R.id.editText_name);
 		editTextDescription = (EditText) findViewById(R.id.editText_description);
@@ -96,16 +95,6 @@ public class AddEditRule extends ActionBarActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-	}
-
-	/**
-	 * onClick method of 'Filter' button, assigned thru the xml
-	 * @param v
-	 */
-	public void contactsFilterClicked(View v) {
-		ContactsFragment fragment = new ContactsFragment();
-		getFragmentManager().beginTransaction().replace(R.id.addedit_contacts_fragment_container, fragment).addToBackStack(null).commit();
-		fields.setVisibility(View.INVISIBLE);
 	}
 
 	/**

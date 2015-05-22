@@ -4,11 +4,6 @@
     android:layout_height="wrap_content"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <FrameLayout
-        android:id="@+id/addedit_contacts_fragment_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
@@ -66,48 +61,26 @@
                 android:hint="@string/addedit_editText_text"
                 android:inputType="textMultiLine" />
 
-            <TableLayout
-                android:id="@+id/tableLayout_contacts"
+            <LinearLayout
+                android:id="@+id/linearLayout_contactsOnly"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textView_contactsOnly"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/addedit_textView_contacts" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_column="0"
-                        android:layout_weight="1"
-                        >
-
-                        <TextView
-                            android:id="@+id/textView_contactsOnly"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:layout_gravity="center_vertical"
-                            android:text="@string/addedit_textView_contacts" />
-
-                        <CheckBox
-                            android:id="@+id/checkBox_contactsOnly"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|end" />
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/button_contactFilter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_weight="1"
-                        android:onClick="contactsFilterClicked"
-                        android:text="@string/addedit_button_contactFilter" />
-                </TableRow>
-            </TableLayout>
+                <CheckBox
+                    android:id="@+id/checkBox_contactsOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout_replyTo"
@@ -151,6 +124,7 @@
                         android:text="@string/addedit_radio_call" />
                 </RadioGroup>
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

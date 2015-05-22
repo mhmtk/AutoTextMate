@@ -1676,31 +1676,27 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_new=0x7f0a005d;
-        public static final int action_outbox=0x7f0a005e;
-        public static final int action_settings=0x7f0a005f;
+        public static final int action_new=0x7f0a0059;
+        public static final int action_outbox=0x7f0a005a;
+        public static final int action_settings=0x7f0a005b;
         public static final int activity_chooser_view_content=0x7f0a0021;
-        public static final int addRule_fields=0x7f0a0041;
-        public static final int add_action_save=0x7f0a005c;
-        public static final int addedit_contacts_fragment_container=0x7f0a003f;
-        public static final int addedit_progress_bar=0x7f0a0040;
+        public static final int addRule_fields=0x7f0a0040;
+        public static final int add_action_save=0x7f0a0058;
+        public static final int addedit_progress_bar=0x7f0a003f;
         public static final int always=0x7f0a0014;
         public static final int beginning=0x7f0a001b;
-        public static final int button_contactFilter=0x7f0a0048;
-        public static final int checkBox_contactsOnly=0x7f0a0047;
+        public static final int checkBox_contactsOnly=0x7f0a0046;
         public static final int checkbox=0x7f0a0029;
         public static final int collapseActionView=0x7f0a0015;
-        public static final int configure_text_info=0x7f0a004f;
-        public static final int contactFilter_checkbox_select=0x7f0a0052;
-        public static final int contactFilter_textView_contactName=0x7f0a0053;
+        public static final int configure_text_info=0x7f0a004d;
         public static final int decor_content_parent=0x7f0a002f;
         public static final int default_activity_button=0x7f0a0024;
         public static final int dialog=0x7f0a0019;
         public static final int disableHome=0x7f0a000d;
         public static final int dropdown=0x7f0a001a;
-        public static final int editText_description=0x7f0a0043;
-        public static final int editText_name=0x7f0a0042;
-        public static final int editText_text=0x7f0a0044;
+        public static final int editText_description=0x7f0a0042;
+        public static final int editText_name=0x7f0a0041;
+        public static final int editText_text=0x7f0a0043;
         public static final int edit_query=0x7f0a0033;
         public static final int end=0x7f0a001c;
         public static final int expand_activities_button=0x7f0a0022;
@@ -1710,29 +1706,30 @@ containing a value of this type.
         public static final int icon=0x7f0a0026;
         public static final int ifRoom=0x7f0a0016;
         public static final int image=0x7f0a0023;
-        public static final int linearLayout_replyTo=0x7f0a0049;
+        public static final int linearLayout_contactsOnly=0x7f0a0044;
+        public static final int linearLayout_replyTo=0x7f0a0047;
         public static final int listMode=0x7f0a000a;
-        public static final int list_call_image=0x7f0a005b;
+        public static final int list_call_image=0x7f0a0057;
         public static final int list_item=0x7f0a0025;
-        public static final int list_onlyContacts_image=0x7f0a0059;
-        public static final int list_sms_image=0x7f0a005a;
-        public static final int list_textView_description=0x7f0a0058;
-        public static final int list_textView_name=0x7f0a0056;
-        public static final int list_toggleButton_status=0x7f0a0057;
-        public static final int main_list=0x7f0a0050;
-        public static final int main_progress_bar=0x7f0a0051;
+        public static final int list_onlyContacts_image=0x7f0a0055;
+        public static final int list_sms_image=0x7f0a0056;
+        public static final int list_textView_description=0x7f0a0054;
+        public static final int list_textView_name=0x7f0a0052;
+        public static final int list_toggleButton_status=0x7f0a0053;
+        public static final int main_list=0x7f0a004e;
+        public static final int main_progress_bar=0x7f0a004f;
         public static final int middle=0x7f0a001d;
         public static final int never=0x7f0a0017;
         public static final int none=0x7f0a000f;
         public static final int normal=0x7f0a000b;
-        public static final int outbox_action_deleteAll=0x7f0a0060;
+        public static final int outbox_action_deleteAll=0x7f0a005c;
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a002b;
-        public static final int radio_both=0x7f0a004c;
-        public static final int radio_call=0x7f0a004e;
-        public static final int radio_replyTo=0x7f0a004b;
-        public static final int radio_sms=0x7f0a004d;
+        public static final int radio_both=0x7f0a004a;
+        public static final int radio_call=0x7f0a004c;
+        public static final int radio_replyTo=0x7f0a0049;
+        public static final int radio_sms=0x7f0a004b;
         public static final int search_badge=0x7f0a0035;
         public static final int search_bar=0x7f0a0034;
         public static final int search_button=0x7f0a0036;
@@ -1750,14 +1747,13 @@ containing a value of this type.
         public static final int split_action_bar=0x7f0a0004;
         public static final int submit_area=0x7f0a003c;
         public static final int tabMode=0x7f0a000c;
-        public static final int tableLayout_contacts=0x7f0a0045;
-        public static final int textView_contactsOnly=0x7f0a0046;
-        public static final int textView_replyTo=0x7f0a004a;
+        public static final int textView_contactsOnly=0x7f0a0045;
+        public static final int textView_replyTo=0x7f0a0048;
         public static final int title=0x7f0a0027;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
-        public static final int widget_backgroundImage=0x7f0a0054;
-        public static final int widget_button=0x7f0a0055;
+        public static final int widget_backgroundImage=0x7f0a0050;
+        public static final int widget_button=0x7f0a0051;
         public static final int withText=0x7f0a0018;
         public static final int wrap_content=0x7f0a0009;
     }
@@ -1817,12 +1813,10 @@ containing a value of this type.
         public static final int activity_configure_widget=0x7f030017;
         public static final int activity_main=0x7f030018;
         public static final int activity_outbox=0x7f030019;
-        public static final int contact_filter_item=0x7f03001a;
-        public static final int fragment_contact_filter=0x7f03001b;
-        public static final int layout_widget=0x7f03001c;
-        public static final int rule_list_item=0x7f03001d;
-        public static final int rule_list_item_table=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int layout_widget=0x7f03001a;
+        public static final int rule_list_item=0x7f03001b;
+        public static final int rule_list_item_table=0x7f03001c;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
     public static final class menu {
         public static final int addedit_menu=0x7f0d0000;
@@ -1886,27 +1880,26 @@ containing a value of this type.
         /**  Content description for the Toolbar icon used to collapse an expanded action mode. [CHAR LIMIT=NONE] 
          */
         public static final int abc_toolbar_collapse_description=0x7f0b0004;
-        public static final int addedit_button_contactFilter=0x7f0b001b;
         public static final int addedit_editText_description=0x7f0b0018;
         public static final int addedit_editText_name=0x7f0b0017;
         public static final int addedit_editText_text=0x7f0b0019;
         /**  AddEdit menu 
          */
-        public static final int addedit_menu_save=0x7f0b0020;
-        public static final int addedit_radio_both=0x7f0b001d;
-        public static final int addedit_radio_call=0x7f0b001f;
-        public static final int addedit_radio_sms=0x7f0b001e;
+        public static final int addedit_menu_save=0x7f0b001f;
+        public static final int addedit_radio_both=0x7f0b001c;
+        public static final int addedit_radio_call=0x7f0b001e;
+        public static final int addedit_radio_sms=0x7f0b001d;
         public static final int addedit_textView_contacts=0x7f0b001a;
-        public static final int addedit_textView_replyTo=0x7f0b001c;
+        public static final int addedit_textView_replyTo=0x7f0b001b;
         /**  AddEdit 
          */
         public static final int addedit_title=0x7f0b0016;
         public static final int app_name=0x7f0b0010;
-        public static final int configure_text_empty=0x7f0b0028;
-        public static final int configure_text_info=0x7f0b0027;
+        public static final int configure_text_empty=0x7f0b0027;
+        public static final int configure_text_info=0x7f0b0026;
         /**  Widget 
          */
-        public static final int configure_title=0x7f0b0026;
+        public static final int configure_title=0x7f0b0025;
         public static final int main_dialog_delete=0x7f0b0012;
         /**  Main 
          */
@@ -1916,15 +1909,15 @@ containing a value of this type.
         public static final int main_menu_new=0x7f0b0013;
         public static final int main_menu_outbox=0x7f0b0015;
         public static final int main_menu_settings=0x7f0b0014;
-        public static final int outbox_dialog_cancel=0x7f0b0024;
-        public static final int outbox_dialog_deleteAll=0x7f0b0023;
+        public static final int outbox_dialog_cancel=0x7f0b0023;
+        public static final int outbox_dialog_deleteAll=0x7f0b0022;
         /**  Outbox menu 
          */
-        public static final int outbox_menu_deleteAll=0x7f0b0025;
-        public static final int outbox_text_empty=0x7f0b0022;
+        public static final int outbox_menu_deleteAll=0x7f0b0024;
+        public static final int outbox_text_empty=0x7f0b0021;
         /**  Outbox 
          */
-        public static final int outbox_title=0x7f0b0021;
+        public static final int outbox_title=0x7f0b0020;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;
