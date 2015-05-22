@@ -1676,12 +1676,12 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_new=0x7f0a005b;
-        public static final int action_outbox=0x7f0a005c;
-        public static final int action_settings=0x7f0a005d;
+        public static final int action_new=0x7f0a005d;
+        public static final int action_outbox=0x7f0a005e;
+        public static final int action_settings=0x7f0a005f;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int addRule_fields=0x7f0a0041;
-        public static final int add_action_save=0x7f0a005a;
+        public static final int add_action_save=0x7f0a005c;
         public static final int addedit_contacts_fragment_container=0x7f0a003f;
         public static final int addedit_progress_bar=0x7f0a0040;
         public static final int always=0x7f0a0014;
@@ -1691,6 +1691,8 @@ containing a value of this type.
         public static final int checkbox=0x7f0a0029;
         public static final int collapseActionView=0x7f0a0015;
         public static final int configure_text_info=0x7f0a004f;
+        public static final int contactFilter_checkbox_select=0x7f0a0052;
+        public static final int contactFilter_textView_contactName=0x7f0a0053;
         public static final int decor_content_parent=0x7f0a002f;
         public static final int default_activity_button=0x7f0a0024;
         public static final int dialog=0x7f0a0019;
@@ -1710,20 +1712,20 @@ containing a value of this type.
         public static final int image=0x7f0a0023;
         public static final int linearLayout_replyTo=0x7f0a0049;
         public static final int listMode=0x7f0a000a;
-        public static final int list_call_image=0x7f0a0059;
+        public static final int list_call_image=0x7f0a005b;
         public static final int list_item=0x7f0a0025;
-        public static final int list_onlyContacts_image=0x7f0a0057;
-        public static final int list_sms_image=0x7f0a0058;
-        public static final int list_textView_description=0x7f0a0056;
-        public static final int list_textView_name=0x7f0a0054;
-        public static final int list_toggleButton_status=0x7f0a0055;
+        public static final int list_onlyContacts_image=0x7f0a0059;
+        public static final int list_sms_image=0x7f0a005a;
+        public static final int list_textView_description=0x7f0a0058;
+        public static final int list_textView_name=0x7f0a0056;
+        public static final int list_toggleButton_status=0x7f0a0057;
         public static final int main_list=0x7f0a0050;
         public static final int main_progress_bar=0x7f0a0051;
         public static final int middle=0x7f0a001d;
         public static final int never=0x7f0a0017;
         public static final int none=0x7f0a000f;
         public static final int normal=0x7f0a000b;
-        public static final int outbox_action_deleteAll=0x7f0a005e;
+        public static final int outbox_action_deleteAll=0x7f0a0060;
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a002b;
@@ -1754,8 +1756,8 @@ containing a value of this type.
         public static final int title=0x7f0a0027;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
-        public static final int widget_backgroundImage=0x7f0a0052;
-        public static final int widget_button=0x7f0a0053;
+        public static final int widget_backgroundImage=0x7f0a0054;
+        public static final int widget_button=0x7f0a0055;
         public static final int withText=0x7f0a0018;
         public static final int wrap_content=0x7f0a0009;
     }
@@ -1815,10 +1817,11 @@ containing a value of this type.
         public static final int activity_configure_widget=0x7f030017;
         public static final int activity_main=0x7f030018;
         public static final int activity_outbox=0x7f030019;
-        public static final int layout_widget=0x7f03001a;
-        public static final int rule_list_item=0x7f03001b;
-        public static final int rule_list_item_table=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
+        public static final int contact_filter_item=0x7f03001a;
+        public static final int layout_widget=0x7f03001b;
+        public static final int rule_list_item=0x7f03001c;
+        public static final int rule_list_item_table=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
         public static final int addedit_menu=0x7f0d0000;
