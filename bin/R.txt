@@ -485,10 +485,11 @@ int layout activity_configure_widget 0x7f030017
 int layout activity_main 0x7f030018
 int layout activity_outbox 0x7f030019
 int layout contact_filter_item 0x7f03001a
-int layout layout_widget 0x7f03001b
-int layout rule_list_item 0x7f03001c
-int layout rule_list_item_table 0x7f03001d
-int layout support_simple_spinner_dropdown_item 0x7f03001e
+int layout fragment_contact_filter 0x7f03001b
+int layout layout_widget 0x7f03001c
+int layout rule_list_item 0x7f03001d
+int layout rule_list_item_table 0x7f03001e
+int layout support_simple_spinner_dropdown_item 0x7f03001f
 int menu addedit_menu 0x7f0d0000
 int menu main_menu 0x7f0d0001
 int menu outbox_menu 0x7f0d0002
