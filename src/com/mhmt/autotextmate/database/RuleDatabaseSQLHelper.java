@@ -2,7 +2,6 @@ package com.mhmt.autotextmate.database;
 
 import com.mhmt.autotextmate.database.RuleDatabaseContract.RuleEntry;
 import com.mhmt.autotextmate.database.RuleDatabaseContract.SMSEntry;
-import com.mhmt.autotextmate.dataobjects.SMS;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -14,7 +13,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 21, 2015
+ * @version November May 22, 2015
  * 
  */
 public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
@@ -27,7 +26,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	private static final String NOT_NULL = " NOT_NULL";
 	private static final String UNIQUE = " UNIQUE";
 	private static final String DEFAULT = " DEFAULT";
-	private static final String REPLY_TO_CHECK = " CHECK(" + RuleEntry.RULE_COLUMN_REPLYTO + " < 3)";
+//	private static final String REPLY_TO_CHECK = " CHECK(" + RuleEntry.RULE_COLUMN_REPLYTO + " < 3)";
 	private static final String STATUS_DEFAULT_VALUE = " 1";
 
 	public static boolean INITIALIZED = false;
@@ -54,8 +53,10 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 					SMSEntry.SMS_COLUMN_RULE + TEXT_TYPE + NOT_NULL + ")";
 	
 	//SQL command to drop (delete) the rule table
+	@SuppressWarnings("unused")
 	private static final String SQL_DELETE_RULE_TABLE = 
 			"DROP TABLE IF EXISTS " + RuleEntry.RULE_TABLE_NAME;
+	@SuppressWarnings("unused")
 	private static final String SQL_DELETE_SMS_TABLE =
 			"DROP TABLE IF EXISTS " + SMSEntry.SMS_TABLE_NAME;
 
@@ -89,6 +90,6 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 //		db.execSQL(SQL_DELETE_RULE_TABLE);
-		Log.i(logTag,  "Database upgraded from " + oldVersion + " to " + newVersion);
+//		Log.i(logTag,  "Database upgraded from " + oldVersion + " to " + newVersion);
 	}
 }
