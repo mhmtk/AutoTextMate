@@ -18,6 +18,12 @@ public final class R {
         public static final int abc_slide_out_bottom=0x7f040006;
         public static final int abc_slide_out_top=0x7f040007;
     }
+    public static final class array {
+        public static final int pref_example_list_titles=0x7f0d0000;
+        public static final int pref_example_list_values=0x7f0d0001;
+        public static final int pref_sync_frequency_titles=0x7f0d0002;
+        public static final int pref_sync_frequency_values=0x7f0d0003;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1819,9 +1825,9 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
     public static final class menu {
-        public static final int addedit_menu=0x7f0d0000;
-        public static final int main_menu=0x7f0d0001;
-        public static final int outbox_menu=0x7f0d0002;
+        public static final int addedit_menu=0x7f0e0000;
+        public static final int main_menu=0x7f0e0001;
+        public static final int outbox_menu=0x7f0e0002;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1918,6 +1924,28 @@ containing a value of this type.
         /**  Outbox 
          */
         public static final int outbox_title=0x7f0b0020;
+        public static final int pref_default_display_name=0x7f0b002d;
+        public static final int pref_description_social_recommendations=0x7f0b002b;
+        /**  Example settings for Data & Sync 
+         */
+        public static final int pref_header_data_sync=0x7f0b002f;
+        /**  Strings related to Settings 
+ Example General settings 
+         */
+        public static final int pref_header_general=0x7f0b0029;
+        /**  Example settings for Notifications 
+         */
+        public static final int pref_header_notifications=0x7f0b0032;
+        public static final int pref_ringtone_silent=0x7f0b0035;
+        public static final int pref_title_add_friends_to_messages=0x7f0b002e;
+        public static final int pref_title_display_name=0x7f0b002c;
+        public static final int pref_title_new_message_notifications=0x7f0b0033;
+        public static final int pref_title_ringtone=0x7f0b0034;
+        public static final int pref_title_social_recommendations=0x7f0b002a;
+        public static final int pref_title_sync_frequency=0x7f0b0030;
+        public static final int pref_title_system_sync_settings=0x7f0b0031;
+        public static final int pref_title_vibrate=0x7f0b0036;
+        public static final int title_activity_settings=0x7f0b0028;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;
@@ -2283,6 +2311,10 @@ containing a value of this type.
     }
     public static final class xml {
         public static final int atm_widget=0x7f050000;
+        public static final int pref_data_sync=0x7f050001;
+        public static final int pref_general=0x7f050002;
+        public static final int pref_headers=0x7f050003;
+        public static final int pref_notification=0x7f050004;
     }
     public static final class styleable {
         /**  ============================================ 
