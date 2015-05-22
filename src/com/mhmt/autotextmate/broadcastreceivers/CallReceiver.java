@@ -25,7 +25,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 20, 2015
+ * @version November May 23, 2015
  * 
  */
 public class CallReceiver extends BroadcastReceiver{
@@ -36,7 +36,6 @@ public class CallReceiver extends BroadcastReceiver{
 	private AudioManager aManager;
 
 	private SharedPreferences sharedPref;
-	private SharedPreferences.Editor sPrefEditor;
 	
 	private static MPhoneStateListener phoneListener;
 
@@ -54,9 +53,8 @@ public class CallReceiver extends BroadcastReceiver{
 			//Get audio manager for mute option
 			aManager = (AudioManager) context
 	                .getSystemService(Context.AUDIO_SERVICE);
-			//Get shared preferences
+			//Get the applications shared preferences
 			sharedPref = context.getSharedPreferences(context.getString(R.string.shared_preferences_key),Context.MODE_PRIVATE);
-			sharedPref.edit();
 			telephony.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
 		}
 	}
@@ -132,7 +130,7 @@ public class CallReceiver extends BroadcastReceiver{
 			Toast.makeText(mContext, "Replied to " + phoneNo + ": " + replyText, Toast.LENGTH_SHORT).show();
 			Log.i(logTag, "Sent out an SMS to " + phoneNo);
 			
-			// Runnable for delayed muting
+			// According to the settings, mute the ringer 
 			if (muteDelay != -1) {
 				new Handler().postDelayed(new Runnable() {
 					public void run() {

@@ -11,6 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version November May 23, 2015
+ * 
+ */
 public class Settings extends Activity {
 
 	private String[] spinnerArray;
@@ -32,6 +38,7 @@ public class Settings extends Activity {
 		// Get spinner array from resources
 		spinnerArray = getResources().getStringArray(R.array.settings_mute_spinner_array);
 		
+		// Create an array adapter for the usage with the mute spinner
 		ArrayAdapter<CharSequence> muteAdapter = ArrayAdapter.createFromResource(this,
 		        R.array.settings_mute_spinner_array, android.R.layout.simple_spinner_item);
 		// Specify the layout to use when the list of choices appears
