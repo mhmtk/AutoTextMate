@@ -25,7 +25,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 16, 2015
+ * @version November May 25, 2015
  * 
  */
 public class Main extends ActionBarActivity {
@@ -143,10 +143,10 @@ public class Main extends ActionBarActivity {
 			launchAddEditRuleActivity(null); //launch addEdit rule in add mode
 			return true;
 		case R.id.action_outbox:
-			launchOutboxActivity();
+			startActivity(new Intent(this, Settings.class));
 			return true;
 		case R.id.action_settings:
-			// TODO launch settings?
+			startActivity(new Intent(this, Settings.class));
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -171,12 +171,6 @@ public class Main extends ActionBarActivity {
 		}
 	}
 
-	/**
-	 * Launches the Outbox activity
-	 */
-	private void launchOutboxActivity() {
-		startActivity(new Intent(this, Outbox.class));
-	}
 	/**
 	 * onToggle method for the toggle button in each row of the listView, 
 	 * called thru the RuleListViewAdapter.
