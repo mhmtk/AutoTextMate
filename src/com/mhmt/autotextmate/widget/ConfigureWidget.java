@@ -20,7 +20,7 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version May 16, 2015
+ * @version May 26, 2015
  */
 public class ConfigureWidget extends ListActivity {
 

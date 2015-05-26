@@ -7,6 +7,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version November May 26, 2015
+ * 
+ */
 public class Instructions extends ActionBarActivity {
 
 	@Override

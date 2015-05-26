@@ -25,7 +25,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 25, 2015
+ * @version November May 26, 2015
  * 
  */
 public class Main extends ActionBarActivity {
@@ -156,7 +156,7 @@ public class Main extends ActionBarActivity {
 				public void onClick(DialogInterface dialog, int which) {
 				}
 			})
-			.setMessage("Developed by Mehmet Kologlu. \n Any feedback is welcome")
+			.setMessage("Developed by Mehmet Kologlu. \n Version 1.0 \n Any feedback is welcome.")
 			.show();
 			return true;
 		case R.id.action_instructions:
