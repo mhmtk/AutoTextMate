@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.Settings"
-    android:stretchColumns="0" >
+    android:stretchColumns="0"
+    android:padding="5dp" >
 
     <TableRow
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:padding="5dp" >
 
         <TextView
             android:id="@+id/settings_text_mute"
