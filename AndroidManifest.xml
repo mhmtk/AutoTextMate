@@ -42,6 +42,12 @@
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         </activity>
         <activity
+            android:name="com.mhmt.autotextmate.activities.Settings"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".activities.Main"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <activity
             android:name=".widget.ConfigureWidget"
             android:label="@string/configure_title"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
@@ -74,11 +80,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/atm_widget" />
         </receiver>
-
-        <activity
-            android:name="com.mhmt.autotextmate.activities.Settings"
-            android:label="@string/title_activity_settings" >
-        </activity>
     </application>
 
 </manifest>
