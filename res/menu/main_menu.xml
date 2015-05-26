@@ -8,8 +8,6 @@
         android:icon="@drawable/ic_action_new"
         app:showAsAction="ifRoom|collapseActionView"
         android:orderInCategory="1"
-        android:visible="true"
-        android:enabled="true"
         android:title="@string/main_menu_new" />
     
     <item
@@ -21,9 +19,21 @@
     
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="3"
+        android:orderInCategory="5"
         android:icon="@drawable/ic_action_settings"
         app:showAsAction="ifRoom|collapseActionView"
         android:title="@string/main_menu_settings"/>
+   
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="3"
+        app:showAsAction="never"
+        android:title="@string/main_menu_about" />
+    
+    <item
+        android:id="@+id/action_instructions"
+        android:orderInCategory="4"
+        app:showAsAction="never"
+        android:title="@string/main_menu_instructions" />
 
 </menu>

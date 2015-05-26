@@ -148,6 +148,12 @@ public class Main extends ActionBarActivity {
 		case R.id.action_settings:
 			startActivity(new Intent(this, Settings.class));
 			return true;
+		case R.id.action_about:
+			// TODO About popup dialog
+			return true;
+		case R.id.action_instructions:
+			startActivity(new Intent(this, Instructions.class));
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
