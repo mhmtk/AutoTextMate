@@ -10,11 +10,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 /**
  * 
  * @author Mehmet Kologlu
- * @version May 12, 2015
+ * @version May 26, 2015
  */
 public class RuleWidgetProvider extends AppWidgetProvider {
 
@@ -54,6 +55,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			}
 			else {
 				Log.i(logTag, "No rule associated with wID " + appWidgetId);
+				Toast.makeText(context, "A widget is useless because it has no rule associate with it, consider deleting it", Toast.LENGTH_SHORT).show();
 				rm.setTextViewText(R.id.widget_button, "ERROR");
 			}
 			appWidgetManager.updateAppWidget(appWidgetId, rm);				
@@ -116,14 +118,19 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 	 * Calls its super method, then also removes the deleted widget's ID from the DB
 	 */
 	@Override
-	public void onDeleted(Context context, int[] appWidgetIds) {
+	public void onDeleted(Context context, final int[] appWidgetIds) {
 		super.onDeleted(context, appWidgetIds);
 		dbManager = new DatabaseManager(context);
 
 		Log.i(logTag, "Deleting widget(s) " + appWidgetIds.toString());
 
-		//TODO delete widget ID from DB
-		dbManager.resetWidgetIDs(appWidgetIds);
+		// Delete widget IDs from DB
+		new Runnable() {
+			@Override
+			public void run() {
+				dbManager.resetWidgetIDs(appWidgetIds);
+			}
+		}.run();
 
 	}
 }
