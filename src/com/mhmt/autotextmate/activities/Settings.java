@@ -15,7 +15,7 @@ import android.widget.Spinner;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 25, 2015
+ * @version November May 26, 2015
  * 
  */
 public class Settings extends Activity {
@@ -55,7 +55,8 @@ public class Settings extends Activity {
 					int position, long id) {
 				Log.i(logTag, "Mute spinner - onItemSelected called with position: " + position);
 				if (position !=0) {
-					sPrefEditor.putInt(getString(R.string.settings_mute_key), Integer.valueOf(spinnerArray[position]) * 1000); // convert to seconds
+					sPrefEditor.putInt(getString(R.string.settings_mute_key), 
+							Integer.valueOf(spinnerArray[position].substring(0, spinnerArray[position].length() - 4)) * 1000); // convert to seconds
 					if (!sPrefEditor.commit()) {
 						Log.e(logTag, "Error while committing mute delay into shared preferences");
 					}
