@@ -33,7 +33,6 @@
     <!-- Instructions -->
     <string name="instructions">
 		<![CDATA[
-			<h1 align="center">Instructions</h1>
 			<h2>Rules</h2>
 			<ul>
 				<li>Rule names must be unique.</li>
@@ -48,7 +47,7 @@
 			</ul>
 			<h2>Settings</h2>
 			<ul>
-				<li>You can set call rule applications to silence the call when they're invoked.</li>
+				<li>You can set call rule applications to silence the call when they\'re invoked.</li>
 			</ul>
 		]]>
     </string>

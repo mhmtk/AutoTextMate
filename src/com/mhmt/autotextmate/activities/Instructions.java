@@ -2,12 +2,12 @@ package com.mhmt.autotextmate.activities;
 
 import com.mhmt.autotextmate.R;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.widget.TextView;
 
-public class Instructions extends Activity {
+public class Instructions extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
