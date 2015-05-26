@@ -52,7 +52,7 @@ public class CallReceiver extends BroadcastReceiver{
 			phoneListener = new MPhoneStateListener(context);
 			//Get audio manager for mute option
 			aManager = (AudioManager) context
-	                .getSystemService(Context.AUDIO_SERVICE);
+					.getSystemService(Context.AUDIO_SERVICE);
 			//Get the applications shared preferences
 			sharedPref = context.getSharedPreferences(context.getString(R.string.shared_preferences_key),Context.MODE_PRIVATE);
 			// Get mute delay array
@@ -90,13 +90,13 @@ public class CallReceiver extends BroadcastReceiver{
 				Log.i(logTag, "RINGING");
 				if (!handled) { // In order 
 					Log.i(logTag, "Call hasn't been handled, will invoke applicable rules");
-					
+
 					try {
 						muteDelay = muteDelayArray[sharedPref.getInt(mContext.getString(R.string.settings_mute_position_key), -1)];
 					} catch (IndexOutOfBoundsException e) {
 						muteDelay = -1;
 					}
-					
+
 					for (Rule r : dbManager.getEnabledCallRules()) { //Reply for each rule
 						if (r.getOnlyContacts() == 1) { // Reply only if the sender no is in the contacts
 							if (inContacts(mContext, incomingNumber)) { // Check if the sender is in the contacts
@@ -114,7 +114,7 @@ public class CallReceiver extends BroadcastReceiver{
 				break;
 			} //end of ringing case
 		}
-		
+
 		/**
 		 * Applies the rule for the given phoneNo.
 		 * 
@@ -134,20 +134,23 @@ public class CallReceiver extends BroadcastReceiver{
 			//documentation & feedback
 			Toast.makeText(mContext, "Replied to " + phoneNo + ": " + replyText, Toast.LENGTH_SHORT).show();
 			Log.i(logTag, "Sent out an SMS to " + phoneNo);
-			
+
 			// According to the settings, mute the ringer 
 			if (muteDelay != -1) {
 				new Handler().postDelayed(new Runnable() {
 					public void run() {
-						aManager.setStreamMute(AudioManager.STREAM_RING, true);
-						Log.i(logTag, "Ringer muted after " + muteDelay + " milliseconds.");
+						if (handled) { // If the phone is still ringing
+							aManager.setStreamMute(AudioManager.STREAM_RING, true);
+							Log.i(logTag, "Ringer muted after " + muteDelay + " milliseconds.");
+						} else 
+							Log.i(logTag, "Ringer not muted b/c call isn't ringing anymore");
 					} 
 				}, muteDelay);
 			}
-			
+
 		}
 	}
-	
+
 	/**
 	 * Checks if the given no is in the contacts
 	 * 
