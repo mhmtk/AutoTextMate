@@ -6,7 +6,8 @@ int anim abc_slide_in_bottom 0x7f040004
 int anim abc_slide_in_top 0x7f040005
 int anim abc_slide_out_bottom 0x7f040006
 int anim abc_slide_out_top 0x7f040007
-int array settings_mute_spinner_array 0x7f0d0000
+int array mute_array_int 0x7f0d0000
+int array settings_mute_spinner_array 0x7f0d0001
 int attr actionBarDivider 0x7f010015
 int attr actionBarItemBackground 0x7f010016
 int attr actionBarPopupTheme 0x7f01000f
@@ -531,7 +532,7 @@ int string outbox_dialog_deleteAll 0x7f0b0022
 int string outbox_menu_deleteAll 0x7f0b0024
 int string outbox_text_empty 0x7f0b0021
 int string outbox_title 0x7f0b0020
-int string settings_mute_key 0x7f0b002b
+int string settings_mute_position_key 0x7f0b002b
 int string settings_mute_text 0x7f0b0029
 int string shared_preferences_key 0x7f0b002a
 int string title_activity_settings 0x7f0b0028

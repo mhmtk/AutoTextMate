@@ -20,7 +20,6 @@ import android.widget.Spinner;
  */
 public class Settings extends ActionBarActivity {
 
-	private String[] spinnerArray;
 	private SharedPreferences sharedPref;
 	private SharedPreferences.Editor sPrefEditor;
 	private String logTag = "Settings";
@@ -37,9 +36,6 @@ public class Settings extends ActionBarActivity {
 		sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key),Context.MODE_PRIVATE);
 		sPrefEditor = sharedPref.edit();
 
-		// Instantiate data fields
-		spinnerArray = getResources().getStringArray(R.array.settings_mute_spinner_array);
-
 		// Create an array adapter for the usage with the mute spinner
 		ArrayAdapter<CharSequence> muteAdapter = ArrayAdapter.createFromResource(this,
 				R.array.settings_mute_spinner_array, android.R.layout.simple_spinner_item);
@@ -48,6 +44,12 @@ public class Settings extends ActionBarActivity {
 		// Apply the adapter to the spinner
 		muteSpinner.setAdapter(muteAdapter);
 
+		// Pre-select spinner
+		try {
+			muteSpinner.setSelection(sharedPref.getInt(getString(R.string.settings_mute_key), -1));
+		} catch (IndexOutOfBoundsException e) {}
+
+
 		// Set onItemSelectedListener of the mute spinner
 		muteSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
@@ -55,10 +57,10 @@ public class Settings extends ActionBarActivity {
 					int position, long id) {
 				Log.i(logTag, "Mute spinner - onItemSelected called with position: " + position);
 				if (position !=0) {
-					sPrefEditor.putInt(getString(R.string.settings_mute_key), 
-							Integer.valueOf(spinnerArray[position].substring(0, spinnerArray[position].length() - 4)) * 1000); // convert to seconds
+					// Store the position in the shared prefs
+					sPrefEditor.putInt(getString(R.string.settings_mute_key), position);
 					if (!sPrefEditor.commit()) {
-						Log.e(logTag, "Error while committing mute delay into shared preferences");
+						Log.e(logTag, "Error while committing mute delay position into shared preferences");
 					}
 				}
 			}

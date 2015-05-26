@@ -36,7 +36,7 @@ public class CallReceiver extends BroadcastReceiver{
 	private AudioManager aManager;
 
 	private SharedPreferences sharedPref;
-	
+	private int[] muteDelayArray;
 	private static MPhoneStateListener phoneListener;
 
 	@Override
@@ -55,6 +55,8 @@ public class CallReceiver extends BroadcastReceiver{
 	                .getSystemService(Context.AUDIO_SERVICE);
 			//Get the applications shared preferences
 			sharedPref = context.getSharedPreferences(context.getString(R.string.shared_preferences_key),Context.MODE_PRIVATE);
+			// Get mute delay array
+			muteDelayArray = context.getResources().getIntArray(R.array.mute_array_int);
 			telephony.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
 		}
 	}
@@ -89,8 +91,11 @@ public class CallReceiver extends BroadcastReceiver{
 				if (!handled) { // In order 
 					Log.i(logTag, "Call hasn't been handled, will invoke applicable rules");
 					
-					// Get mute time
-					muteDelay = sharedPref.getInt(mContext.getString(R.string.settings_mute_key), -1);
+					try {
+						muteDelay = muteDelayArray[sharedPref.getInt(mContext.getString(R.string.settings_mute_position_key), -1)];
+					} catch (IndexOutOfBoundsException e) {
+						muteDelay = -1;
+					}
 					
 					for (Rule r : dbManager.getEnabledCallRules()) { //Reply for each rule
 						if (r.getOnlyContacts() == 1) { // Reply only if the sender no is in the contacts
@@ -135,9 +140,9 @@ public class CallReceiver extends BroadcastReceiver{
 				new Handler().postDelayed(new Runnable() {
 					public void run() {
 						aManager.setStreamMute(AudioManager.STREAM_RING, true);
-						Log.i(logTag, "Ringer muted after " + muteDelay + " seconds.");
+						Log.i(logTag, "Ringer muted after " + muteDelay + " milliseconds.");
 					} 
-				}, muteDelay );
+				}, muteDelay);
 			}
 			
 		}

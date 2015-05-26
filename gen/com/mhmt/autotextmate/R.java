@@ -19,7 +19,8 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040007;
     }
     public static final class array {
-        public static final int settings_mute_spinner_array=0x7f0d0000;
+        public static final int mute_array_int=0x7f0d0000;
+        public static final int settings_mute_spinner_array=0x7f0d0001;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1924,7 +1925,7 @@ containing a value of this type.
         /**  Outbox 
          */
         public static final int outbox_title=0x7f0b0020;
-        public static final int settings_mute_key=0x7f0b002b;
+        public static final int settings_mute_position_key=0x7f0b002b;
         public static final int settings_mute_text=0x7f0b0029;
         /**  Shared Preferences 
          */
