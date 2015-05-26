@@ -31,7 +31,13 @@
     <!-- Outbox menu -->
     <string name="outbox_menu_deleteAll">Delete All</string>
     <!-- Instructions -->
-    
+    <string name="instructions">
+		<![CDATA[
+			<p>Only 1 widget per rule is allowed.</p>
+			<p>After a rule has been deleted, its widget needs to be manually deleted.</p>
+			<p>Press and hold on a Rule on the main window to edit or delete it.</p>
+		]]>
+    </string>
     <!-- Widget -->
     <string name="configure_title">Add ATM Widget</string>
     <string name="configure_text_info">Select a rule</string>
@@ -39,6 +45,7 @@
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
     <string name="settings_mute_text">Rules mute calls after: </string>
+
     <string-array name="settings_mute_spinner_array">
         <item>Off</item>
         <item>0 sec</item>

@@ -8,4 +8,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.Instructions" >
 
+    <TextView
+        android:id="@+id/instructions_instructions"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/instructions" />
+
 </RelativeLayout>

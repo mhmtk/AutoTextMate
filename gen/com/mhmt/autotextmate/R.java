@@ -1668,7 +1668,7 @@ containing a value of this type.
         public static final int widget_red=0x7f020045;
     }
     public static final class id {
-        public static final int action_about=0x7f0a005e;
+        public static final int action_about=0x7f0a005f;
         public static final int action_bar=0x7f0a0031;
         public static final int action_bar_activity_content=0x7f0a0003;
         public static final int action_bar_container=0x7f0a0030;
@@ -1677,18 +1677,18 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f0a001f;
         public static final int action_bar_title=0x7f0a001e;
         public static final int action_context_bar=0x7f0a0032;
-        public static final int action_instructions=0x7f0a005f;
+        public static final int action_instructions=0x7f0a0060;
         public static final int action_menu_divider=0x7f0a0005;
         public static final int action_menu_presenter=0x7f0a0006;
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_new=0x7f0a005b;
-        public static final int action_outbox=0x7f0a005c;
-        public static final int action_settings=0x7f0a005d;
+        public static final int action_new=0x7f0a005c;
+        public static final int action_outbox=0x7f0a005d;
+        public static final int action_settings=0x7f0a005e;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int addRule_fields=0x7f0a0040;
-        public static final int add_action_save=0x7f0a005a;
+        public static final int add_action_save=0x7f0a005b;
         public static final int addedit_progress_bar=0x7f0a003f;
         public static final int always=0x7f0a0014;
         public static final int beginning=0x7f0a001b;
@@ -1713,23 +1713,24 @@ containing a value of this type.
         public static final int icon=0x7f0a0026;
         public static final int ifRoom=0x7f0a0016;
         public static final int image=0x7f0a0023;
+        public static final int instructions_instructions=0x7f0a004e;
         public static final int linearLayout_contactsOnly=0x7f0a0044;
         public static final int linearLayout_replyTo=0x7f0a0047;
         public static final int listMode=0x7f0a000a;
-        public static final int list_call_image=0x7f0a0059;
+        public static final int list_call_image=0x7f0a005a;
         public static final int list_item=0x7f0a0025;
-        public static final int list_onlyContacts_image=0x7f0a0057;
-        public static final int list_sms_image=0x7f0a0058;
-        public static final int list_textView_description=0x7f0a0056;
-        public static final int list_textView_name=0x7f0a0054;
-        public static final int list_toggleButton_status=0x7f0a0055;
-        public static final int main_list=0x7f0a004e;
-        public static final int main_progress_bar=0x7f0a004f;
+        public static final int list_onlyContacts_image=0x7f0a0058;
+        public static final int list_sms_image=0x7f0a0059;
+        public static final int list_textView_description=0x7f0a0057;
+        public static final int list_textView_name=0x7f0a0055;
+        public static final int list_toggleButton_status=0x7f0a0056;
+        public static final int main_list=0x7f0a004f;
+        public static final int main_progress_bar=0x7f0a0050;
         public static final int middle=0x7f0a001d;
         public static final int never=0x7f0a0017;
         public static final int none=0x7f0a000f;
         public static final int normal=0x7f0a000b;
-        public static final int outbox_action_deleteAll=0x7f0a0060;
+        public static final int outbox_action_deleteAll=0x7f0a0061;
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a002b;
@@ -1747,8 +1748,8 @@ containing a value of this type.
         public static final int search_plate=0x7f0a0039;
         public static final int search_src_text=0x7f0a003a;
         public static final int search_voice_btn=0x7f0a003e;
-        public static final int settings_spinner_mute=0x7f0a0051;
-        public static final int settings_text_mute=0x7f0a0050;
+        public static final int settings_spinner_mute=0x7f0a0052;
+        public static final int settings_text_mute=0x7f0a0051;
         public static final int shortcut=0x7f0a002a;
         public static final int showCustom=0x7f0a0010;
         public static final int showHome=0x7f0a0011;
@@ -1761,8 +1762,8 @@ containing a value of this type.
         public static final int title=0x7f0a0027;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
-        public static final int widget_backgroundImage=0x7f0a0052;
-        public static final int widget_button=0x7f0a0053;
+        public static final int widget_backgroundImage=0x7f0a0053;
+        public static final int widget_button=0x7f0a0054;
         public static final int withText=0x7f0a0018;
         public static final int wrap_content=0x7f0a0009;
     }
@@ -1906,12 +1907,14 @@ containing a value of this type.
          */
         public static final int addedit_title=0x7f0b0018;
         public static final int app_name=0x7f0b0010;
-        public static final int configure_text_empty=0x7f0b0029;
-        public static final int configure_text_info=0x7f0b0028;
-        /**  Instructions 
- Widget 
+        public static final int configure_text_empty=0x7f0b002a;
+        public static final int configure_text_info=0x7f0b0029;
+        /**  Widget 
          */
-        public static final int configure_title=0x7f0b0027;
+        public static final int configure_title=0x7f0b0028;
+        /**  Instructions 
+         */
+        public static final int instructions=0x7f0b0027;
         public static final int main_dialog_delete=0x7f0b0012;
         /**  Main 
          */
@@ -1932,15 +1935,15 @@ containing a value of this type.
         /**  Outbox 
          */
         public static final int outbox_title=0x7f0b0022;
-        public static final int settings_mute_position_key=0x7f0b002d;
-        public static final int settings_mute_text=0x7f0b002b;
+        public static final int settings_mute_position_key=0x7f0b002e;
+        public static final int settings_mute_text=0x7f0b002c;
         /**  Shared Preferences 
          */
-        public static final int shared_preferences_key=0x7f0b002c;
-        public static final int title_activity_instructions=0x7f0b002e;
+        public static final int shared_preferences_key=0x7f0b002d;
+        public static final int title_activity_instructions=0x7f0b002f;
         /**  Settings 
          */
-        public static final int title_activity_settings=0x7f0b002a;
+        public static final int title_activity_settings=0x7f0b002b;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;
