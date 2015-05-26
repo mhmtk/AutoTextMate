@@ -149,7 +149,15 @@ public class Main extends ActionBarActivity {
 			startActivity(new Intent(this, Settings.class));
 			return true;
 		case R.id.action_about:
-			// TODO About popup dialog
+			// Show about dialog
+			new AlertDialog.Builder(this)
+			.setTitle("About")
+			.setPositiveButton(R.string.main_about_dialog_ok, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+				}
+			})
+			.setMessage("Developed by Mehmet Kologlu. \n Any feedback is welcome")
+			.show();
 			return true;
 		case R.id.action_instructions:
 			startActivity(new Intent(this, Instructions.class));
@@ -189,16 +197,16 @@ public class Main extends ActionBarActivity {
 	 * @param isChecked True if toggle is on, false otherwise
 	 */
 	public void onItemToggleClicked(final String name, int position, final boolean status) {
-		
+
 		Log.i(logTag, "onItemToggleClicked for " + name + " at " + position + ", settign status to " + status);
-		
+
 		// Get the old rule to make it easier to construct the new one
 		Rule cRule = ruleArray.get(position);
 
 		// Change the rule in the rule list
 		ruleArray.set(position, new Rule(name, cRule.getDescription(), cRule.getText(),
 				cRule.getOnlyContacts(), cRule.getReplyTo(), ((status) ? 1 : 0)));
-		
+
 		// ruleArray.get(position).setStatus(status); // Alternate method
 
 		mListAdapter.notifyDataSetChanged();

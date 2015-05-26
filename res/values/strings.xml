@@ -5,6 +5,7 @@
     <!-- Main -->
     <string name="main_dialog_edit">Edit</string>
     <string name="main_dialog_delete">Delete</string>
+    <string name="main_about_dialog_ok">OK</string>
     <!-- Main menu -->
     <string name="main_menu_new">Add Rule</string>
     <string name="main_menu_settings">Settings</string>

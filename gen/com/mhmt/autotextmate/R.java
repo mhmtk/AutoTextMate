@@ -1892,58 +1892,59 @@ containing a value of this type.
         /**  Content description for the Toolbar icon used to collapse an expanded action mode. [CHAR LIMIT=NONE] 
          */
         public static final int abc_toolbar_collapse_description=0x7f0b0004;
-        public static final int addedit_editText_description=0x7f0b001a;
-        public static final int addedit_editText_name=0x7f0b0019;
-        public static final int addedit_editText_text=0x7f0b001b;
+        public static final int addedit_editText_description=0x7f0b001b;
+        public static final int addedit_editText_name=0x7f0b001a;
+        public static final int addedit_editText_text=0x7f0b001c;
         /**  AddEdit menu 
          */
-        public static final int addedit_menu_save=0x7f0b0021;
-        public static final int addedit_radio_both=0x7f0b001e;
-        public static final int addedit_radio_call=0x7f0b0020;
-        public static final int addedit_radio_sms=0x7f0b001f;
-        public static final int addedit_textView_contacts=0x7f0b001c;
-        public static final int addedit_textView_replyTo=0x7f0b001d;
+        public static final int addedit_menu_save=0x7f0b0022;
+        public static final int addedit_radio_both=0x7f0b001f;
+        public static final int addedit_radio_call=0x7f0b0021;
+        public static final int addedit_radio_sms=0x7f0b0020;
+        public static final int addedit_textView_contacts=0x7f0b001d;
+        public static final int addedit_textView_replyTo=0x7f0b001e;
         /**  AddEdit 
          */
-        public static final int addedit_title=0x7f0b0018;
+        public static final int addedit_title=0x7f0b0019;
         public static final int app_name=0x7f0b0010;
-        public static final int configure_text_empty=0x7f0b002a;
-        public static final int configure_text_info=0x7f0b0029;
+        public static final int configure_text_empty=0x7f0b002b;
+        public static final int configure_text_info=0x7f0b002a;
         /**  Widget 
          */
-        public static final int configure_title=0x7f0b0028;
+        public static final int configure_title=0x7f0b0029;
         /**  Instructions 
          */
-        public static final int instructions=0x7f0b0027;
+        public static final int instructions=0x7f0b0028;
+        public static final int main_about_dialog_ok=0x7f0b0013;
         public static final int main_dialog_delete=0x7f0b0012;
         /**  Main 
          */
         public static final int main_dialog_edit=0x7f0b0011;
-        public static final int main_menu_about=0x7f0b0016;
-        public static final int main_menu_instructions=0x7f0b0017;
+        public static final int main_menu_about=0x7f0b0017;
+        public static final int main_menu_instructions=0x7f0b0018;
         /**  Main menu 
          */
-        public static final int main_menu_new=0x7f0b0013;
-        public static final int main_menu_outbox=0x7f0b0015;
-        public static final int main_menu_settings=0x7f0b0014;
-        public static final int outbox_dialog_cancel=0x7f0b0025;
-        public static final int outbox_dialog_deleteAll=0x7f0b0024;
+        public static final int main_menu_new=0x7f0b0014;
+        public static final int main_menu_outbox=0x7f0b0016;
+        public static final int main_menu_settings=0x7f0b0015;
+        public static final int outbox_dialog_cancel=0x7f0b0026;
+        public static final int outbox_dialog_deleteAll=0x7f0b0025;
         /**  Outbox menu 
          */
-        public static final int outbox_menu_deleteAll=0x7f0b0026;
-        public static final int outbox_text_empty=0x7f0b0023;
+        public static final int outbox_menu_deleteAll=0x7f0b0027;
+        public static final int outbox_text_empty=0x7f0b0024;
         /**  Outbox 
          */
-        public static final int outbox_title=0x7f0b0022;
-        public static final int settings_mute_position_key=0x7f0b002e;
-        public static final int settings_mute_text=0x7f0b002c;
+        public static final int outbox_title=0x7f0b0023;
+        public static final int settings_mute_position_key=0x7f0b002f;
+        public static final int settings_mute_text=0x7f0b002d;
         /**  Shared Preferences 
          */
-        public static final int shared_preferences_key=0x7f0b002d;
-        public static final int title_activity_instructions=0x7f0b002f;
+        public static final int shared_preferences_key=0x7f0b002e;
+        public static final int title_activity_instructions=0x7f0b0030;
         /**  Settings 
          */
-        public static final int title_activity_settings=0x7f0b002b;
+        public static final int title_activity_settings=0x7f0b002c;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;
