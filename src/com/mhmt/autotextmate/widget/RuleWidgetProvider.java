@@ -55,7 +55,6 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			}
 			else {
 				Log.i(logTag, "No rule associated with wID " + appWidgetId);
-				Toast.makeText(context, "A widget is useless because it has no rule associate with it, consider deleting it", Toast.LENGTH_SHORT).show();
 				rm.setTextViewText(R.id.widget_button, "ERROR");
 			}
 			appWidgetManager.updateAppWidget(appWidgetId, rm);				
@@ -129,6 +128,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			@Override
 			public void run() {
 				dbManager.resetWidgetIDs(appWidgetIds);
+				Log.i(logTag, "Widgets deleted from DB.");
 			}
 		}.run();
 
