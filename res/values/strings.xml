@@ -34,21 +34,15 @@
     <string name="instructions">
 		<![CDATA[
 			<h2>Rules</h2>
-			<ul>
-				<li>Rule names must be unique.</li>
-				<li>Only the name and text fields are required.</li>
-				<li>Press and hold on a Rule on the main window to edit or delete it.</li>
-				<li>On receiving an SMS or a call, all applicable rules will be invoked.</li>
-			</ul>
+				<p>Rule names must be unique.</p>
+				<p>Only the name and text fields are required.</p>
+				<p>Press and hold on a Rule on the main window to edit or delete it.</p>
+				<p>On receiving an SMS or a call, all applicable rules will be invoked.</p>
 			<h2>Widgets</h2>
-			<ul>
-				<li>Only 1 widget per rule is allowed.</li>
-				<li>After a rule has been deleted, its widget needs to be manually deleted.</li>
-			</ul>
+				<p>Only 1 widget per rule is allowed.</p>
+				<p>After a rule has been deleted, its widget needs to be manually deleted.</p>
 			<h2>Settings</h2>
-			<ul>
-				<li>You can set call rule applications to silence the call when they\'re invoked.</li>
-			</ul>
+				<p>You can set call rule applications to silence the call when they\'re invoked.</p>
 		]]>
     </string>
     <!-- Widget -->
