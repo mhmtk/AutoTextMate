@@ -39,25 +39,29 @@
                 android:id="@+id/editText_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:hint="@string/addedit_editText_name"
-                android:maxLength="20" >
-            </EditText>
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:maxLines="1" />
 
             <EditText
                 android:id="@+id/editText_description"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16sp"
-                android:ems="10"
-                android:hint="@string/addedit_editText_description" />
+                android:maxLength="40"
+                android:hint="@string/addedit_editText_description"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:maxLines="1" />
 
             <EditText
                 android:id="@+id/editText_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16sp"
-                android:ems="10"
                 android:hint="@string/addedit_editText_text"
                 android:inputType="textMultiLine" />
 
@@ -65,8 +69,8 @@
                 android:id="@+id/linearLayout_contactsOnly"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="5sp"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:padding="5sp" >
 
                 <TextView
                     android:id="@+id/textView_contactsOnly"
@@ -88,8 +92,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="5sp"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:padding="5sp" >
 
                 <TextView
                     android:id="@+id/textView_replyTo"
@@ -126,7 +130,6 @@
                         android:text="@string/addedit_radio_call" />
                 </RadioGroup>
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 
