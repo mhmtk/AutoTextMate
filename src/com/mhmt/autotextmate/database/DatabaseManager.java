@@ -176,21 +176,21 @@ public class DatabaseManager {
 	 */
 	public ArrayList<Rule> getEnabledSMSRules(){		
 		ruleArray = new ArrayList<Rule>();
-	
+
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get readable database
 		db = dbHelper.getReadableDatabase();
-	
+
 		//define a projection that specifies which columns from the database to use
 		String[] projection = {
 				RuleEntry.RULE_COLUMN_NAME,
 				RuleEntry.RULE_COLUMN_TEXT,
 				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
 		};
-	
+
 		//sort descending
 		//				String sortOrder = BaseColumns._ID + " DESC";
-	
+
 		//create cursor with only entries with status = 1 (on)  and replyTo = 0 or 1
 		Cursor c = db.query(
 				RuleEntry.RULE_TABLE_NAME,  		// The table to query
@@ -201,14 +201,14 @@ public class DatabaseManager {
 				null,								// don't filter by row groups
 				null	            				// sort
 				);
-	
+
 		//move cursor to the beginning
 		if (c != null)
 			c.moveToFirst();
 		else 
 			Log.w(logTag, "The cursor returned by getApplicableRules was null");
-	
-	
+
+
 		while(!c.isAfterLast())
 		{ //add the rules to the ArrayList
 			ruleArray.add(new Rule(
@@ -218,28 +218,28 @@ public class DatabaseManager {
 					));
 			c.moveToNext();
 		}
-	
+
 		db.close();
 		return ruleArray;
 	}
 
 	public ArrayList<Rule> getEnabledCallRules() {
 		ruleArray = new ArrayList<Rule>();
-		
+
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get readable database
 		db = dbHelper.getReadableDatabase();
-	
+
 		//define a projection that specifies which columns from the database to use
 		String[] projection = {
 				RuleEntry.RULE_COLUMN_NAME,
 				RuleEntry.RULE_COLUMN_TEXT,
 				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
 		};
-	
+
 		//sort descending
 		//				String sortOrder = BaseColumns._ID + " DESC";
-	
+
 		//create cursor with only entries with status = 1 (on) and replyTo = 0 or 2
 		Cursor c = db.query(
 				RuleEntry.RULE_TABLE_NAME,  		// The table to query
@@ -250,13 +250,13 @@ public class DatabaseManager {
 				null,								// don't filter by row groups
 				null	            				// sort
 				);
-	
+
 		//move cursor to the beginning
 		if (c != null)
 			c.moveToFirst();
 		else 
 			Log.w(logTag, "The cursor returned by getApplicableRules was null");
-	
+
 		while(!c.isAfterLast())
 		{ //add the rules to the ArrayList
 			ruleArray.add(new Rule(
@@ -266,7 +266,7 @@ public class DatabaseManager {
 					));
 			c.moveToNext();
 		}
-	
+
 		db.close();
 		return ruleArray;
 	}
@@ -418,6 +418,64 @@ public class DatabaseManager {
 	}
 
 	/**
+	 * For use of configure widget to prevent multiple widgets for one rule
+	 * 
+	 * @return An ArrayList of Rules w/ wID = INVALID_APPWIDGET_ID
+	 */
+	public ArrayList<Rule> getRulesWithoutWidgets() {
+		ruleArray = new ArrayList<Rule>();
+
+		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it 
+		//get readable database
+		db = dbHelper.getReadableDatabase();
+		//define a projection that specifies which columns from the database to use
+		String[] projection = {
+				BaseColumns._ID,
+				RuleEntry.RULE_COLUMN_NAME,
+				RuleEntry.RULE_COLUMN_DESCRIPTION,
+				RuleEntry.RULE_COLUMN_TEXT,
+				RuleEntry.RULE_COLUMN_ONLYCONTACTS,
+				RuleEntry.RULE_COLUMN_REPLYTO,
+				RuleEntry.RULE_COLUMN_STATUS
+		};
+
+		//sort descending
+		String sortOrder = BaseColumns._ID + " DESC";
+
+		//create cursor with the whole database
+		Cursor c = db.query(
+				RuleEntry.RULE_TABLE_NAME,  // The table to query
+				projection,				// The columns to return
+				RuleEntry.RULE_COLUMN_WIDGET_ID + " = ?",		            // The columns for the WHERE clause
+				new String[] {String.valueOf(AppWidgetManager.INVALID_APPWIDGET_ID)}, // The values for the WHERE clause
+				null,                   // don't group the rows
+				null,					// don't filter by row groups
+				sortOrder	            // sort
+				);
+
+		//move cursor to the beginning
+		if (c != null)
+			c.moveToFirst();
+		else 
+			Log.e(logTag, "The cursor returned by getRulesWithoutWidgets was null");
+
+		while(!c.isAfterLast())
+		{
+			Rule p = new Rule(c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_NAME)),
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_DESCRIPTION)),
+					c.getString(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_TEXT)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_ONLYCONTACTS)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_REPLYTO)),
+					c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS)));
+			ruleArray.add(p);
+			c.moveToNext();
+		}
+
+		db.close();
+		return ruleArray;
+	}
+
+	/**
 	 * Called to toggle the status of the rule with the given name
 	 * 
 	 * @param name The name of the rule of which the status will be toggled
@@ -521,9 +579,9 @@ public class DatabaseManager {
 		//return the result
 		return c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID));
 	}
-	
+
 	// METHODS RELATED TO SMS TABLE //
-	
+
 	/**
 	 * 
 	 * @param sms The SMS to be added to the SMS table
@@ -547,9 +605,9 @@ public class DatabaseManager {
 		db.insertOrThrow(SMSEntry.SMS_TABLE_NAME, null, values);
 
 		db.close(); //close database 
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @return an ArrayList of SMS objects containing all items of the SMS table

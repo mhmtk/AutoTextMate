@@ -42,7 +42,7 @@ public class ConfigureWidget extends ListActivity {
 
 		//instantiate fields
 		dbManager = new DatabaseManager(getApplicationContext());
-		ruleArray = dbManager.getRulesArray();
+		ruleArray = dbManager.getRulesWithoutWidgets();
 
 		//set the context
 		context = this;
