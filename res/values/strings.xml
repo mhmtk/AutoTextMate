@@ -30,6 +30,8 @@
     <string name="outbox_dialog_cancel">Cancel</string>
     <!-- Outbox menu -->
     <string name="outbox_menu_deleteAll">Delete All</string>
+    <!-- Instructions -->
+    
     <!-- Widget -->
     <string name="configure_title">Add ATM Widget</string>
     <string name="configure_text_info">Select a rule</string>
@@ -44,9 +46,9 @@
         <item>5 sec</item>
         <item>10 sec</item>
     </string-array>
-    
     <!-- Shared Preferences -->
     <string name="shared_preferences_key">COM.MHMT.AUTOTEXTMATE</string>
     <string name="settings_mute_position_key">com.mhmt.autotextmate.mutedelayposition</string>
+    <string name="title_activity_instructions">Instructions</string>
 
 </resources>

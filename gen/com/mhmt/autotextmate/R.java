@@ -1820,13 +1820,14 @@ containing a value of this type.
         public static final int abc_simple_dropdown_hint=0x7f030015;
         public static final int activity_add_edit_rule=0x7f030016;
         public static final int activity_configure_widget=0x7f030017;
-        public static final int activity_main=0x7f030018;
-        public static final int activity_outbox=0x7f030019;
-        public static final int activity_settings=0x7f03001a;
-        public static final int layout_widget=0x7f03001b;
-        public static final int rule_list_item=0x7f03001c;
-        public static final int rule_list_item_table=0x7f03001d;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
+        public static final int activity_instructions=0x7f030018;
+        public static final int activity_main=0x7f030019;
+        public static final int activity_outbox=0x7f03001a;
+        public static final int activity_settings=0x7f03001b;
+        public static final int layout_widget=0x7f03001c;
+        public static final int rule_list_item=0x7f03001d;
+        public static final int rule_list_item_table=0x7f03001e;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
     }
     public static final class menu {
         public static final int addedit_menu=0x7f0e0000;
@@ -1907,7 +1908,8 @@ containing a value of this type.
         public static final int app_name=0x7f0b0010;
         public static final int configure_text_empty=0x7f0b0029;
         public static final int configure_text_info=0x7f0b0028;
-        /**  Widget 
+        /**  Instructions 
+ Widget 
          */
         public static final int configure_title=0x7f0b0027;
         public static final int main_dialog_delete=0x7f0b0012;
@@ -1935,6 +1937,7 @@ containing a value of this type.
         /**  Shared Preferences 
          */
         public static final int shared_preferences_key=0x7f0b002c;
+        public static final int title_activity_instructions=0x7f0b002e;
         /**  Settings 
          */
         public static final int title_activity_settings=0x7f0b002a;

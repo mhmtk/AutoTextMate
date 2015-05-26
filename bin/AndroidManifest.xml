@@ -42,8 +42,14 @@
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         </activity>
         <activity
-            android:name="com.mhmt.autotextmate.activities.Settings"
+            android:name=".activities.Settings"
             android:label="@string/title_activity_settings"
+            android:parentActivityName=".activities.Main"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name="com.mhmt.autotextmate.activities.Instructions"
+            android:label="@string/title_activity_instructions"
             android:parentActivityName=".activities.Main"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         </activity>
