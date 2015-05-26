@@ -46,7 +46,7 @@ public class Settings extends ActionBarActivity {
 
 		// Pre-select spinner
 		try {
-			muteSpinner.setSelection(sharedPref.getInt(getString(R.string.settings_mute_key), -1));
+			muteSpinner.setSelection(sharedPref.getInt(getString(R.string.settings_mute_position_key), -1));
 		} catch (IndexOutOfBoundsException e) {}
 
 
@@ -58,7 +58,7 @@ public class Settings extends ActionBarActivity {
 				Log.i(logTag, "Mute spinner - onItemSelected called with position: " + position);
 				if (position !=0) {
 					// Store the position in the shared prefs
-					sPrefEditor.putInt(getString(R.string.settings_mute_key), position);
+					sPrefEditor.putInt(getString(R.string.settings_mute_position_key), position);
 					if (!sPrefEditor.commit()) {
 						Log.e(logTag, "Error while committing mute delay position into shared preferences");
 					}
