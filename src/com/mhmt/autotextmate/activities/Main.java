@@ -143,7 +143,7 @@ public class Main extends ActionBarActivity {
 			launchAddEditRuleActivity(null); //launch addEdit rule in add mode
 			return true;
 		case R.id.action_outbox:
-			startActivity(new Intent(this, Settings.class));
+			startActivity(new Intent(this, Outbox.class));
 			return true;
 		case R.id.action_settings:
 			startActivity(new Intent(this, Settings.class));
