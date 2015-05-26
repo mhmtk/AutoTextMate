@@ -2,10 +2,10 @@ package com.mhmt.autotextmate.activities;
 
 import com.mhmt.autotextmate.R;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +18,7 @@ import android.widget.Spinner;
  * @version November May 26, 2015
  * 
  */
-public class Settings extends Activity {
+public class Settings extends ActionBarActivity {
 
 	private String[] spinnerArray;
 	private SharedPreferences sharedPref;
