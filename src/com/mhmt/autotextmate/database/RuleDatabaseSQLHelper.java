@@ -29,7 +29,7 @@ public class RuleDatabaseSQLHelper extends SQLiteOpenHelper{
 //	private static final String REPLY_TO_CHECK = " CHECK(" + RuleEntry.RULE_COLUMN_REPLYTO + " < 3)";
 	private static final String STATUS_DEFAULT_VALUE = " 1";
 
-	public static boolean INITIALIZED = false;
+//	public static boolean INITIALIZED = false;
 
 
 	//SQL command to create RULE table

@@ -25,7 +25,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 26, 2015
+ * @version November May 29, 2015
  * 
  */
 public class AddEditRule extends ActionBarActivity {
@@ -104,8 +104,6 @@ public class AddEditRule extends ActionBarActivity {
 	public void saveButtonClicked() {
 		Log.i(logTag, "Save button clicked with edit as " + edit);
 
-		// TODO runnable
-
 		String newRuleName = editTextName.getText().toString().trim(); //get the new rule name
 		String ruleText = editTextText.getText().toString().trim(); //get the text
 
@@ -152,25 +150,31 @@ public class AddEditRule extends ActionBarActivity {
 					super.onBackPressed();
 				}
 				catch(SQLiteConstraintException ex){ //catch constraint exceptions, and give error feedback to user
-					Toast.makeText(getApplicationContext(), "ERROR: A rule with that name already exists.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "Rule NOT added: name must be unique!", Toast.LENGTH_SHORT).show();
 					Log.i(logTag, "Rule not added, cought " + ex);
 				}
 			}
 			else { //Add functionality
 				//add Rule to DB
 				try {
-					dbManager.addRule(new Rule(editTextName.getText().toString(),
+					if (dbManager.addRule(new Rule(editTextName.getText().toString(),
 							editTextDescription.getText().toString(),
 							editTextText.getText().toString(),
 							checkBoxContacts.isChecked(),
-							radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId()))));
-					Log.i(logTag, "Rule added successfully");
-					Toast.makeText(getApplicationContext(), "Rule added", Toast.LENGTH_SHORT).show();
-					//return to homepage
-					super.onBackPressed();
+							radioReplyTo.indexOfChild(findViewById(radioReplyTo.getCheckedRadioButtonId()))))
+							!= -1) // ! -1 means no error
+					{
+						Log.i(logTag, "Rule added successfull.y");
+						Toast.makeText(getApplicationContext(), "Rule succesfully added.", Toast.LENGTH_SHORT).show();
+						super.onBackPressed(); //return to homepage
+					} else {
+						Log.i(logTag, "Problem while adding rule.");
+						Toast.makeText(getApplicationContext(), "A problem has occured. Try restarting the app.", Toast.LENGTH_SHORT).show();
+					}
+					
 				}
 				catch(SQLiteConstraintException ex){ //catch constraint exceptions, and give error feedback to user
-					Toast.makeText(getApplicationContext(), "ERROR: Rule NOT added, name must be unique!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "Rule NOT added, name must be unique!", Toast.LENGTH_SHORT).show();
 					Log.i(logTag, "Rule not added, cought " + ex);
 				}
 			}
@@ -204,7 +208,6 @@ public class AddEditRule extends ActionBarActivity {
 			editTextDescription.setText(rule.getDescription());
 			editTextText.setText(rule.getText());
 			checkBoxContacts.setChecked( (rule.getOnlyContacts() == 1) ? true : false);
-			Log.i(logTag, "replyto index: " + rule.getReplyTo());
 			((RadioButton) radioReplyTo.getChildAt(rule.getReplyTo())).setChecked(true);
 
 			// Progress bar disappears

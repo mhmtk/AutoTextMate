@@ -14,7 +14,7 @@ import android.widget.RemoteViews;
 /**
  * 
  * @author Mehmet Kologlu
- * @version May 26, 2015
+ * @version May 29, 2015
  */
 public class RuleWidgetProvider extends AppWidgetProvider {
 
@@ -53,22 +53,11 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 				
 			}
 			else {
-				Log.i(logTag, "No rule associated with wID " + appWidgetId);
+				Log.w(logTag, "No rule associated with wID " + appWidgetId);
 				rm.setTextViewText(R.id.widget_button, "ERROR");
 			}
 			appWidgetManager.updateAppWidget(appWidgetId, rm);				
 			Log.i(logTag, "Updated " + appWidgetId);
-
-			// Create the intent to launch at button onClick 
-			//			Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
-			//			PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-			// Set the widget button to launch the onClickPendingIntent 
-			//			RemoteViews rm = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
-			//			rm.setOnClickPendingIntent(R.id.widget_button, onClickPendingIntent);
-
-			//perform an update on the current app widget
-			//			appWidgetManager.updateAppWidget(appWidgetId, rm);
 		}
 	}
 
@@ -94,21 +83,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 			Log.i(logTag, "Rule: " + ruleName + ", wID: " + widgetID + " changed");
 			
 			//Call for a widget update thru the onUpdate method (faster than broadcasting)
-			onUpdate(context, AppWidgetManager.getInstance(context), new int[]{widgetID});
-			
-//			//Send a broadcast for the widget to update itself
-//			Intent updateWidgetIntent = new Intent();
-//			updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{widgetID} );
-//			updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-//			context.sendBroadcast(updateWidgetIntent);
-//			Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());
-//			
-//			//change the background of the widget 
-//			RemoteViews rm = new RemoteViews(context.getPackageName(),R.layout.layout_widget);
-//			rm.setImageViewResource(R.id.widget_backgroundImage, 
-//					(statusToSet ? R.drawable.widget_button_green : R.drawable.widget_button_red));
-//
-//
+			onUpdate(context, AppWidgetManager.getInstance(context), new int[]{widgetID});			
 		}
 	}
 	

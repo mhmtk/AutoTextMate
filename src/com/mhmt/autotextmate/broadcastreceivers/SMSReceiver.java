@@ -22,7 +22,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 20, 2015
+ * @version November May 29, 2015
  * 
  */
 public class SMSReceiver extends BroadcastReceiver{
@@ -38,7 +38,6 @@ public class SMSReceiver extends BroadcastReceiver{
 		context = c;
 
 		String phoneNo = "";
-		//		String message = "";
 
 		Bundle bundle = intent.getExtras();
 		SmsMessage[] msg = null;
@@ -55,7 +54,6 @@ public class SMSReceiver extends BroadcastReceiver{
 
 				//get the phoneNo of the sender
 				phoneNo = msg[i].getOriginatingAddress();
-				//				message = msg[i].getMessageBody().toString();
 
 			}
 			//REPLY			

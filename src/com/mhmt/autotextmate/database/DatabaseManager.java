@@ -20,7 +20,7 @@ import android.util.Log;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 26, 2015
+ * @version November May 29, 2015
  * 
  */
 public class DatabaseManager {
@@ -48,23 +48,20 @@ public class DatabaseManager {
 	 * @param widgetID The widget ID to set
 	 */
 	public void setWidgetID(String ruleName, int widgetID) {
-		Log.i(logTag, "Add widget ID was called");
+		Log.i(logTag, "Add widget ID was called for " + ruleName + ": " + widgetID);
 
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get writable database
 		db = dbHelper.getWritableDatabase();
 
-		String query = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
-				" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" ;
+		// Update widget ID in the db
+		ContentValues v = new ContentValues();
+		v.put(RuleEntry.RULE_COLUMN_WIDGET_ID, widgetID);
+		db.update(RuleEntry.RULE_TABLE_NAME, v, RuleEntry.RULE_COLUMN_NAME + "=?", new String[] {ruleName});
 
-		try {
-			db.execSQL(query);
-		} catch (SQLException e) {
-			Log.e(logTag, "SQLException " + e + "cought");
-		}
-
-		Log.i(logTag, query);
+		Log.i(logTag, "UPDATE " + RuleEntry.RULE_TABLE_NAME +" "
+				+ "SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetID +"'" +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + ruleName + "'" );
 
 		db.close();
 	}
@@ -336,7 +333,7 @@ public class DatabaseManager {
 	 * 
 	 * @param rule Rule to be added
 	 */
-	public void addRule(Rule rule){
+	public long addRule(Rule rule){
 		Log.i(logTag, "Add rule was called");
 
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
@@ -351,12 +348,12 @@ public class DatabaseManager {
 		values.put(RuleEntry.RULE_COLUMN_ONLYCONTACTS, rule.getOnlyContacts());
 		values.put(RuleEntry.RULE_COLUMN_REPLYTO, rule.getReplyTo());
 
-		// TODO FEEDBACK
 		//Insert the new row
-		db.insertOrThrow(RuleEntry.RULE_TABLE_NAME, null, values);
-		RuleDatabaseSQLHelper.INITIALIZED = true;
+		long r = db.insertOrThrow(RuleEntry.RULE_TABLE_NAME, null, values);
 
-		db.close(); //close database 
+		db.close(); //close database
+
+		return r;
 	}
 
 	/**
@@ -667,8 +664,8 @@ public class DatabaseManager {
 	public void clearOutbox() {
 		Log.i(logTag, "Clear Outbox called");
 		db = dbHelper.getWritableDatabase();
-		int count = db.delete(SMSEntry.SMS_TABLE_NAME, null, null);			
-		Log.i(logTag, "Deleted " + count+ "entries from the SMS table");
+		int count = db.delete(SMSEntry.SMS_TABLE_NAME, "1", null);			
+		Log.i(logTag, "Deleted " + count+ " entries from the SMS table");
 		db.close();
 	}
 }

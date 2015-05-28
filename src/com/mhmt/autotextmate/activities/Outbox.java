@@ -24,7 +24,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 20, 2015
+ * @version November May 29, 2015
  * 
  */
 public class Outbox extends ActionBarActivity {
@@ -75,7 +75,7 @@ public class Outbox extends ActionBarActivity {
 					@Override
 					public void run() {
 						dbManager.clearOutbox();
-						Toast.makeText(getApplicationContext(), "Successfully cleared the outbox.", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "Successfully deleted all entries.", Toast.LENGTH_SHORT).show();
 					}
 				}.run();
 				// Refresh the view

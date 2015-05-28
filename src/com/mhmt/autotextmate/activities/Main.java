@@ -25,7 +25,7 @@ import android.widget.Toast;
 /**
  * 
  * @author Mehmet Kologlu
- * @version November May 26, 2015
+ * @version November May 29, 2015
  * 
  */
 public class Main extends ActionBarActivity {
@@ -122,7 +122,7 @@ public class Main extends ActionBarActivity {
 		Log.i(logTag, "populateListView called.");
 
 		if(ruleArray.isEmpty()) //if the loaded rule array is empty
-			Toast.makeText(this, "You have no saved rules to view", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "You have no saved rules to view!", Toast.LENGTH_SHORT).show();
 
 		//pass the adapter with the array to the list view
 		mListAdapter = new RuleListViewAdapter(this, ruleArray, getResources());
@@ -176,7 +176,7 @@ public class Main extends ActionBarActivity {
 			if (listLoaded)
 				startActivity(new Intent (this, AddEditRule.class));
 			else
-				Toast.makeText(this, "Please wait for the list to load before adding another rule", Toast.LENGTH_SHORT).show();			
+				Toast.makeText(this, "Please wait for the list to load before adding another rule.", Toast.LENGTH_SHORT).show();			
 		}
 		else{
 			Intent editIntent = new Intent(this, AddEditRule.class);
