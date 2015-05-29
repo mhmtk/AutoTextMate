@@ -115,12 +115,12 @@ public class Outbox extends ActionBarActivity {
 		public void onListItemClick(ListView listView, View view, int position, long id) {
 		}
 
-		private class CustomArrayAdapter<SMS> extends ArrayAdapter<SMS> {
+		private class CustomArrayAdapter<T> extends ArrayAdapter<T> {
 
 			int mResource;
 			LayoutInflater mInflater;
 			public CustomArrayAdapter(Context context, int resource,
-					List<SMS> objects) {
+					List<T> objects) {
 				super(context, resource, objects);
 				mResource = resource;
 				mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -142,7 +142,7 @@ public class Outbox extends ActionBarActivity {
 					throw new IllegalStateException(
 							"ArrayAdapter requires the resource ID to be a TextView", e);
 				}
-				SMS item = getItem(position);
+				T item = getItem(position);
 				if (item instanceof CharSequence) {
 					text.setText((CharSequence)item);
 				} else {
