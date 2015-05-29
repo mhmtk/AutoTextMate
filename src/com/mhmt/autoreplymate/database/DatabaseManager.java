@@ -47,7 +47,7 @@ public class DatabaseManager {
 	 * @param widgetID The widget ID to set
 	 */
 	public void setWidgetID(String ruleName, int widgetID) {
-		Log.i(logTag, "Add widget ID was called for " + ruleName + ": " + widgetID);
+		Log.i(logTag, "Set widget ID was called for " + ruleName + ": " + widgetID);
 
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get writable database
