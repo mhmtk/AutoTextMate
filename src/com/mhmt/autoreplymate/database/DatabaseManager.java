@@ -501,7 +501,7 @@ public class DatabaseManager {
 
 		ContentValues v = new ContentValues();
 		v.put(RuleEntry.RULE_COLUMN_STATUS, statusToSet);
-		db.update(RuleEntry.RULE_TABLE_NAME, v, RuleEntry.RULE_COLUMN_NAME, whereArgs);
+		db.update(RuleEntry.RULE_TABLE_NAME, v, RuleEntry.RULE_COLUMN_NAME + "=?", whereArgs);
 
 		Log.i(logTag, "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + statusToSet + "'" +
@@ -540,7 +540,7 @@ public class DatabaseManager {
 		// Update the database to set the state of the rule to the parameter
 		ContentValues v = new ContentValues();
 		v.put(RuleEntry.RULE_COLUMN_STATUS, status);
-		db.update(RuleEntry.RULE_TABLE_NAME, v, RuleEntry.RULE_COLUMN_NAME, new String[] {name});
+		db.update(RuleEntry.RULE_TABLE_NAME, v, RuleEntry.RULE_COLUMN_NAME + "=?", new String[] {name});
 
 		Log.i(logTag, "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
