@@ -63,7 +63,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.i(logTag, "Widget received " + intent);
+		Log.i(logTag, "Widget received " + intent.getAction());
 		super.onReceive(context, intent);
 
 		if (WIDGET_ONCLICK_ACTION.equals(intent.getAction())) {
