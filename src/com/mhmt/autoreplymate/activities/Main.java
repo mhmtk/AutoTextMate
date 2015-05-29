@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -156,7 +157,7 @@ public class Main extends ActionBarActivity {
 				public void onClick(DialogInterface dialog, int which) {
 				}
 			})
-			.setMessage("Developed by Mehmet Kologlu. \nVersion 1.0 \nAny feedback is welcome.")
+			.setMessage(Html.fromHtml(getString(R.string.main_about_dialog_message)))
 			.show();
 			return true;
 		case R.id.action_instructions:

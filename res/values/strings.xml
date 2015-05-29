@@ -6,6 +6,11 @@
     <string name="main_dialog_edit">Edit</string>
     <string name="main_dialog_delete">Delete</string>
     <string name="main_about_dialog_ok">OK</string>
+    <string name="main_about_dialog_message">
+        <![CDATA[
+			by <i>Mehmet Kologlu</i>\n<b>Version</b> 1.0 \nAny feedback is welcome.
+		]]>
+    </string>
     <!-- Main menu -->
     <string name="main_menu_new">Add Rule</string>
     <string name="main_menu_settings">Settings</string>
