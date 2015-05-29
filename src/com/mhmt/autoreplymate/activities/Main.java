@@ -6,6 +6,7 @@ import com.mhmt.autoreplymate.R;
 import com.mhmt.autoreplymate.adapters.RuleListViewAdapter;
 import com.mhmt.autoreplymate.database.DatabaseManager;
 import com.mhmt.autoreplymate.dataobjects.Rule;
+import com.mhmt.autoreplymate.widget.RuleWidgetProvider;
 
 import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
@@ -218,7 +219,7 @@ public class Main extends ActionBarActivity {
 				Log.i(logTag, name + " set to " + status);
 				if (wID != AppWidgetManager.INVALID_APPWIDGET_ID) {
 					//Send a broadcast for the widget to update itself
-					Intent updateWidgetIntent = new Intent();
+					Intent updateWidgetIntent = new Intent(getApplicationContext(), RuleWidgetProvider.class);
 					updateWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[]{wID} ).setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 					getApplicationContext().sendBroadcast(updateWidgetIntent);
 					Log.i(logTag, "Broadcasted " + updateWidgetIntent.toString());			
