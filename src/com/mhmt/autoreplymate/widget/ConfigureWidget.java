@@ -30,11 +30,12 @@ public class ConfigureWidget extends ListActivity {
 	private ArrayList<Rule> ruleArray;
 	private String logTag = "Configure";
 
-	private static String WIDGET_ONCLICK_ACTION = "AUTO_REPLY_MATE.WIGDET_ONCLICK_ACTION";
+	private static String widgetOnClickAction;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		widgetOnClickAction = getString(R.string.widget_onclick_action);
 		setContentView(R.layout.activity_configure_widget);
 
 		//set the initial result to canceled in case the user hits the back button
@@ -86,7 +87,7 @@ public class ConfigureWidget extends ListActivity {
 		rm.setTextViewText(R.id.widget_button, selectedRule.getName());
 
 		// Create the intent (add the rule name as an extra) to launch at button onClick 
-		Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
+		Intent onClickIntent = new Intent(widgetOnClickAction);
 		onClickIntent.putExtra("rule_name", selectedRule.getName());
 		onClickIntent.putExtra("widget_ID", widgetID);
 		PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, widgetID, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -103,5 +104,4 @@ public class ConfigureWidget extends ListActivity {
 		setResult(RESULT_OK, resultValue);
 		finish();
 	} //end of onListItemClick
-	
 }//end of class

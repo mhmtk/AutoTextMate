@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ATM</string>
+    <string name="app_name">ARM</string>
     <!-- Main -->
     <string name="main_dialog_edit">Edit</string>
     <string name="main_dialog_delete">Delete</string>
@@ -47,9 +47,10 @@
 		]]>
     </string>
     <!-- Widget -->
-    <string name="configure_title">Add ATM Widget</string>
+    <string name="configure_title">Add ARM Widget</string>
     <string name="configure_text_info">Select a rule</string>
     <string name="configure_text_empty">You have no Rules from which to create a widget</string>
+    <string name="widget_onclick_action">AUTO_REPLY_MATE.WIGDET_ONCLICK_ACTION</string>
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
     <string name="settings_mute_text">Rules mute calls after: </string>
