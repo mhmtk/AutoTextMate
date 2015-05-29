@@ -61,8 +61,9 @@ public class SMS {
 	}
 
 	public String toString() {
-		return getTimeAsDate() + ", To: " + to + "\n" +
-				text + "\n" +
-				"by Rule " + rule;
+		
+		return getTimeAsDate() + ", <b>To:</b> " + to + "<br>" +
+				text + "<br>" +
+				"<i>by Rule " + rule + "</i>";
 	}
 }
