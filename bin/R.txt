@@ -541,12 +541,11 @@ int string outbox_dialog_deleteAll 0x7f0b0025
 int string outbox_menu_deleteAll 0x7f0b0027
 int string outbox_text_empty 0x7f0b0024
 int string outbox_title 0x7f0b0023
-int string settings_mute_position_key 0x7f0b0030
-int string settings_mute_text 0x7f0b002e
-int string shared_preferences_key 0x7f0b002f
-int string title_activity_instructions 0x7f0b0031
-int string title_activity_settings 0x7f0b002d
-int string widget_onclick_action 0x7f0b002c
+int string settings_mute_position_key 0x7f0b002f
+int string settings_mute_text 0x7f0b002d
+int string shared_preferences_key 0x7f0b002e
+int string title_activity_instructions 0x7f0b0030
+int string title_activity_settings 0x7f0b002c
 int style Animation_AppCompat_DropDownUp 0x7f0c00cf
 int style AppBaseTheme 0x7f0c00f8
 int style AppTheme 0x7f0c00f9

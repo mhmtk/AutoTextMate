@@ -1936,16 +1936,15 @@ containing a value of this type.
         /**  Outbox 
          */
         public static final int outbox_title=0x7f0b0023;
-        public static final int settings_mute_position_key=0x7f0b0030;
-        public static final int settings_mute_text=0x7f0b002e;
+        public static final int settings_mute_position_key=0x7f0b002f;
+        public static final int settings_mute_text=0x7f0b002d;
         /**  Shared Preferences 
          */
-        public static final int shared_preferences_key=0x7f0b002f;
-        public static final int title_activity_instructions=0x7f0b0031;
+        public static final int shared_preferences_key=0x7f0b002e;
+        public static final int title_activity_instructions=0x7f0b0030;
         /**  Settings 
          */
-        public static final int title_activity_settings=0x7f0b002d;
-        public static final int widget_onclick_action=0x7f0b002c;
+        public static final int title_activity_settings=0x7f0b002c;
     }
     public static final class style {
         public static final int Animation_AppCompat_DropDownUp=0x7f0c00cf;

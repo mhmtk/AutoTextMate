@@ -18,14 +18,13 @@ import android.widget.RemoteViews;
  */
 public class RuleWidgetProvider extends AppWidgetProvider {
 
-	private String widgetOnClickAction;
+	private static String WIDGET_ONCLICK_ACTION = "AUTO_REPLY_MATE.WIGDET_ONCLICK_ACTION";
 	private String logTag = "WidgetProvider";
 	private DatabaseManager dbManager; 
 
 	@Override
 	public void onEnabled(Context context){
 		super.onEnabled(context);
-		widgetOnClickAction = context.getString(R.string.widget_onclick_action);
 		Log.i(logTag, "onEnabled was called");
 	}
 
@@ -67,7 +66,7 @@ public class RuleWidgetProvider extends AppWidgetProvider {
 		Log.i(logTag, "Widget received " + intent);
 		super.onReceive(context, intent);
 
-		if (widgetOnClickAction.equals(intent.getAction())) {
+		if (WIDGET_ONCLICK_ACTION.equals(intent.getAction())) {
 			Log.i(logTag, "The broadcast matches the widget onClick action");
 
 			//Make DB manager
