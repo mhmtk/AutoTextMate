@@ -1,7 +1,6 @@
 package com.mhmt.autotextmate.database;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import com.mhmt.autotextmate.database.RuleDatabaseContract.RuleEntry;
 import com.mhmt.autotextmate.database.RuleDatabaseContract.SMSEntry;
@@ -77,21 +76,21 @@ public class DatabaseManager {
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		//get writable database
 		db = dbHelper.getWritableDatabase();
-		String query;
 
-		for (int i=0; i<widgetIDs.length;i++) {
-			query = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
-					" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + AppWidgetManager.INVALID_APPWIDGET_ID +"'" +
-					" WHERE " + RuleEntry.RULE_COLUMN_WIDGET_ID + "='" + widgetIDs[i] + "'" ;
-			try {
-				db.execSQL(query);
-			} catch (SQLException e) {
-				Log.e(logTag, "SQLException " + e + "cought");
-			}
-
-			Log.i(logTag, query);
+		ContentValues v = new ContentValues();
+		for (int i=0; i<widgetIDs.length;i++) { //For each widgetID
+			v.clear(); //Clear content values for reuse
+			// Put new values, invalidWID into wID column
+			v.put(RuleEntry.RULE_COLUMN_WIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+			// Update call into DB
+			db.update(RuleEntry.RULE_TABLE_NAME,					// Table
+					v,												// Values
+					RuleEntry.RULE_COLUMN_WIDGET_ID + "=?",			// Where clause
+					new String[] {String.valueOf(widgetIDs[i])});	// Where args
+			Log.i(logTag, "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+					" SET " + RuleEntry.RULE_COLUMN_WIDGET_ID + "=" + AppWidgetManager.INVALID_APPWIDGET_ID +
+					" WHERE " + RuleEntry.RULE_COLUMN_WIDGET_ID + "=" + widgetIDs[i]);
 		}
-
 		db.close();
 	}
 
@@ -105,7 +104,7 @@ public class DatabaseManager {
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		db = dbHelper.getReadableDatabase();
 
-		String selectQuery = "SELECT  * FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
+		String selectQuery = "SELECT * FROM " + RuleEntry.RULE_TABLE_NAME + " WHERE "
 				+ RuleEntry.RULE_COLUMN_NAME+ " =?";
 
 		//Log the query
@@ -133,6 +132,7 @@ public class DatabaseManager {
 
 	/**
 	 * Returns a rule object from the database that corresponds to the given widgetID 
+	 * May return null, deal with it.
 	 * 
 	 * @param widgetID The widgetID associated with the rule to return
 	 * @return MAY return null if no widgetID matches
@@ -162,14 +162,12 @@ public class DatabaseManager {
 			Log.i(logTag, "The cursor returned by getRule was null for given widgetID. This is normal during widget creation");
 
 		db.close();
-
-		return rule;
+		return rule; // Null return is dealt with on the other end
 	}
 
 	/**
-	 * Returns the rules that are on
 	 * 
-	 * @return an ArrayList<rule> of rules that are turned on (status == 1)
+	 * @return an ArrayList<Rule> of rules that are turned on (status == 1) and replyTo == SMS or Both (0 | 1)
 	 */
 	public ArrayList<Rule> getEnabledSMSRules(){		
 		ruleArray = new ArrayList<Rule>();
@@ -203,7 +201,7 @@ public class DatabaseManager {
 		if (c != null)
 			c.moveToFirst();
 		else 
-			Log.w(logTag, "The cursor returned by getApplicableRules was null");
+			Log.w(logTag, "The cursor returned by getApplicableSMSRules was null");
 
 
 		while(!c.isAfterLast())
@@ -220,6 +218,10 @@ public class DatabaseManager {
 		return ruleArray;
 	}
 
+	/**
+	 * 
+	 * @return an ArrayList<Rule> of rules that are turned on (status == 1) and replyTo == Call or Both (0 | 2)
+	 */
 	public ArrayList<Rule> getEnabledCallRules() {
 		ruleArray = new ArrayList<Rule>();
 
@@ -252,7 +254,7 @@ public class DatabaseManager {
 		if (c != null)
 			c.moveToFirst();
 		else 
-			Log.w(logTag, "The cursor returned by getApplicableRules was null");
+			Log.w(logTag, "The cursor returned by getApplicableCallRules was null");
 
 		while(!c.isAfterLast())
 		{ //add the rules to the ArrayList
@@ -302,26 +304,25 @@ public class DatabaseManager {
 				Log.i(logTag, "The cursor returned by getRule was null for given widgetID. This is normal during widget creation");			
 		}
 
+		ContentValues v = new ContentValues();
+		v.put(RuleEntry.RULE_COLUMN_NAME, newRule.getName());
+		v.put(RuleEntry.RULE_COLUMN_DESCRIPTION, newRule.getDescription());
+		v.put(RuleEntry.RULE_COLUMN_TEXT, newRule.getText());
+		v.put(RuleEntry.RULE_COLUMN_ONLYCONTACTS, newRule.getOnlyContacts());
+		v.put(RuleEntry.RULE_COLUMN_REPLYTO, newRule.getReplyTo());
 
-		// Edit the rule in the DB
-		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
-				" SET " + RuleEntry.RULE_COLUMN_NAME + "=?" + 
-				" , " + RuleEntry.RULE_COLUMN_DESCRIPTION + "=?" +
-				" , " + RuleEntry.RULE_COLUMN_TEXT + "=?" +
-				" , " + RuleEntry.RULE_COLUMN_ONLYCONTACTS + "=?" +
-				" , " + RuleEntry.RULE_COLUMN_REPLYTO + "=?" +
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "=?" ;		
-		String[] updateQueryArgs = new String[] {
-				newRule.getName(),
-				newRule.getDescription(),
-				newRule.getText(),
-				String.valueOf(newRule.getOnlyContacts()),
-				String.valueOf(newRule.getReplyTo()),
-				oldRuleName
-		};
-		Log.i(logTag, updateQuery + " ** " + Arrays.toString(updateQueryArgs));
-		db.execSQL(updateQuery, updateQueryArgs);
+		db.update(RuleEntry.RULE_TABLE_NAME,
+				v,
+				RuleEntry.RULE_COLUMN_NAME + "=?",
+				new String[] {oldRuleName});
 
+		Log.i(logTag, "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+				" SET " + RuleEntry.RULE_COLUMN_NAME + "=" + newRule.getName() + 
+				" , " + RuleEntry.RULE_COLUMN_DESCRIPTION + "=" + newRule.getDescription() +
+				" , " + RuleEntry.RULE_COLUMN_TEXT + "=" + newRule.getText() +
+				" , " + RuleEntry.RULE_COLUMN_ONLYCONTACTS + "=" + String.valueOf(newRule.getOnlyContacts()) +
+				" , " + RuleEntry.RULE_COLUMN_REPLYTO + "=" + String.valueOf(newRule.getReplyTo()) +
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "=" + oldRuleName);
 		db.close(); //close database 
 
 		return wID; //return the widgetID
@@ -482,14 +483,13 @@ public class DatabaseManager {
 		//while (db != null && db.isOpen()) {Log.i(logTag, "waiting for DB");} // Wait until DB is closed to act on it
 		db = dbHelper.getWritableDatabase();
 
+		String[] whereArgs = {name};
 		String selectQuery = "SELECT " + RuleEntry.RULE_COLUMN_STATUS + 
 				" FROM " + RuleEntry.RULE_TABLE_NAME + 
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " ='" + name + "'";
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " =?";
+		Cursor c = db.rawQuery(selectQuery, whereArgs);
 
-		//Log the query
-		Log.i(logTag, selectQuery);
-
-		Cursor c = db.rawQuery(selectQuery, null);
+		Log.i(logTag, selectQuery + " ** " + name);
 
 		if (c != null)
 			c.moveToFirst();
@@ -499,13 +499,13 @@ public class DatabaseManager {
 		int curStatus = c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_STATUS));
 		int statusToSet = (curStatus == 1) ? 0 : 1;
 
-		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+		ContentValues v = new ContentValues();
+		v.put(RuleEntry.RULE_COLUMN_STATUS, statusToSet);
+		db.update(RuleEntry.RULE_COLUMN_NAME, v, RuleEntry.RULE_COLUMN_NAME, whereArgs);
+
+		Log.i(logTag, "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + statusToSet + "'" +
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name + "'";
-
-		db.execSQL(updateQuery);
-
-		Log.i(logTag, "Executed: " + updateQuery);
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name + "'");
 
 		db.close();
 	}
@@ -530,6 +530,7 @@ public class DatabaseManager {
 				" WHERE " + RuleEntry.RULE_COLUMN_NAME + " ='" + name + "'";
 		Cursor c = db.rawQuery(selectQuery, null); //Cursor with the select query
 		Log.i(logTag, selectQuery); //Log
+
 		if (c != null) //make sure cursor isnt empty
 			c.moveToFirst();
 		else //Cursor is empty = Error
@@ -537,11 +538,13 @@ public class DatabaseManager {
 		int wID = c.getInt(c.getColumnIndexOrThrow(RuleEntry.RULE_COLUMN_WIDGET_ID)); //save the widget ID
 
 		// Update the database to set the state of the rule to the parameter
-		String updateQuery = "UPDATE " + RuleEntry.RULE_TABLE_NAME +
+		ContentValues v = new ContentValues();
+		v.put(RuleEntry.RULE_COLUMN_STATUS, status);
+		db.update(RuleEntry.RULE_COLUMN_NAME, v, RuleEntry.RULE_COLUMN_NAME, new String[] {name});
+
+		Log.i(logTag, "UPDATE " + RuleEntry.RULE_TABLE_NAME +
 				" SET " + RuleEntry.RULE_COLUMN_STATUS + "='" + status + "'" +
-				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'";
-		db.execSQL(updateQuery);
-		Log.i(logTag, "Executed: " + updateQuery);
+				" WHERE " + RuleEntry.RULE_COLUMN_NAME + "='" + name +"'");
 
 		db.close();
 
@@ -597,10 +600,12 @@ public class DatabaseManager {
 		values.put(SMSEntry.SMS_COLUMN_TO, sms.getTo());
 		values.put(SMSEntry.SMS_COLUMN_RULE, sms.getRule());
 
-		// TODO FEEDBACK
 		//Insert the new row
-		db.insertOrThrow(SMSEntry.SMS_TABLE_NAME, null, values);
-
+		try {
+			db.insertOrThrow(SMSEntry.SMS_TABLE_NAME, null, values);
+		} catch (SQLException ex) {
+			Log.e(logTag, "ERROR while adding SMS " + ex);
+		}
 		db.close(); //close database 
 
 	}
