@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mhmt.autotextmate"
+    package="com.mhmt.autoreplymate"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -48,7 +48,7 @@
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         </activity>
         <activity
-            android:name="com.mhmt.autotextmate.activities.Instructions"
+            android:name="com.mhmt.autoreplymate.activities.Instructions"
             android:label="@string/title_activity_instructions"
             android:parentActivityName=".activities.Main"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >

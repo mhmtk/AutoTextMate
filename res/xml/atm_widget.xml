@@ -6,6 +6,6 @@
     android:minWidth="40dp"
     android:updatePeriodMillis="0"
     android:initialLayout="@layout/layout_widget"
-    android:configure="com.mhmt.autotextmate.widget.ConfigureWidget">
+    android:configure="com.mhmt.autoreplymate.widget.ConfigureWidget">
 
 </appwidget-provider>
