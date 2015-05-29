@@ -32,7 +32,6 @@ public class Main extends ActionBarActivity {
 
 	private ListView ruleListView;
 	private ProgressBar progressBar;
-
 	private DatabaseManager dbManager;
 	private ArrayList<Rule> ruleArray;
 	private String logTag = "Main";
@@ -156,7 +155,7 @@ public class Main extends ActionBarActivity {
 				public void onClick(DialogInterface dialog, int which) {
 				}
 			})
-			.setMessage("Developed by Mehmet Kologlu. \n Version 1.0 \n Any feedback is welcome.")
+			.setMessage("Developed by Mehmet Kologlu. \nVersion 1.0 \nAny feedback is welcome.")
 			.show();
 			return true;
 		case R.id.action_instructions:
