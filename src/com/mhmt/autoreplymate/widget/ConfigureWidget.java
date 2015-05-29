@@ -86,7 +86,8 @@ public class ConfigureWidget extends ListActivity {
 		rm.setTextViewText(R.id.widget_button, selectedRule.getName());
 
 		// Create the intent (add the rule name as an extra) to launch at button onClick 
-		Intent onClickIntent = new Intent(WIDGET_ONCLICK_ACTION);
+		Intent onClickIntent = new Intent(context, RuleWidgetProvider.class);
+		onClickIntent.setAction(WIDGET_ONCLICK_ACTION);
 		onClickIntent.putExtra("rule_name", selectedRule.getName());
 		onClickIntent.putExtra("widget_ID", widgetID);
 		PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, widgetID, onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
